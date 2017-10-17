@@ -1,0 +1,2 @@
+{{{ include("controllers/activity.js") }}}
+

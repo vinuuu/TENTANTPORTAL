@@ -1,0 +1,16 @@
+.floorplan {
+    &-amenity-assign-floorplan-aside {
+        padding-left: 25px;
+        padding-right: 25px;
+        .assign-prop-grid {
+            .floorplan-name {
+                width: 90%;
+            }
+            .is-selected {
+                width: 10%;
+            }
+        }
+    }
+    
+}
+    

@@ -1,0 +1,141 @@
+{
+    
+    "units": {
+        "addedAmenities": [
+            {
+                "unitId": 1018201,
+                "unitNo": "1-101",
+                "buildingNo": 1,
+                "floorPlan": "A1 - One Bedroom, One Bath",
+                "floorLevel": "1st",
+                "pricePoint": "$10.00 - $30.00",
+                "pricePointID" : 222, 
+                "dateAdded": "12/12/2016",
+                "isSelected": true,
+                "isDelSelected": false,
+                "more": "more"
+          },
+            {
+                "unitId": 1120505,
+                "unitNo": "1-105",
+                "buildingNo": 1,
+                "floorPlan": "A2 - Two Bedroom, Two Bath",
+                "floorLevel": "1st",
+                "pricePoint": "$20.00",
+                "pricePointID" : 4444, 
+                "dateAdded": "04/12/2017",
+                "isSelected": false,
+                "isDelSelected": false,
+                "more": "more"
+          },
+            {
+                "unitId": 1120810,
+                "unitNo": "2-203",
+                "buildingNo": 2,
+                "floorPlan": "A3 - Three Bedroom, Two and Half Bath",
+                "floorLevel": "2nd",
+                "pricePoint": "$30.00",
+                "pricePointID" : "567", 
+                "dateAdded": "10/11/2016",
+                "isSelected": false,
+                "isDelSelected": false,
+                "more": "more"
+          },
+            {
+                "unitId": 1120811,
+                "unitNo": "3-202",
+                "buildingNo": 3,
+                "floorPlan": "A4 - Three Bedroom and Den, Three Bath",
+                "floorLevel": "2nd",
+                "pricePoint": "$20.00 - $30.00",
+                "pricePointID" : "899", 
+                "dateAdded": "07/05/2016",
+                "isSelected": false,
+                "isDelSelected": false,
+                "more": "more"
+          },
+            {
+                "unitId": 1120812,
+                "unitNo": "4-109",
+                "buildingNo": 4,
+                "floorPlan": "A5 - Three Bedroom , Den and Attached Garage, Three Bath",
+                "floorLevel": "1st",
+                "pricePoint": "$40.00",
+                "pricePointID" : "678", 
+                "dateAdded": "01/01/2017",
+                "isSelected": false,
+                "isDelSelected": false,
+                "more": "more"
+          }
+        ],
+        
+        "upgradeEligible": [
+            {
+                "unitId": 3018201,
+                "unitNo": "1-303",
+                "buildingNo": 1,
+                "floorPlan": "B1 - One Bedroom, One Bath",
+                "floorLevel": "3rd",
+                "pricePoint": "$20.00",
+                "pricePointID" : "756", 
+                "dateAdded": "12/12/2016",
+                "isSelected": true,
+                "isDelSelected": false,
+                "more": "more"
+          },
+            {
+                "unitId": 3120505,
+                "unitNo": "2-201",
+                "buildingNo": 2,
+                "floorPlan": "B2 - Two Bedroom, Two Bath",
+                "floorLevel": "2nd",
+                "pricePoint": "$10.00 - $30.00",
+                "pricePointID" : "576", 
+                "dateAdded": "04/12/2017",
+                "isSelected": true,
+                "isDelSelected": false,
+                "more": "more"
+          },
+            {
+                "unitId": 3120810,
+                "unitNo": "3-104",
+                "buildingNo": 3,
+                "floorPlan": "B3 - Three Bedroom, Two and Half Bath",
+                "floorLevel": "1st",
+                "pricePoint": "$30.00",
+                "pricePointID" : "456", 
+                "dateAdded": "10/11/2016",
+                "isSelected": false,
+                "isDelSelected": false,
+                "more": "more"
+          },
+            {
+                "unitId": 3120811,
+                "unitNo": "2-302",
+                "buildingNo": 2,
+                "floorPlan": "B4 - Three Bedroom and Den, Three Bath",
+                "floorLevel": "3rd",
+                "pricePoint": "$25.00",
+                "pricePointID" : "456", 
+                "dateAdded": "07/05/2016",
+                "isSelected": false,
+                "isDelSelected": false,
+                "more": "more"
+          },
+            {
+                "unitId": 3120812,
+                "unitNo": "1-207",
+                "buildingNo": 1,
+                "floorPlan": "B5 - Three Bedroom , Den and Attached Garage, Three Bath",
+                "floorLevel": "2nd",
+                "pricePoint": "$15.00 - $20.00",
+                "pricePointID" : "789", 
+                "dateAdded": "01/01/2017",
+                "isSelected": false,
+                "isDelSelected": false,
+                "more": "more"
+          }
+        ]
+
+    }
+}

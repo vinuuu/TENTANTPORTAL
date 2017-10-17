@@ -1,0 +1,118 @@
+.rp-notifications {
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  position: fixed;
+  overflow: visible; }
+  .rp-notifications [class*=-notification] {
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    left: 0;
+    width: 100%;
+    top: -100px;
+    z-index: 100;
+    padding: 0 10px;
+    position: absolute;
+    text-align: center; }
+    .rp-notifications [class*=-notification] .content {
+      display: inline-block;
+      vertical-align: middle;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      padding: 4px;
+      max-width: 540px;
+      border-width: 1px;
+      border-style: solid; }
+  .rp-notifications .close {
+    display: block;
+    float: right;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    text-align: center; }
+    .rp-notifications .close:before {
+      font-size: 20px;
+      line-height: 25px; }
+  .rp-notifications .icon {
+    display: block;
+    float: left;
+    width: 40px;
+    text-align: center; }
+  .rp-notifications .title {
+    font-weight: bold; }
+  .rp-notifications .title,
+  .rp-notifications .descr {
+    font-size: 13px;
+    line-height: 20px;
+    text-align: left;
+    line-height: 25px;
+    margin-left: 40px;
+    margin-right: 25px; }
+  .rp-notifications .action {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    text-decoration: underline; }
+  .rp-notifications .warning-notification .content {
+    color: #f4b44f;
+    border-color: #f4b44f;
+    background-color: #fffcf7; }
+  .rp-notifications .warning-notification .icon:before {
+    display: block;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center; }
+  .rp-notifications .warning-notification .title,
+  .rp-notifications .warning-notification .descr,
+  .rp-notifications .warning-notification .action,
+  .rp-notifications .warning-notification .action:hover {
+    color: #f4b44f; }
+  .rp-notifications .error-notification .content {
+    color: #f36444;
+    border-color: #f36444;
+    background-color: #feefec; }
+  .rp-notifications .error-notification .icon:before {
+    display: block;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center; }
+  .rp-notifications .error-notification .title,
+  .rp-notifications .error-notification .descr,
+  .rp-notifications .error-notification .action,
+  .rp-notifications .error-notification .action:hover {
+    color: #f36444; }
+  .rp-notifications .info-notification .content {
+    color: #5d9cec;
+    border-color: #5d9cec;
+    background-color: #fdfeff; }
+  .rp-notifications .info-notification .icon:before {
+    display: block;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center; }
+  .rp-notifications .info-notification .title,
+  .rp-notifications .info-notification .descr,
+  .rp-notifications .info-notification .action,
+  .rp-notifications .info-notification .action:hover {
+    color: #5d9cec; }
+  .rp-notifications .success-notification .content {
+    color: #4caf50;
+    border-color: #4caf50;
+    background-color: #d9eeda; }
+  .rp-notifications .success-notification .icon:before {
+    display: block;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center; }
+  .rp-notifications .success-notification .title,
+  .rp-notifications .success-notification .descr,
+  .rp-notifications .success-notification .action,
+  .rp-notifications .success-notification .action:hover {
+    color: #4caf50; }

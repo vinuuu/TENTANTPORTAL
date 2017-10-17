@@ -1,0 +1,32 @@
+
+      <div class="leftNavWrapper">
+        <!--Toggle Wrapper-->
+        <div class="toggleWrapper">
+          <a href="javascript:void(0);" class="toggleButton"><i class="fa fa-bars" aria-hidden="true"></i></a>
+        </div>
+        <!--End Toggle Wrapper-->
+        <div class="scrollWrapper">
+
+          <!-- Left Nav Item Wrapper-->
+          <div class="topNavWrapper" ng-repeat="navItem in model.navData">
+            <a ng-href="../{{ navItem.link }}" class="topNavHeaderClick">
+              <div class="topNavHeader">
+                <i class="icon" ng-class="navItem.icon" aria-hidden="true"></i>
+                <span class="topNavHeaderText">{{ navItem.text }}</span>
+                <i ng-show="navItem.subNav" class="fa fa-chevron-down endPoint" aria-hidden="true"></i>
+              </div>
+            </a>
+            <!-- <div class="subNavMouseOver">
+              <div class="subNavWrapper" ng-repeat="navSubItem in navItem.subNav">
+                <div class="subNavItemWrapper">
+                  <a ng-href="../{{ navSubItem.link }}" class="subNavClick">
+                    <span class="subNavTextWrapper">{{ navSubItem.text }}</span>
+                  </a>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <!--End Left Nav Item Wrapper-->
+
+        </div>
+      </div>

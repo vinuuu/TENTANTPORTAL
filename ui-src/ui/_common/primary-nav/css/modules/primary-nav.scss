@@ -1,0 +1,214 @@
+/************************
+ * Sidebar
+ ************************/
+.leftNavWrapper{
+  width:300px;
+  height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #495e69;
+  font-size: 16px;
+  color: #ffffff;
+  float:left;
+  -webkit-flex-direction: column;
+  flex-direction:         column;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 1030;
+
+  a {
+    color: #fff;
+  }
+}
+.scrollWrapper{
+  overflow-x: auto;
+  height: auto;
+  padding-bottom: 70px;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  -webkit-box-flex: 1;
+}
+.scrollWrapper::-webkit-scrollbar{
+  display:none;
+}
+.leftNavWrapper.lnavCollapsed{
+  width:5rem;
+}
+.leftNavWrapper.lnavCollapsed .topNavHeader .topNavHeaderText{
+  visibility: hidden;
+}
+.leftNavWrapper i.fa,
+.leftNavWrapper i.icon{
+  font-size:30px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+}
+
+.toggleWrapper{
+  height:70px;
+  border-bottom: 1px solid #546e7a;
+  display: block;
+  position: relative;
+  padding:0 0 0 30px;
+  flex-shrink:0;
+}
+.topNavHeader{
+  position:relative;
+  display: block;
+  height:70px;
+  border-bottom: 1px solid #546e7a;
+  padding:0 0 0 30px;
+}
+.topNavHeaderClick{
+  display: inline-block;
+  position: relative;
+  width:100%;
+}
+.topNavHeaderText{
+  display: inline-block;
+  position: relative;
+  top: 37%;
+  transform: translateY(-50%);
+  display: inline-block;
+  margin-left:8px;
+}
+.endPoint{
+  float:right;
+  font-size: 15px !important;
+  margin-right: 15px;
+}
+.subNavWrapper{
+  display: none;
+  position: relative;
+  height:auto;
+  width: 300px;
+  margin:0 auto;
+}
+.subNavWrapper.active{
+  display:block;
+  background-color: #37474f;
+}
+.subNavItemWrapper{
+  height:60px;
+  position: relative;
+  display: block;
+}
+.subNavItemActive{
+  background-color: #28343b;
+}
+.subNavTextWrapper{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  margin-left:27px;
+}
+.subNavClick{
+  width: 100%;
+  height:100%;
+  display: block;
+  padding-left: 45px;
+}
+.subNavClick:hover{
+  background-color: #28343b;
+}
+i.fa.fa-chevron-up.rotate {
+  transform: rotate(180deg) translateY(-50%) !important;
+  -ms-transform: rotate(180deg) translateY(-50%) !important;
+  -webkit-transform: rotate(180deg) translateY(-50%) !important;
+  -o-transform: rotate(180deg) translateY(-50%) !important;
+  top: 33%;
+  display: inline-block;;
+
+  transition: .3s;
+}
+i.fa.fa-chevron-up.rotateBack{
+  transform: rotate(0deg) translateY(-50%) !important;
+  -ms-transform: rotate(0deg) translateY(-50%) !important;
+  -webkit-transform: rotate(0deg) translateY(-50%) !important;
+  -o-transform: rotate(0deg) translateY(-50%) !important;
+  display: inline-block;
+  top: 33%;
+  transition: .3s;
+}
+.overActive{
+  width: 300px;
+  display: block;
+  background-color: #495e69;
+  left:5rem;
+  position: absolute;
+}
+.subNavItemOverActive{
+
+}
+
+/************************
+* White Bar
+*************************/
+.whiteBar{
+  position: fixed;
+  width:100%;
+  margin-left:300px;
+  display: block;
+  z-index: 99999999;
+}
+.buildingTop{
+
+}
+.whiteBar.p-a{
+  padding: 0 !important;
+  height: 70px;
+}
+.mobilerViewCrumb{
+  margin-left:20px !important;
+}
+.mobileHam{
+  color: #000;
+  font-size:30px;
+  display: none;
+  margin-left: 20px;
+  position:relative;
+  bottom: 19px;
+}
+.windowSmall .breadcrumb li:after{
+  padding: 0 !important;
+  content: "" !important;
+}
+.windowSmall .breadcrumb li{
+  display:none;
+}
+.windowSmall .breadcrumb li.active{
+  display:block;
+}
+.windowSmall .breadcrumb li.active:before{
+  content: "";
+  padding: 0;
+}
+.mobilerViewCrumb .breadcrumb li:after{
+  padding: 0 !important;
+  content: "" !important;
+}
+.mobilerViewCrumb .breadcrumb li{
+  display:none;
+}
+.mobilerViewCrumb .breadcrumb li.active{
+  display:block;
+}
+.mobilerViewCrumb .breadcrumb li.active:before{
+  content: "";
+  padding: 0;
+}
+/************************
+* Content Container
+*************************/
+
+.contentWrapper{
+  display:block;
+  margin-left:300px;
+  margin-top: 60px;
+}

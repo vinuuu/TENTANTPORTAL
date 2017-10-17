@@ -1,0 +1,44 @@
+{
+   "records": [
+    {
+      "siteID": 1018201,
+      "siteName": "Windsor at Barton Creek",   
+      "company": "CWS Apartments Homes LLC",            
+      "floorPlans": "20",   
+      "units": "20",
+      "isSelected": true
+    },
+    {
+     "siteID": 1120505,
+      "siteName": "Marquis on Gaston",   
+      "company": "CWS Apartments Homes LLC",           
+      "floorPlans": "20",  
+      "units": "25",
+      "isSelected": true
+    },
+    {
+      "siteID": 1120810,
+      "siteName": "Riverside Place",  
+      "company": "CWS Apartments Homes LLC",             
+      "floorPlans": "20",   
+      "units": "11",
+      "isSelected": false
+    },
+    {
+     "siteID": 1120811,
+      "siteName": "Marquis on Cary Parkway",  
+      "company": "CWS Apartments Homes LLC",             
+      "floorPlans": "20",    
+      "units": "45",
+      "isSelected": true
+    },
+    {
+     "siteID": 1120812,
+      "siteName": "LakeSide on Cary Parkway",     
+      "company": "CWS Apartments Homes LLC",          
+      "floorPlans": "20",   
+      "units": "40",
+      "isSelected": false
+    }
+  ]
+}

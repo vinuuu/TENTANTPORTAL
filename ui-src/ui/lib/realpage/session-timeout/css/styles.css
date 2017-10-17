@@ -1,0 +1,10 @@
+.rp-session-timeout-modal .modal-header {
+  padding: 15px 25px; }
+
+.rp-session-timeout-modal .modal-body {
+  padding: 20px 25px; }
+
+.rp-session-timeout-modal .modal-footer {
+  padding: 25px; }
+  .rp-session-timeout-modal .modal-footer .btn {
+    margin-left: 20px; }

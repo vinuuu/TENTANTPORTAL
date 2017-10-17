@@ -1,0 +1,158 @@
+.floorplan {
+    &-amenity-details {
+        .row-detail {
+            @include grid-row();
+            // border: solid 1px grey;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding-bottom: 10px;
+            padding-top: 0px;
+            margin-top: 20px;
+            &-head {
+                padding-bottom: 10px;
+                .grid-col {
+                    &-name {
+                        @include grid-col(6);
+                        padding-left: 0px;
+                        .amenity-name {
+                            width: 100%;
+                        }
+                        .synd-name {
+                            width: 100%;
+                            @include body-3($rp-neutral-03);
+                        }
+                    }
+                    &-prop {
+                        @include grid-col(3);
+                    }
+                    &-price {
+                        @include grid-col(3);
+                    }
+                }
+            }
+            &-body {
+                padding-top: 20px;
+                .grid-col {
+                    &-name {
+                        @include grid-col(6);
+                        padding-left: 0px;
+                        .amenity-name {
+                            width: 100%;
+                            font-weight: 500;
+                        }
+                        .synd-name {
+                            width: 100%;
+                            @include body-3($rp-neutral-03);
+                        }
+                    }
+                    &-prop {
+                        @include grid-col(3);
+                        @include body-1;
+                        font-weight: 500;
+                    }
+                    &-price {
+                        @include grid-col(3);
+                        @include body-1;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .prop-detail {
+            @include grid-row();
+            // border: solid 1px grey;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            margin-top: 20px;
+            font-weight: 500;
+            .new-btn {
+                float: left;
+                .icon-size {
+                    font-size: 12px;
+                }
+            }
+            &-header {
+                padding-top: 30px;
+                padding-bottom: 20px;
+                // padding-left:0px;
+                vertical-align: middle;
+                &-title {
+                    @include header-2;
+                    float: left;
+                    width: 100%;
+                    line-height: 50px;
+                    white-space: nowrap;
+                    height: 50px;
+                }
+            }
+        }
+
+        .prop-detail-grid {
+            margin-left: 10px;
+            margin-right: 10px;
+            .rp-grid-headers-1 .rp-grid-text {
+                font-size: 14px;
+                font-weight: normal;
+            }
+            .rp-grid-headers-1 {
+                .rp-grid-cell {
+                    &.site-name {
+                        width: 40%;
+                        text-align: left;
+                    }
+                }
+                .rp-grid-cell{
+                    &.floor-plans {
+                        width: 20%;
+                        text-align: right;
+                    }
+                }
+                .rp-grid-cell{
+                    &.units {
+                        width: 40%;
+                        text-align: right;
+                    }
+                }
+            }
+
+            .grid-col {
+                &-cursor {
+                    cursor: pointer;
+                }
+            }
+
+            .rp-grid-body-1 {
+                .rp-grid-cell {
+                    &.site-name {
+                        width: 40%;
+                        .rp-grid-text {
+                            font-weight: 500;
+                        }
+                    }
+                }
+                .rp-grid-cell {
+                    &.floor-plans {
+                        width: 20%;
+                        text-align: right;
+                        .rp-grid-text {
+                            font-weight: 500;
+                            font-size: 16px;
+                        }
+                    }
+                }
+                .rp-grid-cell {
+                    &.units {
+                        width: 40%;
+                        text-align: right;
+                        .rp-grid-text {
+                            font-weight: 500;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

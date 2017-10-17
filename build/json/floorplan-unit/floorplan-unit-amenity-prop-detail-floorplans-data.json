@@ -1,0 +1,90 @@
+{
+    "amenityID": 11111,
+    "amenityName": "Gas Fireplace",
+    "syndicationName": "Fireplace",
+    "descriptionTitle": "Mordern Gas Fireplace",
+    "descriptionDetail": "State of the art gas fireplace made of stone with variable heat effeciency",
+    "minPrice": "10.00", 
+    "maxPrice": "30.00",
+    "priceRange": "$10.00 - $30.00" ,
+    "displayImage": "Fireplace",
+
+    "floorPlans": {
+        "addedAmenities": [
+            {
+                "floorPlanId": 1018201,
+                "floorplanName": "Autmn Chase",
+                "dateAdded": "12/12/2016",
+                "isSelected": true,
+                "more": "more"
+          },
+            {
+                "floorPlanId": 1120505,
+                "floorplanName": "Autmn River",
+                "dateAdded": "04/12/2017",
+                "isSelected": false,
+                "more": "more"
+          },
+            {
+                "floorPlanId": 1120810,
+                "floorplanName": "Balton Springs",
+                "dateAdded": "10/11/2016",
+                "isSelected": false,
+                "more": "more"
+          },
+            {
+                "floorPlanId": 1120811,
+                "floorplanName": "Chase Mills",
+                "dateAdded": "07/05/2016",
+                "isSelected": false,
+                "more": "more"
+          },
+            {
+                "floorPlanId": 1120812,
+                "floorplanName": "Chase River",
+                "dateAdded": "01/01/2017",
+                "isSelected": false,
+                "more": "more"
+          }
+        ]
+        ,
+        "upgradeEligible": [
+            {
+                "floorPlanId": 3018201,
+                "floorplanName": "Autmn Chase",
+                "dateAdded": "12/12/2016",
+                "isSelected": false,
+                "more": "more"
+          },
+            {
+                "floorPlanId": 3120505,
+                "floorplanName": "Autmn River",
+                "dateAdded": "04/12/2017",
+                "isSelected": false,
+                "more": "more"
+          },
+            {
+                "floorPlanId": 3120810,
+                "floorplanName": "Balton Springs",
+                "dateAdded": "10/11/2016",
+                "isSelected": false,
+                "more": "more"
+          },
+            {
+                "floorPlanId": 3120811,
+                "floorplanName": "Chase Mills",
+                "dateAdded": "07/05/2016",
+                "isSelected": false,
+                "more": "more"
+          },
+            {
+                "floorPlanId": 3120812,
+                "floorplanName": "Chase River",
+                "dateAdded": "01/01/2017",
+                "isSelected": false,
+                "more": "more"
+          }
+        ]
+
+    }
+}

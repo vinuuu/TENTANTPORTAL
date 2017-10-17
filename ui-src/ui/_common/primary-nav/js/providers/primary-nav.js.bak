@@ -1,0 +1,25 @@
+// Primary Navigation Provider
+
+(function (angular) {
+    "use strict";
+
+    function PrimaryNav() {
+        var prov = this,
+            navData = [];
+
+        prov.setNav = function (data) {
+            navData = data;
+            return prov;
+        };
+
+        prov.$get = function () {
+            return {
+                navData: navData
+            };
+        };
+    }
+
+    angular
+        .module("rpPrimaryNav")
+        .provider('primaryNav', [PrimaryNav]);
+})(angular);

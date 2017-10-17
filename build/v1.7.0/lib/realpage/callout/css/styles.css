@@ -1,0 +1,51 @@
+.rp-callout {
+  font-size: 13px;
+  line-height: 20px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  display: none;
+  padding: 5px 10px;
+  position: absolute;
+  white-space: nowrap;
+  background-color: #333333; }
+  .rp-callout:before {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    content: "";
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background-color: #333333; }
+  .rp-callout.top {
+    left: 0;
+    top: -35px; }
+    .rp-callout.top:before {
+      bottom: 0;
+      left: 50%;
+      margin-left: -7px;
+      margin-bottom: -7px; }
+  .rp-callout.right {
+    right: 0; }
+    .rp-callout.right:before {
+      left: 0;
+      top: 50%;
+      margin-top: -7px;
+      margin-left: -7px; }
+  .rp-callout.bottom {
+    left: 0;
+    bottom: -35px; }
+    .rp-callout.bottom:before {
+      top: 0;
+      left: 50%;
+      margin-top: -7px;
+      margin-left: -7px; }
+  .rp-callout.error {
+    color: #fff;
+    background-color: #f36444; }
+    .rp-callout.error:before {
+      background-color: #f36444; }

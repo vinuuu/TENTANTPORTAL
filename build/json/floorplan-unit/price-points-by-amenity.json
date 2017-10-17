@@ -1,0 +1,126 @@
+{
+   "amenityID": 11111,
+   "amenityName": "Fireplace",
+   "pricePoints": [
+    {
+      "pricePointID": 4444,
+      "priceType": "$value",         
+      "price": "$20",   
+      "units": "20",
+      "isSeasonal": true,
+      "seasonalPricing" : 
+              [
+                {
+                "pricingID" : 7565,  
+                "fromDate": "",
+                "toDate": "",
+                "price": "$25",
+                "recurring": "25"
+                },
+                {
+                "pricingID" : 9798,  
+                "fromDate": "",
+                "toDate": "",
+                "price": "$25",
+                "recurring": "25"
+                },
+                {
+                "pricingID" : 7089,  
+                "fromDate": "",
+                "toDate": "",
+                "price": "$25",
+                "recurring": "25"
+                }
+              ],
+      "isDepreciation": true,
+      "depreciationPercent" : 
+              [
+                {
+                "depreciationID" : 65,  
+                "fromDate": "",
+                "duration": "5",
+                "percentage": "25"        
+                },
+                {
+                "depreciationID" : 12,  
+                "fromDate": "",
+                "duration": "5",
+                "percentage": "25"        
+                },
+                {
+                "depreciationID" : 44,  
+                "fromDate": "",
+                "duration": "5",
+                "percentage": "25"        
+                }
+              ]
+    },
+    {
+     "pricePointID": 567,
+      "priceType": "$value",         
+      "price": "$30",  
+      "units": "25",
+      "isSeasonal": true,
+      "seasonalPricing" : 
+            [
+              {
+              "pricingID" : 898,  
+              "fromDate": "",
+              "toDate": "",
+              "price": "$25",
+              "recurring": "25"
+              },
+              {
+              "pricingID" : 756,  
+              "fromDate": "",
+              "toDate": "",
+              "price": "$25",
+              "recurring": "25"
+              }
+            ],
+      "isDepreciation": true,
+      "depreciationPercent" : 
+            [
+              {
+              "depreciationID" : 99,  
+              "fromDate": "",
+              "duration": "5",
+              "percentage": "25"        
+              },
+              {
+              "depreciationID" : 77,  
+              "fromDate": "",
+              "duration": "5",
+              "percentage": "25"        
+              }
+            ]
+    },
+    {
+      "pricePointID": 222,
+      "priceType": "$value",        
+      "price": "$10.00 - $30.00",   
+      "units": "11",
+      "isSeasonal": false,
+      "seasonalPricing" : 
+            [
+              {
+              "pricingID" : 344,  
+              "fromDate": "",
+              "toDate": "",
+              "price": "$25",
+              "recurring": "25"
+              }
+            ],
+      "isDepreciation": false,
+      "depreciationPercent" : 
+            [
+              {
+              "depreciationID" : 768,  
+              "fromDate": "",
+              "duration": "5",
+              "percentage": "25"        
+              }
+            ]
+    }    
+  ]
+}

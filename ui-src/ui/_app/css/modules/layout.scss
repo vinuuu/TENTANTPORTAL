@@ -1,0 +1,39 @@
+// Layout
+
+.app-content {
+    // padding: 80px 20px 20px 20px;
+
+    @media #{$mdSc} {
+        // padding: 90px 20px 20px 20px;
+    }
+}
+
+.rp-aside-modal-extend {
+    &-modal-1 {
+        width: 70%;
+    }
+    &-modal-2 {
+        width: 450px;
+
+        .aside-btns {
+            .btn {
+                &.pad-left {
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}
+
+.rp-aside-modal {
+    &-header-wrap {
+        &.extend {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+
+    // &-content {
+    //     padding: 0;
+    // }
+}

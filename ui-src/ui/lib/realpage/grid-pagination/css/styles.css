@@ -1,0 +1,99 @@
+.rp-grid-pagination-control-first:before, .rp-grid-pagination-control-prev:before, .rp-grid-pagination-control-next:before, .rp-grid-pagination-control-last:before {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'RealPage-Icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.rp-grid-pagination-control-first:before {
+  content: "\e996"; }
+
+.rp-grid-pagination-control-last:before {
+  content: "\e997"; }
+
+.rp-grid-pagination-control-prev:before {
+  content: "\e99a"; }
+
+.rp-grid-pagination-control-next:before {
+  content: "\e99b"; }
+
+.rp-grid-pagination {
+  margin-top: 20px;
+  visibility: hidden; }
+  .rp-grid-pagination::after, .rp-grid-pagination::before {
+    height: 0;
+    content: "";
+    clear: both;
+    display: table;
+    overflow: hidden; }
+  .rp-grid-pagination.active {
+    visibility: visible; }
+  .rp-grid-pagination-inner {
+    float: right; }
+    .rp-grid-pagination-inner::after, .rp-grid-pagination-inner::before {
+      height: 0;
+      content: "";
+      clear: both;
+      display: table;
+      overflow: hidden; }
+  .rp-grid-pagination-pages, .rp-grid-pagination-controls, .rp-grid-pagination-displaying {
+    margin: 0; }
+  .rp-grid-pagination-displaying {
+    color: #515356;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: normal;
+    letter-spacing: 0.005em;
+    float: left; }
+  .rp-grid-pagination-pages, .rp-grid-pagination-controls {
+    color: #cbcbcb; }
+    .rp-grid-pagination-pages::after, .rp-grid-pagination-pages::before, .rp-grid-pagination-controls::after, .rp-grid-pagination-controls::before {
+      height: 0;
+      content: "";
+      clear: both;
+      display: table;
+      overflow: hidden; }
+  .rp-grid-pagination-controls.prev {
+    margin-left: 5px; }
+  .rp-grid-pagination-controls {
+    float: left; }
+  .rp-grid-pagination-control-next, .rp-grid-pagination-control-prev, .rp-grid-pagination-control-last, .rp-grid-pagination-control-first {
+    float: left;
+    margin: 0 5px;
+    display: block; }
+    .rp-grid-pagination-control-next.end, .rp-grid-pagination-control-prev.end, .rp-grid-pagination-control-last.end, .rp-grid-pagination-control-first.end {
+      margin-right: 0; }
+  .rp-grid-pagination .rp-grid-pagination-control-first:before, .rp-grid-pagination .rp-grid-pagination-control-prev:before, .rp-grid-pagination .rp-grid-pagination-control-next:before, .rp-grid-pagination .rp-grid-pagination-control-last:before {
+    display: block;
+    font-size: 11px;
+    line-height: 20px; }
+  .rp-grid-pagination-control {
+    cursor: default;
+    color: #cbcbcb; }
+    .rp-grid-pagination-control.active {
+      cursor: pointer;
+      color: #515356; }
+  .rp-grid-pagination-page, .rp-grid-pagination-pages {
+    float: left; }
+  .rp-grid-pagination-pages {
+    margin: 0;
+    padding: 0; }
+  .rp-grid-pagination-page {
+    color: #515356;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: normal;
+    letter-spacing: 0.005em;
+    margin: 0 5px;
+    cursor: pointer;
+    list-style: none;
+    color: #cbcbcb; }
+    .rp-grid-pagination-page.active {
+      cursor: default;
+      color: #515356; }
