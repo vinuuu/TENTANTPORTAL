@@ -1,6 +1,6 @@
 //  Lazy Load Config
 
-(function (angular) {
+(function(angular) {
     "use strict";
 
     function config(resolveModule) {
@@ -9,11 +9,12 @@
 
         modules = {
             "home.base": ["css", "js"],
+            "home.dashbaord": ["css", "js"],
             "home.common-area": ["css", "js"],
             "home.activity": ["css", "js"],
             "home.floorplan-unit.bundle": ["css", "js"],
             "home.profile-settings.bundle": ["css", "js"],
-			"Common.primary-nav": ["css", "js"]
+            "Common.primary-nav": ["css", "js"]
         };
 
         appConfig = {

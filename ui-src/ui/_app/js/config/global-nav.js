@@ -1,39 +1,40 @@
-// Configure Primary Navigation
+(function(angular) {
+    'use strict';
 
-(function (angular) {
-	'use strict';
+    function config(prov) {
+        var navData = [{
+            labelText: 'Overview',
+            labelLink: '/ui/lrc/',
+            iconClassName: 'rp-icon-home'
+        }, {
+            labelText: 'Account & Payments',
+            labelLink: '/ui/coming-soon/',
+            iconClassName: 'rp-icon-card'
+        }, {
+            labelText: 'Invoices',
+            labelLink: '/ui/affordable/',
+            iconClassName: 'rp-icon-file-document'
+        }, {
+            labelText: 'Maitenance Request',
+            labelLink: '/ui/coming-soon/',
+            iconClassName: 'rp-icon-tools'
+        }, {
+            labelText: 'Management Staff',
+            labelLink: '/ui/budgeting/',
+            iconClassName: 'rp-icon-user-profile'
+        }, {
+            labelText: 'Documents',
+            labelLink: '/ui/coming-soon/',
+            iconClassName: 'rp-icon-file-document'
+        }, {
+            labelText: 'Contact Us',
+            labelLink: '/ui/coming-soon/',
+            iconClassName: 'rp-icon-photo-classic'
+        }];
 
-	function config(prov) {
-		var navData = [{
-			labelText: 'Leasing & Occupancy',
-			labelLink: '/ui/lrc/',
-			iconClassName: 'rp-icon-hotel-2'
-		}, {
-			labelText: 'Payments',
-			labelLink: '/ui/coming-soon/',
-			iconClassName: 'rp-icon-card'
-		}, {
-			labelText: 'Affordable',
-			labelLink: '/ui/affordable/',
-			iconClassName: 'rp-icon-home'
-		}, {
-			labelText: 'Care',
-			labelLink: '/ui/coming-soon/',
-			iconClassName: 'rp-icon-heartbeat'
-		}, {
-			labelText: 'Budgeting',
-			labelLink: '/ui/budgeting/',
-			iconClassName: 'rp-icon-statistics-5'
-		}, {
-			labelText: 'Documents',
-			labelLink: '/ui/coming-soon/',
-			iconClassName: 'rp-icon-folder'
-		}];
-
-		prov.setData(navData);
-	}
-
-	angular
-        .module('uam')
-        .config(['rpGlobalNavModelProvider', config]);
+        prov.setData(navData);
+    }
+    angular
+        .module("uam")
+        .run(["rpGlobalNavModel", config]);
 })(angular);

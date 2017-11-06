@@ -1,0 +1,99 @@
+@charset "UTF-8";
+.rp-form-input-checkbox i:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0); }
+
+.rp-form-input-checkbox i:before {
+  content: ""; }
+
+.rp-form-input-checkbox {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle; }
+  .rp-form-input-checkbox.has-label {
+    width: auto;
+    height: 40px;
+    display: block;
+    padding-left: 18px;
+    position: relative; }
+    .rp-form-input-checkbox.has-label.label-1 {
+      padding-left: 0;
+      padding-right: 18px; }
+    .rp-form-input-checkbox.has-label.inline {
+      display: inline-block; }
+  .rp-form-input-checkbox label {
+    margin: 0; }
+  .rp-form-input-checkbox-btn {
+    width: 18px;
+    height: 18px;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative; }
+  .rp-form-input-checkbox.has-label .rp-form-input-checkbox-btn {
+    left: 0;
+    top: 11px;
+    position: absolute; }
+  .rp-form-input-checkbox.label-1 .rp-form-input-checkbox-btn {
+    right: 0;
+    left: auto; }
+  .rp-form-input-checkbox-label {
+    color: #303436;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: normal;
+    letter-spacing: 0.005em;
+    display: block;
+    cursor: pointer;
+    line-height: 40px;
+    padding-left: 10px; }
+    .rp-form-input-checkbox-label:empty {
+      display: none; }
+  .rp-form-input-checkbox.label-1 .rp-form-input-checkbox-label {
+    padding-left: 0;
+    text-align: right;
+    padding-right: 10px; }
+  .rp-form-input-checkbox input {
+    top: 0;
+    left: 0;
+    position: absolute;
+    margin-left: -100px; }
+  .rp-form-input-checkbox i {
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #fff;
+    border: solid 1px #c9cdcf; }
+    .rp-form-input-checkbox i:before {
+      -webkit-transition: all 0.2s;
+      -moz-transition: all 0.2s;
+      -ms-transition: all 0.2s;
+      -o-transition: all 0.2s;
+      transition: all 0.2s;
+      color: #fff;
+      display: block;
+      font-size: 12px;
+      line-height: 16px;
+      text-align: center;
+      visibility: hidden; }
+  .rp-form-input-checkbox input:checked + i {
+    border: solid 1px #0076cc; }
+    .rp-form-input-checkbox input:checked + i:before {
+      visibility: visible;
+      background: #0076cc; }

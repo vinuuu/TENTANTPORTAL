@@ -1,6 +1,6 @@
 //  Configure Routes
 
-(function (angular) {
+(function(angular) {
     "use strict";
 
     function config(RoutesProvider) {
@@ -17,16 +17,25 @@
                 ]
             }]
         };
-
+        routes["home.dashbaord"] = {
+            url: "/dashbaord",
+            controller: "dashboardCtrl as page",
+            lazyLoad: [{
+                files: [
+                    "uam.home.dashbaord",
+                    "lib.realpage.accordion"
+                ]
+            }]
+        };
         routes["home.floorplan-unit"] = {
             url: "/floorplan-unit",
             controller: "FloorPlanUnitCtrl as floorPlanUnit",
             lazyLoad: [{
-                rerun:true,
+                rerun: true,
                 files: [
-					 "lib.angular.motion",
+                    "lib.angular.motion",
                     "lib.bootstrap.additions",
-					"lib.angular.strap",
+                    "lib.angular.strap",
                     "uam.home.floorplan-unit.bundle"
                 ]
             }]
@@ -56,11 +65,11 @@
             url: "/profile-settings",
             controller: "ProfileSettingsCtrl as page",
             lazyLoad: [{
-                rerun:true,
+                rerun: true,
                 files: [
-					 "lib.angular.motion",
+                    "lib.angular.motion",
                     "lib.bootstrap.additions",
-					"lib.angular.strap",
+                    "lib.angular.strap",
                     "uam.home.profile-settings.bundle"
                 ]
             }]
@@ -68,7 +77,8 @@
 
         RoutesProvider
             .setTemplateUrlPrefix("ui/")
-            .setRoutes(routes).setDefault("/floorplan-unit");
+            .setRoutes(routes)
+            .setDefault("/dashbaord");
     }
 
     angular

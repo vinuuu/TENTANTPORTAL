@@ -1,0 +1,18 @@
+<div class="rp-breadcrumbs" ng-show="$ctrl.model.isVisible">
+    <a class="home-icon {{::$ctrl.model.home.icon}}" href="{{::$ctrl.model.home.url}}"></a>
+    <div class="pull-left ft-b-r">
+        <div class="product-name">{{$ctrl.model.product.name}}</div>
+        <div class="rp-breadcrumbs-links" ng-if="$ctrl.model.hasBreadCrumb">
+            <div class="rp-breadcrumb home-link"><a href="{{$ctrl.model.home.url}}" class="rp-breadcrumb-text">{{$ctrl.model.home.text}}</a></div>
+            <ul class="rp-breadcrumbs-list">
+                <li ng-repeat="link in $ctrl.model.links" class="rp-breadcrumb p-a-0"><a href="{{link.href}}" class="rp-breadcrumb-text">{{link.text}}</a></li>
+            </ul>
+            <div class="active-page rp-breadcrumb">
+                <span class="active-page-text rp-breadcrumb-text">{{$ctrl.model.activePage.text}}</span>
+            </div>
+        </div>
+        <div class="rp-breadcrumb home-link" ng-if="!$ctrl.model.hasBreadCrumb">
+            <a href="{{$ctrl.model.backLink.href}}" class="rp-breadcrumb-text"><i class="rp-icon-angle-left ft-s-10 p-r-xs"></i>{{$ctrl.model.backLink.text}}</a>
+        </div>
+    </div>
+</div>

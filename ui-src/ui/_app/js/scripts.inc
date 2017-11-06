@@ -11,18 +11,18 @@
 // RealPage Modules
 
 {{{ include("../../lib/realpage/actions-menu/js/scripts.js") }}}
-{{{ include("../../lib/realpage/breadcrumbs/js/scripts.js") }}}
 {{{ include("../../lib/realpage/busy-indicator/js/scripts.js") }}}
 {{{ include("../../lib/realpage/date-range/js/scripts.js") }}}
-{{{ include("../../lib/realpage/datepicker/js/scripts.js") }}}
+{{{ //include("../../lib/realpage/datepicker/js/scripts.js") }}}
 {{{ include("../../lib/realpage/datetimepicker-v1/js/scripts.js") }}}
 {{{ include("../../lib/realpage/float-scroll/js/scripts.js") }}}
 {{{ include("../../lib/realpage/form-input-date/js/scripts.js") }}}
 {{{ include("../../lib/realpage/form-input-text-v1/js/scripts.js") }}}
 {{{ include("../../lib/realpage/form-select-menu-v1/js/scripts.js") }}}
 {{{ include("../../lib/realpage/form-textarea-v1/js/scripts.js") }}}
-{{{ include("../../lib/realpage/form-track-changes/js/scripts.js") }}}
+{{{ //include("../../lib/realpage/form-track-changes/js/scripts.js") }}}
 {{{ include("../../lib/realpage/global-header/js/scripts.js") }}}
+{{{ include("../../lib/realpage/global-nav/js/scripts.js") }}}
 {{{ include("../../lib/realpage/grid-controls/js/scripts.js") }}}
 {{{ include("../../lib/realpage/grid-pagination/js/scripts.js") }}}
 {{{ include("../../lib/realpage/grid/js/scripts.js") }}}
@@ -42,4 +42,5 @@
 {{{ include("models/_bundle.inc") }}}
 
 
-{{{ //include('../../_common/primary-nav/js/_bundle.inc') }}}
+{{{ include('../../_common/breadcrumbs/js/components/breadcrumbs.js') }}}
+{{{ include('../../_common/breadcrumbs/js/providers/breadcrumbs.js') }}}

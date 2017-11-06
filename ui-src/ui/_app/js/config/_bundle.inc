@@ -6,7 +6,10 @@
 {{{ include("lazy-load.js") }}}
 {{{ include("oc-lazyload.js") }}}
 {{{ include("location.js") }}}
+{{{ include("scope-annotations.js") }}}
+{{{ // include("breadcrumbs.js") }}}
+{{{ // include("app-mock.js") }}}
 {{{ include("resolve-modules.js") }}}
 {{{ include("routes.js") }}}
-{{{ include("scope-annotations.js") }}}
 {{{ // include("ga.js") }}}
+{{{ include("global-nav.js") }}}

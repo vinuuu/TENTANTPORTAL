@@ -5950,7 +5950,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('rpFade', [rpFade]);
 })(angular);
 
@@ -6003,7 +6003,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('rpFileDrop', ['rpFileAttachments', rpFileDrop]);
 })(angular);
 
@@ -6053,7 +6053,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('rpFileSelect', ['rpFileAttachments', rpFileSelect]);
 })(angular);
 
@@ -6121,7 +6121,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('rpHighlightTerm', ['timeout', rpHighlightTerm]);
 })(angular);
 
@@ -6145,7 +6145,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('html', ['deviceInfoSvc', html]);
 })(angular);
 
@@ -6182,7 +6182,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('rpKillEvent', [rpKillEvent]);
 })(angular);
 
@@ -6230,7 +6230,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive("rpPublishScroll", [rpPublishScroll]);
 })(angular);
 
@@ -6269,7 +6269,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('rpRegisterForm', ['rpFormAgent', 'rpFormManager', rpRegisterForm]);
 })(angular);
 
@@ -6303,7 +6303,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('rpScroll', ['$parse', rpScroll]);
 })(angular);
 
@@ -6339,7 +6339,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('rpStopEvent', [rpStopEvent]);
 })(angular);
 
@@ -6369,7 +6369,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('rpTouchend', ['$parse', rpTouchend]);
 })(angular);
 
@@ -6399,7 +6399,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .directive('rpTouchstart', ['$parse', rpTouchstart]);
 })(angular);
 
@@ -6417,7 +6417,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .filter('htmlUnsafe', ['$sce', filter]);
 })(angular);
 
@@ -6519,7 +6519,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .filter('naturalSort', function () {
             return Filter;
         });
@@ -6562,7 +6562,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("rpColors", [factory]);
 })(angular);
 
@@ -6592,7 +6592,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("baseFormConfig", ["rpMethodsRepo", factory]);
 })(angular);
 
@@ -6627,7 +6627,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("baseForm", [factory]);
 })(angular);
 
@@ -6665,7 +6665,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("baseLayoutModel", [factory]);
 })(angular);
 
@@ -6705,7 +6705,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpListModel', ['rpCollection', factory]);
 })(angular);
 
@@ -6738,7 +6738,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("appLayout", [
             "baseLayoutModel",
             "rpCookie",
@@ -6763,8 +6763,59 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("regex", [factory]);
+})(angular);
+
+//  Source: _lib\realpage\common\js\models\data-share.js
+//  Data Share Model
+
+(function (angular, undefined) {
+    "use strict";
+
+    function factory() {
+        function DataShare() {
+            var s = this;
+            s.init();
+        }
+
+        var p = DataShare.prototype;
+
+        p.init = function () {
+            var s = this;
+            s.data = {};
+        };
+
+        p.set = function (data) {
+            var s = this;
+            s.data = data || {};
+            return s;
+        };
+
+        p.get = function (key) {
+            var s = this;
+            return key !== undefined ? s.data[key] : s.data;
+        };
+
+        p.extend = function (data) {
+            var s = this;
+            angular.extend(s.data, data || {});
+            return s;
+        };
+
+        p.destroy = function () {
+            var s = this;
+            s.data = undefined;
+        };
+
+        return function (data) {
+            return (new DataShare()).set(data);
+        };
+    }
+
+    angular
+        .module("rpCommon")
+        .factory("rpDataShareModel", [factory]);
 })(angular);
 
 //  Source: _lib\realpage\common\js\services\_bundle.inc
@@ -6803,7 +6854,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('BodySvc', [
             'windowSize',
             'watchable',
@@ -6869,7 +6920,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpCollection', [factory]);
 })(angular);
 
@@ -6936,7 +6987,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpComputedStyle', ['$window', factory]);
 })(angular);
 
@@ -6958,7 +7009,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpCountriesList', [factory]);
 })(angular);
 
@@ -7075,7 +7126,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('dateParser', ['moment', factory]);
 })(angular);
 
@@ -7124,7 +7175,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpDate', ['moment', factory]);
 })(angular);
 
@@ -7161,7 +7212,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('deviceInfoSvc', ['$window', factory]);
 })(angular);
 
@@ -7231,7 +7282,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('eventStream', [factory]);
 })(angular);
 
@@ -7298,7 +7349,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('eventsManager', ['eventStream', factory]);
 })(angular);
 
@@ -7315,7 +7366,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("$exceptionHandler", [factory]);
 })(angular);
 
@@ -7363,7 +7414,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpFileAttachments', ['$q', '$window', factory]);
 })(angular);
 
@@ -7406,7 +7457,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpFormAgent', [factory]);
 })(angular);
 
@@ -7476,7 +7527,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpFormManager', [factory]);
 })(angular);
 
@@ -7511,7 +7562,7 @@ return init(root);
     };
 
     angular
-        .module("app")
+        .module("rpCommon")
         .service("guid", [Guid]);
 })(angular);
 
@@ -7542,8 +7593,65 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpHomepage', ['rpSessionStorage', factory]);
+})(angular);
+
+//  Source: _lib\realpage\common\js\services\invoke-link.js
+//  Invoke Link Service
+
+(function (angular, undefined) {
+    "use strict";
+
+    function InvokeLink($window, $state, pubsub) {
+        var svc = this;
+
+        svc.invoke = function (data) {
+            if (data.url) {
+                svc.invokeLink(data);
+            }
+            else if (data.sref) {
+                svc.invokeState(data);
+            }
+            else if (data.method) {
+                svc.invokeMethod(data);
+            }
+            else if (data.event) {
+                svc.invokeEvent(data);
+            }
+        };
+
+        svc.invokeLink = function (data) {
+            if (data.newWin) {
+                var win = $window.open(data.url, "_blank");
+                win.focus();
+            }
+            else {
+                $window.location.href = data.url;
+            }
+        };
+
+        svc.invokeState = function (data) {
+            $state.go(data.sref, data.stateParams || {});
+        };
+
+        svc.invokeMethod = function (data) {
+            data.method(data.args);
+        };
+
+        svc.invokeEvent = function (data) {
+            pubsub.publish(data.event, data.eventData || {});
+        };
+    }
+
+    angular
+        .module("rpCommon")
+        .service("rpInvokeLink", [
+            "$window",
+            "$state",
+            "pubsub",
+            InvokeLink
+        ]);
 })(angular);
 
 //  Source: _lib\realpage\common\js\services\keycode.js
@@ -7596,7 +7704,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('keycode', [factory]);
 })(angular);
 
@@ -7665,7 +7773,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpListSelection', [factory]);
 })(angular);
 
@@ -7701,7 +7809,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpLocalStorage', ['$window', factory]);
 })(angular);
 
@@ -7744,7 +7852,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("location", ["$location", factory]);
 })(angular);
 
@@ -7776,7 +7884,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('log', ['$window', '$cookieStore', log]);
 })(angular);
 
@@ -7834,7 +7942,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("rpMethodsRepo", [factory]);
 })(angular);
 
@@ -7863,7 +7971,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('moduleState', [factory]);
 })(angular);
 
@@ -7948,7 +8056,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .service('point', Service);
 })(angular);
 
@@ -7980,7 +8088,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpPoolSvc', [factory]);
 })(angular);
 
@@ -8050,7 +8158,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('pubsub', [factory]);
 })(angular);
 
@@ -8072,7 +8180,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('random', [factory]);
 })(angular);
 
@@ -8179,7 +8287,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .service('rectangle', ['point', Service]);
 })(angular);
 
@@ -8227,7 +8335,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .service("scrollbar", [
             "$window",
             Scrollbar
@@ -8298,7 +8406,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpSelectionManager', [factory]);
 })(angular);
 
@@ -8325,7 +8433,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("serialize", [serialize]);
 })(angular);
 
@@ -8361,7 +8469,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory("rpSessionStorage", ["$window", factory]);
 })(angular);
 
@@ -8405,7 +8513,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('timeout', ['$rootScope', service]);
 })(angular);
 
@@ -8475,7 +8583,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpUSStatesList', [factory]);
 })(angular);
 
@@ -8511,7 +8619,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('rpWatchList', [factory]);
 })(angular);
 
@@ -8578,7 +8686,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('watchable', ['eventStream', Service]);
 })(angular);
 
@@ -8636,7 +8744,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('windowScroll', ['$window', 'eventStream', windowScroll]);
 })(angular);
 
@@ -8685,7 +8793,7 @@ return init(root);
     }
 
     angular
-        .module("app")
+        .module("rpCommon")
         .factory('windowSize', ['$window', 'eventStream', windowSize]);
 })(angular);
 
@@ -8830,7 +8938,7 @@ angular.module("rpActionsMenu", []);
     }
 
     angular
-        .module("app")
+        .module("rpActionsMenu")
         .directive("rpActionsMenu", [
             "$rootScope",
             "$compile",
@@ -9060,198 +9168,12 @@ angular.module("rpActionsMenu", []);
 
 
 //  Source: _lib\realpage\actions-menu\js\templates\templates.inc.js
-angular.module('app').run(['$templateCache', function ($templateCache) {
+angular.module("rpActionsMenu").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/actions-menu/templates/actions-menu-panel.html",
 "<div ng-if=\"model.panel.show\" ng-style=\"model.panel.position\" ng-class=\"{open: model.panel.show}\" class=\"{{::model.data.menuClassNames}} rp-actions-menu-panel dropdown\"><ul class=\"rp-actions-menu-list dropdown-menu dropdown-menu-scale dropdown-menu-width\"><li ng-hide=\"action.data.disabled\" ng-repeat=\"action in model.actions\" class=\"rp-actions-menu-item {{::action.data.classNames}}\"><a ng-if=\"action.data.href\" href=\"{{::action.data.href}}\" class=\"rp-actions-menu-item-text {{::action.data.iconClassNames}}\">{{::action.data.text}} </a><span ng-if=\"!action.data.href\" ng-click=\"action.activate()\" class=\"rp-actions-menu-item-text {{::action.data.iconClassNames}}\">{{::action.data.text}}</span></li></ul></div>");
 $templateCache.put("realpage/actions-menu/templates/actions-menu.html",
 "<span ng-click=\"rpActionsMenu.togglePanel($event)\" class=\"rp-actions-menu {{::model.data.toggleClassNames}}\">{{::model.data.toggleText}}</span>");
 }]);
-
-//  Source: ui\lib\realpage\breadcrumbs\js\scripts.js
-//  Source: _lib\realpage\breadcrumbs\js\_bundle.inc
-angular.module("rpBreadcrumbs", []);
-
-//  Source: _lib\realpage\breadcrumbs\js\templates\templates.inc.js
-angular.module('rpBreadcrumbs').run(['$templateCache', function ($templateCache) {
-$templateCache.put("realpage/breadcrumbs/templates/breadcrumbs.html",
-"<div class=\"rp-breadcrumbs\" ng-show=\"model.isVisible\"><a class=\"home-icon {{model.home.icon}}\" href=\"{{model.home.url}}\"></a><div class=\"pull-left ft-b-r\"><div class=\"product-name\">{{model.product.name}}</div><div class=\"rp-breadcrumbs-links\" ng-if=\"!model.showBackBtn\"><div class=\"rp-breadcrumb home-link\"><a href=\"{{model.home.url}}\" class=\"rp-breadcrumb-text\">{{model.home.text}}</a></div><ul class=\"rp-breadcrumbs-list\"><li ng-repeat=\"link in model.links\" class=\"rp-breadcrumb p-a-0\"><a href=\"{{link.href}}\" class=\"rp-breadcrumb-text\">{{link.text}}</a></li></ul><div class=\"active-page rp-breadcrumb\"><span class=\"active-page-text rp-breadcrumb-text\">{{model.activePage.text}}</span></div></div><div class=\"rp-breadcrumb home-link\" ng-if=\"model.showBackBtn\"><span class=\"rp-breadcrumb-back-text\" ng-click=\"model.goBack()\">{{model.backLinkData.text}}</span></div></div></div>");
-}]);
-
-//  Source: _lib\realpage\breadcrumbs\js\providers\breadcrumbs.js
-//  Breadcrumbs Model Provider
-
-(function (angular) {
-    "use strict";
-
-    function Provider() {
-        var prov = this;
-
-        prov.links = {};
-        prov.breadcrumbs = [];
-
-        prov.setProduct = function (product) {
-            prov.product = product;
-            return prov;
-        };
-
-        prov.setHome = function (home) {
-            prov.home = home;
-            return prov;
-        };
-
-        prov.setLinks = function (links) {
-            prov.links = links;
-            return prov;
-        };
-
-        prov.setBreadcrumbs = function (breadcrumbs) {
-            prov.breadcrumbs = breadcrumbs;
-            return prov;
-        };
-
-        function provide($rootScope, $window, location, storage) {
-            var model = {},
-                ev = "$locationChangeSuccess";
-
-            model.init = function () {
-                model.backLinkData = {
-                    text: "Back"
-                };
-                model.updateFromStorage();
-                $rootScope.$on(ev, model.setLinks);
-                model.home = angular.extend({}, prov.home);
-                model.product = angular.extend({}, prov.product);
-                return model;
-            };
-
-            model.updateFromStorage = function () {
-                var dataKey = "breadcrumbsLinks";
-
-                if (storage.has(dataKey)) {
-                    var links = storage.get(dataKey);
-                    Object.keys(links).forEach(function (key) {
-                        angular.extend(prov.links[key], links[key]);
-                    });
-                }
-            };
-
-            model.setLinks = function () {
-                var url = location.url();
-
-                model.isVisible = false;
-                model.showBackLink(false).restoreBackLink();
-
-                prov.breadcrumbs.forEach(function (item) {
-                    if (url.match(item.url)) {
-                        model.isVisible = true;
-                        model.links = item.links || [];
-                        model.activePage = item.activePage;
-                        model.home.icon = item.homeIcon || prov.home.icon;
-                        model.product.name = item.productName || prov.product.name;
-                    }
-                });
-
-                model.updateLinks();
-            };
-
-            model.setActivePage = function (page) {
-                model.activePage = page;
-                return model;
-            };
-
-            model.updateLinks = function () {
-                var updated = false,
-                    url = location.url();
-
-                Object.keys(prov.links).forEach(function (key) {
-                    var link = prov.links[key],
-                        regex = link.pattern ? new RegExp(link.pattern) : "";
-
-                    if (link.pattern !== undefined && url.match(regex)) {
-                        updated = true;
-                        link.href = url;
-                    }
-                });
-
-                if (updated) {
-                    storage.set("breadcrumbsLinks", prov.links);
-                }
-
-                return model;
-            };
-
-            model.showBackLink = function (bool) {
-                bool = bool === undefined ? true : !!bool;
-                model.showBackBtn = bool;
-                return model;
-            };
-
-            model.updateBackLink = function (data) {
-                data = data || {};
-                angular.extend(model.backLinkData, data);
-                return model;
-            };
-
-            model.restoreBackLink = function () {
-                angular.extend(model.backLinkData, {
-                    url: "",
-                    text: "Back"
-                });
-                return model;
-            };
-
-            model.goBack = function () {
-                if (model.backLinkData.url) {
-                    location.url(model.backLinkData.url); // url = "/roles/23"
-                }
-                else {
-                    $window.history.back();
-                }
-
-                return model;
-            };
-
-            return model.init();
-        }
-
-        prov.$get = [
-            "$rootScope",
-            "$window",
-            "location",
-            "rpSessionStorage",
-            provide
-        ];
-    }
-
-    angular
-        .module("rpBreadcrumbs")
-        .provider("rpBreadcrumbsModel", [Provider]);
-})(angular);
-
-//  Source: _lib\realpage\breadcrumbs\js\directives\breadcrumbs.js
-//  Breadcrumbs Directive
-
-(function (angular) {
-    "use strict";
-
-    function rpBreadcrumbs(model) {
-        function link(scope, elem, attr) {
-            scope.model = model;
-        }
-
-        return {
-            scope: {},
-            link: link,
-            restrict: 'E',
-            replace: true,
-            templateUrl: "realpage/breadcrumbs/templates/breadcrumbs.html"
-        };
-    }
-
-    angular
-        .module("rpBreadcrumbs")
-        .directive('rpBreadcrumbs', ["rpBreadcrumbsModel", rpBreadcrumbs]);
-})(angular);
 
 //  Source: ui\lib\realpage\busy-indicator\js\scripts.js
 //  Source: _lib\realpage\busy-indicator\js\_bundle.inc
@@ -9390,12 +9312,8 @@ angular.module("rpBusyIndicator", []);
             };
 
             dir.setStyles = function () {
-                var ht = elem.outerHeight(),
-                    bgi = "../" + cdnVer + "/lib/realpage/busy-indicator/images/default.gif";
-
-                model.style.backgroundImage = "url('" + bgi + "')";
+                var ht = elem.outerHeight();
                 model.style.lineHeight = ht + "px";
-
                 return dir;
             };
 
@@ -9407,12 +9325,19 @@ angular.module("rpBusyIndicator", []);
                 }
             };
 
+            dir.setBg = function () {
+                var bgi = "../" + cdnVer + "/lib/realpage/busy-indicator/images/default.gif";
+                model.style.backgroundImage = "url('" + bgi + "')";
+                return dir;
+            };
+
             dir.removeBg = function () {
                 model.style.backgroundImage = "";
                 return dir;
             };
 
             dir.busy = function () {
+                dir.setBg();
                 model.className = "busy";
                 timeout.cancel(dir.timer1);
                 dir.timer1 = timeout(dir.showMsg, 10000);
@@ -9572,364 +9497,2653 @@ angular.module("rpDateRange", []);
         .run(['$templateCache', installTemplate]);
 })(angular);
 
-//  Source: ui\lib\realpage\datepicker\js\scripts.js
-//  Source: _lib\realpage\datepicker\js\_bundle.inc
-angular.module("rpDatepicker", []);
-
-//  Source: _lib\realpage\datepicker\js\templates\datepicker.js
-//  Datepicker Template
-
-(function (angular) {
-    "use strict";
-
-    var templateHtml, templateUrl;
-
-    templateUrl = "templates/realpage/common/datepicker/datepicker.html";
-
-    templateHtml = "" +
-        "<div class='rp-datepicker' " +
-            "ng-style='model.styles'>" +
-            "<span class='close' ng-click='model.hide()'>x" +
-            "</span>" +
-
-            "<div class='header'>" +
-                "<span class='prev' " +
-                    "rp-stop-event='click' " +
-                    "ng-click='model.prevMonth()' " +
-                    "ng-class='{disabled: !model.allowPrevMonth()}'>" +
-                "</span>" +
-                "<span class='next' " +
-                    "rp-stop-event='click' " +
-                    "ng-click='model.nextMonth()' " +
-                    "ng-class='{disabled: !model.allowNextMonth()}'>" +
-                "</span>" +
-                "<p class='month-name'>{{model.monthName()}}</p>" +
-            "</div>" +
-
-            "<div class='days-header'>" +
-                "<p class='day-name'>S</p>" +
-                "<p class='day-name'>M</p>" +
-                "<p class='day-name'>T</p>" +
-                "<p class='day-name'>W</p>" +
-                "<p class='day-name'>T</p>" +
-                "<p class='day-name'>F</p>" +
-                "<p class='day-name'>S</p>" +
-            "</div>" +
-
-            "<div class='days'>" +
-                "<div ng-repeat='day in model.days' " +
-                    "class='day' " +
-                    "ng-class='day.state' " +
-                    "ng-click='model.select(day)'>" +
-                    "{{day.text}}" +
-                "</div>" +
-            "</div>" +
-
-            "<div class='footer'>" +
-                "<span class='prev-year' " +
-                    "rp-stop-event='click' " +
-                    "ng-click='model.prevYear()' " +
-                    "ng-class='{disabled: !model.allowPrevYear()}'>" +
-                    "{{model.year()-1}}" +
-                "</span>" +
-                "<span class='next-year' " +
-                    "rp-stop-event='click' " +
-                    "ng-click='model.nextYear()' " +
-                    "ng-class='{disabled: !model.allowNextYear()}'>" +
-                    "{{model.year()+1}}" +
-                "</span>" +
-                "<span class='current-year'>" +
-                    "{{model.year()}}" +
-                "</span>" +
-            "</div>" +
-        "</div>";
-
-    function installTemplate($templateCache) {
-        $templateCache.put(templateUrl, templateHtml);
-    }
-
-    angular
-        .module("rpDatepicker")
-        .run(['$templateCache', installTemplate]);
-})(angular);
-
-//  Source: _lib\realpage\datepicker\js\models\datepicker.js
-//  Datepicker Model
-
-(function (angular) {
-    "use strict";
-
-    function factory(moment, dateSvc, eventStream) {
-        var model, _data;
-
-        model = {
-            days: [],
-
-            size: {},
-
-            styles: {},
-
-            events: eventStream(),
-
-            _data: {
-                min: '',
-                max: '',
-                refDate: '',
-                selDate: '',
-                callerID: '',
-                newCaller: true
-            }
-        };
-
-        _data = model._data;
-
-        model.update = function (data) {
-            return model.updateData(data).build();
-        };
-
-        model.updateData = function (data) {
-            _data.newCaller = _data.callerID != data.callerID;
-
-            if (_data.newCaller) {
-                model.events.publish({
-                    name: 'update'
-                });
-            }
-
-            angular.extend(_data, data);
-            return model;
-        };
-
-        model.build = function () {
-            var fmt = 'MM/DD/YYYY',
-                ref = _data.refDate,
-                end = dateSvc(ref).endDay(),
-                start = dateSvc(ref).startDay();
-
-            model.days.flush();
-
-            while (!dateSvc(start).is(end)) {
-                var aboveMax = _data.max && dateSvc(start).isAfter(_data.max),
-                    belowMin = _data.min && dateSvc(start).isBefore(_data.min),
-                    active = _data.selDate && dateSvc(start).is(_data.selDate),
-                    disabled = belowMin || aboveMax;
-
-                model.days.push({
-                    moment: start.clone(),
-                    text: start.format('D'),
-                    state: {
-                        active: active,
-                        disabled: disabled,
-                        today: dateSvc(start).isToday(),
-                        current: dateSvc(start).isCurrentMonth(ref)
-                    }
-                });
-
-                start.add(1, 'day');
-            }
-
-            return model;
-        };
-
-        model.updateStyles = function (styles) {
-            angular.extend(model.styles, styles);
-            return model;
-        };
-
-        model.updateSize = function (size) {
-            angular.extend(model.size, size);
-            return model;
-        };
-
-        model.hide = function () {
-            model.styles.display = 'none';
-            model.events.publish({
-                name: 'hide'
-            });
-            return model;
-        };
-
-        model.show = function () {
-            model.styles.display = 'block';
-            model.events.publish({
-                name: 'show'
-            });
-            return model;
-        };
-
-        model.isHidden = function () {
-            return model.styles.display != 'block';
-        };
-
-        model.prevMonth = function () {
-            _data.refDate.add(-1, 'month');
-            return model.build();
-        };
-
-        model.prevYear = function () {
-            _data.refDate.add(-1, 'year');
-            return model.build();
-        };
-
-        model.nextMonth = function () {
-            _data.refDate.add(1, 'month');
-            return model.build();
-        };
-
-        model.nextYear = function () {
-            _data.refDate.add(1, 'year');
-            return model.build();
-        };
-
-        model.allowPrevMonth = function () {
-            if (!_data.min || !_data.refDate) {
-                return true;
-            }
-
-            var newDate = _data.refDate.clone().add(-1, 'month');
-            return !dateSvc(newDate).isBefore(_data.min);
-        };
-
-        model.allowPrevYear = function () {
-            if (!_data.min || !_data.refDate) {
-                return true;
-            }
-
-            var newDate = _data.refDate.clone().add(-1, 'year');
-            return !dateSvc(newDate).isBefore(_data.min);
-        };
-
-        model.allowNextMonth = function () {
-            if (!_data.max || !_data.refDate) {
-                return true;
-            }
-
-            var newDate = _data.refDate.clone().add(1, 'month');
-            return !dateSvc(newDate).isAfter(_data.max);
-        };
-
-        model.allowNextYear = function () {
-            if (!_data.max || !_data.refDate) {
-                return true;
-            }
-
-            var newDate = _data.refDate.clone().add(1, 'year');
-            return !dateSvc(newDate).isAfter(_data.max);
-        };
-
-        model.monthName = function () {
-            return _data.refDate ? _data.refDate.format('MMMM') : '';
-        };
-
-        model.year = function () {
-            return _data.refDate ? parseInt(_data.refDate.format('YYYY')) : 0;
-        };
-
-        model.select = function (day) {
-            if (day.state.disabled) {
-                return;
-            }
-
-            _data.selDate = day.moment.clone();
-
-            model.days.forEach(function (item) {
-                item.state.active = dateSvc(item.moment).is(day.moment);
-            });
-
-            model.events.publish({
-                name: 'select',
-                data: day.moment.format('x')
-            });
-        };
-
-        model.prevCaller = function () {
-            return _data.callerID;
-        };
-
-        return model;
-    }
-
-    angular
-        .module("rpDatepicker")
-        .factory('rpDatepickerModel', ['moment', 'rpDate', 'eventStream', factory]);
-})(angular);
-
-//  Source: _lib\realpage\datepicker\js\directives\datepicker.js
-//  Datepicker Directive
-
-(function (angular) {
-    "use strict";
-
-    function rpDatepicker(model) {
-        function link(scope, elem, attr) {
-            var body,
-                dir = {};
-
-            dir.init = function () {
-                scope.model = model;
-                body = angular.element('body');
-                model.events.subscribe(dir.updateBinding);
-                dir.updateSize();
-            };
-
-            dir.updateBinding = function (ev) {
-                if (ev.name == 'hide') {
-                    body.off('click.datepicker');
-                }
-                else if (ev.name == 'updateSize') {
-                    dir.updateSize();
-                }
-                else {
-                    body.on('click.datepicker', dir.hide);
-                }
-
-                return dir;
-            };
-
-            dir.hide = function () {
-                scope.$apply(function () {
-                    model.hide();
-                });
-            };
-
-            dir.updateSize = function () {
-                model.updateSize({
-                    width: elem.outerWidth(),
-                    height: elem.outerHeight()
-                });
-
-                return dir;
-            };
-
-            dir.init();
-        }
-
-        return {
-            scope: {},
-            link: link,
-            restrict: 'E',
-            replace: true,
-            templateUrl: "templates/realpage/common/datepicker/datepicker.html"
-        };
-    }
-
-    angular
-        .module("rpDatepicker")
-        .directive('rpDatepicker', ['rpDatepickerModel', rpDatepicker]);
-})(angular);
 
 //  Source: ui\lib\realpage\datetimepicker-v1\js\scripts.js
-//  Source: node_modules\eonasdan-bootstrap-datetimepicker\build\js\bootstrap-datetimepicker.min.js
-!function(a){"use strict";if("function"==typeof define&&define.amd)define(["jquery","moment"],a);else if("object"==typeof exports)module.exports=a(require("jquery"),require("moment"));else{if("undefined"==typeof jQuery)throw"bootstrap-datetimepicker requires jQuery to be loaded first";if("undefined"==typeof moment)throw"bootstrap-datetimepicker requires Moment.js to be loaded first";a(jQuery,moment)}}(function(a,b){"use strict";if(!b)throw new Error("bootstrap-datetimepicker requires Moment.js to be loaded first");var c=function(c,d){var e,f,g,h,i,j,k,l={},m=!0,n=!1,o=!1,p=0,q=[{clsName:"days",navFnc:"M",navStep:1},{clsName:"months",navFnc:"y",navStep:1},{clsName:"years",navFnc:"y",navStep:10},{clsName:"decades",navFnc:"y",navStep:100}],r=["days","months","years","decades"],s=["top","bottom","auto"],t=["left","right","auto"],u=["default","top","bottom"],v={up:38,38:"up",down:40,40:"down",left:37,37:"left",right:39,39:"right",tab:9,9:"tab",escape:27,27:"escape",enter:13,13:"enter",pageUp:33,33:"pageUp",pageDown:34,34:"pageDown",shift:16,16:"shift",control:17,17:"control",space:32,32:"space",t:84,84:"t",delete:46,46:"delete"},w={},x=function(){return void 0!==b.tz&&void 0!==d.timeZone&&null!==d.timeZone&&""!==d.timeZone},y=function(a){var c;return c=void 0===a||null===a?b():b.isDate(a)||b.isMoment(a)?b(a):x()?b.tz(a,j,d.useStrict,d.timeZone):b(a,j,d.useStrict),x()&&c.tz(d.timeZone),c},z=function(a){if("string"!=typeof a||a.length>1)throw new TypeError("isEnabled expects a single character string parameter");switch(a){case"y":return i.indexOf("Y")!==-1;case"M":return i.indexOf("M")!==-1;case"d":return i.toLowerCase().indexOf("d")!==-1;case"h":case"H":return i.toLowerCase().indexOf("h")!==-1;case"m":return i.indexOf("m")!==-1;case"s":return i.indexOf("s")!==-1;default:return!1}},A=function(){return z("h")||z("m")||z("s")},B=function(){return z("y")||z("M")||z("d")},C=function(){var b=a("<thead>").append(a("<tr>").append(a("<th>").addClass("prev").attr("data-action","previous").append(a("<span>").addClass(d.icons.previous))).append(a("<th>").addClass("picker-switch").attr("data-action","pickerSwitch").attr("colspan",d.calendarWeeks?"6":"5")).append(a("<th>").addClass("next").attr("data-action","next").append(a("<span>").addClass(d.icons.next)))),c=a("<tbody>").append(a("<tr>").append(a("<td>").attr("colspan",d.calendarWeeks?"8":"7")));return[a("<div>").addClass("datepicker-days").append(a("<table>").addClass("table-condensed").append(b).append(a("<tbody>"))),a("<div>").addClass("datepicker-months").append(a("<table>").addClass("table-condensed").append(b.clone()).append(c.clone())),a("<div>").addClass("datepicker-years").append(a("<table>").addClass("table-condensed").append(b.clone()).append(c.clone())),a("<div>").addClass("datepicker-decades").append(a("<table>").addClass("table-condensed").append(b.clone()).append(c.clone()))]},D=function(){var b=a("<tr>"),c=a("<tr>"),e=a("<tr>");return z("h")&&(b.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.incrementHour}).addClass("btn").attr("data-action","incrementHours").append(a("<span>").addClass(d.icons.up)))),c.append(a("<td>").append(a("<span>").addClass("timepicker-hour").attr({"data-time-component":"hours",title:d.tooltips.pickHour}).attr("data-action","showHours"))),e.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.decrementHour}).addClass("btn").attr("data-action","decrementHours").append(a("<span>").addClass(d.icons.down))))),z("m")&&(z("h")&&(b.append(a("<td>").addClass("separator")),c.append(a("<td>").addClass("separator").html(":")),e.append(a("<td>").addClass("separator"))),b.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.incrementMinute}).addClass("btn").attr("data-action","incrementMinutes").append(a("<span>").addClass(d.icons.up)))),c.append(a("<td>").append(a("<span>").addClass("timepicker-minute").attr({"data-time-component":"minutes",title:d.tooltips.pickMinute}).attr("data-action","showMinutes"))),e.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.decrementMinute}).addClass("btn").attr("data-action","decrementMinutes").append(a("<span>").addClass(d.icons.down))))),z("s")&&(z("m")&&(b.append(a("<td>").addClass("separator")),c.append(a("<td>").addClass("separator").html(":")),e.append(a("<td>").addClass("separator"))),b.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.incrementSecond}).addClass("btn").attr("data-action","incrementSeconds").append(a("<span>").addClass(d.icons.up)))),c.append(a("<td>").append(a("<span>").addClass("timepicker-second").attr({"data-time-component":"seconds",title:d.tooltips.pickSecond}).attr("data-action","showSeconds"))),e.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.decrementSecond}).addClass("btn").attr("data-action","decrementSeconds").append(a("<span>").addClass(d.icons.down))))),h||(b.append(a("<td>").addClass("separator")),c.append(a("<td>").append(a("<button>").addClass("btn btn-primary").attr({"data-action":"togglePeriod",tabindex:"-1",title:d.tooltips.togglePeriod}))),e.append(a("<td>").addClass("separator"))),a("<div>").addClass("timepicker-picker").append(a("<table>").addClass("table-condensed").append([b,c,e]))},E=function(){var b=a("<div>").addClass("timepicker-hours").append(a("<table>").addClass("table-condensed")),c=a("<div>").addClass("timepicker-minutes").append(a("<table>").addClass("table-condensed")),d=a("<div>").addClass("timepicker-seconds").append(a("<table>").addClass("table-condensed")),e=[D()];return z("h")&&e.push(b),z("m")&&e.push(c),z("s")&&e.push(d),e},F=function(){var b=[];return d.showTodayButton&&b.push(a("<td>").append(a("<a>").attr({"data-action":"today",title:d.tooltips.today}).append(a("<span>").addClass(d.icons.today)))),!d.sideBySide&&B()&&A()&&b.push(a("<td>").append(a("<a>").attr({"data-action":"togglePicker",title:d.tooltips.selectTime}).append(a("<span>").addClass(d.icons.time)))),d.showClear&&b.push(a("<td>").append(a("<a>").attr({"data-action":"clear",title:d.tooltips.clear}).append(a("<span>").addClass(d.icons.clear)))),d.showClose&&b.push(a("<td>").append(a("<a>").attr({"data-action":"close",title:d.tooltips.close}).append(a("<span>").addClass(d.icons.close)))),a("<table>").addClass("table-condensed").append(a("<tbody>").append(a("<tr>").append(b)))},G=function(){var b=a("<div>").addClass("bootstrap-datetimepicker-widget dropdown-menu"),c=a("<div>").addClass("datepicker").append(C()),e=a("<div>").addClass("timepicker").append(E()),f=a("<ul>").addClass("list-unstyled"),g=a("<li>").addClass("picker-switch"+(d.collapse?" accordion-toggle":"")).append(F());return d.inline&&b.removeClass("dropdown-menu"),h&&b.addClass("usetwentyfour"),z("s")&&!h&&b.addClass("wider"),d.sideBySide&&B()&&A()?(b.addClass("timepicker-sbs"),"top"===d.toolbarPlacement&&b.append(g),b.append(a("<div>").addClass("row").append(c.addClass("col-md-6")).append(e.addClass("col-md-6"))),"bottom"===d.toolbarPlacement&&b.append(g),b):("top"===d.toolbarPlacement&&f.append(g),B()&&f.append(a("<li>").addClass(d.collapse&&A()?"collapse in":"").append(c)),"default"===d.toolbarPlacement&&f.append(g),A()&&f.append(a("<li>").addClass(d.collapse&&B()?"collapse":"").append(e)),"bottom"===d.toolbarPlacement&&f.append(g),b.append(f))},H=function(){var b,e={};return b=c.is("input")||d.inline?c.data():c.find("input").data(),b.dateOptions&&b.dateOptions instanceof Object&&(e=a.extend(!0,e,b.dateOptions)),a.each(d,function(a){var c="date"+a.charAt(0).toUpperCase()+a.slice(1);void 0!==b[c]&&(e[a]=b[c])}),e},I=function(){var b,e=(n||c).position(),f=(n||c).offset(),g=d.widgetPositioning.vertical,h=d.widgetPositioning.horizontal;if(d.widgetParent)b=d.widgetParent.append(o);else if(c.is("input"))b=c.after(o).parent();else{if(d.inline)return void(b=c.append(o));b=c,c.children().first().after(o)}if("auto"===g&&(g=f.top+1.5*o.height()>=a(window).height()+a(window).scrollTop()&&o.height()+c.outerHeight()<f.top?"top":"bottom"),"auto"===h&&(h=b.width()<f.left+o.outerWidth()/2&&f.left+o.outerWidth()>a(window).width()?"right":"left"),"top"===g?o.addClass("top").removeClass("bottom"):o.addClass("bottom").removeClass("top"),"right"===h?o.addClass("pull-right"):o.removeClass("pull-right"),"static"===b.css("position")&&(b=b.parents().filter(function(){return"static"!==a(this).css("position")}).first()),0===b.length)throw new Error("datetimepicker component should be placed within a non-static positioned container");o.css({top:"top"===g?"auto":e.top+c.outerHeight(),bottom:"top"===g?b.outerHeight()-(b===c?0:e.top):"auto",left:"left"===h?b===c?0:e.left:"auto",right:"left"===h?"auto":b.outerWidth()-c.outerWidth()-(b===c?0:e.left)})},J=function(a){"dp.change"===a.type&&(a.date&&a.date.isSame(a.oldDate)||!a.date&&!a.oldDate)||c.trigger(a)},K=function(a){"y"===a&&(a="YYYY"),J({type:"dp.update",change:a,viewDate:f.clone()})},L=function(a){o&&(a&&(k=Math.max(p,Math.min(3,k+a))),o.find(".datepicker > div").hide().filter(".datepicker-"+q[k].clsName).show())},M=function(){var b=a("<tr>"),c=f.clone().startOf("w").startOf("d");for(d.calendarWeeks===!0&&b.append(a("<th>").addClass("cw").text("#"));c.isBefore(f.clone().endOf("w"));)b.append(a("<th>").addClass("dow").text(c.format("dd"))),c.add(1,"d");o.find(".datepicker-days thead").append(b)},N=function(a){return d.disabledDates[a.format("YYYY-MM-DD")]===!0},O=function(a){return d.enabledDates[a.format("YYYY-MM-DD")]===!0},P=function(a){return d.disabledHours[a.format("H")]===!0},Q=function(a){return d.enabledHours[a.format("H")]===!0},R=function(b,c){if(!b.isValid())return!1;if(d.disabledDates&&"d"===c&&N(b))return!1;if(d.enabledDates&&"d"===c&&!O(b))return!1;if(d.minDate&&b.isBefore(d.minDate,c))return!1;if(d.maxDate&&b.isAfter(d.maxDate,c))return!1;if(d.daysOfWeekDisabled&&"d"===c&&d.daysOfWeekDisabled.indexOf(b.day())!==-1)return!1;if(d.disabledHours&&("h"===c||"m"===c||"s"===c)&&P(b))return!1;if(d.enabledHours&&("h"===c||"m"===c||"s"===c)&&!Q(b))return!1;if(d.disabledTimeIntervals&&("h"===c||"m"===c||"s"===c)){var e=!1;if(a.each(d.disabledTimeIntervals,function(){if(b.isBetween(this[0],this[1]))return e=!0,!1}),e)return!1}return!0},S=function(){for(var b=[],c=f.clone().startOf("y").startOf("d");c.isSame(f,"y");)b.push(a("<span>").attr("data-action","selectMonth").addClass("month").text(c.format("MMM"))),c.add(1,"M");o.find(".datepicker-months td").empty().append(b)},T=function(){var b=o.find(".datepicker-months"),c=b.find("th"),g=b.find("tbody").find("span");c.eq(0).find("span").attr("title",d.tooltips.prevYear),c.eq(1).attr("title",d.tooltips.selectYear),c.eq(2).find("span").attr("title",d.tooltips.nextYear),b.find(".disabled").removeClass("disabled"),R(f.clone().subtract(1,"y"),"y")||c.eq(0).addClass("disabled"),c.eq(1).text(f.year()),R(f.clone().add(1,"y"),"y")||c.eq(2).addClass("disabled"),g.removeClass("active"),e.isSame(f,"y")&&!m&&g.eq(e.month()).addClass("active"),g.each(function(b){R(f.clone().month(b),"M")||a(this).addClass("disabled")})},U=function(){var a=o.find(".datepicker-years"),b=a.find("th"),c=f.clone().subtract(5,"y"),g=f.clone().add(6,"y"),h="";for(b.eq(0).find("span").attr("title",d.tooltips.prevDecade),b.eq(1).attr("title",d.tooltips.selectDecade),b.eq(2).find("span").attr("title",d.tooltips.nextDecade),a.find(".disabled").removeClass("disabled"),d.minDate&&d.minDate.isAfter(c,"y")&&b.eq(0).addClass("disabled"),b.eq(1).text(c.year()+"-"+g.year()),d.maxDate&&d.maxDate.isBefore(g,"y")&&b.eq(2).addClass("disabled");!c.isAfter(g,"y");)h+='<span data-action="selectYear" class="year'+(c.isSame(e,"y")&&!m?" active":"")+(R(c,"y")?"":" disabled")+'">'+c.year()+"</span>",c.add(1,"y");a.find("td").html(h)},V=function(){var a,c=o.find(".datepicker-decades"),g=c.find("th"),h=b({y:f.year()-f.year()%100-1}),i=h.clone().add(100,"y"),j=h.clone(),k=!1,l=!1,m="";for(g.eq(0).find("span").attr("title",d.tooltips.prevCentury),g.eq(2).find("span").attr("title",d.tooltips.nextCentury),c.find(".disabled").removeClass("disabled"),(h.isSame(b({y:1900}))||d.minDate&&d.minDate.isAfter(h,"y"))&&g.eq(0).addClass("disabled"),g.eq(1).text(h.year()+"-"+i.year()),(h.isSame(b({y:2e3}))||d.maxDate&&d.maxDate.isBefore(i,"y"))&&g.eq(2).addClass("disabled");!h.isAfter(i,"y");)a=h.year()+12,k=d.minDate&&d.minDate.isAfter(h,"y")&&d.minDate.year()<=a,l=d.maxDate&&d.maxDate.isAfter(h,"y")&&d.maxDate.year()<=a,m+='<span data-action="selectDecade" class="decade'+(e.isAfter(h)&&e.year()<=a?" active":"")+(R(h,"y")||k||l?"":" disabled")+'" data-selection="'+(h.year()+6)+'">'+(h.year()+1)+" - "+(h.year()+12)+"</span>",h.add(12,"y");m+="<span></span><span></span><span></span>",c.find("td").html(m),g.eq(1).text(j.year()+1+"-"+h.year())},W=function(){var b,c,g,h=o.find(".datepicker-days"),i=h.find("th"),j=[],k=[];if(B()){for(i.eq(0).find("span").attr("title",d.tooltips.prevMonth),i.eq(1).attr("title",d.tooltips.selectMonth),i.eq(2).find("span").attr("title",d.tooltips.nextMonth),h.find(".disabled").removeClass("disabled"),i.eq(1).text(f.format(d.dayViewHeaderFormat)),R(f.clone().subtract(1,"M"),"M")||i.eq(0).addClass("disabled"),R(f.clone().add(1,"M"),"M")||i.eq(2).addClass("disabled"),b=f.clone().startOf("M").startOf("w").startOf("d"),g=0;g<42;g++)0===b.weekday()&&(c=a("<tr>"),d.calendarWeeks&&c.append('<td class="cw">'+b.week()+"</td>"),j.push(c)),k=["day"],b.isBefore(f,"M")&&k.push("old"),b.isAfter(f,"M")&&k.push("new"),b.isSame(e,"d")&&!m&&k.push("active"),R(b,"d")||k.push("disabled"),b.isSame(y(),"d")&&k.push("today"),0!==b.day()&&6!==b.day()||k.push("weekend"),J({type:"dp.classify",date:b,classNames:k}),c.append('<td data-action="selectDay" data-day="'+b.format("L")+'" class="'+k.join(" ")+'">'+b.date()+"</td>"),b.add(1,"d");h.find("tbody").empty().append(j),T(),U(),V()}},X=function(){var b=o.find(".timepicker-hours table"),c=f.clone().startOf("d"),d=[],e=a("<tr>");for(f.hour()>11&&!h&&c.hour(12);c.isSame(f,"d")&&(h||f.hour()<12&&c.hour()<12||f.hour()>11);)c.hour()%4===0&&(e=a("<tr>"),d.push(e)),e.append('<td data-action="selectHour" class="hour'+(R(c,"h")?"":" disabled")+'">'+c.format(h?"HH":"hh")+"</td>"),c.add(1,"h");b.empty().append(d)},Y=function(){for(var b=o.find(".timepicker-minutes table"),c=f.clone().startOf("h"),e=[],g=a("<tr>"),h=1===d.stepping?5:d.stepping;f.isSame(c,"h");)c.minute()%(4*h)===0&&(g=a("<tr>"),e.push(g)),g.append('<td data-action="selectMinute" class="minute'+(R(c,"m")?"":" disabled")+'">'+c.format("mm")+"</td>"),c.add(h,"m");b.empty().append(e)},Z=function(){for(var b=o.find(".timepicker-seconds table"),c=f.clone().startOf("m"),d=[],e=a("<tr>");f.isSame(c,"m");)c.second()%20===0&&(e=a("<tr>"),d.push(e)),e.append('<td data-action="selectSecond" class="second'+(R(c,"s")?"":" disabled")+'">'+c.format("ss")+"</td>"),c.add(5,"s");b.empty().append(d)},$=function(){var a,b,c=o.find(".timepicker span[data-time-component]");h||(a=o.find(".timepicker [data-action=togglePeriod]"),b=e.clone().add(e.hours()>=12?-12:12,"h"),a.text(e.format("A")),R(b,"h")?a.removeClass("disabled"):a.addClass("disabled")),c.filter("[data-time-component=hours]").text(e.format(h?"HH":"hh")),c.filter("[data-time-component=minutes]").text(e.format("mm")),c.filter("[data-time-component=seconds]").text(e.format("ss")),X(),Y(),Z()},_=function(){o&&(W(),$())},aa=function(a){var b=m?null:e;if(!a)return m=!0,g.val(""),c.data("date",""),J({type:"dp.change",date:!1,oldDate:b}),void _();if(a=a.clone().locale(d.locale),x()&&a.tz(d.timeZone),1!==d.stepping)for(a.minutes(Math.round(a.minutes()/d.stepping)*d.stepping).seconds(0);d.minDate&&a.isBefore(d.minDate);)a.add(d.stepping,"minutes");R(a)?(e=a,f=e.clone(),g.val(e.format(i)),c.data("date",e.format(i)),m=!1,_(),J({type:"dp.change",date:e.clone(),oldDate:b})):(d.keepInvalid?J({type:"dp.change",date:a,oldDate:b}):g.val(m?"":e.format(i)),J({type:"dp.error",date:a,oldDate:b}))},ba=function(){var b=!1;return o?(o.find(".collapse").each(function(){var c=a(this).data("collapse");return!c||!c.transitioning||(b=!0,!1)}),b?l:(n&&n.hasClass("btn")&&n.toggleClass("active"),o.hide(),a(window).off("resize",I),o.off("click","[data-action]"),o.off("mousedown",!1),o.remove(),o=!1,J({type:"dp.hide",date:e.clone()}),g.blur(),f=e.clone(),l)):l},ca=function(){aa(null)},da=function(a){return void 0===d.parseInputDate?(!b.isMoment(a)||a instanceof Date)&&(a=y(a)):a=d.parseInputDate(a),a},ea={next:function(){var a=q[k].navFnc;f.add(q[k].navStep,a),W(),K(a)},previous:function(){var a=q[k].navFnc;f.subtract(q[k].navStep,a),W(),K(a)},pickerSwitch:function(){L(1)},selectMonth:function(b){var c=a(b.target).closest("tbody").find("span").index(a(b.target));f.month(c),k===p?(aa(e.clone().year(f.year()).month(f.month())),d.inline||ba()):(L(-1),W()),K("M")},selectYear:function(b){var c=parseInt(a(b.target).text(),10)||0;f.year(c),k===p?(aa(e.clone().year(f.year())),d.inline||ba()):(L(-1),W()),K("YYYY")},selectDecade:function(b){var c=parseInt(a(b.target).data("selection"),10)||0;f.year(c),k===p?(aa(e.clone().year(f.year())),d.inline||ba()):(L(-1),W()),K("YYYY")},selectDay:function(b){var c=f.clone();a(b.target).is(".old")&&c.subtract(1,"M"),a(b.target).is(".new")&&c.add(1,"M"),aa(c.date(parseInt(a(b.target).text(),10))),A()||d.keepOpen||d.inline||ba()},incrementHours:function(){var a=e.clone().add(1,"h");R(a,"h")&&aa(a)},incrementMinutes:function(){var a=e.clone().add(d.stepping,"m");R(a,"m")&&aa(a)},incrementSeconds:function(){var a=e.clone().add(1,"s");R(a,"s")&&aa(a)},decrementHours:function(){var a=e.clone().subtract(1,"h");R(a,"h")&&aa(a)},decrementMinutes:function(){var a=e.clone().subtract(d.stepping,"m");R(a,"m")&&aa(a)},decrementSeconds:function(){var a=e.clone().subtract(1,"s");R(a,"s")&&aa(a)},togglePeriod:function(){aa(e.clone().add(e.hours()>=12?-12:12,"h"))},togglePicker:function(b){var c,e=a(b.target),f=e.closest("ul"),g=f.find(".in"),h=f.find(".collapse:not(.in)");if(g&&g.length){if(c=g.data("collapse"),c&&c.transitioning)return;g.collapse?(g.collapse("hide"),h.collapse("show")):(g.removeClass("in"),h.addClass("in")),e.is("span")?e.toggleClass(d.icons.time+" "+d.icons.date):e.find("span").toggleClass(d.icons.time+" "+d.icons.date)}},showPicker:function(){o.find(".timepicker > div:not(.timepicker-picker)").hide(),o.find(".timepicker .timepicker-picker").show()},showHours:function(){o.find(".timepicker .timepicker-picker").hide(),o.find(".timepicker .timepicker-hours").show()},showMinutes:function(){o.find(".timepicker .timepicker-picker").hide(),o.find(".timepicker .timepicker-minutes").show()},showSeconds:function(){o.find(".timepicker .timepicker-picker").hide(),o.find(".timepicker .timepicker-seconds").show()},selectHour:function(b){var c=parseInt(a(b.target).text(),10);h||(e.hours()>=12?12!==c&&(c+=12):12===c&&(c=0)),aa(e.clone().hours(c)),ea.showPicker.call(l)},selectMinute:function(b){aa(e.clone().minutes(parseInt(a(b.target).text(),10))),ea.showPicker.call(l)},selectSecond:function(b){aa(e.clone().seconds(parseInt(a(b.target).text(),10))),ea.showPicker.call(l)},clear:ca,today:function(){var a=y();R(a,"d")&&aa(a)},close:ba},fa=function(b){return!a(b.currentTarget).is(".disabled")&&(ea[a(b.currentTarget).data("action")].apply(l,arguments),!1)},ga=function(){var b,c={year:function(a){return a.month(0).date(1).hours(0).seconds(0).minutes(0)},month:function(a){return a.date(1).hours(0).seconds(0).minutes(0)},day:function(a){return a.hours(0).seconds(0).minutes(0)},hour:function(a){return a.seconds(0).minutes(0)},minute:function(a){return a.seconds(0)}};return g.prop("disabled")||!d.ignoreReadonly&&g.prop("readonly")||o?l:(void 0!==g.val()&&0!==g.val().trim().length?aa(da(g.val().trim())):m&&d.useCurrent&&(d.inline||g.is("input")&&0===g.val().trim().length)&&(b=y(),"string"==typeof d.useCurrent&&(b=c[d.useCurrent](b)),aa(b)),o=G(),M(),S(),o.find(".timepicker-hours").hide(),o.find(".timepicker-minutes").hide(),o.find(".timepicker-seconds").hide(),_(),L(),a(window).on("resize",I),o.on("click","[data-action]",fa),o.on("mousedown",!1),n&&n.hasClass("btn")&&n.toggleClass("active"),I(),o.show(),d.focusOnShow&&!g.is(":focus")&&g.focus(),J({type:"dp.show"}),l)},ha=function(){return o?ba():ga()},ia=function(a){var b,c,e,f,g=null,h=[],i={},j=a.which,k="p";w[j]=k;for(b in w)w.hasOwnProperty(b)&&w[b]===k&&(h.push(b),parseInt(b,10)!==j&&(i[b]=!0));for(b in d.keyBinds)if(d.keyBinds.hasOwnProperty(b)&&"function"==typeof d.keyBinds[b]&&(e=b.split(" "),e.length===h.length&&v[j]===e[e.length-1])){for(f=!0,c=e.length-2;c>=0;c--)if(!(v[e[c]]in i)){f=!1;break}if(f){g=d.keyBinds[b];break}}g&&(g.call(l,o),a.stopPropagation(),a.preventDefault())},ja=function(a){w[a.which]="r",a.stopPropagation(),a.preventDefault()},ka=function(b){var c=a(b.target).val().trim(),d=c?da(c):null;return aa(d),b.stopImmediatePropagation(),!1},la=function(){g.on({change:ka,blur:d.debug?"":ba,keydown:ia,keyup:ja,focus:d.allowInputToggle?ga:""}),c.is("input")?g.on({focus:ga}):n&&(n.on("click",ha),n.on("mousedown",!1))},ma=function(){g.off({change:ka,blur:blur,keydown:ia,keyup:ja,focus:d.allowInputToggle?ba:""}),c.is("input")?g.off({focus:ga}):n&&(n.off("click",ha),n.off("mousedown",!1))},na=function(b){var c={};return a.each(b,function(){var a=da(this);a.isValid()&&(c[a.format("YYYY-MM-DD")]=!0)}),!!Object.keys(c).length&&c},oa=function(b){var c={};return a.each(b,function(){c[this]=!0}),!!Object.keys(c).length&&c},pa=function(){var a=d.format||"L LT";i=a.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g,function(a){var b=e.localeData().longDateFormat(a)||a;return b.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g,function(a){return e.localeData().longDateFormat(a)||a})}),j=d.extraFormats?d.extraFormats.slice():[],j.indexOf(a)<0&&j.indexOf(i)<0&&j.push(i),h=i.toLowerCase().indexOf("a")<1&&i.replace(/\[.*?\]/g,"").indexOf("h")<1,z("y")&&(p=2),z("M")&&(p=1),z("d")&&(p=0),k=Math.max(p,k),m||aa(e)};if(l.destroy=function(){ba(),ma(),c.removeData("DateTimePicker"),c.removeData("date")},l.toggle=ha,l.show=ga,l.hide=ba,l.disable=function(){return ba(),n&&n.hasClass("btn")&&n.addClass("disabled"),g.prop("disabled",!0),l},l.enable=function(){return n&&n.hasClass("btn")&&n.removeClass("disabled"),g.prop("disabled",!1),l},l.ignoreReadonly=function(a){if(0===arguments.length)return d.ignoreReadonly;if("boolean"!=typeof a)throw new TypeError("ignoreReadonly () expects a boolean parameter");return d.ignoreReadonly=a,l},l.options=function(b){if(0===arguments.length)return a.extend(!0,{},d);if(!(b instanceof Object))throw new TypeError("options() options parameter should be an object");return a.extend(!0,d,b),a.each(d,function(a,b){if(void 0===l[a])throw new TypeError("option "+a+" is not recognized!");l[a](b)}),l},l.date=function(a){if(0===arguments.length)return m?null:e.clone();if(!(null===a||"string"==typeof a||b.isMoment(a)||a instanceof Date))throw new TypeError("date() parameter must be one of [null, string, moment or Date]");return aa(null===a?null:da(a)),l},l.format=function(a){if(0===arguments.length)return d.format;if("string"!=typeof a&&("boolean"!=typeof a||a!==!1))throw new TypeError("format() expects a string or boolean:false parameter "+a);return d.format=a,i&&pa(),l},l.timeZone=function(a){if(0===arguments.length)return d.timeZone;if("string"!=typeof a)throw new TypeError("newZone() expects a string parameter");return d.timeZone=a,l},l.dayViewHeaderFormat=function(a){if(0===arguments.length)return d.dayViewHeaderFormat;if("string"!=typeof a)throw new TypeError("dayViewHeaderFormat() expects a string parameter");return d.dayViewHeaderFormat=a,l},l.extraFormats=function(a){if(0===arguments.length)return d.extraFormats;if(a!==!1&&!(a instanceof Array))throw new TypeError("extraFormats() expects an array or false parameter");return d.extraFormats=a,j&&pa(),l},l.disabledDates=function(b){if(0===arguments.length)return d.disabledDates?a.extend({},d.disabledDates):d.disabledDates;if(!b)return d.disabledDates=!1,_(),l;if(!(b instanceof Array))throw new TypeError("disabledDates() expects an array parameter");return d.disabledDates=na(b),d.enabledDates=!1,_(),l},l.enabledDates=function(b){if(0===arguments.length)return d.enabledDates?a.extend({},d.enabledDates):d.enabledDates;if(!b)return d.enabledDates=!1,_(),l;if(!(b instanceof Array))throw new TypeError("enabledDates() expects an array parameter");return d.enabledDates=na(b),d.disabledDates=!1,_(),l},l.daysOfWeekDisabled=function(a){if(0===arguments.length)return d.daysOfWeekDisabled.splice(0);if("boolean"==typeof a&&!a)return d.daysOfWeekDisabled=!1,_(),l;if(!(a instanceof Array))throw new TypeError("daysOfWeekDisabled() expects an array parameter");if(d.daysOfWeekDisabled=a.reduce(function(a,b){return b=parseInt(b,10),b>6||b<0||isNaN(b)?a:(a.indexOf(b)===-1&&a.push(b),a)},[]).sort(),d.useCurrent&&!d.keepInvalid){for(var b=0;!R(e,"d");){if(e.add(1,"d"),31===b)throw"Tried 31 times to find a valid date";b++}aa(e)}return _(),l},l.maxDate=function(a){if(0===arguments.length)return d.maxDate?d.maxDate.clone():d.maxDate;if("boolean"==typeof a&&a===!1)return d.maxDate=!1,_(),l;"string"==typeof a&&("now"!==a&&"moment"!==a||(a=y()));var b=da(a);if(!b.isValid())throw new TypeError("maxDate() Could not parse date parameter: "+a);if(d.minDate&&b.isBefore(d.minDate))throw new TypeError("maxDate() date parameter is before options.minDate: "+b.format(i));return d.maxDate=b,d.useCurrent&&!d.keepInvalid&&e.isAfter(a)&&aa(d.maxDate),f.isAfter(b)&&(f=b.clone().subtract(d.stepping,"m")),_(),l},l.minDate=function(a){if(0===arguments.length)return d.minDate?d.minDate.clone():d.minDate;if("boolean"==typeof a&&a===!1)return d.minDate=!1,_(),l;"string"==typeof a&&("now"!==a&&"moment"!==a||(a=y()));var b=da(a);if(!b.isValid())throw new TypeError("minDate() Could not parse date parameter: "+a);if(d.maxDate&&b.isAfter(d.maxDate))throw new TypeError("minDate() date parameter is after options.maxDate: "+b.format(i));return d.minDate=b,d.useCurrent&&!d.keepInvalid&&e.isBefore(a)&&aa(d.minDate),f.isBefore(b)&&(f=b.clone().add(d.stepping,"m")),_(),l},l.defaultDate=function(a){if(0===arguments.length)return d.defaultDate?d.defaultDate.clone():d.defaultDate;if(!a)return d.defaultDate=!1,l;"string"==typeof a&&(a="now"===a||"moment"===a?y():y(a));var b=da(a);if(!b.isValid())throw new TypeError("defaultDate() Could not parse date parameter: "+a);if(!R(b))throw new TypeError("defaultDate() date passed is invalid according to component setup validations");return d.defaultDate=b,(d.defaultDate&&d.inline||""===g.val().trim())&&aa(d.defaultDate),l},l.locale=function(a){if(0===arguments.length)return d.locale;if(!b.localeData(a))throw new TypeError("locale() locale "+a+" is not loaded from moment locales!");return d.locale=a,e.locale(d.locale),f.locale(d.locale),i&&pa(),o&&(ba(),ga()),l},l.stepping=function(a){return 0===arguments.length?d.stepping:(a=parseInt(a,10),(isNaN(a)||a<1)&&(a=1),d.stepping=a,l)},l.useCurrent=function(a){var b=["year","month","day","hour","minute"];if(0===arguments.length)return d.useCurrent;if("boolean"!=typeof a&&"string"!=typeof a)throw new TypeError("useCurrent() expects a boolean or string parameter");if("string"==typeof a&&b.indexOf(a.toLowerCase())===-1)throw new TypeError("useCurrent() expects a string parameter of "+b.join(", "));return d.useCurrent=a,l},l.collapse=function(a){if(0===arguments.length)return d.collapse;if("boolean"!=typeof a)throw new TypeError("collapse() expects a boolean parameter");return d.collapse===a?l:(d.collapse=a,o&&(ba(),ga()),l)},l.icons=function(b){if(0===arguments.length)return a.extend({},d.icons);if(!(b instanceof Object))throw new TypeError("icons() expects parameter to be an Object");return a.extend(d.icons,b),o&&(ba(),ga()),l},l.tooltips=function(b){if(0===arguments.length)return a.extend({},d.tooltips);if(!(b instanceof Object))throw new TypeError("tooltips() expects parameter to be an Object");return a.extend(d.tooltips,b),o&&(ba(),ga()),l},l.useStrict=function(a){if(0===arguments.length)return d.useStrict;if("boolean"!=typeof a)throw new TypeError("useStrict() expects a boolean parameter");return d.useStrict=a,l},l.sideBySide=function(a){if(0===arguments.length)return d.sideBySide;if("boolean"!=typeof a)throw new TypeError("sideBySide() expects a boolean parameter");return d.sideBySide=a,o&&(ba(),ga()),l},l.viewMode=function(a){if(0===arguments.length)return d.viewMode;if("string"!=typeof a)throw new TypeError("viewMode() expects a string parameter");if(r.indexOf(a)===-1)throw new TypeError("viewMode() parameter must be one of ("+r.join(", ")+") value");return d.viewMode=a,k=Math.max(r.indexOf(a),p),L(),l},l.toolbarPlacement=function(a){if(0===arguments.length)return d.toolbarPlacement;if("string"!=typeof a)throw new TypeError("toolbarPlacement() expects a string parameter");if(u.indexOf(a)===-1)throw new TypeError("toolbarPlacement() parameter must be one of ("+u.join(", ")+") value");return d.toolbarPlacement=a,o&&(ba(),ga()),l},l.widgetPositioning=function(b){if(0===arguments.length)return a.extend({},d.widgetPositioning);if("[object Object]"!=={}.toString.call(b))throw new TypeError("widgetPositioning() expects an object variable");if(b.horizontal){if("string"!=typeof b.horizontal)throw new TypeError("widgetPositioning() horizontal variable must be a string");if(b.horizontal=b.horizontal.toLowerCase(),t.indexOf(b.horizontal)===-1)throw new TypeError("widgetPositioning() expects horizontal parameter to be one of ("+t.join(", ")+")");d.widgetPositioning.horizontal=b.horizontal}if(b.vertical){if("string"!=typeof b.vertical)throw new TypeError("widgetPositioning() vertical variable must be a string");if(b.vertical=b.vertical.toLowerCase(),s.indexOf(b.vertical)===-1)throw new TypeError("widgetPositioning() expects vertical parameter to be one of ("+s.join(", ")+")");d.widgetPositioning.vertical=b.vertical}return _(),l},l.calendarWeeks=function(a){if(0===arguments.length)return d.calendarWeeks;if("boolean"!=typeof a)throw new TypeError("calendarWeeks() expects parameter to be a boolean value");return d.calendarWeeks=a,_(),l},l.showTodayButton=function(a){if(0===arguments.length)return d.showTodayButton;if("boolean"!=typeof a)throw new TypeError("showTodayButton() expects a boolean parameter");return d.showTodayButton=a,o&&(ba(),ga()),l},l.showClear=function(a){if(0===arguments.length)return d.showClear;if("boolean"!=typeof a)throw new TypeError("showClear() expects a boolean parameter");return d.showClear=a,o&&(ba(),ga()),l},l.widgetParent=function(b){if(0===arguments.length)return d.widgetParent;if("string"==typeof b&&(b=a(b)),null!==b&&"string"!=typeof b&&!(b instanceof a))throw new TypeError("widgetParent() expects a string or a jQuery object parameter");return d.widgetParent=b,o&&(ba(),ga()),l},l.keepOpen=function(a){if(0===arguments.length)return d.keepOpen;if("boolean"!=typeof a)throw new TypeError("keepOpen() expects a boolean parameter");return d.keepOpen=a,l},l.focusOnShow=function(a){if(0===arguments.length)return d.focusOnShow;if("boolean"!=typeof a)throw new TypeError("focusOnShow() expects a boolean parameter");return d.focusOnShow=a,l},l.inline=function(a){if(0===arguments.length)return d.inline;if("boolean"!=typeof a)throw new TypeError("inline() expects a boolean parameter");return d.inline=a,l},l.clear=function(){return ca(),l},l.keyBinds=function(a){return 0===arguments.length?d.keyBinds:(d.keyBinds=a,l)},l.getMoment=function(a){return y(a)},l.debug=function(a){if("boolean"!=typeof a)throw new TypeError("debug() expects a boolean parameter");return d.debug=a,l},l.allowInputToggle=function(a){if(0===arguments.length)return d.allowInputToggle;if("boolean"!=typeof a)throw new TypeError("allowInputToggle() expects a boolean parameter");return d.allowInputToggle=a,l},l.showClose=function(a){if(0===arguments.length)return d.showClose;if("boolean"!=typeof a)throw new TypeError("showClose() expects a boolean parameter");return d.showClose=a,l},l.keepInvalid=function(a){if(0===arguments.length)return d.keepInvalid;if("boolean"!=typeof a)throw new TypeError("keepInvalid() expects a boolean parameter");
-return d.keepInvalid=a,l},l.datepickerInput=function(a){if(0===arguments.length)return d.datepickerInput;if("string"!=typeof a)throw new TypeError("datepickerInput() expects a string parameter");return d.datepickerInput=a,l},l.parseInputDate=function(a){if(0===arguments.length)return d.parseInputDate;if("function"!=typeof a)throw new TypeError("parseInputDate() sholud be as function");return d.parseInputDate=a,l},l.disabledTimeIntervals=function(b){if(0===arguments.length)return d.disabledTimeIntervals?a.extend({},d.disabledTimeIntervals):d.disabledTimeIntervals;if(!b)return d.disabledTimeIntervals=!1,_(),l;if(!(b instanceof Array))throw new TypeError("disabledTimeIntervals() expects an array parameter");return d.disabledTimeIntervals=b,_(),l},l.disabledHours=function(b){if(0===arguments.length)return d.disabledHours?a.extend({},d.disabledHours):d.disabledHours;if(!b)return d.disabledHours=!1,_(),l;if(!(b instanceof Array))throw new TypeError("disabledHours() expects an array parameter");if(d.disabledHours=oa(b),d.enabledHours=!1,d.useCurrent&&!d.keepInvalid){for(var c=0;!R(e,"h");){if(e.add(1,"h"),24===c)throw"Tried 24 times to find a valid date";c++}aa(e)}return _(),l},l.enabledHours=function(b){if(0===arguments.length)return d.enabledHours?a.extend({},d.enabledHours):d.enabledHours;if(!b)return d.enabledHours=!1,_(),l;if(!(b instanceof Array))throw new TypeError("enabledHours() expects an array parameter");if(d.enabledHours=oa(b),d.disabledHours=!1,d.useCurrent&&!d.keepInvalid){for(var c=0;!R(e,"h");){if(e.add(1,"h"),24===c)throw"Tried 24 times to find a valid date";c++}aa(e)}return _(),l},l.viewDate=function(a){if(0===arguments.length)return f.clone();if(!a)return f=e.clone(),l;if(!("string"==typeof a||b.isMoment(a)||a instanceof Date))throw new TypeError("viewDate() parameter must be one of [string, moment or Date]");return f=da(a),K(),l},c.is("input"))g=c;else if(g=c.find(d.datepickerInput),0===g.length)g=c.find("input");else if(!g.is("input"))throw new Error('CSS class "'+d.datepickerInput+'" cannot be applied to non input element');if(c.hasClass("input-group")&&(n=0===c.find(".datepickerbutton").length?c.find(".input-group-addon"):c.find(".datepickerbutton")),!d.inline&&!g.is("input"))throw new Error("Could not initialize DateTimePicker without an input element");return e=y(),f=e.clone(),a.extend(!0,d,H()),l.options(d),pa(),la(),g.prop("disabled")&&l.disable(),g.is("input")&&0!==g.val().trim().length?aa(da(g.val().trim())):d.defaultDate&&void 0===g.attr("placeholder")&&aa(d.defaultDate),d.inline&&ga(),l};return a.fn.datetimepicker=function(b){b=b||{};var d,e=Array.prototype.slice.call(arguments,1),f=!0,g=["destroy","hide","show","toggle"];if("object"==typeof b)return this.each(function(){var d,e=a(this);e.data("DateTimePicker")||(d=a.extend(!0,{},a.fn.datetimepicker.defaults,b),e.data("DateTimePicker",c(e,d)))});if("string"==typeof b)return this.each(function(){var c=a(this),g=c.data("DateTimePicker");if(!g)throw new Error('bootstrap-datetimepicker("'+b+'") method was called on an element that is not using DateTimePicker');d=g[b].apply(g,e),f=d===g}),f||a.inArray(b,g)>-1?this:d;throw new TypeError("Invalid arguments for DateTimePicker: "+b)},a.fn.datetimepicker.defaults={timeZone:"",format:!1,dayViewHeaderFormat:"MMMM YYYY",extraFormats:!1,stepping:1,minDate:!1,maxDate:!1,useCurrent:!0,collapse:!0,locale:b.locale(),defaultDate:!1,disabledDates:!1,enabledDates:!1,icons:{time:"glyphicon glyphicon-time",date:"glyphicon glyphicon-calendar",up:"glyphicon glyphicon-chevron-up",down:"glyphicon glyphicon-chevron-down",previous:"glyphicon glyphicon-chevron-left",next:"glyphicon glyphicon-chevron-right",today:"glyphicon glyphicon-screenshot",clear:"glyphicon glyphicon-trash",close:"glyphicon glyphicon-remove"},tooltips:{today:"Go to today",clear:"Clear selection",close:"Close the picker",selectMonth:"Select Month",prevMonth:"Previous Month",nextMonth:"Next Month",selectYear:"Select Year",prevYear:"Previous Year",nextYear:"Next Year",selectDecade:"Select Decade",prevDecade:"Previous Decade",nextDecade:"Next Decade",prevCentury:"Previous Century",nextCentury:"Next Century",pickHour:"Pick Hour",incrementHour:"Increment Hour",decrementHour:"Decrement Hour",pickMinute:"Pick Minute",incrementMinute:"Increment Minute",decrementMinute:"Decrement Minute",pickSecond:"Pick Second",incrementSecond:"Increment Second",decrementSecond:"Decrement Second",togglePeriod:"Toggle Period",selectTime:"Select Time"},useStrict:!1,sideBySide:!1,daysOfWeekDisabled:!1,calendarWeeks:!1,viewMode:"days",toolbarPlacement:"default",showTodayButton:!1,showClear:!1,showClose:!1,widgetPositioning:{horizontal:"auto",vertical:"auto"},widgetParent:null,ignoreReadonly:!1,keepOpen:!1,focusOnShow:!0,inline:!1,keepInvalid:!1,datepickerInput:".datepickerinput",keyBinds:{up:function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")?this.date(b.clone().subtract(7,"d")):this.date(b.clone().add(this.stepping(),"m"))}},down:function(a){if(!a)return void this.show();var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")?this.date(b.clone().add(7,"d")):this.date(b.clone().subtract(this.stepping(),"m"))},"control up":function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")?this.date(b.clone().subtract(1,"y")):this.date(b.clone().add(1,"h"))}},"control down":function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")?this.date(b.clone().add(1,"y")):this.date(b.clone().subtract(1,"h"))}},left:function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")&&this.date(b.clone().subtract(1,"d"))}},right:function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")&&this.date(b.clone().add(1,"d"))}},pageUp:function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")&&this.date(b.clone().subtract(1,"M"))}},pageDown:function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")&&this.date(b.clone().add(1,"M"))}},enter:function(){this.hide()},escape:function(){this.hide()},"control space":function(a){a&&a.find(".timepicker").is(":visible")&&a.find('.btn[data-action="togglePeriod"]').click()},t:function(){this.date(this.getMoment())},delete:function(){this.clear()}},debug:!1,allowInputToggle:!1,disabledTimeIntervals:!1,disabledHours:!1,enabledHours:!1,viewDate:!1},a.fn.datetimepicker});
+//  Source: _lib\realpage\datetimepicker-v1\js\plugins\bootstrap-datetimepicker.js
+/*! version : 4.17.47 [Modified]
+ =========================================================
+ bootstrap-datetimejs
+ https://github.com/Eonasdan/bootstrap-datetimepicker
+ Copyright (c) 2015 Jonathan Peterson
+ =========================================================
+ */
+/*
+ The MIT License (MIT)
+
+ Copyright (c) 2015 Jonathan Peterson
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ */
+/*global define:false */
+/*global exports:false */
+/*global require:false */
+/*global jQuery:false */
+/*global moment:false */
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        // AMD is used - Register as an anonymous module.
+        define(['jquery', 'moment'], factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory(require('jquery'), require('moment'));
+    } else {
+        // Neither AMD nor CommonJS used. Use global variables.
+        if (typeof jQuery === 'undefined') {
+            throw 'bootstrap-datetimepicker requires jQuery to be loaded first';
+        }
+        if (typeof moment === 'undefined') {
+            throw 'bootstrap-datetimepicker requires Moment.js to be loaded first';
+        }
+        factory(jQuery, moment);
+    }
+}(function ($, moment) {
+    'use strict';
+    if (!moment) {
+        throw new Error('bootstrap-datetimepicker requires Moment.js to be loaded first');
+    }
+
+    var dateTimePicker = function (element, options) {
+        var picker = {},
+            date,
+            viewDate,
+            unset = true,
+            input,
+            component = false,
+            widget = false,
+            use24Hours,
+            minViewModeNumber = 0,
+            actualFormat,
+            parseFormats,
+            currentViewMode,
+            datePickerModes = [
+                {
+                    clsName: 'days',
+                    navFnc: 'M',
+                    navStep: 1
+                },
+                {
+                    clsName: 'months',
+                    navFnc: 'y',
+                    navStep: 1
+                },
+                {
+                    clsName: 'years',
+                    navFnc: 'y',
+                    navStep: 10
+                },
+                {
+                    clsName: 'decades',
+                    navFnc: 'y',
+                    navStep: 100
+                }
+            ],
+            viewModes = ['days', 'months', 'years', 'decades'],
+            verticalModes = ['top', 'bottom', 'auto'],
+            horizontalModes = ['left', 'right', 'auto'],
+            toolbarPlacements = ['default', 'top', 'bottom'],
+            keyMap = {
+                'up': 38,
+                38: 'up',
+                'down': 40,
+                40: 'down',
+                'left': 37,
+                37: 'left',
+                'right': 39,
+                39: 'right',
+                'tab': 9,
+                9: 'tab',
+                'escape': 27,
+                27: 'escape',
+                'enter': 13,
+                13: 'enter',
+                'pageUp': 33,
+                33: 'pageUp',
+                'pageDown': 34,
+                34: 'pageDown',
+                'shift': 16,
+                16: 'shift',
+                'control': 17,
+                17: 'control',
+                'space': 32,
+                32: 'space',
+                't': 84,
+                84: 't',
+                'delete': 46,
+                46: 'delete'
+            },
+            keyState = {},
+
+            /********************************************************************************
+             *
+             * Private functions
+             *
+             ********************************************************************************/
+
+            hasTimeZone = function () {
+                return moment.tz !== undefined && options.timeZone !== undefined && options.timeZone !== null && options.timeZone !== '';
+            },
+
+            getMoment = function (d) {
+                var returnMoment;
+
+                if (d === undefined || d === null) {
+                    returnMoment = moment(); //TODO should this use format? and locale?
+                } else if (moment.isDate(d) || moment.isMoment(d)) {
+                    // If the date that is passed in is already a Date() or moment() object,
+                    // pass it directly to moment.
+                    returnMoment = moment(d);
+                } else if (hasTimeZone()) { // There is a string to parse and a default time zone
+                    // parse with the tz function which takes a default time zone if it is not in the format string
+                    returnMoment = moment.tz(d, parseFormats, options.useStrict, options.timeZone);
+                } else {
+                    returnMoment = moment(d, parseFormats, options.useStrict);
+                }
+
+                if (hasTimeZone()) {
+                    returnMoment.tz(options.timeZone);
+                }
+
+                return returnMoment;
+            },
+
+            isEnabled = function (granularity) {
+                if (typeof granularity !== 'string' || granularity.length > 1) {
+                    throw new TypeError('isEnabled expects a single character string parameter');
+                }
+                switch (granularity) {
+                    case 'y':
+                        return actualFormat.indexOf('Y') !== -1;
+                    case 'M':
+                        return actualFormat.indexOf('M') !== -1;
+                    case 'd':
+                        return actualFormat.toLowerCase().indexOf('d') !== -1;
+                    case 'h':
+                    case 'H':
+                        return actualFormat.toLowerCase().indexOf('h') !== -1;
+                    case 'm':
+                        return actualFormat.indexOf('m') !== -1;
+                    case 's':
+                        return actualFormat.indexOf('s') !== -1;
+                    default:
+                        return false;
+                }
+            },
+
+            hasTime = function () {
+                return (isEnabled('h') || isEnabled('m') || isEnabled('s'));
+            },
+
+            hasDate = function () {
+                return (isEnabled('y') || isEnabled('M') || isEnabled('d'));
+            },
+
+            getDatePickerTemplate = function () {
+                var headTemplate = $('<thead>')
+                        .append($('<tr>')
+                            .append($('<th>').addClass('prev').attr('data-action', 'previous')
+                                .append($('<span>').addClass(options.icons.previous))
+                                )
+                            .append($('<th>').addClass('picker-switch').attr('data-action', 'pickerSwitch').attr('colspan', (options.calendarWeeks ? '6' : '5')))
+                            .append($('<th>').addClass('next').attr('data-action', 'next')
+                                .append($('<span>').addClass(options.icons.next))
+                                )
+                            ),
+                    contTemplate = $('<tbody>')
+                        .append($('<tr>')
+                            .append($('<td>').attr('colspan', (options.calendarWeeks ? '8' : '7')))
+                            );
+
+                return [
+                    $('<div>').addClass('datepicker-days')
+                        .append($('<table>').addClass('table-condensed')
+                            .append(headTemplate)
+                            .append($('<tbody>'))
+                            ),
+                    $('<div>').addClass('datepicker-months')
+                        .append($('<table>').addClass('table-condensed')
+                            .append(headTemplate.clone())
+                            .append(contTemplate.clone())
+                            ),
+                    $('<div>').addClass('datepicker-years')
+                        .append($('<table>').addClass('table-condensed')
+                            .append(headTemplate.clone())
+                            .append(contTemplate.clone())
+                            ),
+                    $('<div>').addClass('datepicker-decades')
+                        .append($('<table>').addClass('table-condensed')
+                            .append(headTemplate.clone())
+                            .append(contTemplate.clone())
+                            )
+                ];
+            },
+
+            getTimePickerMainTemplate = function () {
+                var topRow = $('<tr>'),
+                    middleRow = $('<tr>'),
+                    bottomRow = $('<tr>');
+
+                if (isEnabled('h')) {
+                    topRow.append($('<td>')
+                        .append($('<a>').attr({ href: '#', tabindex: '-1', 'title': options.tooltips.incrementHour }).addClass('btn').attr('data-action', 'incrementHours').append($('<span>').addClass(options.icons.up))));
+                    middleRow.append($('<td>')
+                        .append($('<span>').addClass('timepicker-hour').attr({ 'data-time-component': 'hours', 'title': options.tooltips.pickHour }).attr('data-action', 'showHours')));
+                    bottomRow.append($('<td>')
+                        .append($('<a>').attr({ href: '#', tabindex: '-1', 'title': options.tooltips.decrementHour }).addClass('btn').attr('data-action', 'decrementHours').append($('<span>').addClass(options.icons.down))));
+                }
+                if (isEnabled('m')) {
+                    if (isEnabled('h')) {
+                        topRow.append($('<td>').addClass('separator'));
+                        middleRow.append($('<td>').addClass('separator').html(':'));
+                        bottomRow.append($('<td>').addClass('separator'));
+                    }
+                    topRow.append($('<td>')
+                        .append($('<a>').attr({ href: '#', tabindex: '-1', 'title': options.tooltips.incrementMinute }).addClass('btn').attr('data-action', 'incrementMinutes')
+                            .append($('<span>').addClass(options.icons.up))));
+                    middleRow.append($('<td>')
+                        .append($('<span>').addClass('timepicker-minute').attr({ 'data-time-component': 'minutes', 'title': options.tooltips.pickMinute }).attr('data-action', 'showMinutes')));
+                    bottomRow.append($('<td>')
+                        .append($('<a>').attr({ href: '#', tabindex: '-1', 'title': options.tooltips.decrementMinute }).addClass('btn').attr('data-action', 'decrementMinutes')
+                            .append($('<span>').addClass(options.icons.down))));
+                }
+                if (isEnabled('s')) {
+                    if (isEnabled('m')) {
+                        topRow.append($('<td>').addClass('separator'));
+                        middleRow.append($('<td>').addClass('separator').html(':'));
+                        bottomRow.append($('<td>').addClass('separator'));
+                    }
+                    topRow.append($('<td>')
+                        .append($('<a>').attr({ href: '#', tabindex: '-1', 'title': options.tooltips.incrementSecond }).addClass('btn').attr('data-action', 'incrementSeconds')
+                            .append($('<span>').addClass(options.icons.up))));
+                    middleRow.append($('<td>')
+                        .append($('<span>').addClass('timepicker-second').attr({ 'data-time-component': 'seconds', 'title': options.tooltips.pickSecond }).attr('data-action', 'showSeconds')));
+                    bottomRow.append($('<td>')
+                        .append($('<a>').attr({ href: '#', tabindex: '-1', 'title': options.tooltips.decrementSecond }).addClass('btn').attr('data-action', 'decrementSeconds')
+                            .append($('<span>').addClass(options.icons.down))));
+                }
+
+                if (!use24Hours) {
+                    topRow.append($('<td>').addClass('separator'));
+                    middleRow.append($('<td>')
+                        .append($('<button>').addClass('btn btn-primary').attr({ 'data-action': 'togglePeriod', tabindex: '-1', 'title': options.tooltips.togglePeriod })));
+                    bottomRow.append($('<td>').addClass('separator'));
+                }
+
+                return $('<div>').addClass('timepicker-picker')
+                    .append($('<table>').addClass('table-condensed')
+                        .append([topRow, middleRow, bottomRow]));
+            },
+
+            getTimePickerTemplate = function () {
+                var hoursView = $('<div>').addClass('timepicker-hours')
+                        .append($('<table>').addClass('table-condensed')),
+                    minutesView = $('<div>').addClass('timepicker-minutes')
+                        .append($('<table>').addClass('table-condensed')),
+                    secondsView = $('<div>').addClass('timepicker-seconds')
+                        .append($('<table>').addClass('table-condensed')),
+                    ret = [getTimePickerMainTemplate()];
+
+                if (isEnabled('h')) {
+                    ret.push(hoursView);
+                }
+                if (isEnabled('m')) {
+                    ret.push(minutesView);
+                }
+                if (isEnabled('s')) {
+                    ret.push(secondsView);
+                }
+
+                return ret;
+            },
+
+            getToolbar = function () {
+                var row = [];
+                if (options.showTodayButton) {
+                    row.push($('<td>').append($('<a>').attr({ 'data-action': 'today', 'title': options.tooltips.today }).append($('<span>').addClass(options.icons.today))));
+                }
+                if (!options.sideBySide && hasDate() && hasTime()) {
+                    row.push($('<td>').append($('<a>').attr({ 'data-action': 'togglePicker', 'title': options.tooltips.selectTime }).append($('<span>').addClass(options.icons.time))));
+                }
+                if (options.showClear) {
+                    row.push($('<td>').append($('<a>').attr({ 'data-action': 'clear', 'title': options.tooltips.clear }).append($('<span>').addClass(options.icons.clear))));
+                }
+                if (options.showClose) {
+                    row.push($('<td>').append($('<a>').attr({ 'data-action': 'close', 'title': options.tooltips.close }).append($('<span>').addClass(options.icons.close))));
+                }
+                return $('<table>').addClass('table-condensed').append($('<tbody>').append($('<tr>').append(row)));
+            },
+
+            getTemplate = function () {
+                var template = $('<div>').addClass('bootstrap-datetimepicker-widget dropdown-menu'),
+                    dateView = $('<div>').addClass('datepicker').append(getDatePickerTemplate()),
+                    timeView = $('<div>').addClass('timepicker').append(getTimePickerTemplate()),
+                    content = $('<ul>').addClass('list-unstyled'),
+                    toolbar = $('<li>').addClass('picker-switch' + (options.collapse ? ' accordion-toggle' : '')).append(getToolbar());
+
+                if (options.inline) {
+                    template.removeClass('dropdown-menu');
+                }
+
+                if (use24Hours) {
+                    template.addClass('usetwentyfour');
+                }
+
+                if (isEnabled('s') && !use24Hours) {
+                    template.addClass('wider');
+                }
+
+                if (options.sideBySide && hasDate() && hasTime()) {
+                    template.addClass('timepicker-sbs');
+                    if (options.toolbarPlacement === 'top') {
+                        template.append(toolbar);
+                    }
+                    template.append(
+                        $('<div>').addClass('row')
+                            .append(dateView.addClass('col-md-6'))
+                            .append(timeView.addClass('col-md-6'))
+                    );
+                    if (options.toolbarPlacement === 'bottom') {
+                        template.append(toolbar);
+                    }
+                    return template;
+                }
+
+                if (options.toolbarPlacement === 'top') {
+                    content.append(toolbar);
+                }
+                if (hasDate()) {
+                    content.append($('<li>').addClass((options.collapse && hasTime() ? 'collapse in' : '')).append(dateView));
+                }
+                if (options.toolbarPlacement === 'default') {
+                    content.append(toolbar);
+                }
+                if (hasTime()) {
+                    content.append($('<li>').addClass((options.collapse && hasDate() ? 'collapse' : '')).append(timeView));
+                }
+                if (options.toolbarPlacement === 'bottom') {
+                    content.append(toolbar);
+                }
+                return template.append(content);
+            },
+
+            dataToOptions = function () {
+                var eData,
+                    dataOptions = {};
+
+                if (element.is('input') || options.inline) {
+                    eData = element.data();
+                } else {
+                    eData = element.find('input').data();
+                }
+
+                if (eData.dateOptions && eData.dateOptions instanceof Object) {
+                    dataOptions = $.extend(true, dataOptions, eData.dateOptions);
+                }
+
+                $.each(options, function (key) {
+                    var attributeName = 'date' + key.charAt(0).toUpperCase() + key.slice(1);
+                    if (eData[attributeName] !== undefined) {
+                        dataOptions[key] = eData[attributeName];
+                    }
+                });
+                return dataOptions;
+            },
+
+            place = function () {
+                var position = (component || element).position(),
+                    offset = (component || element).offset(),
+                    vertical = options.widgetPositioning.vertical,
+                    horizontal = options.widgetPositioning.horizontal,
+                    parent;
+
+                if (options.widgetParent) {
+                    parent = options.widgetParent.append(widget);
+                } else if (element.is('input')) {
+                    parent = element.after(widget).parent();
+                } else if (options.inline) {
+                    parent = element.append(widget);
+                    return;
+                } else {
+                    parent = element;
+                    element.children().first().after(widget);
+                }
+
+                // Top and bottom logic
+                if (vertical === 'auto') {
+                    if (offset.top + widget.height() * 1.5 >= $(window).height() + $(window).scrollTop() &&
+                        widget.height() + element.outerHeight() < offset.top) {
+                        vertical = 'top';
+                    } else {
+                        vertical = 'bottom';
+                    }
+                }
+
+                // Left and right logic
+                if (horizontal === 'auto') {
+                    if (parent.width() < offset.left + widget.outerWidth() / 2 &&
+                        offset.left + widget.outerWidth() > $(window).width()) {
+                        horizontal = 'right';
+                    } else {
+                        horizontal = 'left';
+                    }
+                }
+
+                if (vertical === 'top') {
+                    widget.addClass('top').removeClass('bottom');
+                } else {
+                    widget.addClass('bottom').removeClass('top');
+                }
+
+                if (horizontal === 'right') {
+                    widget.addClass('pull-right');
+                } else {
+                    widget.removeClass('pull-right');
+                }
+
+                // find the first parent element that has a non-static css positioning
+                if (parent.css('position') === 'static') {
+                    parent = parent.parents().filter(function () {
+                        return $(this).css('position') !== 'static';
+                    }).first();
+                }
+
+                if (parent.length === 0) {
+                    throw new Error('datetimepicker component should be placed within a non-static positioned container');
+                }
+
+                widget.css({
+                    top: vertical === 'top' ? 'auto' : position.top + element.outerHeight(),
+                    bottom: vertical === 'top' ? parent.outerHeight() - (parent === element ? 0 : position.top) : 'auto',
+                    left: horizontal === 'left' ? (parent === element ? 0 : position.left) : 'auto',
+                    right: horizontal === 'left' ? 'auto' : parent.outerWidth() - element.outerWidth() - (parent === element ? 0 : position.left)
+                });
+            },
+
+            notifyEvent = function (e) {
+                if (e.type === 'dp.change' && ((e.date && e.date.isSame(e.oldDate)) || (!e.date && !e.oldDate))) {
+                    return;
+                }
+                element.trigger(e);
+            },
+
+            viewUpdate = function (e) {
+                if (e === 'y') {
+                    e = 'YYYY';
+                }
+                notifyEvent({
+                    type: 'dp.update',
+                    change: e,
+                    viewDate: viewDate.clone()
+                });
+            },
+
+            showMode = function (dir) {
+                if (!widget) {
+                    return;
+                }
+                if (dir) {
+                    currentViewMode = Math.max(minViewModeNumber, Math.min(3, currentViewMode + dir));
+                }
+                widget.find('.datepicker > div').hide().filter('.datepicker-' + datePickerModes[currentViewMode].clsName).show();
+            },
+
+            fillDow = function () {
+                var row = $('<tr>'),
+                    currentDate = viewDate.clone().startOf('w').startOf('d');
+
+                if (options.calendarWeeks === true) {
+                    row.append($('<th>').addClass('cw').text('#'));
+                }
+
+                while (currentDate.isBefore(viewDate.clone().endOf('w'))) {
+                    row.append($('<th>').addClass('dow').text(currentDate.format('dd')));
+                    currentDate.add(1, 'd');
+                }
+                widget.find('.datepicker-days thead').append(row);
+            },
+
+            isInDisabledDates = function (testDate) {
+                return options.disabledDates[testDate.format('YYYY-MM-DD')] === true;
+            },
+
+            isInEnabledDates = function (testDate) {
+                return options.enabledDates[testDate.format('YYYY-MM-DD')] === true;
+            },
+
+            isInDisabledHours = function (testDate) {
+                return options.disabledHours[testDate.format('H')] === true;
+            },
+
+            isInEnabledHours = function (testDate) {
+                return options.enabledHours[testDate.format('H')] === true;
+            },
+
+            isValid = function (targetMoment, granularity) {
+                if (!targetMoment.isValid()) {
+                    return false;
+                }
+                if (options.disabledDates && granularity === 'd' && isInDisabledDates(targetMoment)) {
+                    return false;
+                }
+                if (options.enabledDates && granularity === 'd' && !isInEnabledDates(targetMoment)) {
+                    return false;
+                }
+                if (options.minDate && targetMoment.isBefore(options.minDate, granularity)) {
+                    return false;
+                }
+                if (options.maxDate && targetMoment.isAfter(options.maxDate, granularity)) {
+                    return false;
+                }
+                if (options.daysOfWeekDisabled && granularity === 'd' && options.daysOfWeekDisabled.indexOf(targetMoment.day()) !== -1) {
+                    return false;
+                }
+                if (options.disabledHours && (granularity === 'h' || granularity === 'm' || granularity === 's') && isInDisabledHours(targetMoment)) {
+                    return false;
+                }
+                if (options.enabledHours && (granularity === 'h' || granularity === 'm' || granularity === 's') && !isInEnabledHours(targetMoment)) {
+                    return false;
+                }
+                if (options.disabledTimeIntervals && (granularity === 'h' || granularity === 'm' || granularity === 's')) {
+                    var found = false;
+                    $.each(options.disabledTimeIntervals, function () {
+                        if (targetMoment.isBetween(this[0], this[1])) {
+                            found = true;
+                            return false;
+                        }
+                    });
+                    if (found) {
+                        return false;
+                    }
+                }
+                return true;
+            },
+
+            fillMonths = function () {
+                var spans = [],
+                    monthsShort = viewDate.clone().startOf('y').startOf('d');
+                while (monthsShort.isSame(viewDate, 'y')) {
+                    spans.push($('<span>').attr('data-action', 'selectMonth').addClass('month').text(monthsShort.format('MMM')));
+                    monthsShort.add(1, 'M');
+                }
+                widget.find('.datepicker-months td').empty().append(spans);
+            },
+
+            updateMonths = function () {
+                var monthsView = widget.find('.datepicker-months'),
+                    monthsViewHeader = monthsView.find('th'),
+                    months = monthsView.find('tbody').find('span');
+
+                monthsViewHeader.eq(0).find('span').attr('title', options.tooltips.prevYear);
+                monthsViewHeader.eq(1).attr('title', options.tooltips.selectYear);
+                monthsViewHeader.eq(2).find('span').attr('title', options.tooltips.nextYear);
+
+                monthsView.find('.disabled').removeClass('disabled');
+
+                if (!isValid(viewDate.clone().subtract(1, 'y'), 'y')) {
+                    monthsViewHeader.eq(0).addClass('disabled');
+                }
+
+                monthsViewHeader.eq(1).text(viewDate.year());
+
+                if (!isValid(viewDate.clone().add(1, 'y'), 'y')) {
+                    monthsViewHeader.eq(2).addClass('disabled');
+                }
+
+                months.removeClass('active');
+                if (date.isSame(viewDate, 'y') && !unset) {
+                    months.eq(date.month()).addClass('active');
+                }
+
+                months.each(function (index) {
+                    if (!isValid(viewDate.clone().month(index), 'M')) {
+                        $(this).addClass('disabled');
+                    }
+                });
+            },
+
+            updateYears = function () {
+                var yearsView = widget.find('.datepicker-years'),
+                    yearsViewHeader = yearsView.find('th'),
+                    startYear = viewDate.clone().subtract(5, 'y'),
+                    endYear = viewDate.clone().add(6, 'y'),
+                    html = '';
+
+                yearsViewHeader.eq(0).find('span').attr('title', options.tooltips.prevDecade);
+                yearsViewHeader.eq(1).attr('title', options.tooltips.selectDecade);
+                yearsViewHeader.eq(2).find('span').attr('title', options.tooltips.nextDecade);
+
+                yearsView.find('.disabled').removeClass('disabled');
+
+                if (options.minDate && options.minDate.isAfter(startYear, 'y')) {
+                    yearsViewHeader.eq(0).addClass('disabled');
+                }
+
+                yearsViewHeader.eq(1).text(startYear.year() + '-' + endYear.year());
+
+                if (options.maxDate && options.maxDate.isBefore(endYear, 'y')) {
+                    yearsViewHeader.eq(2).addClass('disabled');
+                }
+
+                while (!startYear.isAfter(endYear, 'y')) {
+                    html += '<span data-action="selectYear" class="year' + (startYear.isSame(date, 'y') && !unset ? ' active' : '') + (!isValid(startYear, 'y') ? ' disabled' : '') + '">' + startYear.year() + '</span>';
+                    startYear.add(1, 'y');
+                }
+
+                yearsView.find('td').html(html);
+            },
+
+            updateDecades = function () {
+                var decadesView = widget.find('.datepicker-decades'),
+                    decadesViewHeader = decadesView.find('th'),
+                    startDecade = moment({ y: viewDate.year() - (viewDate.year() % 100) - 1 }),
+                    endDecade = startDecade.clone().add(100, 'y'),
+                    startedAt = startDecade.clone(),
+                    minDateDecade = false,
+                    maxDateDecade = false,
+                    endDecadeYear,
+                    html = '';
+
+                decadesViewHeader.eq(0).find('span').attr('title', options.tooltips.prevCentury);
+                decadesViewHeader.eq(2).find('span').attr('title', options.tooltips.nextCentury);
+
+                decadesView.find('.disabled').removeClass('disabled');
+
+                if (startDecade.isSame(moment({ y: 1900 })) || (options.minDate && options.minDate.isAfter(startDecade, 'y'))) {
+                    decadesViewHeader.eq(0).addClass('disabled');
+                }
+
+                decadesViewHeader.eq(1).text(startDecade.year() + '-' + endDecade.year());
+
+                if (startDecade.isSame(moment({ y: 2000 })) || (options.maxDate && options.maxDate.isBefore(endDecade, 'y'))) {
+                    decadesViewHeader.eq(2).addClass('disabled');
+                }
+
+                while (!startDecade.isAfter(endDecade, 'y')) {
+                    endDecadeYear = startDecade.year() + 12;
+                    minDateDecade = options.minDate && options.minDate.isAfter(startDecade, 'y') && options.minDate.year() <= endDecadeYear;
+                    maxDateDecade = options.maxDate && options.maxDate.isAfter(startDecade, 'y') && options.maxDate.year() <= endDecadeYear;
+                    html += '<span data-action="selectDecade" class="decade' + (date.isAfter(startDecade) && date.year() <= endDecadeYear ? ' active' : '') +
+                        (!isValid(startDecade, 'y') && !minDateDecade && !maxDateDecade ? ' disabled' : '') + '" data-selection="' + (startDecade.year() + 6) + '">' + (startDecade.year() + 1) + ' - ' + (startDecade.year() + 12) + '</span>';
+                    startDecade.add(12, 'y');
+                }
+                html += '<span></span><span></span><span></span>'; //push the dangling block over, at least this way it's even
+
+                decadesView.find('td').html(html);
+                decadesViewHeader.eq(1).text((startedAt.year() + 1) + '-' + (startDecade.year()));
+            },
+
+            fillDate = function () {
+                var daysView = widget.find('.datepicker-days'),
+                    daysViewHeader = daysView.find('th'),
+                    currentDate,
+                    html = [],
+                    row,
+                    clsNames = [],
+                    i;
+
+                if (!hasDate()) {
+                    return;
+                }
+
+                daysViewHeader.eq(0).find('span').attr('title', options.tooltips.prevMonth);
+                daysViewHeader.eq(1).attr('title', options.tooltips.selectMonth);
+                daysViewHeader.eq(2).find('span').attr('title', options.tooltips.nextMonth);
+
+                daysView.find('.disabled').removeClass('disabled');
+                daysViewHeader.eq(1).text(viewDate.format(options.dayViewHeaderFormat));
+
+                if (!isValid(viewDate.clone().subtract(1, 'M'), 'M')) {
+                    daysViewHeader.eq(0).addClass('disabled');
+                }
+                if (!isValid(viewDate.clone().add(1, 'M'), 'M')) {
+                    daysViewHeader.eq(2).addClass('disabled');
+                }
+
+                currentDate = viewDate.clone().startOf('M').startOf('w').startOf('d');
+
+                for (i = 0; i < 42; i++) { //always display 42 days (should show 6 weeks)
+                    if (currentDate.weekday() === 0) {
+                        row = $('<tr>');
+                        if (options.calendarWeeks) {
+                            row.append('<td class="cw">' + currentDate.week() + '</td>');
+                        }
+                        html.push(row);
+                    }
+                    clsNames = ['day'];
+                    if (currentDate.isBefore(viewDate, 'M')) {
+                        clsNames.push('old');
+                    }
+                    if (currentDate.isAfter(viewDate, 'M')) {
+                        clsNames.push('new');
+                    }
+                    if (currentDate.isSame(date, 'd') && !unset) {
+                        clsNames.push('active');
+                    }
+                    if (!isValid(currentDate, 'd')) {
+                        clsNames.push('disabled');
+                    }
+                    if (currentDate.isSame(getMoment(), 'd')) {
+                        clsNames.push('today');
+                    }
+                    if (currentDate.day() === 0 || currentDate.day() === 6) {
+                        clsNames.push('weekend');
+                    }
+                    notifyEvent({
+                        type: 'dp.classify',
+                        date: currentDate,
+                        classNames: clsNames
+                    });
+                    row.append('<td data-action="selectDay" data-day="' + currentDate.format('L') + '" class="' + clsNames.join(' ') + '">' + currentDate.date() + '</td>');
+                    currentDate.add(1, 'd');
+                }
+
+                daysView.find('tbody').empty().append(html);
+
+                updateMonths();
+
+                updateYears();
+
+                updateDecades();
+            },
+
+            fillHours = function () {
+                var table = widget.find('.timepicker-hours table'),
+                    currentHour = viewDate.clone().startOf('d'),
+                    html = [],
+                    row = $('<tr>');
+
+                if (viewDate.hour() > 11 && !use24Hours) {
+                    currentHour.hour(12);
+                }
+                while (currentHour.isSame(viewDate, 'd') && (use24Hours || (viewDate.hour() < 12 && currentHour.hour() < 12) || viewDate.hour() > 11)) {
+                    if (currentHour.hour() % 4 === 0) {
+                        row = $('<tr>');
+                        html.push(row);
+                    }
+                    row.append('<td data-action="selectHour" class="hour' + (!isValid(currentHour, 'h') ? ' disabled' : '') + '">' + currentHour.format(use24Hours ? 'HH' : 'hh') + '</td>');
+                    currentHour.add(1, 'h');
+                }
+                table.empty().append(html);
+            },
+
+            fillMinutes = function () {
+                var table = widget.find('.timepicker-minutes table'),
+                    currentMinute = viewDate.clone().startOf('h'),
+                    html = [],
+                    row = $('<tr>'),
+                    step = options.stepping === 1 ? 5 : options.stepping;
+
+                while (viewDate.isSame(currentMinute, 'h')) {
+                    if (currentMinute.minute() % (step * 4) === 0) {
+                        row = $('<tr>');
+                        html.push(row);
+                    }
+                    row.append('<td data-action="selectMinute" class="minute' + (!isValid(currentMinute, 'm') ? ' disabled' : '') + '">' + currentMinute.format('mm') + '</td>');
+                    currentMinute.add(step, 'm');
+                }
+                table.empty().append(html);
+            },
+
+            fillSeconds = function () {
+                var table = widget.find('.timepicker-seconds table'),
+                    currentSecond = viewDate.clone().startOf('m'),
+                    html = [],
+                    row = $('<tr>');
+
+                while (viewDate.isSame(currentSecond, 'm')) {
+                    if (currentSecond.second() % 20 === 0) {
+                        row = $('<tr>');
+                        html.push(row);
+                    }
+                    row.append('<td data-action="selectSecond" class="second' + (!isValid(currentSecond, 's') ? ' disabled' : '') + '">' + currentSecond.format('ss') + '</td>');
+                    currentSecond.add(5, 's');
+                }
+
+                table.empty().append(html);
+            },
+
+            fillTime = function () {
+                var toggle, newDate, timeComponents = widget.find('.timepicker span[data-time-component]');
+
+                if (!use24Hours) {
+                    toggle = widget.find('.timepicker [data-action=togglePeriod]');
+                    newDate = date.clone().add((date.hours() >= 12) ? -12 : 12, 'h');
+
+                    toggle.text(date.format('A'));
+
+                    if (isValid(newDate, 'h')) {
+                        toggle.removeClass('disabled');
+                    } else {
+                        toggle.addClass('disabled');
+                    }
+                }
+                timeComponents.filter('[data-time-component=hours]').text(date.format(use24Hours ? 'HH' : 'hh'));
+                timeComponents.filter('[data-time-component=minutes]').text(date.format('mm'));
+                timeComponents.filter('[data-time-component=seconds]').text(date.format('ss'));
+
+                fillHours();
+                fillMinutes();
+                fillSeconds();
+            },
+
+            update = function () {
+                if (!widget) {
+                    return;
+                }
+                fillDate();
+                fillTime();
+            },
+
+            setValue = function (targetMoment) {
+                var oldDate = unset ? null : date;
+
+                // case of calling setValue(null or false)
+                if (!targetMoment) {
+                    unset = true;
+                    input.val('');
+                    element.data('date', '');
+                    notifyEvent({
+                        type: 'dp.change',
+                        date: false,
+                        oldDate: oldDate
+                    });
+                    update();
+                    return;
+                }
+
+                targetMoment = targetMoment.clone().locale(options.locale).add(1, "seconds");
+
+                if (hasTimeZone()) {
+                    targetMoment.tz(options.timeZone);
+                }
+
+                if (options.stepping !== 1) {
+                    targetMoment.minutes((Math.round(targetMoment.minutes() / options.stepping) * options.stepping)).seconds(0);
+
+                    while (options.minDate && targetMoment.isBefore(options.minDate)) {
+                        targetMoment.add(options.stepping, 'minutes');
+                    }
+                }
+
+                if (isValid(targetMoment)) {
+                    date = targetMoment;
+                    viewDate = date.clone();
+                    input.val(date.format(actualFormat));
+                    element.data('date', date.format(actualFormat));
+                    unset = false;
+                    update();
+                    notifyEvent({
+                        type: 'dp.change',
+                        date: date.clone(),
+                        oldDate: oldDate
+                    });
+                } else {
+                    if (!options.keepInvalid) {
+                        input.val(unset ? '' : date.format(actualFormat));
+                    } else {
+                        notifyEvent({
+                            type: 'dp.change',
+                            date: targetMoment,
+                            oldDate: oldDate
+                        });
+                    }
+                    notifyEvent({
+                        type: 'dp.error',
+                        date: targetMoment,
+                        oldDate: oldDate
+                    });
+                }
+            },
+
+            /**
+             * Hides the widget. Possibly will emit dp.hide
+             */
+            hide = function () {
+                var transitioning = false;
+                if (!widget) {
+                    return picker;
+                }
+                // Ignore event if in the middle of a picker transition
+                widget.find('.collapse').each(function () {
+                    var collapseData = $(this).data('collapse');
+                    if (collapseData && collapseData.transitioning) {
+                        transitioning = true;
+                        return false;
+                    }
+                    return true;
+                });
+                if (transitioning) {
+                    return picker;
+                }
+                if (component && component.hasClass('btn')) {
+                    component.toggleClass('active');
+                }
+                widget.hide();
+
+                $(window).off('resize', place);
+                widget.off('click', '[data-action]');
+                widget.off('mousedown', false);
+
+                widget.remove();
+                widget = false;
+
+                notifyEvent({
+                    type: 'dp.hide',
+                    date: date.clone()
+                });
+
+                input.blur();
+
+                viewDate = date.clone();
+
+                return picker;
+            },
+
+            clear = function () {
+                setValue(null);
+            },
+
+            parseInputDate = function (inputDate) {
+                if (options.parseInputDate === undefined) {
+                    if (!moment.isMoment(inputDate) || inputDate instanceof Date) {
+                        inputDate = getMoment(inputDate);
+                    }
+                } else {
+                    inputDate = options.parseInputDate(inputDate);
+                }
+                //inputDate.locale(options.locale);
+                return inputDate;
+            },
+
+            /********************************************************************************
+             *
+             * Widget UI interaction functions
+             *
+             ********************************************************************************/
+            actions = {
+                next: function () {
+                    var navFnc = datePickerModes[currentViewMode].navFnc;
+                    viewDate.add(datePickerModes[currentViewMode].navStep, navFnc);
+                    fillDate();
+                    viewUpdate(navFnc);
+                },
+
+                previous: function () {
+                    var navFnc = datePickerModes[currentViewMode].navFnc;
+                    viewDate.subtract(datePickerModes[currentViewMode].navStep, navFnc);
+                    fillDate();
+                    viewUpdate(navFnc);
+                },
+
+                pickerSwitch: function () {
+                    showMode(1);
+                },
+
+                selectMonth: function (e) {
+                    var month = $(e.target).closest('tbody').find('span').index($(e.target));
+                    viewDate.month(month);
+                    if (currentViewMode === minViewModeNumber) {
+                        setValue(date.clone().year(viewDate.year()).month(viewDate.month()));
+                        if (!options.inline) {
+                            hide();
+                        }
+                    } else {
+                        showMode(-1);
+                        fillDate();
+                    }
+                    viewUpdate('M');
+                },
+
+                selectYear: function (e) {
+                    var year = parseInt($(e.target).text(), 10) || 0;
+                    viewDate.year(year);
+                    if (currentViewMode === minViewModeNumber) {
+                        setValue(date.clone().year(viewDate.year()));
+                        if (!options.inline) {
+                            hide();
+                        }
+                    } else {
+                        showMode(-1);
+                        fillDate();
+                    }
+                    viewUpdate('YYYY');
+                },
+
+                selectDecade: function (e) {
+                    var year = parseInt($(e.target).data('selection'), 10) || 0;
+                    viewDate.year(year);
+                    if (currentViewMode === minViewModeNumber) {
+                        setValue(date.clone().year(viewDate.year()));
+                        if (!options.inline) {
+                            hide();
+                        }
+                    } else {
+                        showMode(-1);
+                        fillDate();
+                    }
+                    viewUpdate('YYYY');
+                },
+
+                selectDay: function (e) {
+                    var day = viewDate.clone();
+                    if ($(e.target).is('.old')) {
+                        day.subtract(1, 'M');
+                    }
+                    if ($(e.target).is('.new')) {
+                        day.add(1, 'M');
+                    }
+                    setValue(day.date(parseInt($(e.target).text(), 10)));
+                    if (!hasTime() && !options.keepOpen && !options.inline) {
+                        hide();
+                    }
+                },
+
+                incrementHours: function () {
+                    var newDate = date.clone().add(1, 'h');
+                    if (isValid(newDate, 'h')) {
+                        setValue(newDate);
+                    }
+                },
+
+                incrementMinutes: function () {
+                    var newDate = date.clone().add(options.stepping, 'm');
+                    if (isValid(newDate, 'm')) {
+                        setValue(newDate);
+                    }
+                },
+
+                incrementSeconds: function () {
+                    var newDate = date.clone().add(1, 's');
+                    if (isValid(newDate, 's')) {
+                        setValue(newDate);
+                    }
+                },
+
+                decrementHours: function () {
+                    var newDate = date.clone().subtract(1, 'h');
+                    if (isValid(newDate, 'h')) {
+                        setValue(newDate);
+                    }
+                },
+
+                decrementMinutes: function () {
+                    var newDate = date.clone().subtract(options.stepping, 'm');
+                    if (isValid(newDate, 'm')) {
+                        setValue(newDate);
+                    }
+                },
+
+                decrementSeconds: function () {
+                    var newDate = date.clone().subtract(1, 's');
+                    if (isValid(newDate, 's')) {
+                        setValue(newDate);
+                    }
+                },
+
+                togglePeriod: function () {
+                    setValue(date.clone().add((date.hours() >= 12) ? -12 : 12, 'h'));
+                },
+
+                togglePicker: function (e) {
+                    var $this = $(e.target),
+                        $parent = $this.closest('ul'),
+                        expanded = $parent.find('.in'),
+                        closed = $parent.find('.collapse:not(.in)'),
+                        collapseData;
+
+                    if (expanded && expanded.length) {
+                        collapseData = expanded.data('collapse');
+                        if (collapseData && collapseData.transitioning) {
+                            return;
+                        }
+                        if (expanded.collapse) { // if collapse plugin is available through bootstrap.js then use it
+                            expanded.collapse('hide');
+                            closed.collapse('show');
+                        } else { // otherwise just toggle in class on the two views
+                            expanded.removeClass('in');
+                            closed.addClass('in');
+                        }
+                        if ($this.is('span')) {
+                            $this.toggleClass(options.icons.time + ' ' + options.icons.date);
+                        } else {
+                            $this.find('span').toggleClass(options.icons.time + ' ' + options.icons.date);
+                        }
+
+                        // NOTE: uncomment if toggled state will be restored in show()
+                        //if (component) {
+                        //    component.find('span').toggleClass(options.icons.time + ' ' + options.icons.date);
+                        //}
+                    }
+                },
+
+                showPicker: function () {
+                    widget.find('.timepicker > div:not(.timepicker-picker)').hide();
+                    widget.find('.timepicker .timepicker-picker').show();
+                },
+
+                showHours: function () {
+                    widget.find('.timepicker .timepicker-picker').hide();
+                    widget.find('.timepicker .timepicker-hours').show();
+                },
+
+                showMinutes: function () {
+                    widget.find('.timepicker .timepicker-picker').hide();
+                    widget.find('.timepicker .timepicker-minutes').show();
+                },
+
+                showSeconds: function () {
+                    widget.find('.timepicker .timepicker-picker').hide();
+                    widget.find('.timepicker .timepicker-seconds').show();
+                },
+
+                selectHour: function (e) {
+                    var hour = parseInt($(e.target).text(), 10);
+
+                    if (!use24Hours) {
+                        if (date.hours() >= 12) {
+                            if (hour !== 12) {
+                                hour += 12;
+                            }
+                        } else {
+                            if (hour === 12) {
+                                hour = 0;
+                            }
+                        }
+                    }
+                    setValue(date.clone().hours(hour));
+                    actions.showPicker.call(picker);
+                },
+
+                selectMinute: function (e) {
+                    setValue(date.clone().minutes(parseInt($(e.target).text(), 10)));
+                    actions.showPicker.call(picker);
+                },
+
+                selectSecond: function (e) {
+                    setValue(date.clone().seconds(parseInt($(e.target).text(), 10)));
+                    actions.showPicker.call(picker);
+                },
+
+                clear: clear,
+
+                today: function () {
+                    var todaysDate = getMoment();
+                    if (isValid(todaysDate, 'd')) {
+                        setValue(todaysDate);
+                    }
+                },
+
+                close: hide
+            },
+
+            doAction = function (e) {
+                if ($(e.currentTarget).is('.disabled')) {
+                    return false;
+                }
+                actions[$(e.currentTarget).data('action')].apply(picker, arguments);
+                return false;
+            },
+
+            /**
+             * Shows the widget. Possibly will emit dp.show and dp.change
+             */
+            show = function () {
+                var currentMoment,
+                    useCurrentGranularity = {
+                        'year': function (m) {
+                            return m.month(0).date(1).hours(0).seconds(0).minutes(0);
+                        },
+                        'month': function (m) {
+                            return m.date(1).hours(0).seconds(0).minutes(0);
+                        },
+                        'day': function (m) {
+                            return m.hours(0).seconds(0).minutes(0);
+                        },
+                        'hour': function (m) {
+                            return m.seconds(0).minutes(0);
+                        },
+                        'minute': function (m) {
+                            return m.seconds(0);
+                        }
+                    };
+
+                if (input.prop('disabled') || (!options.ignoreReadonly && input.prop('readonly')) || widget) {
+                    return picker;
+                }
+                if (input.val() !== undefined && input.val().trim().length !== 0) {
+                    setValue(parseInputDate(input.val().trim()));
+                } else if (unset && options.useCurrent && (options.inline || (input.is('input') && input.val().trim().length === 0))) {
+                    currentMoment = getMoment();
+                    if (typeof options.useCurrent === 'string') {
+                        currentMoment = useCurrentGranularity[options.useCurrent](currentMoment);
+                    }
+                    setValue(currentMoment);
+                }
+                widget = getTemplate();
+
+                fillDow();
+                fillMonths();
+
+                widget.find('.timepicker-hours').hide();
+                widget.find('.timepicker-minutes').hide();
+                widget.find('.timepicker-seconds').hide();
+
+                update();
+                showMode();
+
+                $(window).on('resize', place);
+                widget.on('click', '[data-action]', doAction); // this handles clicks on the widget
+                widget.on('mousedown', false);
+
+                if (component && component.hasClass('btn')) {
+                    component.toggleClass('active');
+                }
+                place();
+                widget.show();
+                if (options.focusOnShow && !input.is(':focus')) {
+                    input.focus();
+                }
+
+                notifyEvent({
+                    type: 'dp.show'
+                });
+                return picker;
+            },
+
+            /**
+             * Shows or hides the widget
+             */
+            toggle = function () {
+                return (widget ? hide() : show());
+            },
+
+            keydown = function (e) {
+                var handler = null,
+                    index,
+                    index2,
+                    pressedKeys = [],
+                    pressedModifiers = {},
+                    currentKey = e.which,
+                    keyBindKeys,
+                    allModifiersPressed,
+                    pressed = 'p';
+
+                keyState[currentKey] = pressed;
+
+                for (index in keyState) {
+                    if (keyState.hasOwnProperty(index) && keyState[index] === pressed) {
+                        pressedKeys.push(index);
+                        if (parseInt(index, 10) !== currentKey) {
+                            pressedModifiers[index] = true;
+                        }
+                    }
+                }
+
+                for (index in options.keyBinds) {
+                    if (options.keyBinds.hasOwnProperty(index) && typeof (options.keyBinds[index]) === 'function') {
+                        keyBindKeys = index.split(' ');
+                        if (keyBindKeys.length === pressedKeys.length && keyMap[currentKey] === keyBindKeys[keyBindKeys.length - 1]) {
+                            allModifiersPressed = true;
+                            for (index2 = keyBindKeys.length - 2; index2 >= 0; index2--) {
+                                if (!(keyMap[keyBindKeys[index2]] in pressedModifiers)) {
+                                    allModifiersPressed = false;
+                                    break;
+                                }
+                            }
+                            if (allModifiersPressed) {
+                                handler = options.keyBinds[index];
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (handler) {
+                    handler.call(picker, widget);
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+            },
+
+            keyup = function (e) {
+                keyState[e.which] = 'r';
+                e.stopPropagation();
+                e.preventDefault();
+            },
+
+            change = function (e) {
+                var val = $(e.target).val().trim(),
+                    parsedDate = val ? parseInputDate(val) : null;
+                setValue(parsedDate);
+                e.stopImmediatePropagation();
+                return false;
+            },
+
+            attachDatePickerElementEvents = function () {
+                input.on({
+                    'change': change,
+                    'blur': options.debug ? '' : hide,
+                    'keydown': keydown,
+                    'keyup': keyup,
+                    'focus': options.allowInputToggle ? show : ''
+                });
+
+                if (element.is('input')) {
+                    input.on({
+                        'focus': show
+                    });
+                } else if (component) {
+                    component.on('click', toggle);
+                    component.on('mousedown', false);
+                }
+            },
+
+            detachDatePickerElementEvents = function () {
+                input.off({
+                    'change': change,
+                    'blur': blur,
+                    'keydown': keydown,
+                    'keyup': keyup,
+                    'focus': options.allowInputToggle ? hide : ''
+                });
+
+                if (element.is('input')) {
+                    input.off({
+                        'focus': show
+                    });
+                } else if (component) {
+                    component.off('click', toggle);
+                    component.off('mousedown', false);
+                }
+            },
+
+            indexGivenDates = function (givenDatesArray) {
+                // Store given enabledDates and disabledDates as keys.
+                // This way we can check their existence in O(1) time instead of looping through whole array.
+                // (for example: options.enabledDates['2014-02-27'] === true)
+                var givenDatesIndexed = {};
+                $.each(givenDatesArray, function () {
+                    var dDate = parseInputDate(this);
+                    if (dDate.isValid()) {
+                        givenDatesIndexed[dDate.format('YYYY-MM-DD')] = true;
+                    }
+                });
+                return (Object.keys(givenDatesIndexed).length) ? givenDatesIndexed : false;
+            },
+
+            indexGivenHours = function (givenHoursArray) {
+                // Store given enabledHours and disabledHours as keys.
+                // This way we can check their existence in O(1) time instead of looping through whole array.
+                // (for example: options.enabledHours['2014-02-27'] === true)
+                var givenHoursIndexed = {};
+                $.each(givenHoursArray, function () {
+                    givenHoursIndexed[this] = true;
+                });
+                return (Object.keys(givenHoursIndexed).length) ? givenHoursIndexed : false;
+            },
+
+            initFormatting = function () {
+                var format = options.format || 'L LT';
+
+                actualFormat = format.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, function (formatInput) {
+                    var newinput = date.localeData().longDateFormat(formatInput) || formatInput;
+                    return newinput.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, function (formatInput2) { //temp fix for #740
+                        return date.localeData().longDateFormat(formatInput2) || formatInput2;
+                    });
+                });
+
+
+                parseFormats = options.extraFormats ? options.extraFormats.slice() : [];
+                if (parseFormats.indexOf(format) < 0 && parseFormats.indexOf(actualFormat) < 0) {
+                    parseFormats.push(actualFormat);
+                }
+
+                use24Hours = (actualFormat.toLowerCase().indexOf('a') < 1 && actualFormat.replace(/\[.*?\]/g, '').indexOf('h') < 1);
+
+                if (isEnabled('y')) {
+                    minViewModeNumber = 2;
+                }
+                if (isEnabled('M')) {
+                    minViewModeNumber = 1;
+                }
+                if (isEnabled('d')) {
+                    minViewModeNumber = 0;
+                }
+
+                currentViewMode = Math.max(minViewModeNumber, currentViewMode);
+
+                if (!unset) {
+                    setValue(date);
+                }
+            };
+
+        /********************************************************************************
+         *
+         * Public API functions
+         * =====================
+         *
+         * Important: Do not expose direct references to private objects or the options
+         * object to the outer world. Always return a clone when returning values or make
+         * a clone when setting a private variable.
+         *
+         ********************************************************************************/
+        picker.destroy = function () {
+            ///<summary>Destroys the widget and removes all attached event listeners</summary>
+            hide();
+            detachDatePickerElementEvents();
+            element.removeData('DateTimePicker');
+            element.removeData('date');
+        };
+
+        picker.toggle = toggle;
+
+        picker.show = show;
+
+        picker.hide = hide;
+
+        picker.disable = function () {
+            ///<summary>Disables the input element, the component is attached to, by adding a disabled="true" attribute to it.
+            ///If the widget was visible before that call it is hidden. Possibly emits dp.hide</summary>
+            hide();
+            if (component && component.hasClass('btn')) {
+                component.addClass('disabled');
+            }
+            input.prop('disabled', true);
+            return picker;
+        };
+
+        picker.enable = function () {
+            ///<summary>Enables the input element, the component is attached to, by removing disabled attribute from it.</summary>
+            if (component && component.hasClass('btn')) {
+                component.removeClass('disabled');
+            }
+            input.prop('disabled', false);
+            return picker;
+        };
+
+        picker.ignoreReadonly = function (ignoreReadonly) {
+            if (arguments.length === 0) {
+                return options.ignoreReadonly;
+            }
+            if (typeof ignoreReadonly !== 'boolean') {
+                throw new TypeError('ignoreReadonly () expects a boolean parameter');
+            }
+            options.ignoreReadonly = ignoreReadonly;
+            return picker;
+        };
+
+        picker.options = function (newOptions) {
+            if (arguments.length === 0) {
+                return $.extend(true, {}, options);
+            }
+
+            if (!(newOptions instanceof Object)) {
+                throw new TypeError('options() options parameter should be an object');
+            }
+            $.extend(true, options, newOptions);
+            $.each(options, function (key, value) {
+                if (picker[key] !== undefined) {
+                    picker[key](value);
+                } else {
+                    throw new TypeError('option ' + key + ' is not recognized!');
+                }
+            });
+            return picker;
+        };
+
+        picker.date = function (newDate) {
+            ///<signature helpKeyword="$.fn.datetimepicker.date">
+            ///<summary>Returns the component's model current date, a moment object or null if not set.</summary>
+            ///<returns type="Moment">date.clone()</returns>
+            ///</signature>
+            ///<signature>
+            ///<summary>Sets the components model current moment to it. Passing a null value unsets the components model current moment. Parsing of the newDate parameter is made using moment library with the options.format and options.useStrict components configuration.</summary>
+            ///<param name="newDate" locid="$.fn.datetimepicker.date_p:newDate">Takes string, Date, moment, null parameter.</param>
+            ///</signature>
+            if (arguments.length === 0) {
+                if (unset) {
+                    return null;
+                }
+                return date.clone();
+            }
+
+            if (newDate !== null && typeof newDate !== 'string' && !moment.isMoment(newDate) && !(newDate instanceof Date)) {
+                throw new TypeError('date() parameter must be one of [null, string, moment or Date]');
+            }
+
+            setValue(newDate === null ? null : parseInputDate(newDate));
+            return picker;
+        };
+
+        picker.format = function (newFormat) {
+            ///<summary>test su</summary>
+            ///<param name="newFormat">info about para</param>
+            ///<returns type="string|boolean">returns foo</returns>
+            if (arguments.length === 0) {
+                return options.format;
+            }
+
+            if ((typeof newFormat !== 'string') && ((typeof newFormat !== 'boolean') || (newFormat !== false))) {
+                throw new TypeError('format() expects a string or boolean:false parameter ' + newFormat);
+            }
+
+            options.format = newFormat;
+            if (actualFormat) {
+                initFormatting(); // reinit formatting
+            }
+            return picker;
+        };
+
+        picker.timeZone = function (newZone) {
+            if (arguments.length === 0) {
+                return options.timeZone;
+            }
+
+            if (typeof newZone !== 'string') {
+                throw new TypeError('newZone() expects a string parameter');
+            }
+
+            options.timeZone = newZone;
+
+            return picker;
+        };
+
+        picker.dayViewHeaderFormat = function (newFormat) {
+            if (arguments.length === 0) {
+                return options.dayViewHeaderFormat;
+            }
+
+            if (typeof newFormat !== 'string') {
+                throw new TypeError('dayViewHeaderFormat() expects a string parameter');
+            }
+
+            options.dayViewHeaderFormat = newFormat;
+            return picker;
+        };
+
+        picker.extraFormats = function (formats) {
+            if (arguments.length === 0) {
+                return options.extraFormats;
+            }
+
+            if (formats !== false && !(formats instanceof Array)) {
+                throw new TypeError('extraFormats() expects an array or false parameter');
+            }
+
+            options.extraFormats = formats;
+            if (parseFormats) {
+                initFormatting(); // reinit formatting
+            }
+            return picker;
+        };
+
+        picker.disabledDates = function (dates) {
+            ///<signature helpKeyword="$.fn.datetimepicker.disabledDates">
+            ///<summary>Returns an array with the currently set disabled dates on the component.</summary>
+            ///<returns type="array">options.disabledDates</returns>
+            ///</signature>
+            ///<signature>
+            ///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of
+            ///options.enabledDates if such exist.</summary>
+            ///<param name="dates" locid="$.fn.datetimepicker.disabledDates_p:dates">Takes an [ string or Date or moment ] of values and allows the user to select only from those days.</param>
+            ///</signature>
+            if (arguments.length === 0) {
+                return (options.disabledDates ? $.extend({}, options.disabledDates) : options.disabledDates);
+            }
+
+            if (!dates) {
+                options.disabledDates = false;
+                update();
+                return picker;
+            }
+            if (!(dates instanceof Array)) {
+                throw new TypeError('disabledDates() expects an array parameter');
+            }
+            options.disabledDates = indexGivenDates(dates);
+            options.enabledDates = false;
+            update();
+            return picker;
+        };
+
+        picker.enabledDates = function (dates) {
+            ///<signature helpKeyword="$.fn.datetimepicker.enabledDates">
+            ///<summary>Returns an array with the currently set enabled dates on the component.</summary>
+            ///<returns type="array">options.enabledDates</returns>
+            ///</signature>
+            ///<signature>
+            ///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of options.disabledDates if such exist.</summary>
+            ///<param name="dates" locid="$.fn.datetimepicker.enabledDates_p:dates">Takes an [ string or Date or moment ] of values and allows the user to select only from those days.</param>
+            ///</signature>
+            if (arguments.length === 0) {
+                return (options.enabledDates ? $.extend({}, options.enabledDates) : options.enabledDates);
+            }
+
+            if (!dates) {
+                options.enabledDates = false;
+                update();
+                return picker;
+            }
+            if (!(dates instanceof Array)) {
+                throw new TypeError('enabledDates() expects an array parameter');
+            }
+            options.enabledDates = indexGivenDates(dates);
+            options.disabledDates = false;
+            update();
+            return picker;
+        };
+
+        picker.daysOfWeekDisabled = function (daysOfWeekDisabled) {
+            if (arguments.length === 0) {
+                return options.daysOfWeekDisabled.splice(0);
+            }
+
+            if ((typeof daysOfWeekDisabled === 'boolean') && !daysOfWeekDisabled) {
+                options.daysOfWeekDisabled = false;
+                update();
+                return picker;
+            }
+
+            if (!(daysOfWeekDisabled instanceof Array)) {
+                throw new TypeError('daysOfWeekDisabled() expects an array parameter');
+            }
+            options.daysOfWeekDisabled = daysOfWeekDisabled.reduce(function (previousValue, currentValue) {
+                currentValue = parseInt(currentValue, 10);
+                if (currentValue > 6 || currentValue < 0 || isNaN(currentValue)) {
+                    return previousValue;
+                }
+                if (previousValue.indexOf(currentValue) === -1) {
+                    previousValue.push(currentValue);
+                }
+                return previousValue;
+            }, []).sort();
+            if (options.useCurrent && !options.keepInvalid) {
+                var tries = 0;
+                while (!isValid(date, 'd')) {
+                    date.add(1, 'd');
+                    if (tries === 31) {
+                        throw 'Tried 31 times to find a valid date';
+                    }
+                    tries++;
+                }
+                setValue(date);
+            }
+            update();
+            return picker;
+        };
+
+        picker.maxDate = function (maxDate) {
+            if (arguments.length === 0) {
+                return options.maxDate ? options.maxDate.clone() : options.maxDate;
+            }
+
+            if ((typeof maxDate === 'boolean') && maxDate === false) {
+                options.maxDate = false;
+                update();
+                return picker;
+            }
+
+            if (typeof maxDate === 'string') {
+                if (maxDate === 'now' || maxDate === 'moment') {
+                    maxDate = getMoment();
+                }
+            }
+
+            var parsedDate = parseInputDate(maxDate);
+
+            if (!parsedDate.isValid()) {
+                throw new TypeError('maxDate() Could not parse date parameter: ' + maxDate);
+            }
+            if (options.minDate && parsedDate.isBefore(options.minDate)) {
+                throw new TypeError('maxDate() date parameter is before options.minDate: ' + parsedDate.format(actualFormat));
+            }
+            options.maxDate = parsedDate;
+            if (options.useCurrent && !options.keepInvalid && date.isAfter(maxDate)) {
+                setValue(options.maxDate);
+            }
+            if (viewDate.isAfter(parsedDate)) {
+                viewDate = parsedDate.clone().subtract(options.stepping, 'm');
+            }
+            update();
+            return picker;
+        };
+
+        picker.minDate = function (minDate) {
+            if (arguments.length === 0) {
+                return options.minDate ? options.minDate.clone() : options.minDate;
+            }
+
+            if ((typeof minDate === 'boolean') && minDate === false) {
+                options.minDate = false;
+                update();
+                return picker;
+            }
+
+            if (typeof minDate === 'string') {
+                if (minDate === 'now' || minDate === 'moment') {
+                    minDate = getMoment();
+                }
+            }
+
+            var parsedDate = parseInputDate(minDate);
+
+            if (!parsedDate.isValid()) {
+                throw new TypeError('minDate() Could not parse date parameter: ' + minDate);
+            }
+            if (options.maxDate && parsedDate.isAfter(options.maxDate)) {
+                throw new TypeError('minDate() date parameter is after options.maxDate: ' + parsedDate.format(actualFormat));
+            }
+            options.minDate = parsedDate;
+            if (options.useCurrent && !options.keepInvalid && date.isBefore(minDate)) {
+                setValue(options.minDate);
+            }
+            if (viewDate.isBefore(parsedDate)) {
+                viewDate = parsedDate.clone().add(options.stepping, 'm');
+            }
+            update();
+            return picker;
+        };
+
+        picker.defaultDate = function (defaultDate) {
+            ///<signature helpKeyword="$.fn.datetimepicker.defaultDate">
+            ///<summary>Returns a moment with the options.defaultDate option configuration or false if not set</summary>
+            ///<returns type="Moment">date.clone()</returns>
+            ///</signature>
+            ///<signature>
+            ///<summary>Will set the picker's inital date. If a boolean:false value is passed the options.defaultDate parameter is cleared.</summary>
+            ///<param name="defaultDate" locid="$.fn.datetimepicker.defaultDate_p:defaultDate">Takes a string, Date, moment, boolean:false</param>
+            ///</signature>
+            if (arguments.length === 0) {
+                return options.defaultDate ? options.defaultDate.clone() : options.defaultDate;
+            }
+            if (!defaultDate) {
+                options.defaultDate = false;
+                return picker;
+            }
+
+            if (typeof defaultDate === 'string') {
+                if (defaultDate === 'now' || defaultDate === 'moment') {
+                    defaultDate = getMoment();
+                } else {
+                    defaultDate = getMoment(defaultDate);
+                }
+            }
+
+            var parsedDate = parseInputDate(defaultDate);
+            if (!parsedDate.isValid()) {
+                throw new TypeError('defaultDate() Could not parse date parameter: ' + defaultDate);
+            }
+            if (!isValid(parsedDate)) {
+                throw new TypeError('defaultDate() date passed is invalid according to component setup validations');
+            }
+
+            options.defaultDate = parsedDate;
+
+            if ((options.defaultDate && options.inline) || input.val().trim() === '') {
+                setValue(options.defaultDate);
+            }
+            return picker;
+        };
+
+        picker.locale = function (locale) {
+            if (arguments.length === 0) {
+                return options.locale;
+            }
+
+            if (!moment.localeData(locale)) {
+                throw new TypeError('locale() locale ' + locale + ' is not loaded from moment locales!');
+            }
+
+            options.locale = locale;
+            date.locale(options.locale);
+            viewDate.locale(options.locale);
+
+            if (actualFormat) {
+                initFormatting(); // reinit formatting
+            }
+            if (widget) {
+                hide();
+                show();
+            }
+            return picker;
+        };
+
+        picker.stepping = function (stepping) {
+            if (arguments.length === 0) {
+                return options.stepping;
+            }
+
+            stepping = parseInt(stepping, 10);
+            if (isNaN(stepping) || stepping < 1) {
+                stepping = 1;
+            }
+            options.stepping = stepping;
+            return picker;
+        };
+
+        picker.useCurrent = function (useCurrent) {
+            var useCurrentOptions = ['year', 'month', 'day', 'hour', 'minute'];
+            if (arguments.length === 0) {
+                return options.useCurrent;
+            }
+
+            if ((typeof useCurrent !== 'boolean') && (typeof useCurrent !== 'string')) {
+                throw new TypeError('useCurrent() expects a boolean or string parameter');
+            }
+            if (typeof useCurrent === 'string' && useCurrentOptions.indexOf(useCurrent.toLowerCase()) === -1) {
+                throw new TypeError('useCurrent() expects a string parameter of ' + useCurrentOptions.join(', '));
+            }
+            options.useCurrent = useCurrent;
+            return picker;
+        };
+
+        picker.collapse = function (collapse) {
+            if (arguments.length === 0) {
+                return options.collapse;
+            }
+
+            if (typeof collapse !== 'boolean') {
+                throw new TypeError('collapse() expects a boolean parameter');
+            }
+            if (options.collapse === collapse) {
+                return picker;
+            }
+            options.collapse = collapse;
+            if (widget) {
+                hide();
+                show();
+            }
+            return picker;
+        };
+
+        picker.icons = function (icons) {
+            if (arguments.length === 0) {
+                return $.extend({}, options.icons);
+            }
+
+            if (!(icons instanceof Object)) {
+                throw new TypeError('icons() expects parameter to be an Object');
+            }
+            $.extend(options.icons, icons);
+            if (widget) {
+                hide();
+                show();
+            }
+            return picker;
+        };
+
+        picker.tooltips = function (tooltips) {
+            if (arguments.length === 0) {
+                return $.extend({}, options.tooltips);
+            }
+
+            if (!(tooltips instanceof Object)) {
+                throw new TypeError('tooltips() expects parameter to be an Object');
+            }
+            $.extend(options.tooltips, tooltips);
+            if (widget) {
+                hide();
+                show();
+            }
+            return picker;
+        };
+
+        picker.useStrict = function (useStrict) {
+            if (arguments.length === 0) {
+                return options.useStrict;
+            }
+
+            if (typeof useStrict !== 'boolean') {
+                throw new TypeError('useStrict() expects a boolean parameter');
+            }
+            options.useStrict = useStrict;
+            return picker;
+        };
+
+        picker.sideBySide = function (sideBySide) {
+            if (arguments.length === 0) {
+                return options.sideBySide;
+            }
+
+            if (typeof sideBySide !== 'boolean') {
+                throw new TypeError('sideBySide() expects a boolean parameter');
+            }
+            options.sideBySide = sideBySide;
+            if (widget) {
+                hide();
+                show();
+            }
+            return picker;
+        };
+
+        picker.viewMode = function (viewMode) {
+            if (arguments.length === 0) {
+                return options.viewMode;
+            }
+
+            if (typeof viewMode !== 'string') {
+                throw new TypeError('viewMode() expects a string parameter');
+            }
+
+            if (viewModes.indexOf(viewMode) === -1) {
+                throw new TypeError('viewMode() parameter must be one of (' + viewModes.join(', ') + ') value');
+            }
+
+            options.viewMode = viewMode;
+            currentViewMode = Math.max(viewModes.indexOf(viewMode), minViewModeNumber);
+
+            showMode();
+            return picker;
+        };
+
+        picker.toolbarPlacement = function (toolbarPlacement) {
+            if (arguments.length === 0) {
+                return options.toolbarPlacement;
+            }
+
+            if (typeof toolbarPlacement !== 'string') {
+                throw new TypeError('toolbarPlacement() expects a string parameter');
+            }
+            if (toolbarPlacements.indexOf(toolbarPlacement) === -1) {
+                throw new TypeError('toolbarPlacement() parameter must be one of (' + toolbarPlacements.join(', ') + ') value');
+            }
+            options.toolbarPlacement = toolbarPlacement;
+
+            if (widget) {
+                hide();
+                show();
+            }
+            return picker;
+        };
+
+        picker.widgetPositioning = function (widgetPositioning) {
+            if (arguments.length === 0) {
+                return $.extend({}, options.widgetPositioning);
+            }
+
+            if (({}).toString.call(widgetPositioning) !== '[object Object]') {
+                throw new TypeError('widgetPositioning() expects an object variable');
+            }
+            if (widgetPositioning.horizontal) {
+                if (typeof widgetPositioning.horizontal !== 'string') {
+                    throw new TypeError('widgetPositioning() horizontal variable must be a string');
+                }
+                widgetPositioning.horizontal = widgetPositioning.horizontal.toLowerCase();
+                if (horizontalModes.indexOf(widgetPositioning.horizontal) === -1) {
+                    throw new TypeError('widgetPositioning() expects horizontal parameter to be one of (' + horizontalModes.join(', ') + ')');
+                }
+                options.widgetPositioning.horizontal = widgetPositioning.horizontal;
+            }
+            if (widgetPositioning.vertical) {
+                if (typeof widgetPositioning.vertical !== 'string') {
+                    throw new TypeError('widgetPositioning() vertical variable must be a string');
+                }
+                widgetPositioning.vertical = widgetPositioning.vertical.toLowerCase();
+                if (verticalModes.indexOf(widgetPositioning.vertical) === -1) {
+                    throw new TypeError('widgetPositioning() expects vertical parameter to be one of (' + verticalModes.join(', ') + ')');
+                }
+                options.widgetPositioning.vertical = widgetPositioning.vertical;
+            }
+            update();
+            return picker;
+        };
+
+        picker.calendarWeeks = function (calendarWeeks) {
+            if (arguments.length === 0) {
+                return options.calendarWeeks;
+            }
+
+            if (typeof calendarWeeks !== 'boolean') {
+                throw new TypeError('calendarWeeks() expects parameter to be a boolean value');
+            }
+
+            options.calendarWeeks = calendarWeeks;
+            update();
+            return picker;
+        };
+
+        picker.showTodayButton = function (showTodayButton) {
+            if (arguments.length === 0) {
+                return options.showTodayButton;
+            }
+
+            if (typeof showTodayButton !== 'boolean') {
+                throw new TypeError('showTodayButton() expects a boolean parameter');
+            }
+
+            options.showTodayButton = showTodayButton;
+            if (widget) {
+                hide();
+                show();
+            }
+            return picker;
+        };
+
+        picker.showClear = function (showClear) {
+            if (arguments.length === 0) {
+                return options.showClear;
+            }
+
+            if (typeof showClear !== 'boolean') {
+                throw new TypeError('showClear() expects a boolean parameter');
+            }
+
+            options.showClear = showClear;
+            if (widget) {
+                hide();
+                show();
+            }
+            return picker;
+        };
+
+        picker.widgetParent = function (widgetParent) {
+            if (arguments.length === 0) {
+                return options.widgetParent;
+            }
+
+            if (typeof widgetParent === 'string') {
+                widgetParent = $(widgetParent);
+            }
+
+            if (widgetParent !== null && (typeof widgetParent !== 'string' && !(widgetParent instanceof $))) {
+                throw new TypeError('widgetParent() expects a string or a jQuery object parameter');
+            }
+
+            options.widgetParent = widgetParent;
+            if (widget) {
+                hide();
+                show();
+            }
+            return picker;
+        };
+
+        picker.keepOpen = function (keepOpen) {
+            if (arguments.length === 0) {
+                return options.keepOpen;
+            }
+
+            if (typeof keepOpen !== 'boolean') {
+                throw new TypeError('keepOpen() expects a boolean parameter');
+            }
+
+            options.keepOpen = keepOpen;
+            return picker;
+        };
+
+        picker.focusOnShow = function (focusOnShow) {
+            if (arguments.length === 0) {
+                return options.focusOnShow;
+            }
+
+            if (typeof focusOnShow !== 'boolean') {
+                throw new TypeError('focusOnShow() expects a boolean parameter');
+            }
+
+            options.focusOnShow = focusOnShow;
+            return picker;
+        };
+
+        picker.inline = function (inline) {
+            if (arguments.length === 0) {
+                return options.inline;
+            }
+
+            if (typeof inline !== 'boolean') {
+                throw new TypeError('inline() expects a boolean parameter');
+            }
+
+            options.inline = inline;
+            return picker;
+        };
+
+        picker.clear = function () {
+            clear();
+            return picker;
+        };
+
+        picker.keyBinds = function (keyBinds) {
+            if (arguments.length === 0) {
+                return options.keyBinds;
+            }
+
+            options.keyBinds = keyBinds;
+            return picker;
+        };
+
+        picker.getMoment = function (d) {
+            return getMoment(d);
+        };
+
+        picker.debug = function (debug) {
+            if (typeof debug !== 'boolean') {
+                throw new TypeError('debug() expects a boolean parameter');
+            }
+
+            options.debug = debug;
+            return picker;
+        };
+
+        picker.allowInputToggle = function (allowInputToggle) {
+            if (arguments.length === 0) {
+                return options.allowInputToggle;
+            }
+
+            if (typeof allowInputToggle !== 'boolean') {
+                throw new TypeError('allowInputToggle() expects a boolean parameter');
+            }
+
+            options.allowInputToggle = allowInputToggle;
+            return picker;
+        };
+
+        picker.showClose = function (showClose) {
+            if (arguments.length === 0) {
+                return options.showClose;
+            }
+
+            if (typeof showClose !== 'boolean') {
+                throw new TypeError('showClose() expects a boolean parameter');
+            }
+
+            options.showClose = showClose;
+            return picker;
+        };
+
+        picker.keepInvalid = function (keepInvalid) {
+            if (arguments.length === 0) {
+                return options.keepInvalid;
+            }
+
+            if (typeof keepInvalid !== 'boolean') {
+                throw new TypeError('keepInvalid() expects a boolean parameter');
+            }
+            options.keepInvalid = keepInvalid;
+            return picker;
+        };
+
+        picker.datepickerInput = function (datepickerInput) {
+            if (arguments.length === 0) {
+                return options.datepickerInput;
+            }
+
+            if (typeof datepickerInput !== 'string') {
+                throw new TypeError('datepickerInput() expects a string parameter');
+            }
+
+            options.datepickerInput = datepickerInput;
+            return picker;
+        };
+
+        picker.parseInputDate = function (parseInputDate) {
+            if (arguments.length === 0) {
+                return options.parseInputDate;
+            }
+
+            if (typeof parseInputDate !== 'function') {
+                throw new TypeError('parseInputDate() sholud be as function');
+            }
+
+            options.parseInputDate = parseInputDate;
+
+            return picker;
+        };
+
+        picker.disabledTimeIntervals = function (disabledTimeIntervals) {
+            ///<signature helpKeyword="$.fn.datetimepicker.disabledTimeIntervals">
+            ///<summary>Returns an array with the currently set disabled dates on the component.</summary>
+            ///<returns type="array">options.disabledTimeIntervals</returns>
+            ///</signature>
+            ///<signature>
+            ///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of
+            ///options.enabledDates if such exist.</summary>
+            ///<param name="dates" locid="$.fn.datetimepicker.disabledTimeIntervals_p:dates">Takes an [ string or Date or moment ] of values and allows the user to select only from those days.</param>
+            ///</signature>
+            if (arguments.length === 0) {
+                return (options.disabledTimeIntervals ? $.extend({}, options.disabledTimeIntervals) : options.disabledTimeIntervals);
+            }
+
+            if (!disabledTimeIntervals) {
+                options.disabledTimeIntervals = false;
+                update();
+                return picker;
+            }
+            if (!(disabledTimeIntervals instanceof Array)) {
+                throw new TypeError('disabledTimeIntervals() expects an array parameter');
+            }
+            options.disabledTimeIntervals = disabledTimeIntervals;
+            update();
+            return picker;
+        };
+
+        picker.disabledHours = function (hours) {
+            ///<signature helpKeyword="$.fn.datetimepicker.disabledHours">
+            ///<summary>Returns an array with the currently set disabled hours on the component.</summary>
+            ///<returns type="array">options.disabledHours</returns>
+            ///</signature>
+            ///<signature>
+            ///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of
+            ///options.enabledHours if such exist.</summary>
+            ///<param name="hours" locid="$.fn.datetimepicker.disabledHours_p:hours">Takes an [ int ] of values and disallows the user to select only from those hours.</param>
+            ///</signature>
+            if (arguments.length === 0) {
+                return (options.disabledHours ? $.extend({}, options.disabledHours) : options.disabledHours);
+            }
+
+            if (!hours) {
+                options.disabledHours = false;
+                update();
+                return picker;
+            }
+            if (!(hours instanceof Array)) {
+                throw new TypeError('disabledHours() expects an array parameter');
+            }
+            options.disabledHours = indexGivenHours(hours);
+            options.enabledHours = false;
+            if (options.useCurrent && !options.keepInvalid) {
+                var tries = 0;
+                while (!isValid(date, 'h')) {
+                    date.add(1, 'h');
+                    if (tries === 24) {
+                        throw 'Tried 24 times to find a valid date';
+                    }
+                    tries++;
+                }
+                setValue(date);
+            }
+            update();
+            return picker;
+        };
+
+        picker.enabledHours = function (hours) {
+            ///<signature helpKeyword="$.fn.datetimepicker.enabledHours">
+            ///<summary>Returns an array with the currently set enabled hours on the component.</summary>
+            ///<returns type="array">options.enabledHours</returns>
+            ///</signature>
+            ///<signature>
+            ///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of options.disabledHours if such exist.</summary>
+            ///<param name="hours" locid="$.fn.datetimepicker.enabledHours_p:hours">Takes an [ int ] of values and allows the user to select only from those hours.</param>
+            ///</signature>
+            if (arguments.length === 0) {
+                return (options.enabledHours ? $.extend({}, options.enabledHours) : options.enabledHours);
+            }
+
+            if (!hours) {
+                options.enabledHours = false;
+                update();
+                return picker;
+            }
+            if (!(hours instanceof Array)) {
+                throw new TypeError('enabledHours() expects an array parameter');
+            }
+            options.enabledHours = indexGivenHours(hours);
+            options.disabledHours = false;
+            if (options.useCurrent && !options.keepInvalid) {
+                var tries = 0;
+                while (!isValid(date, 'h')) {
+                    date.add(1, 'h');
+                    if (tries === 24) {
+                        throw 'Tried 24 times to find a valid date';
+                    }
+                    tries++;
+                }
+                setValue(date);
+            }
+            update();
+            return picker;
+        };
+        /**
+         * Returns the component's model current viewDate, a moment object or null if not set. Passing a null value unsets the components model current moment. Parsing of the newDate parameter is made using moment library with the options.format and options.useStrict components configuration.
+         * @param {Takes string, viewDate, moment, null parameter.} newDate
+         * @returns {viewDate.clone()}
+         */
+        picker.viewDate = function (newDate) {
+            if (arguments.length === 0) {
+                return viewDate.clone();
+            }
+
+            if (!newDate) {
+                viewDate = date.clone();
+                return picker;
+            }
+
+            if (typeof newDate !== 'string' && !moment.isMoment(newDate) && !(newDate instanceof Date)) {
+                throw new TypeError('viewDate() parameter must be one of [string, moment or Date]');
+            }
+
+            viewDate = parseInputDate(newDate);
+            viewUpdate();
+            return picker;
+        };
+
+        // initializing element and component attributes
+        if (element.is('input')) {
+            input = element;
+        } else {
+            input = element.find(options.datepickerInput);
+            if (input.length === 0) {
+                input = element.find('input');
+            } else if (!input.is('input')) {
+                throw new Error('CSS class "' + options.datepickerInput + '" cannot be applied to non input element');
+            }
+        }
+
+        if (element.hasClass('input-group')) {
+            // in case there is more then one 'input-group-addon' Issue #48
+            if (element.find('.datepickerbutton').length === 0) {
+                component = element.find('.input-group-addon');
+            } else {
+                component = element.find('.datepickerbutton');
+            }
+        }
+
+        if (!options.inline && !input.is('input')) {
+            throw new Error('Could not initialize DateTimePicker without an input element');
+        }
+
+        // Set defaults for date here now instead of in var declaration
+        date = getMoment();
+        viewDate = date.clone();
+
+        $.extend(true, options, dataToOptions());
+
+        picker.options(options);
+
+        initFormatting();
+
+        attachDatePickerElementEvents();
+
+        if (input.prop('disabled')) {
+            picker.disable();
+        }
+        if (input.is('input') && input.val().trim().length !== 0) {
+            setValue(parseInputDate(input.val().trim()));
+        }
+        else if (options.defaultDate && input.attr('placeholder') === undefined) {
+            setValue(options.defaultDate);
+        }
+        if (options.inline) {
+            show();
+        }
+        return picker;
+    };
+
+    /********************************************************************************
+     *
+     * jQuery plugin constructor and defaults object
+     *
+     ********************************************************************************/
+
+    /**
+    * See (http://jquery.com/).
+    * @name jQuery
+    * @class
+    * See the jQuery Library  (http://jquery.com/) for full details.  This just
+    * documents the function and classes that are added to jQuery by this plug-in.
+    */
+    /**
+     * See (http://jquery.com/)
+     * @name fn
+     * @class
+     * See the jQuery Library  (http://jquery.com/) for full details.  This just
+     * documents the function and classes that are added to jQuery by this plug-in.
+     * @memberOf jQuery
+     */
+    /**
+     * Show comments
+     * @class datetimepicker
+     * @memberOf jQuery.fn
+     */
+    $.fn.datetimepicker = function (options) {
+        options = options || {};
+
+        var args = Array.prototype.slice.call(arguments, 1),
+            isInstance = true,
+            thisMethods = ['destroy', 'hide', 'show', 'toggle'],
+            returnValue;
+
+        if (typeof options === 'object') {
+            return this.each(function () {
+                var $this = $(this),
+                    _options;
+                if (!$this.data('DateTimePicker')) {
+                    // create a private copy of the defaults object
+                    _options = $.extend(true, {}, $.fn.datetimepicker.defaults, options);
+                    $this.data('DateTimePicker', dateTimePicker($this, _options));
+                }
+            });
+        } else if (typeof options === 'string') {
+            this.each(function () {
+                var $this = $(this),
+                    instance = $this.data('DateTimePicker');
+                if (!instance) {
+                    throw new Error('bootstrap-datetimepicker("' + options + '") method was called on an element that is not using DateTimePicker');
+                }
+
+                returnValue = instance[options].apply(instance, args);
+                isInstance = returnValue === instance;
+            });
+
+            if (isInstance || $.inArray(options, thisMethods) > -1) {
+                return this;
+            }
+
+            return returnValue;
+        }
+
+        throw new TypeError('Invalid arguments for DateTimePicker: ' + options);
+    };
+
+    $.fn.datetimepicker.defaults = {
+        timeZone: '',
+        format: false,
+        dayViewHeaderFormat: 'MMMM YYYY',
+        extraFormats: false,
+        stepping: 1,
+        minDate: false,
+        maxDate: false,
+        useCurrent: true,
+        collapse: true,
+        locale: moment.locale(),
+        defaultDate: false,
+        disabledDates: false,
+        enabledDates: false,
+        icons: {
+            time: 'glyphicon glyphicon-time',
+            date: 'glyphicon glyphicon-calendar',
+            up: 'glyphicon glyphicon-chevron-up',
+            down: 'glyphicon glyphicon-chevron-down',
+            previous: 'glyphicon glyphicon-chevron-left',
+            next: 'glyphicon glyphicon-chevron-right',
+            today: 'glyphicon glyphicon-screenshot',
+            clear: 'glyphicon glyphicon-trash',
+            close: 'glyphicon glyphicon-remove'
+        },
+        tooltips: {
+            today: 'Go to today',
+            clear: 'Clear selection',
+            close: 'Close the picker',
+            selectMonth: 'Select Month',
+            prevMonth: 'Previous Month',
+            nextMonth: 'Next Month',
+            selectYear: 'Select Year',
+            prevYear: 'Previous Year',
+            nextYear: 'Next Year',
+            selectDecade: 'Select Decade',
+            prevDecade: 'Previous Decade',
+            nextDecade: 'Next Decade',
+            prevCentury: 'Previous Century',
+            nextCentury: 'Next Century',
+            pickHour: 'Pick Hour',
+            incrementHour: 'Increment Hour',
+            decrementHour: 'Decrement Hour',
+            pickMinute: 'Pick Minute',
+            incrementMinute: 'Increment Minute',
+            decrementMinute: 'Decrement Minute',
+            pickSecond: 'Pick Second',
+            incrementSecond: 'Increment Second',
+            decrementSecond: 'Decrement Second',
+            togglePeriod: 'Toggle Period',
+            selectTime: 'Select Time'
+        },
+        useStrict: false,
+        sideBySide: false,
+        daysOfWeekDisabled: false,
+        calendarWeeks: false,
+        viewMode: 'days',
+        toolbarPlacement: 'default',
+        showTodayButton: false,
+        showClear: false,
+        showClose: false,
+        widgetPositioning: {
+            horizontal: 'auto',
+            vertical: 'auto'
+        },
+        widgetParent: null,
+        ignoreReadonly: false,
+        keepOpen: false,
+        focusOnShow: true,
+        inline: false,
+        keepInvalid: false,
+        datepickerInput: '.datepickerinput',
+        keyBinds: {
+            up: function (widget) {
+                if (!widget) {
+                    return;
+                }
+                var d = this.date() || this.getMoment();
+                if (widget.find('.datepicker').is(':visible')) {
+                    this.date(d.clone().subtract(7, 'd'));
+                } else {
+                    this.date(d.clone().add(this.stepping(), 'm'));
+                }
+            },
+            down: function (widget) {
+                if (!widget) {
+                    this.show();
+                    return;
+                }
+                var d = this.date() || this.getMoment();
+                if (widget.find('.datepicker').is(':visible')) {
+                    this.date(d.clone().add(7, 'd'));
+                } else {
+                    this.date(d.clone().subtract(this.stepping(), 'm'));
+                }
+            },
+            'control up': function (widget) {
+                if (!widget) {
+                    return;
+                }
+                var d = this.date() || this.getMoment();
+                if (widget.find('.datepicker').is(':visible')) {
+                    this.date(d.clone().subtract(1, 'y'));
+                } else {
+                    this.date(d.clone().add(1, 'h'));
+                }
+            },
+            'control down': function (widget) {
+                if (!widget) {
+                    return;
+                }
+                var d = this.date() || this.getMoment();
+                if (widget.find('.datepicker').is(':visible')) {
+                    this.date(d.clone().add(1, 'y'));
+                } else {
+                    this.date(d.clone().subtract(1, 'h'));
+                }
+            },
+            left: function (widget) {
+                if (!widget) {
+                    return;
+                }
+                var d = this.date() || this.getMoment();
+                if (widget.find('.datepicker').is(':visible')) {
+                    this.date(d.clone().subtract(1, 'd'));
+                }
+            },
+            right: function (widget) {
+                if (!widget) {
+                    return;
+                }
+                var d = this.date() || this.getMoment();
+                if (widget.find('.datepicker').is(':visible')) {
+                    this.date(d.clone().add(1, 'd'));
+                }
+            },
+            pageUp: function (widget) {
+                if (!widget) {
+                    return;
+                }
+                var d = this.date() || this.getMoment();
+                if (widget.find('.datepicker').is(':visible')) {
+                    this.date(d.clone().subtract(1, 'M'));
+                }
+            },
+            pageDown: function (widget) {
+                if (!widget) {
+                    return;
+                }
+                var d = this.date() || this.getMoment();
+                if (widget.find('.datepicker').is(':visible')) {
+                    this.date(d.clone().add(1, 'M'));
+                }
+            },
+            enter: function () {
+                this.hide();
+            },
+            escape: function () {
+                this.hide();
+            },
+            //tab: function (widget) { //this break the flow of the form. disabling for now
+            //    var toggle = widget.find('.picker-switch a[data-action="togglePicker"]');
+            //    if(toggle.length > 0) toggle.click();
+            //},
+            'control space': function (widget) {
+                if (!widget) {
+                    return;
+                }
+                if (widget.find('.timepicker').is(':visible')) {
+                    widget.find('.btn[data-action="togglePeriod"]').click();
+                }
+            },
+            t: function () {
+                this.date(this.getMoment());
+            },
+            'delete': function () {
+                this.clear();
+            }
+        },
+        debug: false,
+        allowInputToggle: false,
+        disabledTimeIntervals: false,
+        disabledHours: false,
+        enabledHours: false,
+        viewDate: false
+    };
+
+    return $.fn.datetimepicker;
+}));
 
 
 angular.module("rpDatetimepicker", []);
 
 //  Source: _lib\realpage\datetimepicker-v1\js\templates\templates.inc.js
-angular.module('rpDatetimepicker').run(['$templateCache', function ($templateCache) {
+angular.module("rpDatetimepicker").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
-"<div class=\"rp-datetimepicker form-group\" ng-class=\"datetimepicker.getState()\"><div ng-model=\"rpModel\" rp-datetimepicker-link options=\"config.options\" ng-required=\"config.required\" on-change=\"config.onChange(rpModel)\" class=\"input-group rp-datetimepicker-text-wrap\"><input type=\"text\" class=\"rp-datetimepicker-text form-control\"> <span class=\"rp-datetimepicker-icon-wrap input-group-addon\"><span class=\"rp-datetimepicker-icon {{::config.iconClass}}\"></span></span></div><p ng-if=\"config.required\" class=\"rp-datetimepicker-error-msg rp-form-error-msg\">{{config.errorMsgs.required}}</p></div>");
+"<div class=\"rp-datetimepicker form-group\" ng-class=\"datetimepicker.getState()\"><div ng-model=\"rpModel\" rp-datetimepicker-link id=\"{{config.fieldID}}\" options=\"config.options\" name=\"{{config.fieldName}}\" ng-required=\"config.required\" on-change=\"config.onChange(rpModel)\" class=\"input-group rp-datetimepicker-text-wrap\"><input type=\"text\" class=\"rp-datetimepicker-text form-control\"> <span class=\"rp-datetimepicker-icon-wrap input-group-addon\"><span class=\"rp-datetimepicker-icon {{::config.iconClass}}\"></span></span></div><p ng-if=\"config.required\" class=\"rp-datetimepicker-error-msg rp-form-error-msg\">{{config.errorMsgs.required}}</p></div>");
 }]);
 
 //  Source: _lib\realpage\datetimepicker-v1\js\directives\datetimepicker.js
@@ -10007,7 +12221,7 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
             };
 
             dir.$formatter = function (data) {
-                if (!data) {
+                if (!data || !data.format) {
                     return "";
                 }
                 else {
@@ -10041,7 +12255,12 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
             };
 
             dir.$validator = function (mVal, vVal) {
-                return vVal && !vVal.toLowerCase().match("invalid date");
+                if (!config.required && vVal === "") {
+                    return true;
+                }
+                else {
+                    return vVal && !vVal.toLowerCase().match("invalid date");
+                }
             };
 
             dir.applyChange = function (data) {
@@ -10173,8 +12392,16 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
     "use strict";
 
     function factory(moment) {
+        var index = 0;
+
         return function (config) {
-            var model, picker, options;
+            index++;
+
+            var model,
+                picker,
+                options,
+                fieldID = "datetimepicker" + index,
+                fieldName = "datetimepicker" + index;
 
             config = config || {};
 
@@ -10424,9 +12651,11 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
             };
 
             model = {
-                picker: picker,
                 size: "",
+                picker: picker,
                 required: false,
+                fieldID: fieldID,
+                fieldName: fieldName,
                 onHide: angular.noop,
                 onShow: angular.noop,
                 onError: angular.noop,
@@ -10479,7 +12708,7 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
             };
 
             model.minDate = function (data) {
-                if (data) {
+                if (data !== undefined) {
                     model.picker.minDate(data);
                 }
                 else {
@@ -10488,7 +12717,7 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
             };
 
             model.maxDate = function (data) {
-                if (data) {
+                if (data !== undefined) {
                     model.picker.maxDate(data);
                 }
                 else {
@@ -10988,6 +13217,8 @@ angular.module("rpFormInputText", []);
             };
 
             dir.getState = function (data) {
+                var found = false;
+
                 angular.extend(dir.state, {
                     dirty: ctrl.$dirty,
                     error: ctrl.$invalid,
@@ -10997,14 +13228,29 @@ angular.module("rpFormInputText", []);
                 }, dir.errorState, ctrl.$error);
 
                 config.errorMsgs.forEach(function (msg) {
-                    msg.active = ctrl.$error[msg.name];
+                    msg.active = false;
+
+                    if (!found && ctrl.$error[msg.name]) {
+                        found = true;
+                        msg.active = true;
+                    }
                 });
 
                 return dir.state;
             };
 
             dir.onFocus = function () {
+                var onFocus = config.onFocus;
                 dir.state.focus = true;
+
+                if (onFocus) {
+                    if (typeof onFocus == "function") {
+                        onFocus();
+                    }
+                    else {
+                        logw("rpFormInputText: onFocus callback is not a function!");
+                    }
+                }
             };
 
             dir.onBlur = function () {
@@ -11225,7 +13471,9 @@ angular.module("rpFormInputText", []);
                 modelOptions: {
                     updateOn: "default"
                 },
+                trimInput: true,
                 onBlur: angular.noop,
+                onFocus: angular.noop,
                 onChange: angular.noop,
                 autocomplete: "off"
             };
@@ -11268,9 +13516,9 @@ angular.module("rpFormInputText", []);
 
 
 //  Source: _lib\realpage\form-input-text-v1\js\templates\templates.inc.js
-angular.module('rpFormSelectMenu').run(['$templateCache', function ($templateCache) {
+angular.module("rpFormInputText").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/form-input-text-v1/templates/input-text.html",
-"<div class=\"rp-form-input-text\" ng-class=\"inputText.getState()\"><div class=\"rp-form-input-text-table\"><div class=\"rp-form-input-text-row\"><div ng-if=\"config.prefix\" class=\"rp-form-input-text-cell rp-form-input-text-prefix\"><span class=\"rp-form-input-text-prefix-text\">{{::config.prefix}}</span></div><div class=\"rp-form-input-text-cell rp-form-input-text-field-wrap\"><input class=\"rp-form-input-text-field\" id=\"{{::config.id}}\" maxlength=\"{{config.maxlength}}\" minlength=\"{{config.minlength}}\" name=\"{{::config.fieldName}}\" ng-blur=\"inputText.onBlur()\" ng-change=\"inputText.onChange(rpModel)\" ng-disabled=\"config.disabled\" ng-focus=\"inputText.onFocus()\" ng-model-options=\"config.modelOptions\" ng-model=\"rpModel\" ng-mouseout=\"inputText.onMouseout()\" ng-mouseover=\"inputText.onMouseover()\" ng-pattern=\"config.pattern\" ng-readonly=\"config.readonly\" ng-required=\"config.required\" placeholder=\"{{config.placeholder}}\" rp-filter-input=\"config.inputFilter\" type=\"{{::config.dataType}}\" autocomplete=\"{{::config.autocomplete}}\"></div><div ng-if=\"config.suffix\" class=\"rp-form-input-text-cell rp-form-input-text-suffix\"><span ng-if=\"config.suffix\" class=\"rp-form-input-text-suffix-text\">{{::config.suffix}}</span></div><div ng-if=\"config.iconClass\" class=\"rp-form-input-text-cell rp-form-input-text-icon-wrap\"><span class=\"rp-form-input-text-icon {{config.iconClass}}\"></span></div></div></div><ul class=\"rp-form-error-msgs\"><li ng-if=\"msg.active\" class=\"rp-form-error-msg\" ng-repeat=\"msg in config.errorMsgs\">{{msg.text}}</li></ul></div>");
+"<div class=\"rp-form-input-text\" ng-class=\"inputText.getState()\"><div class=\"rp-form-input-text-table\"><div class=\"rp-form-input-text-row\"><div ng-if=\"config.prefix\" class=\"rp-form-input-text-cell rp-form-input-text-prefix\"><span class=\"rp-form-input-text-prefix-text\">{{::config.prefix}}</span></div><div class=\"rp-form-input-text-cell rp-form-input-text-field-wrap\"><input class=\"rp-form-input-text-field\" id=\"{{::config.id}}\" maxlength=\"{{config.maxlength}}\" minlength=\"{{config.minlength}}\" name=\"{{::config.fieldName}}\" ng-blur=\"inputText.onBlur()\" ng-change=\"inputText.onChange(rpModel)\" ng-disabled=\"config.disabled\" ng-focus=\"inputText.onFocus()\" ng-model-options=\"config.modelOptions\" ng-model=\"rpModel\" ng-mouseout=\"inputText.onMouseout()\" ng-mouseover=\"inputText.onMouseover()\" ng-pattern=\"config.pattern\" ng-readonly=\"config.readonly\" ng-required=\"config.required\" ng-trim=\"{{::config.trimInput}}\" placeholder=\"{{config.placeholder}}\" rp-filter-input=\"config.inputFilter\" type=\"{{::config.dataType}}\" autocomplete=\"{{::config.autocomplete}}\"></div><div ng-if=\"config.suffix\" class=\"rp-form-input-text-cell rp-form-input-text-suffix\"><span ng-if=\"config.suffix\" class=\"rp-form-input-text-suffix-text\">{{::config.suffix}}</span></div><div ng-if=\"config.iconClass\" class=\"rp-form-input-text-cell rp-form-input-text-icon-wrap\"><span class=\"rp-form-input-text-icon {{config.iconClass}}\"></span></div></div></div><ul class=\"rp-form-error-msgs\"><li ng-if=\"msg.active\" class=\"rp-form-error-msg\" ng-repeat=\"msg in config.errorMsgs\">{{msg.text}}</li></ul></div>");
 }]);
 
 //  Source: ui\lib\realpage\form-select-menu-v1\js\scripts.js
@@ -11278,7 +13526,7 @@ $templateCache.put("realpage/form-input-text-v1/templates/input-text.html",
 angular.module("rpFormSelectMenu", []);
 
 //  Source: _lib\realpage\form-select-menu-v1\js\templates\templates.inc.js
-angular.module('rpFormSelectMenu').run(['$templateCache', function ($templateCache) {
+angular.module("rpFormSelectMenu").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/form-select-menu-v1/templates/form-select-menu.html",
 "<div class=\"rp-select-menu\" ng-class=\"menu.getState()\"><span ng-if=\"configData.readonly\" class=\"rp-select-menu-readonly\" title=\"{{menu.getDisplayText()}}\"></span><select class=\"rp-form-select-field\" id=\"{{::configData.id}}\" name=\"{{::configData.fieldName}}\" ng-blur=\"menu.onBlur()\" ng-change=\"menu.onChange(rpModel)\" ng-disabled=\"configData.disabled\" ng-focus=\"menu.onFocus()\" ng-model-options=\"configData.modelOptions\" ng-model=\"rpModel\" ng-mouseout=\"menu.onMouseout()\" ng-mouseover=\"menu.onMouseover()\" ng-options=\"option.value as option.name group by option.group for option in configData.options | rpFormSelectMenuFilter: configData\" ng-readonly=\"configData.readonly\" ng-required=\"configData.required\" title=\"{{menu.getDisplayText()}}\"></select><div class=\"rp-select-menu-inner\"><span title=\"{{menu.getDisplayText()}}\" class=\"rp-select-menu-value\">{{menu.getDisplayText()}} {{config.getType(menu)}}</span></div><ul class=\"rp-form-error-msgs\"><li ng-if=\"msg.active\" class=\"rp-form-error-msg\" ng-repeat=\"msg in configData.errorMsgs\">{{msg.text}}</li></ul></div>");
 }]);
@@ -11331,6 +13579,9 @@ $templateCache.put("realpage/form-select-menu-v1/templates/form-select-menu.html
                 required: false,
                 valueKey: "value",
                 groupKey: "group",
+                asyncValidators: {
+
+                },
                 validators: {
                     // sample: function (modelValue, viewValue) {
                     //     return true/false;
@@ -11543,6 +13794,10 @@ $templateCache.put("realpage/form-select-menu-v1/templates/form-select-menu.html
                     angular.extend(ctrl.$validators, configData.validators);
                 }
 
+                if (dir.hasAsyncValidators()) {
+                    angular.extend(ctrl.$asyncValidators, configData.asyncValidators);
+                }
+
                 Object.keys(ctrl.$validators).forEach(function (key) {
                     dir.errorState[key] = false;
                 });
@@ -11552,9 +13807,14 @@ $templateCache.put("realpage/form-select-menu-v1/templates/form-select-menu.html
                 scope.menu = dir;
             };
 
+            dir.hasAsyncValidators = function () {
+                return configData.asyncValidators &&
+                    Object.keys(configData.asyncValidators).length !== 0;
+            };
+
             dir.hasValidators = function () {
                 return configData.validators &&
-                    Object.keys(ctrl.$validators).length !== 0;
+                    Object.keys(configData.validators).length !== 0;
             };
 
             dir.getState = function () {
@@ -11678,7 +13938,7 @@ $templateCache.put("realpage/form-select-menu-v1/templates/form-select-menu.html
 angular.module("rpFormTextarea", []);
 
 //  Source: _lib\realpage\form-textarea-v1\js\templates\templates.inc.js
-angular.module('rpFormTextarea').run(['$templateCache', function ($templateCache) {
+angular.module("rpFormTextarea").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/form-textarea-v1/templates/textarea.html",
 "<div class=\"rp-form-textarea\" ng-class=\"textarea.getState()\"><div class=\"rp-form-textarea-field-wrap\"><span class=\"rp-form-textarea-disabled\" ng-if=\"config.disabled\"></span><textarea class=\"rp-form-textarea-field\" id=\"{{::config.id}}\" maxlength=\"{{config.maxlength}}\" minlength=\"{{config.minlength}}\" name=\"{{::config.fieldName}}\" ng-blur=\"textarea.onBlur()\" ng-change=\"textarea.onChange(rpModel)\" ng-disabled=\"config.disabled\" ng-focus=\"textarea.onFocus()\" ng-model-options=\"config.modelOptions\" ng-model=\"rpModel\" ng-mouseout=\"textarea.onMouseout()\" ng-mouseover=\"textarea.onMouseover()\" ng-pattern=\"config.pattern\" ng-readonly=\"config.readonly\" ng-required=\"config.required\" placeholder=\"{{config.placeholder}}\">\n" +
 "        </textarea></div><ul class=\"rp-form-error-msgs\"><li ng-if=\"msg.active\" class=\"rp-form-error-msg\" ng-repeat=\"msg in config.errorMsgs\">{{msg.text}}</li></ul></div>");
@@ -11861,324 +14121,31 @@ $templateCache.put("realpage/form-textarea-v1/templates/textarea.html",
         .directive("rpFormTextareaField", [rpFormTextareaField]);
 })(angular);
 
-//  Source: ui\lib\realpage\form-track-changes\js\scripts.js
-//  Source: _lib\realpage\form-track-changes\js\_bundle.inc
-angular.module("rpFormTrackChanges", []);
-
-//  Source: _lib\realpage\form-track-changes\js\templates\templates.inc.js
-angular.module('rpFormTrackChanges').run(['$templateCache', function ($templateCache) {
-$templateCache.put("realpage/form-track-changes/templates/unsaved-changes-alert-modal.html",
-"<div class=\"modal rp-unsaved-changes-modal am-fade-and-slide-top\" tabindex=\"-1\" role=\"dialog\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" ng-click=\"$hide()\">×</button><h4 class=\"modal-title\">Unsaved Changes</h4></div><div class=\"modal-body\"><p>You are leaving without saving your changes.</p><p>Do you wish to continue?</p></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" ng-click=\"unsavedChanges.denyChange()\">Cancel</button> <button type=\"button\" class=\"btn btn-primary\" ng-click=\"unsavedChanges.allowChange()\">Continue</button></div></div></div></div>");
-}]);
-
-//  Source: _lib\realpage\form-track-changes\js\directives\track-form-changes.js
-//  Track Form Changes Directive
-
-(function (angular) {
-    "use strict";
-
-    function rpTrackFormChanges(unsavedChanges, watchList) {
-        function link(scope, elem, attr) {
-            var dir = {
-                watchList: watchList(),
-                disableAlert: angular.noop
-            };
-
-            dir.init = function () {
-                var key = attr.name + '.$dirty',
-                watch = scope.$watch(key, dir.checkState);
-                dir.watchList.add(watch);
-
-                watch = scope.$on('$destroy', dir.destroy);
-                dir.watchList.add(watch);
-            };
-
-            dir.checkState = function (dirty) {
-                if (dirty && dir.disableAlert == angular.noop) {
-                    dir.disableAlert = unsavedChanges.enableAlert();
-                }
-                else {
-                    dir.disableAlert();
-                    dir.disableAlert = angular.noop;
-                }
-            };
-
-            dir.destroy = function () {
-                dir.watchList.destroy();
-            };
-
-            dir.init();
-        }
-
-        return {
-            link: link,
-            restrict: 'A'
-        };
-    }
-
-    angular
-        .module('rpFormTrackChanges')
-        .directive('rpTrackFormChanges', ['rpUnsavedChanges', 'rpWatchList', rpTrackFormChanges]);
-})(angular);
-
-//  Source: _lib\realpage\form-track-changes\js\directives\unsaved-changes-modal.js
-//  Unsaved Changes Modal Directive
-
-(function (angular) {
-    "use strict";
-
-    function rpUnsavedChangesModal(unsavedChanges) {
-        function link(scope, elem, attr) {
-            var dir = {};
-
-            dir.init = function () {
-                scope.unsavedChanges = dir;
-            };
-
-            dir.allowChange = function () {
-                scope.$hide();
-                unsavedChanges.onUserAction("continue");
-            };
-
-            dir.denyChange = function () {
-                scope.$hide();
-                unsavedChanges.onUserAction("cancel");
-            };
-
-            dir.init();
-        }
-
-        return {
-            link: link,
-            restrict: "C"
-        };
-    }
-
-    angular
-        .module("rpFormTrackChanges")
-        .directive("rpUnsavedChangesModal", ["rpUnsavedChanges", rpUnsavedChangesModal]);
-})(angular);
-
-//  Source: _lib\realpage\form-track-changes\js\services\unsaved-changes.js
-//  Unsaved Changes Service
-
-(function (angular) {
-    "use strict";
-
-    function factory($state, $window, $rootScope, $modal) {
-        var svc, index = 1;
-
-        svc = {
-            nextUrl: "",
-            nextState: "",
-            changesList: [],
-            skipCheck: false
-        };
-
-        svc.init = function () {
-            svc.setDialog()
-                .watchStateChange()
-                .watchWindowUnload()
-                .watchLocationChange()
-                .watchRpAppStateChange();
-
-            return svc;
-        };
-
-        // Setters
-
-        svc.setDialog = function () {
-            svc.dialog = $modal({
-                show: false,
-                templateUrl: "realpage/form-track-changes/templates/unsaved-changes-alert-modal.html"
-            });
-            return svc;
-        };
-
-        // Watchers
-
-        svc.watchStateChange = function () {
-            $rootScope.$on("$stateChangeStart", svc.onStateChange);
-            return svc;
-        };
-
-        svc.watchWindowUnload = function () {
-            var win = angular.element($window);
-            win.on("beforeunload.unsavedChanges", svc.onWindowUnload);
-            return svc;
-        };
-
-        svc.watchLocationChange = function () {
-            $rootScope.$on("$locationChangeStart", svc.onLocationChange);
-            return svc;
-        };
-
-        svc.watchRpAppStateChange = function (data) {
-            $rootScope.$on("rpAppStateChange", svc.onRpAppStateChange);
-            return svc;
-        };
-
-        // Watch Actions
-
-        svc.onStateChange = function (ev, state) {
-            if (svc.hasChanges() && !svc.skipCheck) {
-                ev.preventDefault();
-                svc.nextState = state.name;
-                svc.alertUser();
-            }
-        };
-
-        svc.onWindowUnload = function () {
-            if (!svc.hasChanges()) {
-                return;
-            }
-
-            return "You are leaving without saving your changes. Do you wish to continue?";
-        };
-
-        svc.onLocationChange = function (ev, url) {
-            if (svc.hasChanges() && !svc.skipCheck) {
-                ev.preventDefault();
-                svc.nextUrl = url;
-                svc.alertUser();
-            }
-        };
-
-        svc.onRpAppStateChange = function ($event, data) {
-            var actions = {
-                onCancel: angular.noop,
-                onContinue: angular.noop
-            };
-
-            if (svc.hasChanges() && !svc.skipCheck) {
-                $event.preventDefault();
-                svc.rpStateChange = angular.extend({}, actions, data);
-                svc.alertUser();
-            }
-        };
-
-        svc.enableAlert = function () {
-            var change = {
-                id: "change" + index++
-            };
-
-            svc.skipCheck = false;
-            svc.changesList.push(change);
-
-            return function () {
-                svc.changesList = svc.changesList.filter(function (item) {
-                    return item.id !== change.id;
-                });
-            };
-        };
-
-        svc.disableAlert = function () {
-            svc.changesList.flush();
-            return svc;
-        };
-
-        svc.onUserAction = function (action) {
-            if (action == "continue") {
-                svc.skipCheck = true;
-                svc.disableAlert().allowChange();
-            }
-            else if (action == "cancel") {
-                svc.skipCheck = false;
-                svc.denyChange();
-            }
-        };
-
-        svc.allowChange = function () {
-            if (svc.nextUrl) {
-                svc.goToUrl(svc.nextUrl);
-                svc.nextUrl = "";
-            }
-            else if (svc.nextState) {
-                svc.goToState(svc.nextState);
-                svc.nextState = "";
-            }
-            else if (svc.rpStateChange) {
-                svc.rpStateChange.onContinue();
-                svc.rpStateChange = "";
-            }
-        };
-
-        svc.denyChange = function () {
-            if (svc.rpStateChange) {
-                svc.rpStateChange.onCancel();
-            }
-        };
-
-        svc.goToUrl = function (url) {
-            $window.location.href = url;
-        };
-
-        svc.goToState = function (stateName) {
-            $state.go(stateName);
-        };
-
-        svc.hasChanges = function () {
-            return svc.changesList.length !== 0;
-        };
-
-        svc.alertUser = function () {
-            svc.dialog.show();
-        };
-
-        return svc;
-    }
-
-    angular
-        .module("rpFormTrackChanges")
-        .factory("rpUnsavedChanges", [
-            "$state",
-            "$window",
-            "$rootScope",
-            "$modal",
-            factory
-        ]);
-})(angular);
-
-//  Source: _lib\realpage\form-track-changes\js\config\unsaved-changes.js
-// DOM based lazyloading
-
-(function (angular) {
-    "use strict";
-
-    function init(unsavedChanges) {
-        unsavedChanges.init();
-    }
-
-    angular
-        .module("rpFormTrackChanges")
-        .run(["rpUnsavedChanges", init]);
-})(angular);
 
 //  Source: ui\lib\realpage\global-header\js\scripts.js
 angular.module("rpGlobalHeader", []);
 
-//  Source: _lib\realpage\global-header\js\controllers\app-switcher.js
+//  Source: _lib\realpage\global-header\js\controllers\app-switcher-menu.js
 //  App Switcher Controller
 
 (function (angular, undefined) {
     "use strict";
 
-    function AppSwitcherCtrl($scope, tabsMenuData, tabsMenuModel) {
-        var vm = this,
-            model = $scope.model,
-            tabsList = tabsMenuData.getTabsList();
+    function RpGhAppSwitcherMenuCtrl($scope, model, tabsMenuData) {
+        var vm = this;
 
         vm.init = function () {
+            $scope.model = model;
             $scope.tabsData = tabsMenuData.getData();
-            $scope.tabsMenu = tabsMenuModel(tabsList);
+            $scope.tabsMenu = tabsMenuData.getTabsMenu();
             vm.destWatch = $scope.$on("$destroy", vm.destroy);
         };
 
         vm.destroy = function () {
             vm.destWatch();
+
             vm = undefined;
             $scope = undefined;
-            tabsList = undefined;
         };
 
         vm.init();
@@ -12186,11 +14153,11 @@ angular.module("rpGlobalHeader", []);
 
     angular
         .module("rpGlobalHeader")
-        .controller("AppSwitcherCtrl", [
+        .controller("RpGhAppSwitcherMenuCtrl", [
             "$scope",
+            "rpGhAppSwitcherMenuModel",
             "rpGhAppSwitcherTabsData",
-            "rpScrollingTabsMenuModel",
-            AppSwitcherCtrl
+            RpGhAppSwitcherMenuCtrl
         ]);
 })(angular);
 
@@ -12227,6 +14194,29 @@ angular.module("rpGlobalHeader", []);
 })(angular);
 
 
+//  Source: _lib\realpage\global-header\js\directives\app-switcher.js
+//  App Switcher Directive
+
+(function (angular, undefined) {
+    "use strict";
+
+    function rpGhAppSwitcher() {
+        function link(scope, elem, attr) {}
+
+        return {
+            scope: {},
+            link: link,
+            restrict: "E",
+            replace: true,
+            templateUrl: "realpage/global-header/templates/app-switcher.html"
+        };
+    }
+
+    angular
+        .module("rpGlobalHeader")
+        .directive("rpGhAppSwitcher", [rpGhAppSwitcher]);
+})(angular);
+
 //  Source: _lib\realpage\global-header\js\directives\app-switcher-menu.js
 //  Global Header App Switcher Directive
 
@@ -12237,13 +14227,11 @@ angular.module("rpGlobalHeader", []);
         function link(scope, elem, attr) {}
 
         return {
-            scope: {
-                model: "="
-            },
+            scope: {},
             link: link,
             restrict: "E",
             replace: true,
-            controller: "AppSwitcherCtrl as appSwitcher",
+            controller: "RpGhAppSwitcherMenuCtrl as appSwitcherMenu",
             templateUrl: "realpage/global-header/templates/app-switcher-menu.html"
         };
     }
@@ -12277,6 +14265,112 @@ angular.module("rpGlobalHeader", []);
             "rpGlobalHeaderModel",
             globalHeader
         ]);
+})(angular);
+
+//  Source: _lib\realpage\global-header\js\directives\user-links-toggle.js
+//  User Links Menu Toggle Directive
+
+(function (angular, undefined) {
+    "use strict";
+
+    function rpGhUserLinksToggle(timeout) {
+        function link(scope, elem, attr) {
+            var dir = {};
+
+            dir.init = function () {
+                scope.userLinks = dir;
+                dir.on = false;
+                dir.click = "click.headerUserLinksMenu";
+                dir.destWatch = scope.$on("$destroy", dir.destroy);
+            };
+
+            dir.toggleMenu = function () {
+                if (!dir.on) {
+                    timeout(dir.bindHide, 10);
+                }
+
+                dir.on = !dir.on;
+            };
+
+            dir.bindHide = function () {
+                dir.body = dir.body || angular.element("body");
+                dir.body.one(dir.click, dir.onBodyClick);
+            };
+
+            dir.hideMenu = function () {
+                dir.on = false;
+            };
+
+            dir.onBodyClick = function () {
+                scope.$apply(dir.hideMenu);
+            };
+
+            dir.destroy = function () {
+                dir.destWatch();
+                dir = undefined;
+                attr = undefined;
+                elem = undefined;
+                scope = undefined;
+            };
+
+            dir.init();
+        }
+
+        return {
+            link: link,
+            restrict: "C"
+        };
+    }
+
+    angular
+        .module("rpGlobalHeader")
+        .directive("rpGhUserLinksToggle", ["timeout", rpGhUserLinksToggle]);
+})(angular);
+
+//  Source: _lib\realpage\global-header\js\directives\nav-pref.js
+//  Nav Prefs Directive
+
+(function (angular, undefined) {
+    "use strict";
+
+    function rpGhNavPrefs(timeout, pubsub) {
+        function link(scope, elem, attr) {
+            var dir = {};
+
+            dir.init = function () {
+                dir.pref = {
+                    dark: false
+                };
+
+                scope.ghNav = dir;
+                timeout(dir.onChange, 300);
+                dir.destWatch = scope.$on("$destroy", dir.destroy);
+            };
+
+            dir.onChange = function () {
+                pubsub.publish("gn.themeUpdate", dir.pref);
+            };
+
+            dir.destroy = function () {
+                dir.destWatch();
+                dir = undefined;
+                attr = undefined;
+                elem = undefined;
+                scope = undefined;
+            };
+
+            dir.init();
+        }
+
+        return {
+            link: link,
+            restrict: "C"
+        };
+    }
+
+    angular
+        .module("rpGlobalHeader")
+        .directive("rpGhNavPrefs", ["timeout", "pubsub", rpGhNavPrefs]);
 })(angular);
 
 
@@ -12330,170 +14424,6 @@ angular.module("rpGlobalHeader", []);
         .filter("rpGhIconPath", ["cdnVer", filter]);
 })(angular);
 
-//  Source: _lib\realpage\global-header\js\filters\lang.js
-// Global Header Language Filter
-
-(function (angular) {
-    "use strict";
-
-    function filter(appLangTranslate) {
-        return function (key, ready) {
-            return ready !== false ? appLangTranslate("rpGlobalHeader").translate(key) : "";
-        };
-    }
-
-    angular
-        .module("rpGlobalHeader")
-        .filter("rpGhLang", ["appLangTranslate", filter]);
-})(angular);
-
-
-//  Source: _lib\realpage\global-header\js\models\app-switcher-product.js
-//  App Switcher Product Model
-
-(function (angular, undefined) {
-    "use strict";
-
-    function factory($filter) {
-        function RpGhAppSwitcherProductModel() {
-            var s = this;
-            s.init();
-        }
-
-        var p = RpGhAppSwitcherProductModel.prototype;
-
-        p.init = function () {
-            var s = this;
-            s.data = {};
-        };
-
-        // Setters
-
-        p.setData = function (data) {
-            var s = this;
-            s.data = data || s.data;
-            return s;
-        };
-
-        // Actions
-
-        p.translate = function () {
-            var s = this,
-                langkey = s.data.titleIDGuid;
-            s.data.title = $filter("rpGhLang")(langkey + "-title");
-            return s;
-        };
-
-        // Assertions
-
-        p.isFavorite = function () {
-            var s = this;
-            return s.data.isFavorite;
-        };
-
-        p.destroy = function () {
-            var s = this;
-            s.data = undefined;
-        };
-
-        return function (data) {
-            return (new RpGhAppSwitcherProductModel()).setData(data);
-        };
-    }
-
-    angular
-        .module("rpGlobalHeader")
-        .factory("rpGhAppSwitcherProductModel", ["$filter", factory]);
-})(angular);
-
-//  Source: _lib\realpage\global-header\js\models\app-switcher-service.js
-//  App Switcher Service Model
-
-(function (angular, undefined) {
-    "use strict";
-
-    function factory($filter, productModel) {
-        function RpGhAppSwitcherServiceModel() {
-            var s = this;
-            s.init();
-        }
-
-        var p = RpGhAppSwitcherServiceModel.prototype;
-
-        p.init = function () {
-            var s = this;
-            s.data = {};
-            s.products = [];
-        };
-
-        // Setters
-
-        p.setData = function (data) {
-            var s = this;
-
-            s.data = data || s.data;
-
-            s.products = [];
-
-            data.subdomains.forEach(function (productData) {
-                s.products.push(productModel(productData));
-            });
-
-            return s;
-        };
-
-        // Getters
-
-        p.getProducts = function () {
-            var s = this;
-            return s.products;
-        };
-
-        p.getFavoritesCount = function () {
-            var s = this,
-                count = 0;
-
-            s.products.forEach(function (product) {
-                count += product.isFavorite() ? 1 : 0;
-            });
-
-            return count;
-        };
-
-        // Actions
-
-        p.translate = function () {
-            var s = this,
-                langKey = s.data.titleIDGuid;
-
-            s.data.title = $filter("rpGhLang")(langKey + "-title");
-
-            s.products.forEach(function (product) {
-                product.translate();
-            });
-
-            return s;
-        };
-
-        p.destroy = function () {
-            var s = this;
-            s.data = undefined;
-            s.products = undefined;
-        };
-
-        return function (data) {
-            return (new RpGhAppSwitcherServiceModel()).setData(data);
-        };
-    }
-
-    angular
-        .module("rpGlobalHeader")
-        .factory("rpGhAppSwitcherServiceModel", [
-            "$filter",
-            "rpGhAppSwitcherProductModel",
-            factory
-        ]);
-})(angular);
 
 //  Source: _lib\realpage\global-header\js\models\app-switcher-tabs-data.js
 //  Global Header App Switcher Tabs Data
@@ -12501,12 +14431,12 @@ angular.module("rpGlobalHeader", []);
 (function (angular) {
     "use strict";
 
-    function AppSwitcherTabsData($filter) {
+    function AppSwitcherTabsData(scrollingTabsMenu) {
         var data,
             svc = this;
 
         data = {
-            services: {
+            families: {
                 id: "01",
                 isActive: false
             },
@@ -12517,9 +14447,10 @@ angular.module("rpGlobalHeader", []);
             }
         };
 
-        svc.translate = function () {
-            data.services.text = $filter("rpGhLang")("all");
-            data.favorites.text = $filter("rpGhLang")("favorites");
+        svc.setText = function (textData) {
+            angular.forEach(textData, function (val, key) {
+                data[key]["text"] = val;
+            });
         };
 
         // Getters
@@ -12528,11 +14459,11 @@ angular.module("rpGlobalHeader", []);
             return data;
         };
 
-        svc.getTabsList = function () {
-            return [
-                data.services,
+        svc.getTabsMenu = function () {
+            return scrollingTabsMenu([
+                data.families,
                 data.favorites
-            ];
+            ]);
         };
 
         // Actions
@@ -12547,31 +14478,33 @@ angular.module("rpGlobalHeader", []);
     angular
         .module("rpGlobalHeader")
         .service("rpGhAppSwitcherTabsData", [
-            "$filter",
+            "rpScrollingTabsMenuModel",
             AppSwitcherTabsData
         ]);
 })(angular);
 
-//  Source: _lib\realpage\global-header\js\models\app-switcher.js
+//  Source: _lib\realpage\global-header\js\models\app-switcher-menu.js
 //  App Switcher Model
 
 (function (angular, undefined) {
     "use strict";
 
-    function factory($filter, serviceModel, tabsData) {
-        function RpGhAppSwitcherModel() {
+    function factory(tabsData) {
+        function RpGhAppSwitcherMenuModel() {
             var s = this;
             s.init();
         }
 
-        var p = RpGhAppSwitcherModel.prototype;
+        var p = RpGhAppSwitcherMenuModel.prototype;
 
         p.init = function () {
             var s = this;
-            s.services = [];
-            s.allProducts = [];
-            s.manageLinkText = "";
-            s.manageLinkID = "manage";
+            s.families = [];
+            s.solutions = [];
+            s.manageLink = {
+                url: "",
+                text: ""
+            };
         };
 
         // Setters
@@ -12580,61 +14513,39 @@ angular.module("rpGlobalHeader", []);
             var s = this,
                 favCount = 0;
 
-            s.services = [];
-            s.allProducts = [];
+            s.families = data.families;
+            s.solutions = data.solutions;
+            s.manageLinkText = data.manageLinkText;
 
-            if (data && data.records) {
-                data.records.forEach(function (serviceData) {
-                    var service = serviceModel(serviceData),
-                        products = service.getProducts();
+            s.solutions.forEach(function (soln) {
+                if (soln.isFavorite()) {
+                    favCount++;
+                }
+            });
 
-                    s.services.push(service);
-                    favCount += service.getFavoritesCount();
-                    s.allProducts = s.allProducts.concat(products);
-                });
-
-                s.translate();
-
-                tabsData.activateTab(favCount === 0 ? "services" : "favorites");
-            }
+            tabsData.activateTab(favCount === 0 ? "families" : "favorites");
 
             return s;
         };
 
-        // Actions
-
-        p.translate = function () {
+        p.setTabsText = function (data) {
             var s = this;
-            tabsData.translate();
-            s.services.forEach(s.translateService.bind(s));
-            s.manageLinkText = $filter("rpGhLang")(s.manageLinkID);
+            tabsData.setText(data);
             return s;
         };
 
-        p.translateService = function (service) {
-            service.translate();
-        };
-
-        p.destroyService = function (service) {
-            service.destroy();
-        };
-
-        p.destroy = function () {
+        p.setManageLink = function (data) {
             var s = this;
-            s.services.forEach(s.destroyService.bind(s));
+            angular.extend(s.manageLink, data);
             return s;
         };
 
-        return function (data) {
-            return (new RpGhAppSwitcherModel()).setData(data);
-        };
+        return new RpGhAppSwitcherMenuModel();
     }
 
     angular
         .module("rpGlobalHeader")
-        .factory("rpGhAppSwitcherModel", [
-            "$filter",
-            "rpGhAppSwitcherServiceModel",
+        .factory("rpGhAppSwitcherMenuModel", [
             "rpGhAppSwitcherTabsData",
             factory
         ]);
@@ -12646,7 +14557,7 @@ angular.module("rpGlobalHeader", []);
 (function (angular, undefined) {
     "use strict";
 
-    function factory($filter, appSwitcherModel, userLinksModel) {
+    function factory(cdnVer, toolbarIcons, appSwitcher, userLinks) {
         function GlobalHeaderModel() {
             var s = this;
             s.init();
@@ -12658,27 +14569,36 @@ angular.module("rpGlobalHeader", []);
             var s = this;
 
             s.data = {
-                id: "ghData",
+                showNavToggle: true,
 
+                showLogo: true,
                 logoLink: "",
-                logoImgSrc: "",
+                logoImg1Src: "../" + cdnVer + "/lib/realpage/global-header/images/rp-logo-24x22.svg",
+                logoImg2Src: "../" + cdnVer + "/lib/realpage/global-header/images/rp-logo-180x40.svg",
 
-                productLink: "",
-                productName: "",
-                productNameID: "my-realpage",
+                showCompanyName: false,
+                companyNameLink: "",
+                companyNameText: "Company Name",
 
-                userAvatar: ""
+                showUserName: true,
+                username: "",
+
+                showInitials: true,
+                initials: "",
+
+                showUserAvatarImg: false,
+                userAvatarUrl: "../" + cdnVer + "/lib/realpage/global-header/images/user-avatar.jpg"
             };
 
-            s.userLinks = userLinksModel();
-            s.appSwitcher = appSwitcherModel();
+            s.userLinks = userLinks;
+            s.toolbarIcons = toolbarIcons;
         };
 
         // Setters
 
-        p.setAppSwitcherData = function (data) {
+        p.setToolbarIcons = function (data) {
             var s = this;
-            s.appSwitcher.setData(data);
+            s.toolbarIcons.setData(data);
             return s;
         };
 
@@ -12686,19 +14606,6 @@ angular.module("rpGlobalHeader", []);
             var s = this;
             s.userLinks.setData(data);
             return s;
-        };
-
-        p.setDisabled = function () {
-            var s = this;
-
-            return s;
-        };
-
-        // Getters
-
-        p.getData = function () {
-            var s = this;
-            return s.data;
         };
 
         // Actions
@@ -12709,95 +14616,113 @@ angular.module("rpGlobalHeader", []);
             return s;
         };
 
-        p.translate = function () {
-            var s = this;
-            s.appSwitcher.translate();
-            s.data.productName = $filter("rpGhLang")(s.data.productNameID);
-            return s;
-        };
-
         return new GlobalHeaderModel();
     }
 
     angular
         .module("rpGlobalHeader")
         .factory("rpGlobalHeaderModel", [
-            "$filter",
-            "rpGhAppSwitcherModel",
+            "cdnVer",
+            "rpGhToolbarIcons",
+            "rpGhAppSwitcherMenuModel",
             "rpGhUserLinksModel",
             factory
         ]);
 })(angular);
 
-//  Source: _lib\realpage\global-header\js\models\user-link.js
-//  User Link Model
+//  Source: _lib\realpage\global-header\js\models\toolbar-icons.js
+//  Global Header Toolbar Icons
 
 (function (angular, undefined) {
     "use strict";
 
-    function factory($window, pubsub) {
-        function UserLinkModel() {
+    function factory(linkSvc) {
+        function ToolbarIcons() {
             var s = this;
             s.init();
         }
 
-        var p = UserLinkModel.prototype;
+        var p = ToolbarIcons.prototype;
 
         p.init = function () {
             var s = this;
-            s.data = {};
+
+            s.list = [];
+
+            s.data = {
+                homeIcon: {
+                    active: false,
+                    className: "home"
+                },
+
+                appSwitcher: {
+                    active: false,
+                    isAppSwitcher: true
+                },
+
+                helpIcon: {
+                    active: false,
+                    className: "help",
+                    method: s.showHelp.bind(s)
+                },
+
+                settingsIcon: {
+                    active: false,
+                    className: "settings"
+                },
+
+                shoppingCartIcon: {
+                    active: false,
+                    className: "shopping-cart"
+                },
+
+                notificationsIcon: {
+                    active: false,
+                    className: "notifications"
+                }
+            };
+
+            s.setList(s.data);
+        };
+
+        p.setList = function (data) {
+            var s = this;
+
+            angular.forEach(s.data, function (val) {
+                s.list.push(val);
+            });
+
+            return s;
         };
 
         p.setData = function (data) {
             var s = this;
-            s.data = data || s.data;
-            return s;
-        };
 
-        p.activate = function () {
-            var s = this,
-                method = "activate" + s.data.type.ucfirst();
-
-            if (s[method]) {
-                s[method](s.data);
-            }
-            else {
-                logc("RpGhUserLink: Invalid link type! => ", s.data);
-            }
+            angular.forEach(data, function (val, key) {
+                angular.extend(s.data[key], val);
+            });
 
             return s;
         };
 
-        p.activateLink = function (data) {
+        p.showHelp = function () {
             var s = this;
-            if (data.newWindow) {
-                $window.open(data.url, "_blank");
-            }
-            else {
-                $window.location.href = data.url;
-            }
+            logc("show help!", arguments);
             return s;
         };
 
-        p.activateEvent = function (data) {
+        p.invoke = function (link) {
             var s = this;
-            pubsub.publish(data.eventName + ".rpGlobalHeader");
+            linkSvc.invoke(link);
             return s;
         };
 
-        p.destroy = function () {
-            var s = this;
-            s.data = undefined;
-        };
-
-        return function (data) {
-            return (new UserLinkModel()).setData(data);
-        };
+        return new ToolbarIcons();
     }
 
     angular
         .module("rpGlobalHeader")
-        .factory("rpGhUserLinkModel", ["$window", "pubsub", factory]);
+        .factory("rpGhToolbarIcons", ["rpGhLinkSvc", factory]);
 })(angular);
 
 //  Source: _lib\realpage\global-header\js\models\user-links.js
@@ -12806,7 +14731,7 @@ angular.module("rpGlobalHeader", []);
 (function (angular, undefined) {
     "use strict";
 
-    function factory(userLinkModel) {
+    function factory(linkSvc) {
         function UserLinksModel() {
             var s = this;
             s.init();
@@ -12817,51 +14742,826 @@ angular.module("rpGlobalHeader", []);
         p.init = function () {
             var s = this;
             s.links = [];
+            s.visible = false;
+
+            // s.links = [
+            //     {
+            //         "newWin": true,
+            //         "text": "Client Portal",
+            //         "url": "/product/clientportal"
+            //     },
+            //     {
+            //         "text": "Manage Profile",
+            //         "event": "manageProfile.rpGlobalHeader"
+            //     },
+            //     {
+            //         "text": "Sign out",
+            //         "event": "signout.rpGlobalHeader"
+            //     }
+            // ];
         };
 
         p.setData = function (links) {
             var s = this;
+            s.links = links || [];
+            return s;
+        };
 
-            s.links = [];
+        p.invoke = function (link) {
+            var s = this;
+            linkSvc.invoke(link);
+            return s;
+        };
 
-            if (links) {
-                links.forEach(function (linkData) {
-                    s.links.push(userLinkModel(linkData));
-                });
-            }
-
+        p.toggleMenu = function () {
+            var s = this;
+            s.visible = !s.visible;
             return s;
         };
 
         p.destroy = function () {
             var s = this;
-
-            s.links.forEach(function (link) {
-                link.destroy();
-            });
-
             s.links.flush();
         };
 
-        return function (data) {
-            return (new UserLinksModel()).setData(data);
+        return new UserLinksModel();
+    }
+
+    angular
+        .module("rpGlobalHeader")
+        .factory("rpGhUserLinksModel", [
+            "rpGhLinkSvc",
+            factory
+        ]);
+})(angular);
+
+
+//  Source: _lib\realpage\global-header\js\services\link.js
+//  Global Header Link Service
+
+(function (angular, undefined) {
+    "use strict";
+
+    function RpGhLinkSvc($window, $state, pubsub) {
+        var svc = this;
+
+        svc.invoke = function (data) {
+            if (data.url) {
+                svc.invokeLink(data);
+            }
+            else if (data.sref) {
+                svc.invokeState(data);
+            }
+            else if (data.method) {
+                svc.invokeMethod(data);
+            }
+            else if (data.event) {
+                svc.invokeEvent(data);
+            }
+        };
+
+        svc.invokeLink = function (data) {
+            if (data.newWin) {
+                var win = $window.open(data.url, "_blank");
+                win.focus();
+            }
+            else {
+                $window.location.href = data.url;
+            }
+        };
+
+        svc.invokeState = function (data) {
+            $state.go(data.sref, data.stateParams || {});
+        };
+
+        svc.invokeMethod = function (data) {
+            data.method(data.args);
+        };
+
+        svc.invokeEvent = function (data) {
+            pubsub.publish(data.event, data.eventData || {});
         };
     }
 
     angular
         .module("rpGlobalHeader")
-        .factory("rpGhUserLinksModel", ["rpGhUserLinkModel", factory]);
+        .service("rpGhLinkSvc", [
+            "$window",
+            "$state",
+            "pubsub",
+            RpGhLinkSvc
+        ]);
 })(angular);
 
 
 //  Source: _lib\realpage\global-header\js\templates\templates.inc.js
-angular.module('app').run(['$templateCache', function ($templateCache) {
+angular.module("rpGlobalHeader").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/global-header/templates/app-switcher-menu.html",
-"<div class=\"rp-gh-app-switcher-menu\"><div rp-stop-event=\"click\" class=\"rp-gh-app-switcher-menu-tabs\"><rp-scrolling-tabs-menu model=\"tabsMenu\"></rp-scrolling-tabs-menu></div><div class=\"rp-gh-app-switcher-menu-content\"><div ng-show=\"tabsData.services.isActive\" class=\"rp-gh-app-switcher-services\"><div class=\"rp-gh-app-switcher-service\" ng-repeat=\"service in model.services\"><div class=\"rp-gh-app-switcher-service-title\"><span svg-src=\"{{service.data.titleIDGuid | rpGhIconPath}}\" class=\"rp-gh-app-switcher-service-icon rp-svg-icon\"></span> {{service.data.title}}</div><a class=\"rp-gh-app-switcher-product\" ng-href=\"{{product.data.productUrl}}\" ng-repeat=\"product in service.products\"><span svg-src=\"{{product.data.titleIDGuid | rpGhIconPath}}\" class=\"rp-gh-app-switcher-product-icon rp-svg-icon\"></span> <span class=\"rp-gh-app-switcher-product-title-wrap\"><span class=\"rp-gh-app-switcher-product-title\" ng-bind-html=\"product.data.title | htmlUnsafe\"></span></span></a></div></div><div ng-show=\"tabsData.favorites.isActive\" class=\"rp-gh-app-switcher-favorites\"><a ng-if=\"product.isFavorite()\" class=\"rp-gh-app-switcher-product\" ng-href=\"{{product.data.productUrl}}\" ng-repeat=\"product in model.allProducts\"><span svg-src=\"{{product.data.titleIDGuid | rpGhIconPath}}\" class=\"rp-gh-app-switcher-product-icon rp-svg-icon\"></span> <span class=\"rp-gh-app-switcher-product-title-wrap\"><span class=\"rp-gh-app-switcher-product-title\" ng-bind-html=\"product.data.title | htmlUnsafe\"></span></span></a></div></div><a href=\"{{data.manageUrl}}\" class=\"rp-gh-app-switcher-manage\">{{model.manageLinkText}}</a></div>");
+"<div class=\"rp-gh-app-switcher-menu\"><div rp-stop-event=\"click\" class=\"rp-gh-app-switcher-menu-tabs\"><rp-scrolling-tabs-menu model=\"tabsMenu\"></rp-scrolling-tabs-menu></div><div class=\"rp-gh-app-switcher-menu-content\"><div ng-show=\"tabsData.families.isActive\" class=\"rp-gh-app-switcher-services\"><div class=\"rp-gh-app-switcher-service\" ng-repeat=\"family in model.families\"><div class=\"rp-gh-app-switcher-service-title\"><span svg-src=\"{{family.getIconId() | productIconPath}}\" class=\"rp-gh-app-switcher-service-icon rp-svg-icon\"></span> {{::family.data.familyName}}</div><div class=\"rp-gh-app-switcher-product\" ng-repeat=\"soln in family.solutions\"><span svg-src=\"{{soln.getIconId() | productIconPath}}\" class=\"rp-gh-app-switcher-product-icon rp-svg-icon\"></span> <span class=\"rp-gh-app-switcher-product-title-wrap\"><span class=\"rp-gh-app-switcher-product-title\" ng-bind-html=\"soln.data.solutionName\"></span> </span><a ng-href=\"{{soln.data.productUrl}}\" ng-attr-target=\"{{soln.getWinId()}}\" class=\"rp-gh-app-switcher-product-link\"></a><div class=\"rp-gh-app-switcher-product-disabled\" ng-if=\"soln.isProductDisabled()\"></div></div></div></div><div ng-show=\"tabsData.favorites.isActive\" class=\"rp-gh-app-switcher-favorites\"><div ng-if=\"soln.isFavorite()\" class=\"rp-gh-app-switcher-product\" ng-repeat=\"soln in model.solutions\"><span svg-src=\"{{soln.getIconId() | productIconPath}}\" class=\"rp-gh-app-switcher-product-icon rp-svg-icon\"></span> <span class=\"rp-gh-app-switcher-product-title-wrap\"><span class=\"rp-gh-app-switcher-product-title\" ng-bind-html=\"soln.data.solutionName\"></span> </span><a ng-href=\"{{soln.data.productUrl}}\" ng-attr-target=\"{{soln.getWinId()}}\" class=\"rp-gh-app-switcher-product-link\"></a><div class=\"rp-gh-app-switcher-product-disabled\" ng-if=\"soln.isProductDisabled()\"></div></div></div></div><a ng-href=\"{{model.manageLink.url}}\" class=\"rp-gh-app-switcher-manage\">{{model.manageLink.text}}</a></div>");
+$templateCache.put("realpage/global-header/templates/app-switcher.html",
+"<div class=\"rp-gh-app-switcher\"><rp-toggle model=\"showAppSwitcherMenu\" options=\"{bodyToggle: true}\" class=\"rp-gh-toolbar-icon apps toggle\"></rp-toggle><rp-gh-app-switcher-menu ng-show=\"showAppSwitcherMenu\"><rp-gh-app-switcher-menu></rp-gh-app-switcher-menu></rp-gh-app-switcher-menu></div>");
 $templateCache.put("realpage/global-header/templates/header.html",
-"<div class=\"rp-gh\"><rp-global-nav-toggle></rp-global-nav-toggle><p class=\"rp-gh-logo\"><a href=\"{{model.data.logoLink}}\"><img class=\"rp-gh-logo-img\" ng-src=\"{{model.data.logoImgSrc}}\" alt=\"logo\"></a></p><p class=\"rp-gh-product-name\" ng-if=\"model.data.productName\"><a href=\"{{model.data.productLink}}\">{{model.data.productName}}</a></p><div class=\"rp-gh-user-links\"><div class=\"rp-gh-user-links-toggle\"><rp-toggle model=\"showUserLinks\" options=\"{bodyToggle: true,\n" +
-"                    activeText: model.data.username}\" class=\"rp-gh-user-links-username\"></rp-toggle><div class=\"rp-gh-user-links-avatar\"><img ng-src=\"{{model.data.userAvatarUrl}}\"></div></div><ul ng-show=\"showUserLinks\" class=\"rp-gh-user-links-menu\"><li ng-click=\"link.activate()\" class=\"rp-gh-user-links-menu-item\" ng-repeat=\"link in model.userLinks.links\">{{link.data.text}}</li></ul></div><div class=\"rp-gh-toolbar\"><a class=\"rp-gh-toolbar-icon home\" href=\"{{model.data.homeUrl}}\"></a><div class=\"rp-gh-app-switcher\"><rp-toggle model=\"showAppSwitcherMenu\" options=\"{bodyToggle: true}\" class=\"rp-gh-toolbar-icon apps toggle\"></rp-toggle><rp-gh-app-switcher-menu model=\"model.appSwitcher\" ng-show=\"showAppSwitcherMenu\"><rp-gh-app-switcher-menu></rp-gh-app-switcher-menu></rp-gh-app-switcher-menu></div><a class=\"rp-gh-toolbar-icon help\" href=\"\"></a> <a class=\"rp-gh-toolbar-icon settings\" href=\"\"></a> <a class=\"rp-gh-toolbar-icon alerts\" href=\"\"></a></div></div>");
+"<div class=\"rp-gh\"><rp-global-nav-toggle ng-if=\"model.data.showNavToggle\"></rp-global-nav-toggle><div class=\"rp-gh-logo\"><a href=\"{{model.data.logoLink}}\"><img class=\"rp-gh-logo-img-1\" ng-src=\"{{model.data.logoImg1Src}}\" alt=\"logo\"><!--\n" +
+"            <img class=\"rp-gh-logo-img-2\" ng-src=\"{{model.data.logoImg2Src}}\" alt=\"logo\" />\n" +
+"            --></a></div><div class=\"rp-gh-names\"><span class=\"rp-gh-name-rp\">RealPage</span><h1 class=\"rp-gh-name-company\" ng-if=\"model.data.showCompanyName\"><a href=\"{{model.data.companyNameLink}}\">{{model.data.companyNameText}}</a></h1></div><div class=\"rp-gh-user-links\"><div class=\"rp-gh-user-links-toggle\" ng-click=\"userLinks.toggleMenu()\"><div class=\"rp-gh-user-avatar\"><p class=\"rp-gh-user-initials\" ng-if=\"model.data.showInitials\">{{model.data.userInitials}}</p></div><div class=\"rp-gh-user-info\"><p class=\"rp-gh-user-name\">{{model.data.username}}</p><p class=\"rp-gh-user-role\">{{model.data.userRole}}</p></div></div><div ng-show=\"userLinks.on\" class=\"rp-gh-user-links-menu\"><ul class=\"rp-gh-user-links-list\"><li class=\"rp-gh-user-links-menu-item\" ng-click=\"model.userLinks.invoke(link)\" ng-repeat=\"link in model.userLinks.links\">{{link.text}}</li></ul><div rp-stop-event=\"click\" class=\"rp-gh-nav-prefs\"><div class=\"rp-gh-nav-pref\"><rp-switch class=\"label-1 theme-1\" rp-model=\"ghNav.pref.dark\" rp-on-change=\"ghNav.onChange()\" rp-label-text=\"'Dark Navigation'\"></rp-switch></div></div></div></div><div class=\"rp-gh-toolbar\"><div ng-if=\"icon.active\" class=\"rp-gh-toolbar-icon-wrap\" ng-repeat=\"icon in model.toolbarIcons.list\"><span data-badge=\"{{icon.count}}\" ng-if=\"icon.active && !icon.isAppSwitcher\" ng-click=\"model.toolbarIcons.invoke(icon)\" class=\"rp-gh-toolbar-icon {{icon.className}}\"></span><rp-gh-app-switcher ng-if=\"icon.active && icon.isAppSwitcher\"></rp-gh-app-switcher></div></div></div>");
 }]);
+
+//  Source: ui\lib\realpage\global-nav\js\scripts.js
+//  Source: _lib\realpage\global-nav\js\_bundle.inc
+//  Source: _lib\realpage\global-nav\js\plugin\init.js
+// Global Nav Containers
+
+var RealPage = RealPage || {};
+
+(function (RealPage) {
+    "use strict";
+
+    RealPage.GlobalNav = {};
+})(RealPage);
+
+//  Source: _lib\realpage\global-nav\js\plugin\gn-html-submenu.js
+// Global Nav Submenu Html
+
+(function (_, gn) {
+    "use strict";
+
+    var menuStr = "" +
+
+    "<% if (links && links.length > 0) { %>" +
+        "<ul class='rp-global-nav-submenu <%- className %>'>" +
+            "<% _.forEach(links, function(item, index, list) { %>" +
+                "<li class='rp-global-nav-submenu-item <%- item.className %>'>" +
+                    "<a href='<%- item.labelLink %>' " +
+                        "class='rp-global-nav-submenu-item-label <%- item.labelClassName %>'>" +
+                        "<%- item.labelText %>" +
+                    "</a>" +
+                "</li>" +
+            "<% }); %>" +
+        "</ul>" +
+    "<% } %>";
+
+    var menuTpl = _.template(menuStr);
+
+    function getSubmenu(data) {
+        return menuTpl(data).trim();
+    }
+
+    gn.getSubmenuHtml = getSubmenu;
+})(window._, RealPage.GlobalNav);
+
+//  Source: _lib\realpage\global-nav\js\plugin\gn-html-menu.js
+// Global Nav Menu Html
+
+(function (_, gn) {
+    "use strict";
+
+    var labelStr = "" +
+
+    "<% if (labelLink) { %>" +
+        "<a href='<%- labelLink %>' " +
+            "class='rp-global-nav-menu-item-label <%- labelClassName %>'>" +
+            "<span class='rp-global-nav-menu-item-label-icon <%- iconClassName %>'>" +
+            "</span>" +
+            "<span class='rp-global-nav-menu-item-label-text'>" +
+                "<%- labelText %>" +
+            "</span>" +
+            "<% if (submenu.links && submenu.links.length !== 0) { %>" +
+                "<span class='rp-global-nav-menu-item-label-toggle'></span>" +
+            "<% } %>" +
+        "</a>" +
+    "<% } else { %>" +
+        "<span class='rp-global-nav-menu-item-label <%- labelClassName %>'>" +
+            "<span class='rp-global-nav-menu-item-label-icon <%- iconClassName %>'>" +
+            "</span>" +
+            "<span class='rp-global-nav-menu-item-label-text'>" +
+                "<%- labelText %>" +
+            "</span>" +
+            "<% if (submenu.links && submenu.links.length !== 0) { %>" +
+                "<span class='rp-global-nav-menu-item-label-toggle'></span>" +
+            "<% } %>" +
+        "</span>" +
+    "<% } %>";
+
+    var labelTpl = _.template(labelStr);
+
+    var getLabel = function(data) {
+        data = _.extend({
+            labelLink: "",
+            labelClassName: ""
+        }, data);
+
+        return labelTpl(data);
+    };
+
+    var menuItemStr = "" +
+
+    "<li class='rp-global-nav-menu-item <%- className %>'>" +
+        "<%= label %>" +
+        "<%= submenu %>" +
+    "</li>";
+
+    var menuItemTpl = _.template(menuItemStr);
+
+    function getMenuItem(data) {
+        data = _.extend({
+            submenu: {
+                links: [],
+                className: ""
+            },
+            className: "",
+            labelText: "",
+            iconClassName: "",
+            labelClassName: ""
+        }, data);
+
+        return menuItemTpl({
+            label: getLabel(data),
+            className: data.className,
+            submenu: gn.getSubmenuHtml(data.submenu)
+        });
+    }
+
+    var menuStr = "" +
+
+    "<% if (html) { %>" +
+        "<div class='rp-global-nav-menu-wrap'>" +
+            "<ul class='rp-global-nav-menu'>" +
+                "<%= html %>" +
+            "</ul>" +
+        "</div>" +
+    "<% } %>";
+
+    var menuTpl = _.template(menuStr);
+
+    function getMenu(data) {
+        var html = "";
+        data = data || [];
+
+        data.forEach(function (menuItem) {
+            html += getMenuItem(menuItem);
+        });
+
+        return menuTpl({
+            html: html
+        });
+    }
+
+    gn.getMenuHtml = getMenu;
+})(window._, RealPage.GlobalNav);
+
+//  Source: _lib\realpage\global-nav\js\plugin\gn-class-link.js
+// Global Nav Link
+
+(function (window, $) {
+    "use strict";
+
+    var id = 0,
+        gn = window.RealPage.GlobalNav;
+
+    function MenuLink(elem) {
+        id++;
+        var s = this;
+        s.init(elem);
+    }
+
+    var p = MenuLink.prototype;
+
+    p.init = function (elem) {
+        var s = this;
+        s.id = id;
+        s.elem = elem;
+        s.onClickCallback = function () {};
+        elem.on("click", s.clickHandler.bind(s));
+        return s;
+    };
+
+    p.activate = function (url) {
+        var s = this,
+            href = s.elem.attr("href"),
+            hash = url.replace(/^.*(\#.*)$/, "$1");
+        s.setActive(href == url || href == hash);
+        return s;
+    };
+
+    p.setActive = function (bool) {
+        var s = this;
+        s.elem[bool ? "addClass" : "removeClass"]("active");
+        return s;
+    };
+
+    p.onClick = function (callback) {
+        var s = this;
+        s.onClickCallback = callback;
+        return s;
+    };
+
+    p.clickHandler = function () {
+        var s = this;
+        s.onClickCallback(s);
+        return s;
+    };
+
+    p.is = function (link) {
+        var s = this;
+        return link.hasID(s.id);
+    };
+
+    p.hasID = function (id) {
+        var s = this;
+        return s.id == id;
+    };
+
+    p.hasUrl = function (url) {
+        var s = this;
+        return s.elem.attr("href") == url;
+    };
+
+    gn.menuLink = function (elem) {
+        elem = $(elem);
+        var menuLink = elem.data("menuLink");
+        if (!menuLink) {
+            menuLink = new MenuLink(elem);
+            elem.data("menuLink", menuLink);
+        }
+        return menuLink;
+    };
+})(window, jQuery);
+
+//  Source: _lib\realpage\global-nav\js\plugin\gn-class-menu-item.js
+// Global Nav MenuItem
+
+(function ($, gn) {
+    "use strict";
+
+    var id = 0;
+
+    function MenuItem(elem) {
+        id++;
+        var s = this;
+        s.init(elem);
+    }
+
+    var p = MenuItem.prototype;
+
+    p.init = function (elem) {
+        var s = this;
+
+        s.id = id;
+        s.open = false;
+        s.menuItem = elem;
+        s.openHeight = elem.prop("scrollHeight");
+        s.label = elem.children(".rp-global-nav-menu-item-label");
+        s.closedHeight = s.label.outerHeight();
+        s.label.on("click", s.toggle.bind(s));
+        s.menuItem.height(s.closedHeight);
+        return s;
+    };
+
+    p.hasID = function (id) {
+        var s = this;
+        return s.id === id;
+    };
+
+    p.expand = function () {
+        var s = this;
+        s.open = true;
+        s.menuItem.addClass("open");
+        s.menuItem.height(s.openHeight);
+        return s;
+    };
+
+    p.collapse = function () {
+        var s = this;
+        s.open = false;
+        s.menuItem.removeClass("open");
+        s.menuItem.height(s.closedHeight);
+        return s;
+    };
+
+    p.isOpen = function () {
+        var s = this;
+        return s.open;
+    };
+
+    p.hasSubmenu = function () {
+        var s = this;
+        return !!s.menuItem.children(".rp-global-nav-submenu").length;
+    };
+
+    p.onActivate = function (callback) {
+        var s = this;
+        s.activateCallback = callback;
+        return s;
+    };
+
+    p.is = function (item) {
+        var s = this;
+        return item.hasID(s.id);
+    };
+
+    p.toggle = function (event) {
+        var s = this;
+        s.activateCallback(s);
+        event.stopPropagation();
+        return s;
+    };
+
+    gn.menuItem = function (elem) {
+        elem = $(elem);
+        var menuItem = elem.data("menuItem");
+        if (!menuItem) {
+            menuItem = new MenuItem(elem);
+            elem.data("menuItem", menuItem);
+        }
+        return menuItem;
+    };
+})(jQuery, RealPage.GlobalNav);
+
+//  Source: _lib\realpage\global-nav\js\plugin\gn-class-menu.js
+// Global Nav Menu
+
+(function (window, $) {
+    "use strict";
+
+    var gn = window.RealPage.GlobalNav;
+
+    function Menu(elem) {
+        var s = this;
+        s.init(elem);
+    }
+
+    var p = Menu.prototype;
+
+    p.init = function (elem) {
+        var s = this,
+            url = window.location.href;
+        s.menu = elem;
+        s.onLinkActivateCallback = function () {};
+        s.genMenuItems().genLinks().bindEvents().initActiveLink(url);
+        return s;
+    };
+
+    p.genMenuItems = function () {
+        var s = this,
+            menuItemElems = s.menu.children(".rp-global-nav-menu-item");
+
+        s.menuItems = [];
+
+        menuItemElems.each(function (index, menuItemElem) {
+            var menuItem = gn.menuItem(menuItemElem);
+            menuItem.onActivate(s.toggleMenuItem.bind(s));
+            s.menuItems.push(menuItem);
+        });
+
+        return s;
+    };
+
+    p.genLinks = function () {
+        var s = this,
+            menuLinkElems = s.menu.find("a");
+
+        s.menuLinks = [];
+
+        menuLinkElems.each(function (index, menuLinkElem) {
+            var menuLink = gn.menuLink(menuLinkElem);
+            menuLink.onClick(s.activateLink.bind(s));
+            s.menuLinks.push(menuLink);
+        });
+
+        return s;
+    };
+
+    p.activateLink = function (item) {
+        var s = this;
+        s.menuLinks.forEach(function (menuLink) {
+            menuLink.setActive(menuLink.is(item));
+        });
+        s.onLinkActivateCallback();
+        return s;
+    };
+
+    p.bindEvents = function () {
+        var s = this;
+        $(window).on("hashchange", s.hashchangeHandler.bind(s));
+        return s;
+    };
+
+    p.hashchangeHandler = function () {
+        var s = this;
+        s.menuLinks.forEach(function (menuLink) {
+            menuLink.activate(window.location.hash);
+        });
+        s.menuItems.forEach(function (menuItem) {
+            menuItem.collapse();
+        });
+        return s;
+    };
+
+    p.initActiveLink = function (url) {
+        var s = this;
+        s.menuLinks.forEach(function (menuLink) {
+            menuLink.activate(url);
+        });
+        return s;
+    };
+
+    p.toggleMenuItem = function (item) {
+        var s = this;
+        if (item.isOpen()) {
+            item.collapse();
+        }
+        else {
+            item.expand();
+            s.menuItems.forEach(function (menuItem) {
+                if (!menuItem.is(item) && menuItem.isOpen()) {
+                    menuItem.collapse();
+                }
+            });
+        }
+        return s;
+    };
+
+    p.onLinkActivate = function (callback) {
+        var s = this;
+        s.onLinkActivateCallback = callback;
+        return s;
+    };
+
+    gn.menu = function (elem) {
+        var menu = elem.data("menu");
+        if (!menu) {
+            menu = new Menu(elem);
+            elem.data("menu", menu);
+        }
+        return menu;
+    };
+})(window, jQuery);
+
+//  Source: _lib\realpage\global-nav\js\plugin\gn-plugin.js
+// Global Nav Plugin
+
+(function ($, gn) {
+    "use strict";
+
+    function GlobalNav(elem, data) {
+        var s = this;
+        s.init(elem, data);
+    }
+
+    var p = GlobalNav.prototype;
+
+    p.init = function (elem, data) {
+        var s = this,
+            elemHtml = gn.getMenuHtml(data);
+
+        gn.inst = s;
+        s.elem = elem;
+        elem.html(elemHtml);
+
+        setTimeout(function () {
+            s.width = elem.outerWidth();
+            s.menu = gn.menu(elem.children().children().eq(0));
+            s.menu.onLinkActivate(s.hide.bind(s));
+        }, 100);
+    };
+
+    p.show = function () {
+        var s = this;
+        s.visible = true;
+        s.elem.css("left", 0);
+        return s;
+    };
+
+    p.hide = function () {
+        var s = this;
+        s.visible = false;
+        s.elem.css("left", -s.width);
+        return s;
+    };
+
+    p.toggle = function () {
+        var s = this;
+        s[s.visible ? "hide" : "show"]();
+        return s;
+    };
+
+    p.isVisible = function () {
+        var s = this;
+        return s.visible;
+    };
+
+    p.stopClickProp = function (event) {
+        event.stopPropagation();
+    };
+
+    $.fn.rpGlobalNav = function (navData) {
+        return this.each(function () {
+            var elem = $(this);
+            if (!elem.data("globalNav")) {
+                elem.data("globalNav", new GlobalNav(elem, navData));
+            }
+        });
+    };
+})(jQuery, RealPage.GlobalNav);
+
+//  Source: _lib\realpage\global-nav\js\plugin\gn-toggle-plugin.js
+// Global Nav Toggle Plugin
+
+(function ($, gn) {
+    "use strict";
+
+    function GlobalNavToggle(elem) {
+        var s = this;
+        s.init(elem);
+    }
+
+    var p = GlobalNavToggle.prototype;
+
+    p.init = function (elem) {
+        var s = this;
+        s.body = $("body");
+        elem.on("click", s.toggleNav.bind(s));
+        return s;
+    };
+
+    p.toggleNav = function (event) {
+        var s = this;
+        gn.inst.toggle();
+        setTimeout(s.bindFollowup.bind(s), 10);
+        return s;
+    };
+
+    p.bindFollowup = function () {
+        var s = this;
+        if (gn.inst.isVisible()) {
+            s.body.one("click.globalNav", s.bodyClickHandler.bind(s));
+        }
+        else {
+            s.body.off("click.globalNav");
+        }
+        return s;
+    };
+
+    p.bodyClickHandler = function () {
+        var s = this;
+        gn.inst.hide();
+        return s;
+    };
+
+    $.fn.rpGlobalNavToggle = function () {
+        return this.each(function () {
+            var elem = $(this);
+            if (!elem.data("globalNavToggle")) {
+                elem.data("globalNavToggle", new GlobalNavToggle(elem));
+            }
+        });
+    };
+})(jQuery, RealPage.GlobalNav);
+
+
+angular.module("rpGlobalNav", []);
+
+//  Source: _lib\realpage\global-nav\js\directives\global-nav-toggle.js
+//  Global Nav Toggle Directive
+
+(function (angular) {
+    "use strict";
+
+    function rpGlobalNavToggle() {
+        function link(scope, elem, attr) {
+            elem.rpGlobalNavToggle();
+        }
+
+        return {
+            scope: {},
+            link: link,
+            restrict: "E",
+            replace: true,
+            template: "<div class='rp-global-nav-toggle'></div>"
+        };
+    }
+
+    angular
+        .module("rpGlobalNav")
+        .directive("rpGlobalNavToggle", [rpGlobalNavToggle]);
+})(angular);
+
+//  Source: _lib\realpage\global-nav\js\directives\global-nav.js
+//  Global Nav Directive
+
+(function (angular) {
+    "use strict";
+
+    function rpGlobalNav(pubsub, model) {
+        function link(scope, elem, attr) {
+            var dir = {};
+
+            dir.init = function () {
+                if (model.isReady()) {
+                    dir.initNav();
+                }
+                else {
+                    model.subscribe(dir.initNav);
+                }
+
+                dir.prefWatch = pubsub.subscribe("gn.themeUpdate", dir.updatePref);
+            };
+
+            dir.initNav = function () {
+                elem.rpGlobalNav(model.getData());
+            };
+
+            dir.updatePref = function (data) {
+                elem[!data.dark ? "addClass" : "removeClass"]("theme-1");
+            };
+
+            dir.init();
+        }
+
+        return {
+            scope: {},
+            link: link,
+            restrict: "E",
+            replace: true,
+            template: "<div class='rp-global-nav'></div>"
+        };
+    }
+
+    angular
+        .module("rpGlobalNav")
+        .directive("rpGlobalNav", ["pubsub", "rpGlobalNavModel", rpGlobalNav]);
+})(angular);
+
+//  Source: _lib\realpage\global-nav\js\models\global-nav.js
+//  Global Nav Model
+
+(function (angular, undefined) {
+    "use strict";
+
+    function factory(eventStream) {
+        function GlobalNavModel() {
+            var s = this;
+            s.init();
+        }
+
+        var p = GlobalNavModel.prototype;
+
+        p.init = function () {
+            var s = this;
+            s.data = [];
+            s.ready = false;
+            s.update = eventStream();
+        };
+
+        // Getters
+
+        p.getData = function () {
+            var s = this;
+            return s.data;
+        };
+
+        // Setters
+
+        p.setData = function (data) {
+            var s = this;
+            s.data = data;
+            s.ready = true;
+            s.publish(data);
+            return s;
+        };
+
+        // Actions
+
+        p.publish = function (data) {
+            var s = this;
+            s.update.publish(data);
+            return s;
+        };
+
+        p.subscribe = function () {
+            var s = this;
+            return s.update.subscribe.apply(s.update, arguments);
+        };
+
+        // Assertions
+
+        p.isReady = function () {
+            var s = this;
+            return s.ready;
+        };
+
+        p.reset = function () {
+            var s = this;
+            s.data = [];
+        };
+
+        return new GlobalNavModel();
+    }
+
+    angular
+        .module("rpGlobalNav")
+        .factory("rpGlobalNavModel", ["eventStream", factory]);
+})(angular);
 
 //  Source: ui\lib\realpage\grid-controls\js\scripts.js
 //  Source: _lib\realpage\grid-controls\js\models\grid-select.js
@@ -12946,7 +15646,7 @@ $templateCache.put("realpage/global-header/templates/header.html",
 
 //  Source: ui\lib\realpage\grid-pagination\js\scripts.js
 //  Source: _lib\realpage\grid-pagination\js\templates\templates.inc.js
-angular.module('rpGrid').run(['$templateCache', function ($templateCache) {
+angular.module("rpGrid").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/grid-pagination/templates/grid-pagination.html",
 "<div class=\"rp-grid-pagination\" ng-class=\"{active: model.isActive}\"><div class=\"rp-grid-pagination-inner\"><p class=\"rp-grid-pagination-displaying\">Displaying {{model.rangeStart}}-{{model.rangeEnd}} of {{model.dataCount}}</p><p class=\"rp-grid-pagination-controls prev\"><span ng-class=\"{active: model.allowFirst}\" ng-click=\"gridPagination.goToFirstPage()\" class=\"rp-grid-pagination-control rp-grid-pagination-control-first\"></span> <span ng-class=\"{active: model.allowPrev}\" ng-click=\"gridPagination.goToPrevPageSet()\" class=\"rp-grid-pagination-control rp-grid-pagination-control-prev\"></span></p><ul class=\"rp-grid-pagination-pages\"><li class=\"rp-grid-pagination-page\" ng-repeat=\"page in model.pages\" ng-class=\"{active: page.active}\" ng-click=\"gridPagination.goToPage(page)\">{{page.number + 1}}</li></ul><p class=\"rp-grid-pagination-controls\"><span ng-class=\"{active: model.allowNext}\" ng-click=\"gridPagination.goToNextPageSet()\" class=\"rp-grid-pagination-control rp-grid-pagination-control-next\"></span> <span ng-class=\"{active: model.allowLast}\" ng-click=\"gridPagination.goToLastPage()\" class=\"rp-grid-pagination-control rp-grid-pagination-control-last end\"></span></p></div></div>");
 }]);
@@ -13073,8 +15773,14 @@ $templateCache.put("realpage/grid-pagination/templates/grid-pagination.html",
         };
 
         p.setData = function (data) {
-            var s = this,
-                dataCount = data.length;
+            var s = this;
+
+            if (!data || !data.push) {
+                logw("GridPagination.setData: Invalid data!", data);
+                return s;
+            }
+
+            var dataCount = data.length;
 
             if (s._data === undefined) {
                 s._data = [].concat(data);
@@ -13082,11 +15788,15 @@ $templateCache.put("realpage/grid-pagination/templates/grid-pagination.html",
 
             s.dataCount = dataCount;
             s.data = [].concat(data);
+
+            s.config.currentPage = 0;
+            s.config.currentPageGroup = 0;
+
             s.setPageGroups(dataCount);
             s.isActive = dataCount !== 0;
             s.totalPages = Math.ceil(dataCount / s.config.recordsPerPage);
 
-            if (s.trackSelection) {
+            if (s.trackingSelection) {
                 s.selectionTracker.genIndex(data);
             }
 
@@ -13217,6 +15927,10 @@ $templateCache.put("realpage/grid-pagination/templates/grid-pagination.html",
                 newFilterBy = {};
 
             angular.forEach(filterBy, function (val, key, obj) {
+                if (!s.grid.filterExists(key)) {
+                    return;
+                }
+
                 var filter = s.grid.getFilterByKey(key);
 
                 if (filter.hasCustomFilter()) {
@@ -13302,7 +16016,7 @@ $templateCache.put("realpage/grid-pagination/templates/grid-pagination.html",
 
         p.recordChanges = function () {
             var s = this;
-            if (s.trackSelection) {
+            if (s.trackingSelection) {
                 s.selectionTracker.recordChanges(s.grid.getData().records);
             }
             return s;
@@ -13310,7 +16024,7 @@ $templateCache.put("realpage/grid-pagination/templates/grid-pagination.html",
 
         p.trackSelection = function (config) {
             var s = this;
-            s.trackSelection = true;
+            s.trackingSelection = true;
             s.selectionTracker.setConfig(config);
         };
 
@@ -14460,6 +17174,19 @@ angular.module("rpGrid", []);
             return s;
         };
 
+        // Assertions
+
+        p.filterExists = function (filterKey) {
+            var s = this,
+                exists = !!s.filters[filterKey];
+
+            if (!exists) {
+                logw("GridFiltersModel: filter by key %s does not exist", filterKey);
+            }
+
+            return exists;
+        };
+
         p.destroy = function () {
             var s = this;
 
@@ -14917,7 +17644,7 @@ angular.module("rpGrid", []);
     }
 
     angular
-        .module("app")
+        .module("rpGrid")
         .factory("rpGridTransform", ["$filter", factory]);
 })(angular);
 
@@ -15124,6 +17851,11 @@ angular.module("rpGrid", []);
 
         // Assertions
 
+        p.filterExists = function (filterKey) {
+            var s = this;
+            return s.filtersModel.filterExists(filterKey);
+        };
+
         p.hasName = function (name) {
             var s = this;
             return s._name == name;
@@ -15209,7 +17941,7 @@ angular.module("rpGrid", []);
 
         p.toggleFilters = function () {
             var s = this;
-            s.gridFilters.toggle();
+            s.filtersModel.toggle();
             return s;
         };
 
@@ -15322,19 +18054,19 @@ angular.module("rpGrid", []);
 
 
 //  Source: _lib\realpage\grid\js\templates\templates.inc.js
-angular.module('rpGrid').run(['$templateCache', function ($templateCache) {
+angular.module("rpGrid").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/grid/templates/grid-datetimepicker-filter.html",
 "<div class=\"rp-grid-datetimepicker-filter\"><rp-datetimepicker ng-if=\"filter.config\" config=\"filter.config\" rp-model=\"model.config.value\"></rp-datetimepicker></div>");
 $templateCache.put("realpage/grid/templates/grid-filters.html",
-"<table ng-class=\"model.state\" class=\"{{model.classNames || 'rp-grid-filters-1'}}\"><tr class=\"rp-grid-row\"><td ng-switch=\"filter.config.type\" ng-repeat=\"filter in model.list\" class=\"rp-grid-cell {{::filter.key.decamelize()}}\"><rp-grid-menu-filter model=\"filter\" ng-switch-when=\"menu\"></rp-grid-menu-filter><rp-grid-text-filter model=\"filter\" ng-switch-when=\"text\"></rp-grid-text-filter><rp-grid-datetimepicker-filter model=\"filter\" ng-switch-when=\"datetimepicker\"></rp-grid-datetimepicker-filter></td></tr></table>");
+"<table ng-class=\"model.state\" class=\"{{model.classNames || 'rp-grid-filters-1'}}\"><tr class=\"rp-grid-row\"><td ng-switch=\"filter.config.type\" ng-repeat=\"filter in model.list\" class=\"rp-grid-cell {{::filter.key.decamelize()}} {{::filter.config.classNames}}\"><rp-grid-menu-filter model=\"filter\" ng-switch-when=\"menu\"></rp-grid-menu-filter><rp-grid-text-filter model=\"filter\" ng-switch-when=\"text\"></rp-grid-text-filter><rp-grid-datetimepicker-filter model=\"filter\" ng-switch-when=\"datetimepicker\"></rp-grid-datetimepicker-filter></td></tr></table>");
 $templateCache.put("realpage/grid/templates/grid-headers.html",
-"<table class=\"{{model.classNames || 'rp-grid-headers-1'}} ft-form\"><tr class=\"rp-grid-row rp-grid-group-header-row\" ng-repeat=\"groupHeaders in model.groupHeaderRows\"><td ng-class=\"groupHeader.getClass()\" ng-repeat=\"groupHeader in groupHeaders\" colspan=\"{{::groupHeader.config.colSpan}}\" class=\"rp-grid-cell rp-grid-group-header-cell {{groupheader.config.classNames}}\"><div class=\"rp-grid-group-header-cell-content\"><span class=\"rp-grid-group-header-cell-text\">{{::groupHeader.config.text}}</span></div></td></tr><tr class=\"rp-grid-row\" ng-repeat=\"row in model.headerRows\"><td ng-repeat=\"header in row\" ng-switch=\"header.config.type\" class=\"rp-grid-cell rp-grid-header {{::header.key.decamelize()}}\"><label ng-switch-when=\"select\" ng-class=\"{active: header.config.enabled}\" class=\"md-check dark-bluebox rp-grid-header-checkbox\"><input type=\"checkbox\" ng-true-value=\"true\" ng-false-value=\"false\" class=\"rp-form-checkbox\" ng-model=\"model.selectModel.selected\" ng-change=\"model.selectModel.publishState()\"> <i class=\"primary\"></i></label><span ng-switch-default class=\"rp-grid-text\" ng-class=\"header.state\" ng-click=\"header.activate()\">{{::header.config.text}} </span><i ng-switch-default ng-class=\"header.state\" class=\"rp-grid-header-icon\" ng-click=\"header.activate()\"></i><div ng-if=\"header.hasTooltip\" class=\"rp-grid-header-tooltip {{::header.config.tooltipClass}}\"><span ng-click=\"gridHeaderTooltip.toggleTooltip()\" class=\"rp-grid-header-tooltip-icon {{::header.config.tooltipIcon}}\"></span><div ng-show=\"gridHeaderTooltip.isVisible\" class=\"fdn-arrow box-color text-color rp-grid-header-tooltip-content-wrap\"><span class=\"arrow left white rp-grid-header-tooltip-content-arrow\"></span><div class=\"box-body rp-grid-header-tooltip-content\">{{::header.config.tooltipContent}}</div></div></div></td></tr></table>");
+"<table class=\"{{model.classNames || 'rp-grid-headers-1'}} ft-form\"><tr class=\"rp-grid-row rp-grid-group-header-row\" ng-repeat=\"groupHeaders in model.groupHeaderRows\"><td ng-class=\"groupHeader.getClass()\" ng-repeat=\"groupHeader in groupHeaders\" colspan=\"{{::groupHeader.config.colSpan}}\" class=\"rp-grid-cell rp-grid-group-header-cell {{groupheader.config.classNames}}\"><div class=\"rp-grid-group-header-cell-content\"><span class=\"rp-grid-group-header-cell-text\">{{::groupHeader.config.text}}</span></div></td></tr><tr class=\"rp-grid-row\" ng-repeat=\"row in model.headerRows\"><td ng-repeat=\"header in row\" ng-switch=\"header.config.type\" class=\"rp-grid-cell rp-grid-header {{::header.key.decamelize()}} {{::header.config.classNames}}\"><label ng-switch-when=\"select\" ng-class=\"{active: header.config.enabled}\" class=\"md-check dark-bluebox rp-grid-header-checkbox\"><input type=\"checkbox\" ng-true-value=\"true\" ng-false-value=\"false\" class=\"rp-form-checkbox\" ng-model=\"model.selectModel.selected\" ng-change=\"model.selectModel.publishState()\"> <i class=\"primary\"></i></label><span ng-switch-default class=\"rp-grid-text\" ng-class=\"header.state\" ng-click=\"header.activate()\">{{::header.config.text}} </span><i ng-switch-default ng-class=\"header.state\" class=\"rp-grid-header-icon\" ng-click=\"header.activate()\"></i><div ng-if=\"header.hasTooltip\" class=\"rp-grid-header-tooltip {{::header.config.tooltipClass}}\"><span ng-click=\"gridHeaderTooltip.toggleTooltip()\" class=\"rp-grid-header-tooltip-icon {{::header.config.tooltipIcon}}\"></span><div ng-show=\"gridHeaderTooltip.isVisible\" class=\"fdn-arrow box-color text-color rp-grid-header-tooltip-content-wrap\"><span class=\"arrow left white rp-grid-header-tooltip-content-arrow\"></span><div class=\"box-body rp-grid-header-tooltip-content\">{{::header.config.tooltipContent}}</div></div></div></td></tr></table>");
 $templateCache.put("realpage/grid/templates/grid-menu-filter.html",
 "<div class=\"rp-grid-menu-filter\"><rp-form-select-menu ng-if=\"config\" config=\"config\" rp-model=\"model.config.value\"></rp-form-select-menu></div>");
 $templateCache.put("realpage/grid/templates/grid-text-filter.html",
 "<div class=\"rp-grid-text-filter\"><rp-form-input-text ng-if=\"config\" config=\"config\" rp-model=\"model.config.value\"></rp-form-input-text></div>");
 $templateCache.put("realpage/grid/templates/grid.html",
-"<div class=\"rp-grid-wrap rp-float-scroll\" ng-class=\"model.state\"><div class=\"rp-grid\"><rp-grid-headers model=\"model.headersModel\"></rp-grid-headers><rp-grid-filters model=\"model.filtersModel\"></rp-grid-filters><div class=\"rp-grid-body-wrap\"><rp-busy-indicator model=\"model.busyModel\"></rp-busy-indicator><table class=\"rp-grid-body-1 ft-form\" ng-class=\"{init: model.state.busy}\"><tr class=\"rp-grid-row\" ng-repeat=\"record in model.data.records\" ng-class=\"{active: record[model.getSelectKey()]}\"><td ng-switch=\"config.type\" ng-repeat=\"config in model.config\" class=\"rp-grid-cell {{::config.key.decamelize()}}\"><div ng-switch-when=\"actionsMenu\" class=\"rp-actions-menu\" model=\"config.getActions(record)\"></div><label ng-switch-when=\"select\" class=\"md-check dark-bluebox\"><input type=\"checkbox\" ng-true-value=\"true\" ng-false-value=\"false\" class=\"md-check dark-bluebox\" ng-model=\"record[config.key]\" ng-change=\"model.updateSelected()\" ng-disabled=\"record.disableSelection\" rp-track-selection=\"record[config.key]\" rp-track-selection-id=\"record[config.idKey]\" rp-selection-manager=\"model.selectionManager\"> <i class=\"primary\"></i></label><span ng-switch-when=\"button\" class=\"button {{config.getButtonClassNames(record)}}\" ng-click=\"config.method(record)\">{{config.getButtonText(record)}} </span><a ng-switch-when=\"link\" href=\"{{config.getLink(record)}}\" class=\"rp-grid-text rp-grid-link\">{{record[config.key]}} </a><span ng-switch-when=\"actionLink\" ng-click=\"config.method(record)\" class=\"rp-grid-text rp-grid-link\">{{record[config.key]}} </span><span ng-switch-when=\"date\" class=\"rp-grid-text\">{{record[config.key] | date: config.dateFormat || 'MM/dd/yyyy'}} </span><span ng-switch-when=\"currency\" class=\"rp-grid-text\">{{record[config.key] | currency : config.currencySymbol || '$' : config.decimalLength === undefined ? 2 : config.decimalLength}} </span><span ng-switch-default class=\"rp-grid-text\">{{record[config.key]}}</span></td></tr><tr class=\"rp-grid-empty\" ng-if=\"!model.data.records.length\"><td class=\"empty-msg\">{{model.emptyMsg || 'No results were found.'}}</td></tr></table></div></div><rp-pagination model=\"model.paginationModel\"></rp-pagination></div>");
+"<div class=\"rp-grid-wrap rp-float-scroll\" ng-class=\"model.state\"><div class=\"rp-grid\"><rp-grid-headers model=\"model.headersModel\"></rp-grid-headers><rp-grid-filters model=\"model.filtersModel\"></rp-grid-filters><div class=\"rp-grid-body-wrap\"><rp-busy-indicator model=\"model.busyModel\"></rp-busy-indicator><table class=\"rp-grid-body-1 ft-form\" ng-class=\"{init: model.state.busy}\"><tr class=\"rp-grid-row\" ng-repeat=\"record in model.data.records\" ng-class=\"{active: record[model.getSelectKey()]}\"><td ng-switch=\"config.type\" ng-repeat=\"config in model.config\" class=\"rp-grid-cell {{::config.key.decamelize()}} {{::config.classNames}}\"><div ng-switch-when=\"actionsMenu\" class=\"rp-actions-menu\" model=\"config.getActions(record)\"></div><label ng-switch-when=\"select\" class=\"md-check dark-bluebox\"><input type=\"checkbox\" ng-true-value=\"true\" ng-false-value=\"false\" class=\"md-check dark-bluebox\" ng-model=\"record[config.key]\" ng-change=\"model.updateSelected()\" ng-disabled=\"record.disableSelection\" rp-track-selection=\"record[config.key]\" rp-track-selection-id=\"record[config.idKey]\" rp-selection-manager=\"model.selectionManager\"> <i class=\"primary\"></i></label><span ng-switch-when=\"button\" class=\"button {{config.getButtonClassNames(record)}}\" ng-click=\"config.method(record)\">{{config.getButtonText(record)}} </span><a ng-switch-when=\"link\" href=\"{{config.getLink(record)}}\" class=\"rp-grid-text rp-grid-link\">{{record[config.key]}} </a><span ng-switch-when=\"actionLink\" ng-click=\"config.method(record)\" class=\"rp-grid-text rp-grid-link\">{{record[config.key]}} </span><span ng-switch-when=\"date\" class=\"rp-grid-text\">{{record[config.key] | date: config.dateFormat || 'MM/dd/yyyy'}} </span><span ng-switch-when=\"currency\" class=\"rp-grid-text\">{{record[config.key] | currency : config.currencySymbol || '$' : config.decimalLength === undefined ? 2 : config.decimalLength}} </span><span ng-switch-default class=\"rp-grid-text\">{{record[config.key]}}</span></td></tr><tr class=\"rp-grid-empty\" ng-if=\"!model.data.records.length\"><td class=\"empty-msg\">{{model.emptyMsg || 'No results were found.'}}</td></tr></table></div></div><rp-pagination model=\"model.paginationModel\"></rp-pagination></div>");
 }]);
 
 //  Source: ui\lib\realpage\language\js\scripts.js
@@ -15897,7 +18629,7 @@ angular.module("rpPagination", []);
 angular.module("rpScrollingTabsMenu", []);
 
 //  Source: _lib\realpage\scrolling-tabs-menu\js\templates\templates.inc.js
-angular.module('rpScrollingTabsMenu').run(['$templateCache', function ($templateCache) {
+angular.module("rpScrollingTabsMenu").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/scrolling-tabs-menu/templates/scrolling-tabs-menu.html",
 "<div class=\"rp-scrolling-tabs-wrap\"><div class=\"rp-scrolling-tabs-menu\"><span ng-show=\"$ctrl.scrollEnabled()\" ng-click=\"scrollScreen.scrollLeft()\" ng-class=\"{disabled: !$ctrl.canScrollLeft()}\" class=\"scroll-left rp-icon-angle-right text-neutral-05\"></span> <span ng-show=\"$ctrl.scrollEnabled()\" ng-click=\"scrollScreen.scrollRight()\" ng-class=\"{disabled: !$ctrl.canScrollRight()}\" class=\"scroll-right rp-icon-angle-left text-neutral-05\"></span><div class=\"rp-scrolling-tabs-screen\" rp-scrolling-tabs-screen=\"$ctrl.scrollScreenModel\"><ul class=\"rp-scrolling-tabs-slider\" rp-scrolling-tabs-slider=\"$ctrl.scrollScreenModel\"><li class=\"rp-scrolling-tab\" ng-repeat=\"tab in $ctrl.model.data\" rp-scrolling-tab=\"$ctrl.scrollScreenModel\"><a ng-if=\"tab.sref\" ui-sref=\"{{tab.sref}}\" ui-sref-active=\"active\" class=\"rp-scrolling-tab-link\" ng-click=\"$ctrl.activateTab(tab)\">{{tab.text}} </a><a ng-if=\"tab.href\" href=\"{{tab.href}}\" class=\"rp-scrolling-tab-link\" ng-click=\"$ctrl.activateTab(tab)\" ng-class=\"{active: tab.isActive}\">{{tab.text}} </a><span ng-if=\"!tab.href && !tab.sref\" ng-click=\"$ctrl.activateTab(tab)\" ng-class=\"{active: tab.isActive}\" class=\"rp-scrolling-tab-link rp-scrolling-tab-text\">{{tab.text}}</span></li></ul></div></div></div>");
 }]);
@@ -16753,9 +19485,9 @@ angular.module("rpTabsMenu", []);
 angular.module("rpToggle", []);
 
 //  Source: _lib\realpage\toggle\js\templates\templates.inc.js
-angular.module('rpToggle').run(['$templateCache', function ($templateCache) {
+angular.module("rpToggle").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/toggle/templates/toggle.html",
-"<span ng-click=\"dir.toggle($event)\" ng-class=\"dir.getState()\" class=\"rp-toggle\"><i class=\"icon\" ng-class=\"dir.getIconState()\"></i> <span class=\"text active\">{{::options.activeText}} </span><span class=\"text inactive\">{{::options.defaultText}}</span></span>");
+"<span ng-click=\"dir.toggle($event)\" ng-class=\"dir.getState()\" class=\"rp-toggle\"><i class=\"icon\" ng-class=\"dir.getIconState()\"></i> <span class=\"text active\">{{options.activeText}} </span><span class=\"text inactive\">{{options.defaultText}}</span></span>");
 }]);
 
 //  Source: _lib\realpage\toggle\js\directives\toggle.js
@@ -16874,62 +19606,11 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 //  Source: ui\_app\js\base\app-init.js
 //  Initialize Angular App Modules
 
-(function () {
+(function() {
     "use strict";
-    var base, dependencies;
-
-    base = ["app"];
-
-    dependencies = [
-        "rpActionsMenu",
-        "rpAuthorization",
-		"rpAuthentication",
-        "rpBreadcrumbs",
-        "rpBusyIndicator",
-        "rpCollapsibleList",
-        "rpComplexGrid",
-        "rpDatepicker",
-        "rpDatetimepicker",
-        "rpDateRange",
-        "rpDraggable",
-        "rpDroppable",
-        "rpExpandableList",
-        "rpFloatScroll",
-        "rpFormTrackChanges",
-        "rpFormInput",
-        "rpFormInputDate",
-        "rpFormInputText",
-        "rpFormSelectMenu",
-		"rpGlobalNav",
-        "rpGlobalHeader",
-        "rpGrid",
-        "rpInlineDialog",
-        "rpInputDate",
-        "rpLanguage",
-        "rpNotifications",
-        "rpPageTitle",
-        "rpPagination",
-        "rpPopover",
-        "rpPrimaryNav",
-        "rpPropertyPicker",
-        "rpSessionInfo",
-        "rpSlideToggle",
-        "rpTabsMenu",
-        "rpToggle",
-        "rpUser",
-        "rpWorkspaces",
-        "rpScrollingTabsMenu",
-        "rpFormTextarea",
-        "rpDaterangepicker",
-		"rpGlobalNavModelProvider"
-    ];
-
-    dependencies.forEach(function (moduleName) {
-        angular.module(moduleName, []);
-    });
 
     angular
-        .module("uam", dependencies.concat(base));
+        .module("uam", ["rpApp"]);
 })();
 
 //  Source: ui\_app\js\config\_bundle.inc
@@ -16996,7 +19677,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 //  Source: ui\_app\js\config\lazy-load.js
 //  Lazy Load Config
 
-(function (angular) {
+(function(angular) {
     "use strict";
 
     function config(resolveModule) {
@@ -17005,11 +19686,12 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 
         modules = {
             "home.base": ["css", "js"],
+            "home.dashbaord": ["css", "js"],
             "home.common-area": ["css", "js"],
             "home.activity": ["css", "js"],
             "home.floorplan-unit.bundle": ["css", "js"],
             "home.profile-settings.bundle": ["css", "js"],
-			"Common.primary-nav": ["css", "js"]
+            "Common.primary-nav": ["css", "js"]
         };
 
         appConfig = {
@@ -17061,6 +19743,23 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
         .config(["$locationProvider", config]);
 })(angular);
 
+//  Source: ui\_app\js\config\scope-annotations.js
+//  Scope Annotation Config
+
+(function (angular) {
+    "use strict";
+
+    function config($compileProvider) {
+        $compileProvider.debugInfoEnabled(true);
+    }
+
+    angular
+        .module("uam")
+        .config(["$compileProvider", config]);
+})(angular);
+
+
+
 //  Source: ui\_app\js\config\resolve-modules.js
 //  Config Resolve Module
 
@@ -17081,7 +19780,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 //  Source: ui\_app\js\config\routes.js
 //  Configure Routes
 
-(function (angular) {
+(function(angular) {
     "use strict";
 
     function config(RoutesProvider) {
@@ -17098,16 +19797,25 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
                 ]
             }]
         };
-
+        routes["home.dashbaord"] = {
+            url: "/dashbaord",
+            controller: "dashboardCtrl as page",
+            lazyLoad: [{
+                files: [
+                    "uam.home.dashbaord",
+                    "lib.realpage.accordion"
+                ]
+            }]
+        };
         routes["home.floorplan-unit"] = {
             url: "/floorplan-unit",
             controller: "FloorPlanUnitCtrl as floorPlanUnit",
             lazyLoad: [{
-                rerun:true,
+                rerun: true,
                 files: [
-					 "lib.angular.motion",
+                    "lib.angular.motion",
                     "lib.bootstrap.additions",
-					"lib.angular.strap",
+                    "lib.angular.strap",
                     "uam.home.floorplan-unit.bundle"
                 ]
             }]
@@ -17137,11 +19845,11 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             url: "/profile-settings",
             controller: "ProfileSettingsCtrl as page",
             lazyLoad: [{
-                rerun:true,
+                rerun: true,
                 files: [
-					 "lib.angular.motion",
+                    "lib.angular.motion",
                     "lib.bootstrap.additions",
-					"lib.angular.strap",
+                    "lib.angular.strap",
                     "uam.home.profile-settings.bundle"
                 ]
             }]
@@ -17149,7 +19857,8 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 
         RoutesProvider
             .setTemplateUrlPrefix("ui/")
-            .setRoutes(routes).setDefault("/floorplan-unit");
+            .setRoutes(routes)
+            .setDefault("/dashbaord");
     }
 
     angular
@@ -17157,19 +19866,47 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
         .config(["rpRoutesProvider", config]);
 })(angular);
 
-//  Source: ui\_app\js\config\scope-annotations.js
-//  Scope Annotation Config
 
-(function (angular) {
-    "use strict";
+//  Source: ui\_app\js\config\global-nav.js
+(function(angular) {
+    'use strict';
 
-    function config($compileProvider) {
-        $compileProvider.debugInfoEnabled(true);
+    function config(prov) {
+        var navData = [{
+            labelText: 'Overview',
+            labelLink: '/ui/lrc/',
+            iconClassName: 'rp-icon-home'
+        }, {
+            labelText: 'Account & Payments',
+            labelLink: '/ui/coming-soon/',
+            iconClassName: 'rp-icon-card'
+        }, {
+            labelText: 'Invoices',
+            labelLink: '/ui/affordable/',
+            iconClassName: 'rp-icon-file-document'
+        }, {
+            labelText: 'Maitenance Request',
+            labelLink: '/ui/coming-soon/',
+            iconClassName: 'rp-icon-tools'
+        }, {
+            labelText: 'Management Staff',
+            labelLink: '/ui/budgeting/',
+            iconClassName: 'rp-icon-user-profile'
+        }, {
+            labelText: 'Documents',
+            labelLink: '/ui/coming-soon/',
+            iconClassName: 'rp-icon-file-document'
+        }, {
+            labelText: 'Contact Us',
+            labelLink: '/ui/coming-soon/',
+            iconClassName: 'rp-icon-photo-classic'
+        }];
+
+        prov.setData(navData);
     }
-
     angular
         .module("uam")
-        .config(["$compileProvider", config]);
+        .run(["rpGlobalNavModel", config]);
 })(angular);
 
 //  Source: ui\_app\js\controllers\_bundle.inc
@@ -17327,4 +20064,230 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 
 
 
+//  Source: ui\_common\breadcrumbs\js\components\breadcrumbs.js
+(function (angular) {
+    "use strict";
 
+    function Controller(rpBdgtBreadcrumbs) {
+        var events,
+            vm = this;
+
+        vm.$onInit = function () {
+           vm.model = rpBdgtBreadcrumbs;
+        };      
+
+        vm.$onDestroy = function () {
+           
+        };
+    }
+
+    var component = {
+        controller: [
+            'rpBdgtBreadcrumbsModel',
+            Controller
+        ],
+        templateUrl: "app/templates/breadcrumbs.html"
+    };
+
+    angular
+        .module("budgeting")
+        .component("rpBdgtBreadcrumbs", component);
+})(angular);
+
+//  Source: ui\_common\breadcrumbs\js\providers\breadcrumbs.js
+(function(angular) {
+    "use strict";
+
+    function Provider() {
+        var prov = this;
+
+        prov.links = {};
+        prov.breadcrumbs = [];
+
+        prov.setProduct = function(product) {
+            prov.product = product;
+            return prov;
+        };
+
+        prov.setHome = function(home) {
+            prov.home = home;
+            return prov;
+        };
+
+        prov.setLinks = function(links) {
+            prov.links = links;
+            return prov;
+        };
+
+        prov.setBreadcrumbs = function(breadcrumbs) {
+            prov.breadcrumbs = breadcrumbs;
+            return prov;
+        };
+
+        function provide($rootScope, $state, $location, $urlMatcherFactory, storage) {
+            var model = {},
+                ev = '$locationChangeSuccess',
+                dataKey = "bdgtBreadcrumbsLinks";
+
+            model.init = function() {
+                model.home = prov.home;
+                model.updateFromStorage();
+                model.product = prov.product;
+                $rootScope.$on(ev, model.setLinks);
+                return model;
+            };
+
+            model.storageAvailable = function() {
+                return storage.has(dataKey);
+            };
+
+            model.updateFromStorage = function() {
+                if (model.storageAvailable()) {
+                    var links = storage.get(dataKey);
+                    Object.keys(links).forEach(function(key) {
+                        angular.extend(prov.links[key], links[key]);
+                    });
+                }
+            };
+
+            model.setLinks = function(event, newUrl, oldUrl) {
+                newUrl = newUrl.split('#')[1];
+                oldUrl = oldUrl.split('#')[1];
+                //model.backUrl = oldUrl;
+                //model.currentUrl = newUrl;
+                model.isVisible = false;
+                for (var i = 0; i < prov.breadcrumbs.length; i++) {
+                    var item = prov.breadcrumbs[i],
+                        itemParams = item.params || {},
+                        urlMatcher = $urlMatcherFactory.compile(item.url, { params: itemParams }),
+                        params = urlMatcher.exec(newUrl);
+                    if (params) {
+                        if (!model.storageAvailable()) {
+                            (item.links || []).forEach(function(key) {
+                                var link = prov.links[key];
+                                if (link.hasOwnProperty('replace')) {
+                                    key = link.replace;
+                                }
+                                var breadcrumb = model.getBreadcrumbByName(key);
+                                if (breadcrumb) {
+                                    prov.links[key].href = $state.href(key, params);
+                                    prov.links[key].text = breadcrumb.text;
+                                }
+                            });
+                        }
+                        model.isVisible = true;
+                        model.updateLink(item.name, params, item.text);
+                        model.hasBreadCrumb = item.backLink === undefined;
+                        if (model.hasBreadCrumb) {
+                            model.links = [];
+                            (item.links || []).forEach(function(linkKey) {
+                                var link = prov.links[linkKey];
+                                if (link.hasOwnProperty('replace')) {
+                                    model.links.push(prov.links[link.replace]);
+                                } else {
+                                    model.links.push(link);
+                                }
+                            });
+                            model.setActivePage(item.text);
+                        } else {
+                            var backLink = prov.links[item.backLink];
+                            for (var j = 0; item.links && j < item.links.length; j++) {
+                                var link = prov.links[item.links[j]];
+                                if (link.hasOwnProperty('href') && link.href.replace('#', '').toLowerCase() === oldUrl) {
+                                    item.backLink = item.links[j];
+                                    if (link.hasOwnProperty('replace')) {
+                                        backLink = prov.links[link.replace];
+                                    } else {
+                                        backLink = link;
+                                    }
+                                    break;
+                                }
+                            }
+                            model.backLink = backLink;
+                        }
+                        break;
+                    }
+                }
+
+            };
+
+            model.setActivePage = function(text) {
+                model.activePage = {
+                    text: text
+                };
+                return model;
+            };
+
+            model.goBack = function() {
+                var url = "/";
+                if (model.backLink) {
+                    url = model.backLink.href.replace('#', '');
+                } else if (model.links) {
+                    url = model.links.last().href.replace('#', '');
+                } else {
+                    logc("rpBdgtBreadcrumbsModel: Cannot go back");
+                }
+                $location.path(url);
+                return model;
+            };
+
+            model.getBreadcrumbByName = function(routeName) {
+                var item;
+                for (var i = 0; i < prov.breadcrumbs.length; i++) {
+                    if (prov.breadcrumbs[i].name === routeName) {
+                        item = prov.breadcrumbs[i];
+                        break;
+                    }
+                }
+                return item;
+            };
+
+            model.updateBackLink = function(ofRouteName, toRouteName) {
+                var breadcrumb = model.getBreadcrumbByName(ofRouteName);
+                if (breadcrumb && breadcrumb.backLink) {
+                    breadcrumb.backLink = prov.links[toRouteName];
+                }
+                return model;
+            };
+
+            model.updateLink = function(routeName, params, text) {
+                var link = prov.links[routeName];
+                if (link) {
+                    link.href = $state.href(routeName, params);
+                    link.text = text || link.text;
+                    storage.set("bdgtBreadcrumbsLinks", prov.links);
+                } else {
+                    logc("rpBdgtBreadcrumbsModel: Invalid link route name: " + routeName);
+                }
+                return model;
+            };
+
+            model.updateLinkText = function(text) {
+                var link = prov.links[$state.current.name];
+                if (link) {
+                    link.text = text || link.text;
+                    model.setActivePage(link.text);
+                    storage.set("bdgtBreadcrumbsLinks", prov.links);
+                } else {
+                    logc("rpBdgtBreadcrumbsModel: Invalid link route name: " + $state.current.name);
+                }
+                return model;
+            };
+
+            return model.init();
+        }
+
+        prov.$get = [
+            '$rootScope',
+            '$state',
+            '$location',
+            '$urlMatcherFactory',
+            'rpSessionStorage',
+            provide
+        ];
+    }
+
+    angular
+        .module("budgeting")
+        .provider("rpBdgtBreadcrumbsModel", [Provider]);
+})(angular);

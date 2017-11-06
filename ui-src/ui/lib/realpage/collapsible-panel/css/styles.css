@@ -1,0 +1,79 @@
+.rp-collapsible-panel-toggle:before, .rp-collapsible-panel-toggle.collapsed:before {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'RealPage-Icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.rp-collapsible-panel-toggle.collapsed:before {
+  content: "\e999"; }
+
+.rp-collapsible-panel-toggle:before {
+  content: "\e99c"; }
+
+.rp-collapsible-panel.collapse-panel {
+  height: 0;
+  overflow: hidden; }
+
+.rp-collapsible-panel-toggle {
+  clear: both;
+  height: 50px;
+  cursor: pointer;
+  background: #0076cc; }
+  .rp-collapsible-panel-toggle:before {
+    width: 50px;
+    height: 50px;
+    float: right;
+    display: block;
+    font-size: 14px;
+    line-height: 50px;
+    text-align: center;
+    color: #fff; }
+  .rp-collapsible-panel-toggle.collapsed {
+    background: #dae2e5; }
+    .rp-collapsible-panel-toggle.collapsed:before {
+      width: 50px;
+      height: 50px;
+      float: right;
+      display: block;
+      font-size: 14px;
+      line-height: 50px;
+      text-align: center;
+      color: #303436; }
+  .rp-collapsible-panel-toggle-text {
+    color: #303436;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 22px;
+    letter-spacing: 0.005em;
+    color: #fff;
+    display: block;
+    line-height: 50px;
+    padding-left: 24px; }
+    .collapsed > .rp-collapsible-panel-toggle-text {
+      color: #303436; }
+  .rp-collapsible-panel-toggle-icon {
+    float: left;
+    width: 75px;
+    height: 50px;
+    font-size: 0;
+    line-height: 0;
+    text-align: center; }
+    .rp-collapsible-panel-toggle-icon.rp-svg-icon {
+      padding-top: 5px; }
+    .rp-collapsible-panel-toggle-icon svg {
+      fill: white;
+      width: auto;
+      height: 40px;
+      display: inline-block;
+      vertical-align: middle; }
+      .collapsed .rp-collapsible-panel-toggle-icon svg {
+        fill: #303436; }
+  .rp-collapsible-panel-toggle-icon + .rp-collapsible-panel-toggle-text {
+    padding-left: 0; }

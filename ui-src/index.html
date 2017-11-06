@@ -15,20 +15,28 @@
 
 <body ng-controller="AppCtrl as app">
 
-<rp-global-header>
-</rp-global-header>
-<!--<rp-primary-nav></rp-primary-nav>-->
-<div class="app">
-    <div class="app-header">
-    </div>
-    <div ui-view class="app-content white">
-    </div>
-    <div class="app-footer">
-    </div>
-</div>
 
-<script type="text/javascript" src="ui/startup/js/scripts.min.js?_={{appVer}}"></script>
+    <rp-global-header>
+    </rp-global-header>
 
+    <rp-global-nav>
+    </rp-global-nav>
+    <!--<rp-primary-nav></rp-primary-nav>-->
+    <div class="app">
+        <div class="app-header">
+        </div>
+        <div class="app-subheader">
+            <div class="white lt box-shadow clearfix whiteBar">
+                <rp-bdgt-breadcrumbs></rp-bdgt-breadcrumbs>
+            </div>
+        </div>
+        <div ui-view class="app-content white">
+        </div>
+        <div class="app-footer">
+        </div>
+    </div>
+
+    <script type="text/javascript" src="ui/startup/js/scripts.min.js?_={{appVer}}"></script>
 </body>
 
 </html>

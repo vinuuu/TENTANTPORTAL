@@ -1,0 +1,26 @@
+.rp-side-menu {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  border: 1px solid #ebf0f2;
+  box-shadow: 1px 1px 0 0 rgba(163, 175, 181, 0.5); }
+  .rp-side-menu li {
+    list-style: none; }
+  .rp-side-menu-item {
+    border-bottom: solid 1px #f7f8f9; }
+    .rp-side-menu-item:last-child {
+      border-bottom: none; }
+    .rp-side-menu-item-text {
+      color: #495e69;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: normal;
+      letter-spacing: 0.005em;
+      height: 54px;
+      display: block;
+      cursor: pointer;
+      line-height: 54px;
+      padding-left: 30px; }
+      .rp-side-menu-item-text.active {
+        padding-left: 26px;
+        border-left: solid 4px #0076cc; }

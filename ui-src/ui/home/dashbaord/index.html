@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="page-header">
+        <h1 class="text-center">Overview</h1>
+        <hr>
+    </div>
+    <div rp-accordion="tenant-accordion">
+        <div rp-accordion-panel class="rp-accordion-panel theme-1" ng-class="{'expand': $index === 0}" ng-repeat="item in page.model.list.tenant">
+            <h3 class="rp-accordion-panel-title theme-1">
+                <span class="rp-accordion-panel-title-text theme-1">
+                        {{item.name}}
+                    </span>
+            </h3>
+            <div class="rp-accordion-panel-content sample-accordion-content">
+                <div rp-accordion="lease-accordion">
+                    <div rp-accordion-panel class="rp-accordion-panel theme-1" ng-class="{'expand': $index === 0}" ng-repeat="inneritem in item.lease">
+                        <div class="p-l-2 rp-accordion-panel-title inner-accordion theme-1">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span>Lease ID </span>
+                                </div>
+                                <div class="col-md-2">
+                                    <span>Lease Term </span>
+                                </div>
+                                <div class="col-md-2">
+                                    <span>Property Name </span>
+                                </div>
+                                <div class="col-md-2">
+                                    <span>Unit</span>
+                                </div>
+                                <div class="col-md-2">
+                                    <span>Space Size</span>
+                                </div>
+                            </div>
+                            <div class="row data">
+                                <div class="col-md-2 font-bold">
+                                    <span>{{inneritem.id}}</span>
+                                </div>
+                                <div class="col-md-2 font-bold">
+                                    <span>{{inneritem.termFrom}}</span>
+                                </div>
+                                <div class="col-md-2 font-bold">
+                                    <span>{{inneritem.propertyName}}</span>
+                                </div>
+                                <div class="col-md-2 font-bold">
+                                    <span>{{inneritem.unit}}</span>
+                                </div>
+                                <div class="col-md-2 font-bold">
+                                    <span>{{inneritem.spaceSize}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rp-accordion-panel-content lease-accordion-content">
+                            <div class="row m-t-1 p-l-3">
+                                <div class="col-md-5 m-l-1">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <label class="font-bold">Details</label>
+                                            <hr>
+                                            <form class="form-horizontal">
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-6">Previous Statement</label>
+                                                    <div class="col-sm-6">
+                                                        {{inneritem.details.previousStatement}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-6">Previous Balance</label>
+                                                    <div class="col-sm-6">
+                                                        {{inneritem.details.previousBalance}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-6">Payments/Credits</label>
+                                                    <div class="col-sm-6">
+                                                        {{inneritem.details.credits}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-6">{{inneritem.details.billmonth}}</label>
+                                                    <div class="col-sm-6">
+                                                        {{inneritem.details.billmonth}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <!-- <a ng-click="page.viewStatment(inneritem.details.statementID)" class="control-label col-sm-6">View Statement</label>-->
+                                                    <button ng-click="page.viewStatment(inneritem.details.statementID)" class="col-sm-6 btn btn-link">View Statement</button>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-6">Current Balance</label>
+                                                    <div class="col-sm-6">
+                                                        {{inneritem.details.totalAmount}}
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 m-r-1" style="height:15px;">
+                                    <div class="panel panel-default">
+                                        <label class="font-bold">Next Payment Due</label>
+                                        <hr>
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-6"> {{inneritem.details.nextPaymentDue}}</label>
+                                                <div class="col-sm-6">
+                                                    <button class="btn btn-primary">Pay Now</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
