@@ -19874,7 +19874,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     function config(prov) {
         var navData = [{
             labelText: 'Overview',
-            labelLink: '/ui/lrc/',
+            labelLink: '/#/dashbaord/',
             iconClassName: 'rp-icon-home'
         }, {
             labelText: 'Account & Payments',
