@@ -8,7 +8,7 @@
             iconClassName: 'rp-icon-home'
         }, {
             labelText: 'Account & Payments',
-            labelLink: '/ui/coming-soon/',
+            labelLink: '/#/accounts/',
             iconClassName: 'rp-icon-card'
         }, {
             labelText: 'Invoices',

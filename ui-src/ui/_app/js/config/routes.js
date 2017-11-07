@@ -27,6 +27,15 @@
                 ]
             }]
         };
+        routes["home.account-payments"] = {
+            url: "/accounts",
+            controller: "accountsCtrl as page",
+            lazyLoad: [{
+                files: [
+                    "uam.home.account-payments"
+                ]
+            }]
+        };
         routes["home.floorplan-unit"] = {
             url: "/floorplan-unit",
             controller: "FloorPlanUnitCtrl as floorPlanUnit",

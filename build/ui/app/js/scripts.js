@@ -19687,6 +19687,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
         modules = {
             "home.base": ["css", "js"],
             "home.dashbaord": ["css", "js"],
+            "home.account-payments": ["css", "js"],            
             "home.common-area": ["css", "js"],
             "home.activity": ["css", "js"],
             "home.floorplan-unit.bundle": ["css", "js"],
@@ -19807,6 +19808,15 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
                 ]
             }]
         };
+        routes["home.account-payments"] = {
+            url: "/accounts",
+            controller: "accountsCtrl as page",
+            lazyLoad: [{
+                files: [
+                    "uam.home.account-payments"
+                ]
+            }]
+        };
         routes["home.floorplan-unit"] = {
             url: "/floorplan-unit",
             controller: "FloorPlanUnitCtrl as floorPlanUnit",
@@ -19878,7 +19888,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             iconClassName: 'rp-icon-home'
         }, {
             labelText: 'Account & Payments',
-            labelLink: '/ui/coming-soon/',
+            labelLink: '/#/accounts/',
             iconClassName: 'rp-icon-card'
         }, {
             labelText: 'Invoices',
