@@ -14,19 +14,22 @@
             </div>
             <div class="col-md-6">
                 <input type="button" value="Pay Now" class="btncls">
-                <div>Comming soon</div>
+                <!-- {{page.model.translateNames('lbl_404_statusCode')}} -->
+                <div>Comming soon </div>
             </div>
         </div>
     </div>
-    <br>
+
     <div class="row boder-bottom">
         <div class="col-md-8">Details</div>
         <div class="col-md-4">
-            <select>
+            <!-- <select>
                 <option>Lease ID :12345 </option>
                 <option>Lease ID :12346 </option>
                 <option>Lease ID :12347 </option>
-            </select>
+            </select> -->
+            <rp-form-select-menu config="page.formConfig.leaseData" rp-model="page.model.accountHistory">
+            </rp-form-select-menu>
         </div>
     </div>
     <br>
@@ -105,11 +108,12 @@
 
         <div class="col-md-8">Account History</div>
         <div class="col-md-4">
-            <select>
-        <option>Current Month</option>
-        <option>last 3 Month</option>
-        <option>last 6 Month</option>        
-          </select>
+
+
+            <rp-form-select-menu config="page.formConfig.accountHistory" rp-model="page.model.accountHistory">
+            </rp-form-select-menu>
+
+
         </div>
     </div>
     <table class="table">
@@ -135,7 +139,6 @@
                 <td>Paid</td>
                 <td>1/26/2016</td>
                 <td>.....</td>
-
             </tr>
         </tbody>
     </table>

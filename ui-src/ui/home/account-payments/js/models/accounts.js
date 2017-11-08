@@ -5,10 +5,14 @@
 
     function accountsMdl(accountsSvc) {
         var model = {},
+            //translate = langTranslate('error').translate,
             response = {};
         model.init = function() {
             return model;
         };
+        // model.translateNames = function(key) {
+        //     return translate(key);
+        // };
         model.mockData = function() {
             response.custData = {
                 tenantName: 'Kim Resident',
@@ -21,6 +25,7 @@
                 currentBalance: '$27,885.14',
                 dueDate: '2/1/2016'
             };
+            model.accountHistory = "01";
         };
 
         model.bindtenantdata = function(response) {
@@ -28,11 +33,11 @@
         };
 
         model.getCustData = function() {
-            accountsSvc.getcustData().then(function() {
+            // accountsSvc.getcustData().then(function() {
 
-            }).catch(function() {
-                model.mockData();
-            });
+            // }).catch(function() {
+            model.mockData();
+            // });
         };
 
 
@@ -43,5 +48,5 @@
     angular
         .module("uam")
         .factory("accountsMdl", [accountsMdl]);
-    factory.$inject = ['accountsSvc'];
+    accountsMdl.$inject = ['accountsSvc'];
 })(angular);

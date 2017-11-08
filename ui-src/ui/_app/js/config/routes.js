@@ -32,7 +32,8 @@
             controller: "accountsCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.account-payments"
+                    "uam.home.account-payments",
+                    "lib.realpage.form-select-menu-v1"
                 ]
             }]
         };

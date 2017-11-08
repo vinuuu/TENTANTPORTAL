@@ -19687,7 +19687,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
         modules = {
             "home.base": ["css", "js"],
             "home.dashbaord": ["css", "js"],
-            "home.account-payments": ["css", "js"],            
+            "home.account-payments": ["css", "js", "lang"],
             "home.common-area": ["css", "js"],
             "home.activity": ["css", "js"],
             "home.floorplan-unit.bundle": ["css", "js"],
@@ -19813,7 +19813,8 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             controller: "accountsCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.account-payments"
+                    "uam.home.account-payments",
+                    "lib.realpage.form-select-menu-v1"
                 ]
             }]
         };
