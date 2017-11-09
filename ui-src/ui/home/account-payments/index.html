@@ -116,7 +116,26 @@
 
         </div>
     </div>
-    <table class="table">
+
+
+
+
+    <div class="grid-controls">
+
+        <div class="grid-control-item">
+            <rp-toggle model="page.grid.filtersModel.state.active" options="{
+                defaultText: 'Filter',
+                activeIconClass: 'rp-icon-filter',
+                defaultIconClass: 'rp-icon-filter active'
+            }">
+            </rp-toggle>
+        </div>
+    </div>
+
+    <rp-grid model="page.grid">
+    </rp-grid>
+
+    <!-- <table class="table">
         <thead>
             <tr>
                 <th>Date</th>
@@ -141,21 +160,13 @@
                 <td>.....</td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
+
+
+
 
 </div>
 
 <style>
-    .boder-bottom {
-        border-bottom: 1px solid #b7adad;
-    }
-    
-    .currentbal {
-        margin-top: 2%;
-    }
-    
-    .btncls {
-        width: 140px;
-        border-radius: 12px;
-    }
+
 </style>

@@ -1,7 +1,7 @@
 (function(angular) {
     "use strict";
 
-    function factory(baseFormConfig, menuConfig) {
+    function Factory(baseFormConfig, menuConfig) {
         var model = baseFormConfig();
 
         model.accountHistory = menuConfig({
@@ -33,6 +33,6 @@
         .factory("sampleSelectMenuFormConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig",
-            factory
+            Factory
         ]);
 })(angular);

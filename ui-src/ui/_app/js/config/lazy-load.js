@@ -11,6 +11,8 @@
             "home.base": ["css", "js"],
             "home.dashbaord": ["css", "js"],
             "home.account-payments": ["css", "js", "lang"],
+            "home.view-statements": ["css", "js"],
+            "home.viewing-paying": ["css", "js"],
             "home.common-area": ["css", "js"],
             "home.activity": ["css", "js"],
             "home.floorplan-unit.bundle": ["css", "js"],

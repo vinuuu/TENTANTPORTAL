@@ -19688,6 +19688,8 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             "home.base": ["css", "js"],
             "home.dashbaord": ["css", "js"],
             "home.account-payments": ["css", "js", "lang"],
+            "home.view-statements": ["css", "js"],
+            "home.viewing-paying": ["css", "js"],
             "home.common-area": ["css", "js"],
             "home.activity": ["css", "js"],
             "home.floorplan-unit.bundle": ["css", "js"],
@@ -19814,6 +19816,38 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             lazyLoad: [{
                 files: [
                     "uam.home.account-payments",
+                    "lib.realpage.form-select-menu-v1",
+                    "lib.realpage.common",
+                    "lib.realpage.float-scroll",
+                    "lib.realpage.form-common",
+                    "lib.realpage.datetimepicker-v1",
+                    "lib.realpage.form-select-menu-v1",
+                    "lib.realpage.scrolling-tabs-menu",
+                    "lib.realpage.pagination",
+                    "lib.realpage.busy-indicator",
+                    "lib.realpage.grid",
+                    "lib.realpage.grid-controls",
+                    "lib.realpage.grid-pagination"
+                ]
+            }]
+        };
+        routes["home.view-statements"] = {
+            url: "/statements",
+            controller: "statementsCtrl as page",
+            lazyLoad: [{
+                files: [
+                    "uam.home.view-statements",
+                    "lib.realpage.form-select-menu-v1"
+
+                ]
+            }]
+        };
+        routes["home.viewing-paying"] = {
+            url: "/viewpay",
+            controller: "viewpayCtrl as page",
+            lazyLoad: [{
+                files: [
+                    "uam.home.viewing-paying",
                     "lib.realpage.form-select-menu-v1"
                 ]
             }]

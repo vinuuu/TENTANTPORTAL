@@ -3,7 +3,7 @@
 (function(angular, undefined) {
     "use strict";
 
-    function accountsMdl(accountsSvc) {
+    function AccountsMdl(accountsSvc) {
         var model = {},
             //translate = langTranslate('error').translate,
             response = {};
@@ -47,6 +47,6 @@
 
     angular
         .module("uam")
-        .factory("accountsMdl", [accountsMdl]);
-    accountsMdl.$inject = ['accountsSvc'];
+        .factory("accountsMdl", [AccountsMdl]);
+    AccountsMdl.$inject = ['accountsSvc'];
 })(angular);

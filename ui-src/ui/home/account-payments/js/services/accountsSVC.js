@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(http) {
+    function Factory(http) {
         return {
             getcustData: function() {
                 return http.get('api/controller/getcustdata');
@@ -10,9 +10,9 @@
     }
     angular
         .module('uam')
-        .factory('accountsSvc', factory);
+        .factory('accountsSvc', Factory);
 
-    factory.$inject = ['$http'];
+    Factory.$inject = ['$http'];
 
 
 })();
