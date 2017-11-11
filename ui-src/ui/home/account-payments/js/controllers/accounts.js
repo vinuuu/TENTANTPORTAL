@@ -3,14 +3,18 @@
 (function(angular, undefined) {
     "use strict";
 
-    function AccountsCtrl($scope, $http, notifSvc, accountsMdl, formConfig, gridConfig, gridModel, gridTransformSvc) {
+    function AccountsCtrl($scope, $http, notifSvc, accountsMdl, formConfig, gridConfig, gridModel, gridTransformSvc, accountsContent) {
         var vm = this,
             model,
+            content = accountsContent,
             grid = gridModel(),
             gridTransform = gridTransformSvc();
-
+        // vm.translateNames = function(key) {
+        //     return translate(key);
+        // // };
         vm.init = function() {
             vm.model = model = accountsMdl;
+            vm.content = content;
             vm.formConfig = formConfig;
             vm.destWatch = $scope.$on("$destroy", vm.destroy);
             model.getCustData();
@@ -640,7 +644,7 @@
         .controller("accountsCtrl", ["$scope", '$http', 'notificationService', 'accountsMdl',
             'sampleSelectMenuFormConfig', "sampleGrid1Config",
             "rpGridModel",
-            "rpGridTransform",
+            "rpGridTransform", "accountsContent",
             AccountsCtrl
         ]);
 })(angular);

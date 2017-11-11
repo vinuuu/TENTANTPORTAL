@@ -19689,7 +19689,8 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             "home.dashbaord": ["css", "js"],
             "home.account-payments": ["css", "js", "lang"],
             "home.view-statements": ["css", "js"],
-            "home.viewing-paying": ["css", "js"],
+            "home.viewing-paying": ["css", "js", "lang"],
+            "home.login": ["css", "js"],
             "home.common-area": ["css", "js"],
             "home.activity": ["css", "js"],
             "home.floorplan-unit.bundle": ["css", "js"],
@@ -19849,6 +19850,15 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
                 files: [
                     "uam.home.viewing-paying",
                     "lib.realpage.form-select-menu-v1"
+                ]
+            }]
+        };
+        routes["home.login"] = {
+            url: "/login",
+            controller: "loginCtrl as page",
+            lazyLoad: [{
+                files: [
+                    "uam.home.login"
                 ]
             }]
         };

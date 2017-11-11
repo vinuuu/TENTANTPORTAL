@@ -69,6 +69,15 @@
                 ]
             }]
         };
+        routes["home.login"] = {
+            url: "/login",
+            controller: "loginCtrl as page",
+            lazyLoad: [{
+                files: [
+                    "uam.home.login"
+                ]
+            }]
+        };
         routes["home.floorplan-unit"] = {
             url: "/floorplan-unit",
             controller: "FloorPlanUnitCtrl as floorPlanUnit",

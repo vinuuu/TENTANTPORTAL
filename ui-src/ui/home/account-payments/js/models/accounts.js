@@ -5,7 +5,7 @@
 
     function AccountsMdl(accountsSvc) {
         var model = {},
-            //translate = langTranslate('error').translate,
+            // translate = langTranslate('error').translate,
             response = {};
         model.init = function() {
             return model;
