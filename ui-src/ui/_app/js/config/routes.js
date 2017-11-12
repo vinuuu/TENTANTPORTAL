@@ -65,7 +65,8 @@
             lazyLoad: [{
                 files: [
                     "uam.home.viewing-paying",
-                    "lib.realpage.form-select-menu-v1"
+                    "lib.realpage.form-select-menu-v1",
+                    "lib.realpage.form-input-text-v1"
                 ]
             }]
         };

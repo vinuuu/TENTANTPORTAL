@@ -2,3 +2,4 @@
 {{{ include("models/viewPay.js") }}}
 {{{ include("models/gridModel.js") }}}
 {{{ include("models/selectConfig.js") }}}
+{{{ include("templates/templates.inc.js") }}}

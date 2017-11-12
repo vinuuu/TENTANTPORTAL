@@ -139,7 +139,7 @@
             return [{
                     key: "Invoice",
                     type: "custom",
-                    templateUrl: "osnext/grid/templates/grid-edit-title.html"
+                    templateUrl: "home/viewing-paying/templates/textbox.html"
                 },
                 {
                     key: "Date",
@@ -259,7 +259,7 @@
 (function(angular) {
     "use strict";
 
-    function Factory(baseFormConfig, menuConfig) {
+    function Factory(baseFormConfig, menuConfig, inputConfig) {
         var model = baseFormConfig();
 
         model.accountHistory = menuConfig({
@@ -271,7 +271,10 @@
             nameKey: "accountHisrotyName",
             valueKey: "accountHisrotyNameID"
         });
-
+        model.lease = inputConfig({
+            id: "Invoice",
+            fieldName: "Invoice"
+        });
         model.setOptions = function(fieldName, fieldOptions) {
             if (model[fieldName]) {
                 model[fieldName].setOptions(fieldOptions);
@@ -288,8 +291,16 @@
         .module("uam")
         .factory("viewpaySelectMenuFormConfig", [
             "baseFormConfig",
-            "rpFormSelectMenuConfig",
+            "rpFormSelectMenuConfig", "rpFormInputTextConfig",
             Factory
         ]);
 })(angular);
+
+//  Source: ui\home\viewing-paying\js\templates\templates.inc.js
+angular.module('ui').run(['$templateCache', function ($templateCache) {
+$templateCache.put("home/viewing-paying/templates/checkbox.html",
+"");
+$templateCache.put("home/viewing-paying/templates/textbox.html",
+"<div class=\"grid-edit-title\" ng-controller=\"viewpayCtrl as editTitle\"><rp-form-input-text config=\"ctrl.model.formConfig.lease\" rp-model=\"record[config.key]\"></rp-form-input-text></div>");
+}]);
 

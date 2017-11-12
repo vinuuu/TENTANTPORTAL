@@ -1,20 +1,21 @@
 //  Home Controller
 
-(function(angular, undefined) {
+(function() {
     "use strict";
 
     function AccountsMdl(accountsSvc) {
-        var model = {},
-            // translate = langTranslate('error').translate,
-            response = {};
+        var model = {};
+        // translate = langTranslate('error').translate,
+        model.response = {};
         model.init = function() {
+            model.mockData();
             return model;
         };
         // model.translateNames = function(key) {
         //     return translate(key);
         // };
         model.mockData = function() {
-            response.custData = {
+            model.custData = {
                 tenantName: 'Kim Resident',
                 leaseTerm: '1/1/2016-12/31/2018',
                 PrevoiusStatement: 'XXXXXXXXXXXXXXXX',
@@ -47,6 +48,6 @@
 
     angular
         .module("uam")
-        .factory("accountsMdl", [AccountsMdl]);
+        .factory("accountsMdl", AccountsMdl);
     AccountsMdl.$inject = ['accountsSvc'];
 })(angular);

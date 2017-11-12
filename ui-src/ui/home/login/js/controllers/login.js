@@ -4,12 +4,21 @@
 
     function controller(loginMdl) {
         /* jshint validthis:true */
-        var vm = this;
+        var vm = this,
+            model;
+        vm.init = function() {
+            vm.model = model = loginMdl;
+            model.showHideFlag = "login";
+            model.rdnEmailCode = true;
+            model.rdnmobCode = false;
+        };
 
+        vm.init();
     }
 
     angular
         .module('uam')
         .controller('loginCtrl', controller);
     controller.$inject = ['loginMdl'];
+
 })();

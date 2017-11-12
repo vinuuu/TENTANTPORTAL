@@ -9,7 +9,7 @@
             return [{
                     key: "Invoice",
                     type: "custom",
-                    templateUrl: "osnext/grid/templates/grid-edit-title.html"
+                    templateUrl: "home/viewing-paying/templates/textbox.html"
                 },
                 {
                     key: "Date",

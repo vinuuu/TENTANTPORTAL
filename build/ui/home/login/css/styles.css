@@ -12,13 +12,21 @@
 #login .bordercls {
   border: 1px solid black; }
 
-#login .statictxtcls, #login .innerbody {
+#login .maindiv-center {
+  float: none;
+  margin: 0 auto; }
+
+#login .statictxtcls, #login .innerbody, #login .innerbody-login {
   margin-left: 17%;
   margin-right: 17%; }
 
 #login .innerbody {
   border: 1px solid #dcd0d0;
   background-color: #f0f0f0;
+  padding: 3%;
+  line-height: 40px; }
+
+#login .innerbody-login {
   padding: 3%;
   line-height: 40px; }
 

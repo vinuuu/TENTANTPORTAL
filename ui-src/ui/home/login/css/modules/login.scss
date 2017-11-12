@@ -1,0 +1,91 @@
+$active:blue;
+$inactive:#bdb8b8;
+#login {
+    .loginlogo {
+        color: #2ec4f1;
+        font-size: 23px;
+        font-family: cursive;
+    }
+    .mainheader {
+        background-color: hsl(0, 0%, 94%);
+        line-height: 39px;
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+    .bordercls {
+        border: 1px solid black;
+    }
+    .maindiv-center {
+        float: none;
+        margin: 0 auto;
+    }
+    .statictxtcls {
+        margin-left: 17%;
+        margin-right: 17%;
+    }
+    .innerbody {
+        @extend .statictxtcls;
+        border: 1px solid #dcd0d0;
+        background-color: #f0f0f0;
+        padding: 3%;
+        line-height: 40px;
+    }
+    .innerbody-login {
+        @extend .statictxtcls;
+        padding: 3%;
+        line-height: 40px;
+    }
+    .btnContinue {
+        width: 211px;
+        border-radius: 18px;
+    }
+    .linkcls {
+        color: blue;
+    }
+    .footercls {
+        margin-top: 24%;
+        line-height: 39px;
+    }
+    .logoplaceholder {
+        background-color: #e4dede;
+        padding: 2% 9% 2% 9%;
+    }
+    .circleshape {
+        padding: 7%;
+        width: 44%;
+    }
+    .activecolor {
+        color: $active;
+    }
+    .inactivecolor {
+        color: $inactive;
+    }
+    .activecls {
+        @extend .activecolor;
+        border: 1px solid $active;
+    }
+    .inactivecls {
+        @extend .inactivecolor;
+        border: 1px solid $inactive;
+    }
+    .lh {
+        line-height: 24px;
+    }
+    .red-font {
+        color: red;
+    }
+    .pwd {
+        @extend .red-font;
+        font-size: 11px;
+    }
+    .green-font {
+        color: green;
+    }
+    .dangertext {
+        @extend .red-font;
+        font-size: 13px;
+    }
+    input[type=password] {
+        font-size: 1rem !important;
+    }
+}
