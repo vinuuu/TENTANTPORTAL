@@ -88,4 +88,14 @@ $inactive:#bdb8b8;
     input[type=password] {
         font-size: 1rem !important;
     }
+    .required::after {
+        content: "*";
+        color: red;
+        font-size: 14px;
+        padding-left: 3px;
+    }
+    .error {
+        color: red;
+        font-size: 11px;
+    }
 }

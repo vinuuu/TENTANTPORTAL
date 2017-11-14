@@ -1,11 +1,15 @@
-.boder-bottom {
+#accounts .boder-bottom {
   border-bottom: 1px solid #b7adad; }
 
-.currentbal {
+#accounts .currentbal {
   margin-top: 2%; }
 
-.btncls {
+#accounts .btncls {
   width: 140px;
-  border-radius: 12px; }
+  border-radius: 18px; }
+
+#accounts td,
+#accounts th {
+  width: 160px; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -39,8 +39,7 @@
             return [
                 [{
                         key: "Invoice",
-                        text: "Invoice",
-                        isSortable: true
+                        text: "Invoice"
                     },
                     {
                         key: "Date",

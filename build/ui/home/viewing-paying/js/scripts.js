@@ -27,8 +27,6 @@
 (function() {
     'use strict';
 
-
-
     function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate) {
         var model = {},
             grid = gridModel(),
@@ -67,7 +65,6 @@
 
             formConfig.setOptions("accountHistory", options);
             formConfig.setOptions("secondSelect", options1);
-
 
             model.grid = grid;
             gridTransform.watch(grid);
@@ -169,8 +166,7 @@
             return [
                 [{
                         key: "Invoice",
-                        text: "Invoice",
-                        isSortable: true
+                        text: "Invoice"
                     },
                     {
                         key: "Date",

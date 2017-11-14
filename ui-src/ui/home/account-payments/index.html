@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id=accounts>
     <div class="page-header">
         <h1 class="text-center">{{page.content.pageHeading}}</h1>
         <hr>
@@ -13,21 +13,15 @@
                 <div>Due february 1,2016</div>
             </div>
             <div class="col-md-6">
-                <input type="button" value="Pay Now" class="btncls">
-                <div> {{page.content.pageComingSoon}} </div>
-                <!-- <div>Comming soon </div> -->
+                <input type="button" value="Pay Now" class="btn btn-primary btncls">
+                <div class="m-l-2"> {{page.content.pageComingSoon}} </div>
             </div>
         </div>
     </div>
 
     <div class="row boder-bottom">
-        <div class="col-md-8">Details</div>
-        <div class="col-md-4">
-            <!-- <select>
-                <option>Lease ID :12345 </option>
-                <option>Lease ID :12346 </option>
-                <option>Lease ID :12347 </option>
-            </select> -->
+        <div class="col-md-8 m-t-2">Details</div>
+        <div class="col-md-4 p-t-1 p-b-1">
             <rp-form-select-menu config="page.formConfig.leaseData" rp-model="page.model.accountHistory">
             </rp-form-select-menu>
         </div>
@@ -98,7 +92,7 @@
         <br>
         <div class="row">
             <div class="col-md-6">
-                <input type="button" value="Pay Now" class="pull-right btncls">
+                <input type="button" value="Pay Now" class="btn btn-primary  pull-right btncls">
             </div>
         </div>
 
@@ -134,34 +128,6 @@
 
     <rp-grid model="page.grid">
     </rp-grid>
-
-    <!-- <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Invoice</th>
-                <th>Lease ID</th>
-                <th>Unit ID</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Date paid</th>
-                <th>File</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1/25/2016</td>
-                <td>1234</td>
-                <td>123456</td>
-                <td>101</td>
-                <td>$27,889.12</td>
-                <td>Paid</td>
-                <td>1/26/2016</td>
-                <td>.....</td>
-            </tr>
-        </tbody>
-    </table> -->
-
 
 
 
