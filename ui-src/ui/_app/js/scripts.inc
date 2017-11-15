@@ -7,6 +7,7 @@
 // RealPage Common
 
 {{{ include("../../lib/realpage/common/js/scripts.js") }}}
+{{{ include(../../"_app/js/directives/_bundle.inc) }}}
 
 // RealPage Modules
 
