@@ -129,8 +129,8 @@
 
         RoutesProvider
             .setTemplateUrlPrefix("ui/")
-            .setRoutes(routes)
-            .setDefault("/dashbaord");
+            .setRoutes(routes);
+        //     .setDefault("/dashbaord");
     }
 
     angular

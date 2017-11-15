@@ -4,11 +4,11 @@
     function config(prov) {
         var navData = [{
             labelText: 'Overview',
-            labelLink: '/#/dashbaord/',
+            labelLink: '#/dashbaord',
             iconClassName: 'rp-icon-home'
         }, {
             labelText: 'Account & Payments',
-            labelLink: '/#/accounts/',
+            labelLink: '#/accounts',
             iconClassName: 'rp-icon-card'
         }, {
             labelText: 'Invoices',

@@ -69,6 +69,7 @@
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
+            grid.formConfig = formConfig;
             model.loadData();
             return model;
         };
@@ -135,13 +136,10 @@
         model.get = function() {
             return [{
                     key: "Invoice",
-                    type: "custom",
-                    templateUrl: "home/viewing-paying/templates/textbox.html"
+
                 },
                 {
-                    key: "Date",
-                    type: "select",
-                    idKey: "id"
+                    key: "Date"
                 },
                 {
                     key: "Lease ID"
@@ -153,7 +151,9 @@
                     key: "Amount"
                 },
                 {
-                    key: "Pay Amount"
+                    key: "Pay Amount",
+                    type: "custom",
+                    templateUrl: "home/viewing-paying/templates/textbox.html"
                 },
                 {
                     key: "Status"
@@ -297,6 +297,6 @@ angular.module('ui').run(['$templateCache', function ($templateCache) {
 $templateCache.put("home/viewing-paying/templates/checkbox.html",
 "");
 $templateCache.put("home/viewing-paying/templates/textbox.html",
-"<div class=\"grid-edit-title\" ng-controller=\"viewpayCtrl as editTitle\"><rp-form-input-text config=\"ctrl.model.formConfig.lease\" rp-model=\"record[config.key]\"></rp-form-input-text></div>");
+"<div class=\"grid-edit-title\"><rp-form-input-text config=\"model.formConfig.lease\" rp-model=\"record[config.key]\"></rp-form-input-text></div>");
 }]);
 

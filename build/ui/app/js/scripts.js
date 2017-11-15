@@ -19913,8 +19913,8 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 
         RoutesProvider
             .setTemplateUrlPrefix("ui/")
-            .setRoutes(routes)
-            .setDefault("/dashbaord");
+            .setRoutes(routes);
+        //     .setDefault("/dashbaord");
     }
 
     angular
@@ -19930,11 +19930,11 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     function config(prov) {
         var navData = [{
             labelText: 'Overview',
-            labelLink: '/#/dashbaord/',
+            labelLink: '#/dashbaord',
             iconClassName: 'rp-icon-home'
         }, {
             labelText: 'Account & Payments',
-            labelLink: '/#/accounts/',
+            labelLink: '#/accounts',
             iconClassName: 'rp-icon-card'
         }, {
             labelText: 'Invoices',

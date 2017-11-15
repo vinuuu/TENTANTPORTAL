@@ -43,6 +43,7 @@
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
+            grid.formConfig = formConfig;
             model.loadData();
             return model;
         };

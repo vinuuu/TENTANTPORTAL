@@ -30,7 +30,10 @@
                             <div class="col-md-12"> <input type="password" name="pwd" class="form-control" ng-model="page.model.pwd" required></div>
                         </div>
                         <div class="col-md-12">
-                            <input type="checkbox" class="checkbox">{{page.model.translateNames('Rememberme')}}
+                            <label class="md-check dark-bluebox">
+                                        <input type="checkbox" name="select-type" ng-model="page.model.form.checkall" />
+                                        <i class="primary"></i> {{page.model.translateNames('Rememberme')}}
+                             </label>
                         </div>
                         <div class="form-group text-center clearfix">
                             <input type="button" value="Login" ng-disabled="loginForm.$invalid" class="center-block m-t-1 btn btn-primary btnContinue">
@@ -82,14 +85,24 @@
 
                     <form name="verifyform" novalidate role="form">
                         <div class="form-group clearfix">
-                            <input type="radio" class="radio" ng-model="page.model.rdnEmailCode" ng-change="page.model.radiochange(page.model.rdnEmailCode);"> {{page.model.translateNames('email-me')}}
+                            <label class="md-check dark-bluebox">
+                                <input type="radio"  name="select-type" value="email" ng-model="page.model.rdnEmailCode"/>
+                                <i class="primary"></i> {{page.model.translateNames('email-me')}}
+                            </label>
+                            <!-- <input type="radio" class="radio" ng-model="page.model.rdnEmailCode" ng-change="page.model.radiochange(page.model.rdnEmailCode);"> {{page.model.translateNames('email-me')}} -->
                             <div class="col-md-12">
+
                                 <input type="text" name="emailCode" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-readonly="page.model.rdnEmailCode===true" class="form-control" ng-model="page.model.emailCode" placeholder="anjana@gmail.com">
                                 <span ng-show="verifyform.emailCode.$error.pattern" class="error">Please enter valid email</span>
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <input type="radio" class="radio" ng-model="page.model.rdnmobCode" ng-change="page.model.rdnEmailCode=page.model.rdnmobCode===true?'':page.model.rdnmobCode">{{page.model.translateNames('to-number')}}
+                            <label class="md-check dark-bluebox">
+                                    <input type="radio"  name="select-type" value="number" ng-model="page.model.rdnEmailCode" 
+                                    />
+                                        <i class="primary"></i> {{page.model.translateNames('to-number')}}
+                                    </label>
+                            <!-- <input type="radio" class="radio" ng-model="page.model.rdnmobCode" ng-change="page.model.rdnEmailCode=page.model.rdnmobCode===true?'':page.model.rdnmobCode">{{page.model.translateNames('to-number')}} -->
                             <div class="row">
                                 <div class="col-md-4"> <input type="text" ng-pattern="/[0-9]/" maxlength="3" name="mobcode1" ng-model="page.model.mobcode1" ng-readonly="page.model.rdnmobCode===true" class="form-control" placeholder="972"></div>
                                 <div class="col-md-4"> <input type="text" ng-pattern="/[0-9]/" name="mobcode2" maxlength="3" ng-model="page.model.mobcode2" ng-readonly="page.model.rdnmobCode===true" class="form-control" placeholder="123"></div>

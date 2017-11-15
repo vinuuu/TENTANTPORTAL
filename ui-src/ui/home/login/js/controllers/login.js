@@ -9,7 +9,7 @@
         vm.init = function() {
             vm.model = model = loginMdl;
             model.showHideFlag = "login";
-            model.rdnEmailCode = true;
+            model.rdnEmailCode = 'email';
             model.rdnmobCode = false;
         };
 

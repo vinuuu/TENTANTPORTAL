@@ -8,13 +8,10 @@
         model.get = function() {
             return [{
                     key: "Invoice",
-                    type: "custom",
-                    templateUrl: "home/viewing-paying/templates/textbox.html"
+
                 },
                 {
-                    key: "Date",
-                    type: "select",
-                    idKey: "id"
+                    key: "Date"
                 },
                 {
                     key: "Lease ID"
@@ -26,7 +23,9 @@
                     key: "Amount"
                 },
                 {
-                    key: "Pay Amount"
+                    key: "Pay Amount",
+                    type: "custom",
+                    templateUrl: "home/viewing-paying/templates/textbox.html"
                 },
                 {
                     key: "Status"
