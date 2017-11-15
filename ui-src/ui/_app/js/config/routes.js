@@ -72,10 +72,12 @@
         };
         routes["home.login"] = {
             url: "/login",
+            rerun: true,
             controller: "loginCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.login"
+                    "uam.home.login",
+                    "lib.realpage.form-input-radio"
                 ]
             }]
         };

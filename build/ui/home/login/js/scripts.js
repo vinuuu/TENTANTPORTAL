@@ -3,7 +3,7 @@
     'use strict';
 
 
-    function controller(loginMdl) {
+    function controller(loginMdl, loginFormConfig) {
         /* jshint validthis:true */
         var vm = this,
             model;
@@ -12,6 +12,26 @@
             model.showHideFlag = "login";
             model.rdnEmailCode = true;
             model.rdnmobCode = false;
+            vm.formConfig = loginFormConfig;
+
+            model.pizzas = [{
+                    id: "pizza1",
+                    name: "Cheese"
+                },
+
+                {
+                    id: "pizza2",
+                    name: "Pepperoni"
+                },
+
+                {
+                    id: "pizza3",
+                    name: "Sausage"
+                }
+            ];
+
+            loginFormConfig.setMethodsSrc(vm);
+            loginFormConfig.genRadio("pizza", model.pizzas);
         };
 
         vm.init();
@@ -20,7 +40,7 @@
     angular
         .module('uam')
         .controller('loginCtrl', controller);
-    controller.$inject = ['loginMdl'];
+    controller.$inject = ['loginMdl', 'loginFormConfig'];
 
 })();
 
@@ -71,4 +91,29 @@
     factory.$inject = ["appLangTranslate"];
 
 })();
+
+//  Source: ui\home\login\js\models\formconfig.js
+//  Demo Form Config
+
+(function(angular, undefined) {
+    "use strict";
+
+    function factory(baseFormConfig, radioConfig) {
+        var model = baseFormConfig();
+        //pettu
+        model.genRadio = function(name, list) {
+            list.forEach(function(item) {
+                model[item.id] = radioConfig({
+                    name: name
+                });
+            });
+        };
+
+        return model;
+    }
+
+    angular
+        .module("uam")
+        .factory("loginFormConfig", ["baseFormConfig", "rpFormInputRadioConfig", factory]);
+})(angular);
 

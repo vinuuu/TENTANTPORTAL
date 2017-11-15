@@ -8798,6 +8798,7 @@ return init(root);
 })(angular);
 
 
+
 // RealPage Modules
 
 //  Source: ui\lib\realpage\actions-menu\js\scripts.js
@@ -19856,10 +19857,12 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
         };
         routes["home.login"] = {
             url: "/login",
+            rerun: true,
             controller: "loginCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.login"
+                    "uam.home.login",
+                    "lib.realpage.form-input-radio"
                 ]
             }]
         };

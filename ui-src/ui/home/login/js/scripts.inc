@@ -1,2 +1,3 @@
 {{{ include("controllers/login.js") }}}
 {{{ include("models/login.js") }}}
+{{{ include("models/formconfig.js") }}}
