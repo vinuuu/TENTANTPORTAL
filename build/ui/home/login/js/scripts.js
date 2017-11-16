@@ -44,71 +44,11 @@
 
 })();
 
-
-
-
-
-
-
-
-(function() {
-    'use strict';
-    var directiveId = 'ngMatch';
-
-    function directive($parse) {
-
-        function link(scope, elem, attrs, ctrl) {
-            // if ngModel is not defined, we don't need to do anything
-            if (!ctrl) {
-                return;
-            }
-            if (!attrs[directiveId]) {
-                return;
-            }
-
-            var firstPassword = $parse(attrs[directiveId]);
-
-            var validator = function(value) {
-                var temp = firstPassword(scope),
-                    v = value === temp;
-                ctrl.$setValidity('match', v);
-                return value;
-            };
-
-            ctrl.$parsers.unshift(validator);
-            ctrl.$formatters.push(validator);
-            attrs.$observe(directiveId, function() {
-                validator(ctrl.$viewValue);
-            });
-
-
-
-        }
-
-
-        var directive = {
-            link: link,
-            restrict: 'A',
-            require: '?ngModel'
-        };
-        return directive;
-
-
-    }
-
-
-    angular
-        .module('uam').directive(directiveId, directive);
-
-    directive.$inject = ['$parse'];
-
-})();
-
 //  Source: ui\home\login\js\models\login.js
 (function() {
     'use strict';
 
-    function factory(langTranslate) {
+    function factory(langTranslate, loginSvc) {
         var model = {},
             translate = langTranslate('login').translate;
         model.strUserName = '';
@@ -120,6 +60,44 @@
             model.showHideFlag = val;
             model.pwdSuccess = false;
         };
+
+        //submit user name and pwd to api
+        model.submitLogin = function() {
+            var inputObj = {
+                "request": {
+                    "operation": {
+                        "authentication": {
+                            "login": {
+                                "userid": "srihari@realpage.com",
+                                "password": "sriharI$4"
+                            }
+                        },
+                        "content": {
+                            "function": {
+                                "getTPAPISession": {}
+                            }
+                        }
+                    }
+                }
+            };
+
+
+            loginSvc.getLoginDetails(inputObj).then(function(response) {
+
+
+            });
+
+
+        };
+
+
+
+
+
+
+
+
+
 
         model.checkUserName = function(val) {
             model.showHideFlag = val;
@@ -148,7 +126,7 @@
         .module('uam')
         .factory('loginMdl', factory);
 
-    factory.$inject = ["appLangTranslate"];
+    factory.$inject = ["appLangTranslate", "loginSvc"];
 
 })();
 
@@ -228,6 +206,29 @@
         .module('uam').directive(directiveId, directive);
 
     directive.$inject = ['$parse'];
+
+})();
+
+//  Source: ui\home\login\js\services\loginSvc.js
+(function() {
+    'use strict';
+
+
+
+    function factory($http) {
+        return {
+            getLoginDetails: function(obj) {
+                return $http.post('http://rpidevntw008.realpage.com/users/sarroju/RPGITSERVICES.accounting/tenant/apigw.phtml', obj);
+            }
+        };
+    }
+
+    angular
+        .module('uam')
+        .factory('loginSvc', factory);
+
+    factory.$inject = ['$http'];
+
 
 })();
 

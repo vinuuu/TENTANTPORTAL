@@ -5,13 +5,13 @@
 
 var RealPage = {};
 
-(function(RealPage) {
+(function (RealPage) {
     "use strict";
 
     var ENV = RealPage.ENV || {};
 
-    ENV.APPVER = "1bv01fd89";
-    ENV.COMPILETIME = "11/15/2017 08:01:40 pm";
+    ENV.APPVER = "1bv2d39it";
+    ENV.COMPILETIME = "11/16/2017 06:03:14 pm";
 
     RealPage.ENV = ENV;
 })(RealPage);
@@ -19,7 +19,7 @@ var RealPage = {};
 //  Source: _rp-core\_app\js\startup\js-extensions.js
 //  Extending Javascript
 
-(function(Function, String, Array, Date, window, undefined) {
+(function (Function, String, Array, Date, window, undefined) {
     function define(Obj, key, fn) {
         var prototype = Obj.prototype;
 
@@ -39,17 +39,17 @@ var RealPage = {};
 
     //  Function - Delay
 
-    define(Function, 'delay', function(delayTime) {
+    define(Function, 'delay', function (delayTime) {
         var _fn = this,
             args = Array.prototype.slice.call(arguments, 1);
-        return window.setTimeout(function() {
+        return window.setTimeout(function () {
             return _fn.apply(_fn, args);
         }, delayTime || 0.01);
     });
 
     //  Array - Find
 
-    define(Array, 'find', function(predicate) {
+    define(Array, 'find', function (predicate) {
         if (this === null) {
             throw new TypeError('Array.prototype.find called on null or undefined');
         }
@@ -76,13 +76,13 @@ var RealPage = {};
 
     //  Array - Empty
 
-    define(Array, 'empty', function() {
+    define(Array, 'empty', function () {
         return this.length === 0;
     });
 
     //  Array - Flush
 
-    define(Array, 'flush', function() {
+    define(Array, 'flush', function () {
         while (this.length > 0) {
             this.pop();
         }
@@ -91,19 +91,19 @@ var RealPage = {};
 
     //  Array - First
 
-    define(Array, 'first', function() {
+    define(Array, 'first', function () {
         return this[0];
     });
 
     //  Array - Last
 
-    define(Array, 'last', function() {
+    define(Array, 'last', function () {
         return this[this.length - 1];
     });
 
     //  Array - Remove
 
-    define(Array, 'remove', function(from, to) {
+    define(Array, 'remove', function (from, to) {
         if (from > this.length || to > this.length) {
             throw new Error('Array:remove - index out of range');
         }
@@ -115,7 +115,7 @@ var RealPage = {};
 
     //  Array - Walk
 
-    define(Array, 'walk', function(fn, scope) {
+    define(Array, 'walk', function (fn, scope) {
         if (this === null || this === undefined) {
             throw new TypeError('this is null or not defined');
         }
@@ -133,7 +133,7 @@ var RealPage = {};
 
     //  Array - Indexof
 
-    define(Array, 'indexOf', function(obj, start) {
+    define(Array, 'indexOf', function (obj, start) {
         for (var i = (start || 0), j = this.length; i < j; i++) {
             if (this[i] === obj) {
                 return i;
@@ -144,7 +144,7 @@ var RealPage = {};
 
     //  Array - Contains
 
-    define(Array, 'contains', function(obj) {
+    define(Array, 'contains', function (obj) {
         var i = this.length;
         while (i--) {
             if (this[i] === obj) {
@@ -156,7 +156,7 @@ var RealPage = {};
 
     //  Array - Unique
 
-    define(Array, 'unique', function(obj) {
+    define(Array, 'unique', function (obj) {
         var i = 0,
             arr = [];
         while (this[i]) {
@@ -170,7 +170,7 @@ var RealPage = {};
 
     //  Array - Insert At
 
-    define(Array, 'insertAt', function(index) {
+    define(Array, 'insertAt', function (index) {
         this.splice.apply(this, [index, 0]
             .concat(Array.prototype.slice.call(arguments, 1)));
         return this;
@@ -178,7 +178,7 @@ var RealPage = {};
 
     //  Array - Prepend
 
-    define(Array, 'prepend', function(obj) {
+    define(Array, 'prepend', function (obj) {
         this.reverse();
         this.push(obj);
         this.reverse();
@@ -187,37 +187,37 @@ var RealPage = {};
 
     //  String - Uppercase first letter
 
-    define(String, 'ucfirst', function() {
+    define(String, 'ucfirst', function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
     });
 
     //  String - Camelize
 
-    define(String, 'camelize', function() {
-        return (this + "").replace(/-\D/g, function(match) {
+    define(String, 'camelize', function () {
+        return (this + "").replace(/-\D/g, function (match) {
             return match.charAt(1).toUpperCase();
         });
     });
 
     //  String - Decamelize
 
-    define(String, 'decamelize', function() {
-        return (this + "").replace(/[a-z][A-Z]/g, function(str, offset) {
+    define(String, 'decamelize', function () {
+        return (this + "").replace(/[a-z][A-Z]/g, function (str, offset) {
             return str[0] + '-' + str[1].toLowerCase();
         });
     });
 
     //  String - tokenReplace
 
-    define(String, 'tokenReplace', function(data) {
-        return this.replace(/\[([a-z0-9]+)\]/g, function(m, key) {
+    define(String, 'tokenReplace', function (data) {
+        return this.replace(/\[([a-z0-9]+)\]/g, function (m, key) {
             return data[key];
         });
     });
 
     //  Date - Now
 
-    define(Date, 'now', function() {
+    define(Date, 'now', function () {
         return new Date().valueOf();
     });
 })(Function, String, Array, Date, window);
@@ -225,11 +225,11 @@ var RealPage = {};
 //  Source: _rp-core\_app\js\startup\cookie.js
 //  Cookie Module
 
-(function(RealPage, document, undefined) {
+(function (RealPage, document, undefined) {
     "use strict";
 
     RealPage.cookie = {
-        create: function(name, value, days) {
+        create: function (name, value, days) {
             var expires = "";
             if (days) {
                 var date = new Date();
@@ -239,7 +239,7 @@ var RealPage = {};
             document.cookie = name + "=" + value + expires + "; path=/";
         },
 
-        read: function(name) {
+        read: function (name) {
             var nameEQ = name + "=";
             var ca = document.cookie.split(';');
             for (var i = 0, j = ca.length; i < j; i++) {
@@ -254,7 +254,7 @@ var RealPage = {};
             return undefined;
         },
 
-        erase: function(name) {
+        erase: function (name) {
             this.create(name, "", -1);
         }
     };
@@ -263,10 +263,10 @@ var RealPage = {};
 //  Source: _rp-core\_app\js\startup\debug-mode.js
 // Determine if in debug mode
 
-(function(RealPage) {
+(function (RealPage) {
     "use strict";
 
-    RealPage.debugMode = function() {
+    RealPage.debugMode = function () {
         return RealPage.cookie.read('debugMode') === 'true';
     };
 })(RealPage);
@@ -276,10 +276,10 @@ var RealPage = {};
 
 var logc, logw;
 
-(function(window, undefined) {
+(function (window, undefined) {
     "use strict";
 
-    var fn = function() {},
+    var fn = function () {},
         con = window.console;
 
     logc = fn;
@@ -311,24 +311,24 @@ var logc, logw;
 //  Source: _rp-core\_app\js\startup\app-version.js
 //  App Version
 
-(function(RealPage) {
+(function (RealPage) {
     "use strict";
 
     var svc = {};
 
     svc.random = Math.round(Math.random() * 1E10);
 
-    svc.cacheFiles = function() {
+    svc.cacheFiles = function () {
         return RealPage.cookie.read('cacheFiles') === 'true';
     };
 
-    svc.gen = function() {
-        svc.appVer = RealPage.cookie.read('APPVER') || "1bv01fd89";
+    svc.gen = function () {
+        svc.appVer = RealPage.cookie.read('APPVER') || "1bv2d39it";
         // svc.appVer = RealPage.debugMode() && !svc.cacheFiles() ? svc.random : svc.appVer;
         return svc;
     };
 
-    svc.get = function() {
+    svc.get = function () {
         if (svc.appVer) {
             return svc.appVer;
         }
@@ -336,7 +336,7 @@ var logc, logw;
         return svc.gen().appVer;
     };
 
-    svc.append = function(url) {
+    svc.append = function (url) {
         var find = /(\.)(css|js|html)/,
             replace = '$1$2?_=' + svc.get();
         return url.replace(find, replace);
@@ -348,7 +348,7 @@ var logc, logw;
 //  Source: _rp-core\_app\js\startup\startup.js
 //  Startup Functions
 
-(function(RealPage) {
+(function (RealPage) {
     "use strict";
 
     var svc = {
@@ -358,16 +358,16 @@ var logc, logw;
         types: ["js", "css"]
     };
 
-    svc.appendAppVer = function(url) {
+    svc.appendAppVer = function (url) {
         return RealPage.appVer.append(url);
     };
 
-    svc.appendElem = function() {
+    svc.appendElem = function () {
         var elem = svc.elemList[svc.elemReadyCount];
         document.getElementsByTagName("head")[0].appendChild(elem);
     };
 
-    svc.genCssElem = function(url) {
+    svc.genCssElem = function (url) {
         var elem = document.createElement("link");
         elem.href = url;
         elem.type = "text/css";
@@ -375,7 +375,7 @@ var logc, logw;
         return elem;
     };
 
-    svc.genJsElem = function(url) {
+    svc.genJsElem = function (url) {
         var elem = document.createElement("script");
         elem.src = url;
         elem.defer = "defer";
@@ -383,9 +383,9 @@ var logc, logw;
         return elem;
     };
 
-    svc.genLinks = function(list) {
-        list.forEach(function(item) {
-            svc.types.forEach(function(type) {
+    svc.genLinks = function (list) {
+        list.forEach(function (item) {
+            svc.types.forEach(function (type) {
                 var url = item[type],
                     method = "gen" + type.ucfirst() + "Elem";
 
@@ -399,7 +399,7 @@ var logc, logw;
                 var elem = svc[method](url);
                 svc.elemList.push(elem);
 
-                elem.onload = function() {
+                elem.onload = function () {
                     svc.onElemLoad(url);
                 };
             });
@@ -408,18 +408,18 @@ var logc, logw;
         return svc;
     };
 
-    svc.initApp = function() {
-        angular.element(function() {
+    svc.initApp = function () {
+        angular.element(function () {
             angular.bootstrap(document, [svc.data.appName]);
         });
     };
 
-    svc.load = function(data) {
+    svc.load = function (data) {
         svc.data = data;
         svc.genLinks(data.files).appendElem();
     };
 
-    svc.onElemLoad = function(url) {
+    svc.onElemLoad = function (url) {
         if (svc.loaded.indexOf(url) != -1) {
             return;
         }
@@ -429,12 +429,13 @@ var logc, logw;
 
         if (svc.elemList.length == svc.elemReadyCount) {
             svc.initApp();
-        } else {
+        }
+        else {
             svc.appendElem();
         }
     };
 
-    svc.useMin = function(url) {
+    svc.useMin = function (url) {
         if (RealPage.debugMode()) {
             url = url.replace(".min", "");
         }
@@ -450,13 +451,14 @@ logc("UI Compiled on: " + RealPage.ENV.COMPILETIME);
 //  Source: ui\_startup\js\config.js
 //  App Startup
 
-(function() {
+(function () {
     "use strict";
 
     RealPage.startup.load({
         appName: "uam",
 
-        files: [{
+        files: [
+            {
                 js: "v1.8.0/lib/app/js/scripts.min.js",
                 css: "v1.8.0/lib/app/css/styles.min.css"
             },
@@ -467,3 +469,4 @@ logc("UI Compiled on: " + RealPage.ENV.COMPILETIME);
         ]
     });
 })();
+
