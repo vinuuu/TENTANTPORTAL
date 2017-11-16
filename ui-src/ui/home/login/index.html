@@ -85,19 +85,11 @@
 
                     <form name="verifyform" novalidate role="form">
                         <div class="form-group clearfix">
-<<<<<<< HEAD
-                            <label class="md-check dark-bluebox">
-                                <input type="radio"  name="select-type" value="email" ng-model="page.model.rdnEmailCode"/>
-                                <i class="primary"></i> {{page.model.translateNames('email-me')}}
-                            </label>
-                            <!-- <input type="radio" class="radio" ng-model="page.model.rdnEmailCode" ng-change="page.model.radiochange(page.model.rdnEmailCode);"> {{page.model.translateNames('email-me')}} -->
-=======
                             <!-- <input type="radio" class="radio" ng-model="page.model.rdnEmailCode" ng-change="page.model.radiochange(page.model.rdnEmailCode);"> -->
 
                             <rp-form-input-radio rp-value="pizza.name" config="page.formConfig[pizza.id]" rp-label-text="pizza.name" rp-model="page.model.pizza" ng-repeat="pizza in page.model.pizzas">
                             </rp-form-input-radio>
                             {{page.model.translateNames('email-me')}}
->>>>>>> 9ca501e8d9adb930e713ff6a5974f8454b5dd8ef
                             <div class="col-md-12">
 
                                 <input type="text" name="emailCode" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-readonly="page.model.rdnEmailCode===true" class="form-control" ng-model="page.model.emailCode" placeholder="anjana@gmail.com">
@@ -193,9 +185,9 @@
                                 <span class="clearfix">{{page.model.translateNames('r4')}} </span>
                                 <span class="clearfix">{{page.model.translateNames('r5')}} </span>
                             </div>
-                            <div class="col-md-12 clearfix m-t-1"> <input type="password" ng-model="page.model.pwd1" class="form-control" required></div>
-                            <div class="col-md-12 clearfix m-t-1"> <input type="password" ng-model="page.model.pwd2" class="form-control" required></div>
-                            <span class="pwd m-l-1"> {{page.model.translateNames('pwd-match-restrict')}} </span>
+                            <div class="col-md-12 clearfix m-t-1"> <input type="password" name="pwd1" ng-model="page.model.pwd1" class="form-control" required></div>
+                            <div class="col-md-12 clearfix m-t-1"> <input type="password" name="pwd2" ng-match="page.model.pwd1" ng-model="page.model.pwd2" class="form-control" required></div>
+                            <span class="pwd m-l-1" ng-show="confirmpwdForm.pwd2.$error.match"> {{page.model.translateNames('pwd-match-restrict')}} </span>
                         </div>
                         <div class="form-group text-center clearfix">
                             <input type="button" value="Change password" ng-disabled="confirmpwdForm.$invalid" ng-click="page.model.resetpwdSubmit();" class="center-block m-t-1 btn btn-primary btnContinue">
