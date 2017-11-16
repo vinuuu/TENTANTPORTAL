@@ -1,10 +1,9 @@
-//  Source: ui\home\login\js\controllers\login.js
+//  Source: ui\login\js\controllers\login.js
 (function() {
     'use strict';
 
 
-    function controller(loginMdl, loginFormConfig) {
-        /* jshint validthis:true */
+    function Controller(loginMdl, loginFormConfig) {
         var vm = this,
             model;
         vm.init = function() {
@@ -13,25 +12,6 @@
             model.rdnEmailCode = 'email';
             model.rdnmobCode = false;
             vm.formConfig = loginFormConfig;
-
-            model.pizzas = [{
-                    id: "pizza1",
-                    name: "Cheese"
-                },
-
-                {
-                    id: "pizza2",
-                    name: "Pepperoni"
-                },
-
-                {
-                    id: "pizza3",
-                    name: "Sausage"
-                }
-            ];
-
-            loginFormConfig.setMethodsSrc(vm);
-            loginFormConfig.genRadio("pizza", model.pizzas);
         };
 
         vm.init();
@@ -39,16 +19,27 @@
 
     angular
         .module('uam')
-        .controller('loginCtrl', controller);
-    controller.$inject = ['loginMdl', 'loginFormConfig'];
+        .controller('loginCtrl', Controller);
+    Controller.$inject = ['loginMdl', 'loginFormConfig'];
 
 })();
 
-//  Source: ui\home\login\js\models\login.js
+//  Source: ui\login\js\models\login.js
 (function() {
-        'use strict';
+    'use strict';
 
+    function factory(langTranslate) {
+        var model = {},
+            translate = langTranslate('login').translate;
+        model.strUserName = '';
+        model.translateNames = function(key) {
+            return translate(key);
+        };
 
+        model.showhideDiv = function(val) {
+            model.showHideFlag = val;
+            model.pwdSuccess = false;
+        };
 
         model.checkUserName = function(val) {
             model.showHideFlag = val;
@@ -74,14 +65,14 @@
     }
 
     angular
-    .module('uam')
-    .factory('loginMdl', factory);
+        .module('uam')
+        .factory('loginMdl', factory);
 
-    factory.$inject = ["appLangTranslate", "loginSvc"];
+    factory.$inject = ["appLangTranslate"];
 
 })();
 
-//  Source: ui\home\login\js\models\formconfig.js
+//  Source: ui\login\js\models\formconfig.js
 //  Demo Form Config
 
 (function(angular, undefined) {
@@ -106,7 +97,7 @@
         .factory("loginFormConfig", ["baseFormConfig", "rpFormInputRadioConfig", factory]);
 })(angular);
 
-//  Source: ui\home\login\js\directives\match.js
+//  Source: ui\login\js\directives\match.js
 (function() {
     'use strict';
     var directiveId = 'ngMatch';
@@ -160,25 +151,3 @@
 
 })();
 
-//  Source: ui\home\login\js\services\loginSvc.js
-(function() {
-    'use strict';
-
-
-
-    function factory($http) {
-        return {
-            getLoginDetails: function(obj) {
-                return $http.post('http://rpidevntw008.realpage.com/users/sarroju/RPGITSERVICES.accounting/tenant/apigw.phtml', obj);
-            }
-        };
-    }
-
-    angular
-        .module('uam')
-        .factory('loginSvc', factory);
-
-    factory.$inject = ['$http'];
-
-
-})();
