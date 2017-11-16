@@ -28,7 +28,7 @@
 (function() {
     'use strict';
 
-    function factory(langTranslate) {
+    function factory(langTranslate, loginSvc) {
         var model = {},
             translate = langTranslate('login').translate;
         model.strUserName = '';
@@ -40,6 +40,44 @@
             model.showHideFlag = val;
             model.pwdSuccess = false;
         };
+
+        //submit user name and pwd to api
+        model.submitLogin = function() {
+            var inputObj = {
+                "request": {
+                    "operation": {
+                        "authentication": {
+                            "login": {
+                                "userid": "srihari@realpage.com",
+                                "password": "sriharI$4"
+                            }
+                        },
+                        "content": {
+                            "function": {
+                                "getTPAPISession": {}
+                            }
+                        }
+                    }
+                }
+            };
+
+
+            loginSvc.getLoginDetails(inputObj).then(function(response) {
+
+
+            });
+
+
+        };
+
+
+
+
+
+
+
+
+
 
         model.checkUserName = function(val) {
             model.showHideFlag = val;
@@ -68,7 +106,7 @@
         .module('uam')
         .factory('loginMdl', factory);
 
-    factory.$inject = ["appLangTranslate"];
+    factory.$inject = ["appLangTranslate", "loginSvc"];
 
 })();
 
@@ -148,6 +186,29 @@
         .module('uam').directive(directiveId, directive);
 
     directive.$inject = ['$parse'];
+
+})();
+
+//  Source: ui\login\js\services\loginSvc.js
+(function() {
+    'use strict';
+
+
+
+    function factory($http) {
+        return {
+            getLoginDetails: function(obj) {
+                return $http.post('http://rpidevntw008.realpage.com/users/sarroju/RPGITSERVICES.accounting/tenant/apigw.phtml', obj);
+            }
+        };
+    }
+
+    angular
+        .module('uam')
+        .factory('loginSvc', factory);
+
+    factory.$inject = ['$http'];
+
 
 })();
 
