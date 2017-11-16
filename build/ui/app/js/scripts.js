@@ -19941,7 +19941,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             iconClassName: 'rp-icon-card'
         }, {
             labelText: 'Invoices',
-            labelLink: '/ui/affordable/',
+            labelLink: '#/viewpay',
             iconClassName: 'rp-icon-file-document'
         }, {
             labelText: 'Maitenance Request',
