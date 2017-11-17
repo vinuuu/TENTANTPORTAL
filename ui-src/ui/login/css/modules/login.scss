@@ -1,7 +1,10 @@
 $active:blue;
 $inactive:#bdb8b8;
-#login {
+.container {
     background-color: #ffffff;
+}
+
+#login {
     .loginlogo {
         color: #2ec4f1;
         font-size: 23px;
@@ -21,27 +24,52 @@ $inactive:#bdb8b8;
         margin: 0 auto;
     }
     .statictxtcls {
-        margin-left: 17%;
-        margin-right: 17%;
+        margin-left: 10%;
+        margin-right: 10%;
     }
-    .innerbody {
-        @extend .statictxtcls;
+    .statictxtcls-reset {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    .midcommoncls {
         border: 1px solid #dcd0d0;
         background-color: #f0f0f0;
         padding: 3%;
+    }
+    .innerbody {
+        @extend .statictxtcls;
+        @extend .midcommoncls;
         line-height: 40px;
+    }
+    .innerbody-firstlogin {
+        @extend .statictxtcls-reset;
+        @extend .midcommoncls;
     }
     .innerbody-login {
         @extend .statictxtcls;
         padding: 3%;
-        line-height: 40px;
+        line-height: 21px;
+    }
+    .innerbody1 {
+        @extend .statictxtcls-reset;
+        line-height: 54px;
     }
     .btnContinue {
-        width: 211px;
-        border-radius: 18px;
+        width: 94%;
+        border-radius: 20px;
+    }
+    .btnContinue1 {
+        width: 81%;
+        border-radius: 20px;
+    }
+    .btnContinue-firstlogin {
+        width: 33%;
+        border-radius: 20px;
     }
     .linkcls {
-        color: blue;
+        @extend .f-w-6;
+        color: rgba(0, 0, 255, 0.65);
+        font-size: 13px;
     }
     .footercls {
         margin-top: 24%;
@@ -100,6 +128,13 @@ $inactive:#bdb8b8;
         font-size: 11px;
     }
     .md-check>i {
-        margin-top: 10px;
+        margin-top: 2px;
+    }
+    .fontcls {
+        color: rgba(0, 0, 0, 0.55);
+        @extend .f-w-6;
+    }
+    .f-w-6 {
+        font-weight: 600;
     }
 }

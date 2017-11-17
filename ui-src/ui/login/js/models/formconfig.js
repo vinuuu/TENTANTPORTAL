@@ -3,7 +3,7 @@
 (function(angular, undefined) {
     "use strict";
 
-    function factory(baseFormConfig, radioConfig) {
+    function factory(baseFormConfig, radioConfig, menuConfig) {
         var model = baseFormConfig();
         //pettu
         model.genRadio = function(name, list) {
@@ -14,10 +14,24 @@
             });
         };
 
+
+        model.securityquestion = menuConfig({
+            nameKey: "securityQuesnName",
+            valueKey: "securityQuesnID"
+        });
+
+        model.setOptions = function(fieldName, fieldOptions) {
+            if (model[fieldName]) {
+                model[fieldName].setOptions(fieldOptions);
+            } else {
+                return model;
+            }
+        };
+
         return model;
     }
 
     angular
         .module("uam")
-        .factory("loginFormConfig", ["baseFormConfig", "rpFormInputRadioConfig", factory]);
+        .factory("loginFormConfig", ["baseFormConfig", "rpFormInputRadioConfig", "rpFormSelectMenuConfig", factory]);
 })(angular);
