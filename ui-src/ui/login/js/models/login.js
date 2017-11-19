@@ -9,7 +9,10 @@
         model.translateNames = function(key) {
             return translate(key);
         };
-
+        model.init = function() {
+            model.securityquestion = "1";
+            return model;
+        };
         model.showhideDiv = function(val) {
             model.showHideFlag = val;
             model.pwdSuccess = false;
@@ -70,56 +73,80 @@
 
 
         //submit user name and pwd to api
+        var count = 0;
+
         model.submitLogin = function() {
-            model.showHideFlag = "firstlogin";
-            model.strUserName = model.username;
 
-
+            // var inputObj = {
+            //     "request": {
+            //         "operation": {
+            //             "authentication": {
+            //                 "login": {
+            //                     "userid": "srihari@realpage.com",
+            //                     // "userid": model.username,
+            //                     "password": "sriharI$4"
+            //                 }
+            //             },
+            //             "content": {
+            //                 "function": {
+            //                     "getTPAPISession": {}
+            //                 }
+            //             }
+            //         }
+            //     }
+            // };
             var inputObj = {
                 "request": {
                     "operation": {
-                        "authentication": {
-                            "login": {
-                                "userid": "srihari@realpage.com",
-                                "password": "sriharI$4"
-                            }
-                        },
                         "content": {
                             "function": {
-                                "getTPAPISession": {}
+                                "readByQuery": {
+                                    "object": "leaseoccupancy",
+                                    "fields": "",
+                                    "query": "",
+                                    "returnFormat": "json"
+                                }
                             }
                         }
                     }
                 }
             };
 
+
+
             loginSvc.getLoginDetails(inputObj).then(function(response) {
                 if (response.data) {
-                    sessionStorage.setItem('sessionID', response.data.api[0].sessionid[0]);
-                    sessionStorage.setItem('userName', response.data.api[0].name[0]);
-                    sessionStorage.setItem('companyName', response.data.api[0].companyname[0]);
+                    if (response.data.api) {
+                        count = 0;
+                        // sessionStorage.setItem('sessionID', response.data.api[0].sessionid[0]);
+                        // sessionStorage.setItem('userName', response.data.api[0].name[0]);
+                        // sessionStorage.setItem('companyName', response.data.api[0].companyname[0]);
+
+                        model.showHideFlag = "firstlogin";
+                        model.strUserName = model.username;
+                    } else {
+                        if (count === 0) {
+                            model.pwdSuccess = 'failure';
+                            count++;
+                        } else if (count === 1) {
+                            count++;
+                            model.pwdSuccess = 'warning';
+                        } else {
+                            model.pwdSuccess = 'locked';
+                        }
+                    }
                 }
             });
 
         };
-
-
-
-
-
-
-
-
-
 
         model.checkUserName = function(val) {
             model.showHideFlag = val;
             model.strUserName = model.u_e_id;
         };
 
-
         model.sendVerifycode = function(val) {
-            model.showHideFlag = 'sentCode';
+            model.showHideFlag = 'confirmpwd';
             model.displaymob_email = model.emailCode ? model.emailCode : (model.mobcode1 ? model.mobcode1 : '');
         };
         model.radiochange = function(val) {
@@ -129,16 +156,15 @@
         model.resetpwdSubmit = function(val) {
             if (model.showHideFlag === 'confirmpwd') {
                 model.showHideFlag = 'login';
-                model.pwdSuccess = true;
+                model.pwdSuccess = 'success';
             } else {
-
-                state.go('');
+                state.go('home.dashbaord');
             }
 
         };
 
 
-        return model;
+        return model.init();
     }
 
     angular

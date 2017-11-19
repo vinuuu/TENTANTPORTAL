@@ -1,9 +1,9 @@
+//  Home Controller
+
 (function() {
-    'use strict';
+    "use strict";
 
-
-
-    function Controller($scope, $http, notifSvc, dashboardMdl) {
+    function DashboardCtrl($scope, $http, notifSvc, dashboardMdl) {
         var vm = this,
             model;
 
@@ -42,10 +42,7 @@
         vm.init();
     }
 
-
     angular
-        .module('uam')
-        .controller('dashboardCtrl', Controller);
-
-    Controller.$inject = ["$scope", '$http', 'notificationService', 'dashboardMdl'];
-})();
+        .module("uam")
+        .controller("dashboardCtrl", ["$scope", '$http', 'notificationService', 'dashboardMdl', DashboardCtrl]);
+})(angular);

@@ -1,18 +1,12 @@
-(function() {
-    'use strict';
+//  Home Controller
 
+(function(angular, undefined) {
+    "use strict";
 
-
-    function factory(dashboardSvc, $http) {
+    function DashboardMdl(dashboardSvc, $http) {
         var model = {},
             response = {};
         model.init = function() {
-
-            return model;
-        };
-
-        model.getdashboardList = function() {
-
             var obj = {
                 "request": {
                     "operation": {
@@ -30,8 +24,10 @@
                 }
             };
             $http.post('/api/dashboard', obj);
-
+            return model;
         };
+
+
 
         model.mockData = function() {
             response.records = {
@@ -118,9 +114,9 @@
         };
         return model.init();
     }
-    angular
-        .module('uam')
-        .factory('dashboardMdl', factory);
 
-    factory.$inject = ['dashboardSvc', '$http'];
-})();
+    angular
+        .module("uam")
+        .factory("dashboardMdl", [DashboardMdl]);
+    DashboardMdl.$inject = ['dashboardSvc', '$http'];
+})(angular);

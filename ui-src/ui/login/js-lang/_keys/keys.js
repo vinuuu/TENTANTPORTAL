@@ -37,7 +37,11 @@
             'pwd-match-restrict',
             'successAlert',
             'pls-login',
-            'returnToLogin'
+            'returnToLogin',
+            'failureAlert',
+            'warningAlert',
+            'accountLocked',
+            'lockedAlert'
         ];
 
         appLangKeys.app('login').set(keys);

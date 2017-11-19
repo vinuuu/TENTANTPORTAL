@@ -1,18 +1,63 @@
+//  Source: ui\home\dashbaord-old\js\controllers\dashboard.js
+//  Home Controller
+
 (function() {
-    'use strict';
+    "use strict";
 
+    function DashboardCtrl($scope, $http, notifSvc, dashboardMdl) {
+        var vm = this,
+            model;
 
+        vm.init = function() {
+            vm.model = model = dashboardMdl;
+            vm.destWatch = $scope.$on("$destroy", vm.destroy);
+            // model.getDasghboardList();
+            var inputObj = {
+                "request": {
+                    "operation": {
+                        "authentication": {
+                            "login": {
+                                "userid": "srihari@realpage.com",
+                                // "userid": model.username,
+                                "password": "sriharI$4"
+                            }
+                        },
+                        "content": {
+                            "function": {
+                                "getTPAPISession": {}
+                            }
+                        }
+                    }
+                }
+            };
+            $http.post('/api/login', inputObj).then(function(response) {
+                model.mockData();
+            }).catch(function(ex) {});
+        };
+        vm.destroy = function() {
+            vm.destWatch();
+            vm = undefined;
+            $scope = undefined;
+        };
 
-    function factory(dashboardSvc, $http) {
+        vm.init();
+    }
+
+    angular
+        .module("uam")
+        .controller("dashboardCtrl", ["$scope", '$http', 'notificationService', 'dashboardMdl', DashboardCtrl]);
+})(angular);
+
+//  Source: ui\home\dashbaord-old\js\models\dashboard.js
+//  Home Controller
+
+(function(angular, undefined) {
+    "use strict";
+
+    function DashboardMdl(dashboardSvc, $http) {
         var model = {},
             response = {};
         model.init = function() {
-
-            return model;
-        };
-
-        model.getdashboardList = function() {
-
             var obj = {
                 "request": {
                     "operation": {
@@ -30,8 +75,10 @@
                 }
             };
             $http.post('/api/dashboard', obj);
-
+            return model;
         };
+
+
 
         model.mockData = function() {
             response.records = {
@@ -118,9 +165,30 @@
         };
         return model.init();
     }
+
+    angular
+        .module("uam")
+        .factory("dashboardMdl", [DashboardMdl]);
+    DashboardMdl.$inject = ['dashboardSvc', '$http'];
+})(angular);
+
+//  Source: ui\home\dashbaord-old\js\services\dashboardSvc.js
+(function() {
+    'use strict';
+
+    function factory(http) {
+        return {
+            getDashboardData: function(obj) {
+                return http.post('/api/dashboard', obj);
+            }
+        };
+    }
+
     angular
         .module('uam')
-        .factory('dashboardMdl', factory);
+        .factory('dashboardSvc', factory);
 
-    factory.$inject = ['dashboardSvc', '$http'];
+    factory.$inject = ['$http'];
 })();
+
+

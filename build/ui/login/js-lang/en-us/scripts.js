@@ -38,7 +38,11 @@
             'pwd-match-restrict',
             'successAlert',
             'pls-login',
-            'returnToLogin'
+            'returnToLogin',
+            'failureAlert',
+            'warningAlert',
+            'accountLocked',
+            'lockedAlert'
         ];
 
         appLangKeys.app('login').set(keys);
@@ -78,7 +82,7 @@
             'answer': 'Answer the following to verify this account is yours',
             'verifyCode': 'Enter Verification Code',
             'txt-msg': 'A text message was sent to',
-            'random-qusns': 'Answer the two random questions below to verify the account is yours and reset your password',
+            'random-qusns': 'Answer the Security questions below to verify the account is yours and reset your password',
             'q-1': "What was your first pet's name?",
             'enter_pwd1': 'Enter a new password for',
             'enter_pwd2': '.Passwords must have atleast :',
@@ -90,7 +94,11 @@
             'pwd-match-restrict': 'The passwords you typed do not match. Please try again',
             'successAlert': 'You have successfully changed your password',
             'pls-login': 'Please login now.',
-            'returnToLogin': 'Return to login screen'
+            'returnToLogin': 'Return to login screen',
+            'failureAlert': 'You have entered an invalid username and/or password. Please check your credentials',
+            'warningAlert': 'You have one more attempt to enter a valid username and password before your account will be locked.',
+            'accountLocked': 'Your account has been locked for 30 minutes.',
+            'lockedAlert': 'If you have forgotten your username or password click the forgot password link below once your account has been unlocked'
         };
 
         appLangBundle.lang('en-us').app('login').set(values);

@@ -1,21 +1,38 @@
 //  Source: ui\home\dashbaord\js\controllers\dashboard.js
-//  Home Controller
+(function() {
+    'use strict';
 
-(function(angular, undefined) {
-    "use strict";
 
-    function DashboardCtrl($scope, $http, notifSvc, dashboardMdl) {
+
+    function Controller($scope, $http, notifSvc, dashboardMdl) {
         var vm = this,
             model;
 
         vm.init = function() {
             vm.model = model = dashboardMdl;
             vm.destWatch = $scope.$on("$destroy", vm.destroy);
-            $http.get('/api/budgeting/coa/glaccount/Update').then(function(response) {
-                notifSvc.error('Error');
-            }).catch(function(ex) {
+            // model.getDasghboardList();
+            var inputObj = {
+                "request": {
+                    "operation": {
+                        "authentication": {
+                            "login": {
+                                "userid": "srihari@realpage.com",
+                                // "userid": model.username,
+                                "password": "sriharI$4"
+                            }
+                        },
+                        "content": {
+                            "function": {
+                                "getTPAPISession": {}
+                            }
+                        }
+                    }
+                }
+            };
+            $http.post('/api/login', inputObj).then(function(response) {
                 model.mockData();
-            });
+            }).catch(function(ex) {});
         };
         vm.destroy = function() {
             vm.destWatch();
@@ -26,23 +43,46 @@
         vm.init();
     }
 
+
     angular
-        .module("uam")
-        .controller("dashboardCtrl", ["$scope", '$http', 'notificationService', 'dashboardMdl', DashboardCtrl]);
-})(angular);
+        .module('uam')
+        .controller('dashboardCtrl', Controller);
+
+    Controller.$inject = ["$scope", '$http', 'notificationService', 'dashboardMdl'];
+})();
 
 //  Source: ui\home\dashbaord\js\models\dashboard.js
-//  Home Controller
+(function() {
+    'use strict';
 
-(function(angular, undefined) {
-    "use strict";
 
-    function DashboardMdl() {
+
+    function factory(dashboardSvc, $http) {
         var model = {},
             response = {};
         model.init = function() {
+            var obj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "leaseoccupancy",
+                                    "fields": "",
+                                    "query": "",
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            $http.post('/api/dashboard', obj);
             return model;
         };
+
+
+
         model.mockData = function() {
             response.records = {
                 tenant: [{
@@ -122,15 +162,40 @@
             };
             model.bindtenantdata(response);
         };
+
         model.bindtenantdata = function(response) {
             model.list = response.records;
         };
-        return model;
+        return model.init();
+    }
+    angular
+        .module('uam')
+        .factory('dashboardMdl', factory);
+
+    factory.$inject = ['dashboardSvc', '$http'];
+})();
+
+//  Source: ui\home\dashbaord\js\services\dashboardSvc.js
+(function() {
+    'use strict';
+
+
+
+    function factory($http) {
+        return {
+            getLoginDetails: function(obj) {
+                return $http.post('/api/dashboard', obj);
+            }
+        };
     }
 
     angular
-        .module("uam")
-        .factory("dashboardMdl", [DashboardMdl]);
-})(angular);
+        .module('uam')
+        .factory('dashboardSvc', factory);
+
+    factory.$inject = ['$http'];
+
+
+})();
 
 

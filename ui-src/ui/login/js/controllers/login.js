@@ -9,7 +9,7 @@
             vm.destWatch = $scope.$on("$destroy", vm.destroy);
             vm.model = model = loginMdl;
             model.showHideFlag = "login";
-            model.rdnEmailCode = 'email';
+            // model.rdnEmailCode = 'email';
             model.rdnmobCode = false;
             vm.formConfig = loginFormConfig;
             model.numFlag = model.upperFlag = model.lowerFlag = model.specialCharFlag = false;

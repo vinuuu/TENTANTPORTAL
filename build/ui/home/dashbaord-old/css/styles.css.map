@@ -1,0 +1,11 @@
+{
+	"version": 3,
+	"file": "styles.css",
+	"sources": [
+		"../../../../../ui-src/ui/home/dashbaord-old/css/styles.scss",
+		"../../../../../ui-src/ui/lib/base/css/styles.scss",
+		"../../../../../ui-src/ui/home/dashbaord-old/css/modules/dashboard.scss"
+	],
+	"names": [],
+	"mappings": "AEAA,AACI,UADM,CACN,SAAS,CAAC;EACN,UAAU,EAAE,eAAe,GAC9B;;AAHL,AAII,UAJM,CAIN,QAAQ,CAAC;EACL,KAAK,EAAE,IAAI,GACd"
+}

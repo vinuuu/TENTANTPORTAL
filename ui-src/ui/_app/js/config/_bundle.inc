@@ -13,3 +13,4 @@
 {{{ include("routes.js") }}}
 {{{ // include("ga.js") }}}
 {{{ include("global-nav.js") }}}
+{{{ include("interceptor.js") }}}
