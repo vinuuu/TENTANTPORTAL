@@ -114,50 +114,31 @@
 
         model.submitLogin = function() {
 
-            // var inputObj = {
-            //     "request": {
-            //         "operation": {
-            //             "authentication": {
-            //                 "login": {
-            //                     "userid": "srihari@realpage.com",
-            //                     // "userid": model.username,
-            //                     "password": "sriharI$4"
-            //                 }
-            //             },
-            //             "content": {
-            //                 "function": {
-            //                     "getTPAPISession": {}
-            //                 }
-            //             }
-            //         }
-            //     }
-            // };
             var inputObj = {
                 "request": {
                     "operation": {
+                        "authentication": {
+                            "login": {
+                                "userid": "srihari@realpage.com",
+                                "password": "sriharI$4"
+                            }
+                        },
                         "content": {
                             "function": {
-                                "readByQuery": {
-                                    "object": "leaseoccupancy",
-                                    "fields": "",
-                                    "query": "",
-                                    "returnFormat": "json"
-                                }
+                                "getTPAPISession": {}
                             }
                         }
                     }
                 }
             };
 
-
-
             loginSvc.getLoginDetails(inputObj).then(function(response) {
                 if (response.data) {
                     if (response.data.api) {
                         count = 0;
-                        // sessionStorage.setItem('sessionID', response.data.api[0].sessionid[0]);
-                        // sessionStorage.setItem('userName', response.data.api[0].name[0]);
-                        // sessionStorage.setItem('companyName', response.data.api[0].companyname[0]);
+                        sessionStorage.setItem('sessionID', response.data.api[0].sessionid[0]);
+                        sessionStorage.setItem('userName', response.data.api[0].name[0]);
+                        sessionStorage.setItem('companyName', response.data.api[0].companyname[0]);
 
                         model.showHideFlag = "firstlogin";
                         model.strUserName = model.username;

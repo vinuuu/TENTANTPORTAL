@@ -29,7 +29,11 @@
                     }
                 }
             };
-            $http.post('/api/dashboard', obj);
+            $http.post('/api/dashboard', obj).then(function(response) {
+                if (response.data && response.data.length > 0) {
+                    model.list = response.data;
+                }
+            });
 
         };
 

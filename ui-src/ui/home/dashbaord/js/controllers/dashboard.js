@@ -10,28 +10,10 @@
         vm.init = function() {
             vm.model = model = dashboardMdl;
             vm.destWatch = $scope.$on("$destroy", vm.destroy);
-            // model.getDasghboardList();
-            var inputObj = {
-                "request": {
-                    "operation": {
-                        "authentication": {
-                            "login": {
-                                "userid": "srihari@realpage.com",
-                                // "userid": model.username,
-                                "password": "sriharI$4"
-                            }
-                        },
-                        "content": {
-                            "function": {
-                                "getTPAPISession": {}
-                            }
-                        }
-                    }
-                }
-            };
-            $http.post('/api/login', inputObj).then(function(response) {
-                model.mockData();
-            }).catch(function(ex) {});
+            model.getdashboardList();
+
+            model.mockData();
+
         };
         vm.destroy = function() {
             vm.destWatch();
