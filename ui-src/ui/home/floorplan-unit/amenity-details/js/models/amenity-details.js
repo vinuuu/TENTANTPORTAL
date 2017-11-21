@@ -66,7 +66,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenityDetailsModel", [
             "rpGridModel",
             "rpGridTransform",

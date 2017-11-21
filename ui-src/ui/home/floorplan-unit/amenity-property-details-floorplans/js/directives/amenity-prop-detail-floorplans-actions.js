@@ -40,7 +40,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .directive("fpuAmenityPropDetailsFlrPlnActions", [
             "fpAmenityAddedModel",
             "fpUpgradeEligibleListModel",            

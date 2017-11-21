@@ -78,7 +78,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlansUpgradeEligibleConfig", [
             "rpGridConfig",            
             factory

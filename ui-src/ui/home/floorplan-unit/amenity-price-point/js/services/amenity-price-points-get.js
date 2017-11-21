@@ -42,6 +42,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmePropDetUnitsPricePointDataSvc", ["$resource","$window", factory]);
 })(angular);

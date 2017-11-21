@@ -34,6 +34,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesTabsMenu", ["rpTabsMenuModel", "amenitiesTabsData", factory]);
 })(angular);

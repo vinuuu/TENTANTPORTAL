@@ -43,6 +43,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("dashboardCtrl", ["$scope", '$http', 'notificationService', 'dashboardMdl', DashboardCtrl]);
 })(angular);

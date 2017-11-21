@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "styles.css",
+	"sources": [
+		"../../../../../ui-src/uam/home/activity/css/styles.scss",
+		"../../../../../ui-src/uam/lib/base/css/styles.scss",
+		"../../../../../ui-src/uam/home/activity/css/modules/amenities.scss",
+		"../../../../../ui-src/uam/home/activity/css/modules/properties.scss"
+	],
+	"names": [],
+	"mappings": ""
+}

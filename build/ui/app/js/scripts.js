@@ -19611,7 +19611,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     "use strict";
 
     angular
-        .module("uam", ["rpApp"]);
+        .module("ui", ["rpApp"]);
 })();
 
 //  Source: ui\_app\js\config\_bundle.inc
@@ -19631,7 +19631,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["cdnVer", "coreLibLazyloadConfigProvider", config]);
 })(angular);
 
@@ -19671,7 +19671,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .run(["cdnVer", "rpGlobalHeaderModel", config]);
 })(angular);
 
@@ -19683,7 +19683,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 
     function config(resolveModule) {
         var modules, appConfig,
-            appName = "uam";
+            appName = "ui";
 
         modules = {
             "home.base": ["css", "js"],
@@ -19710,7 +19710,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["rpResolveModuleProvider", config]);
 })(angular);
 
@@ -19729,7 +19729,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["$ocLazyLoadProvider", config]);
 })(angular);
 
@@ -19744,7 +19744,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["$locationProvider", config]);
 })(angular);
 
@@ -19759,10 +19759,53 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["$compileProvider", config]);
 })(angular);
 
+//  Source: ui\_app\js\config\breadcrumbs.js
+//  Configure Meta Data
+
+(function(angular) {
+    "use strict";
+
+    function config(prov) {
+        prov.setProduct({
+            name: "commercial"
+        });
+
+        prov.setHome({
+            icon: "rp-icon-statistics-5",
+            text: "PMC NAME"
+        });
+
+        var links = {
+            'home': {
+                href: '#/',
+                text: 'Overview'
+            },
+
+            'home.dashbaord': {},
+
+        };
+
+        var breadcrumbs = [{
+            name: 'home',
+            url: '/',
+            text: "Budgeting"
+        }, {
+            name: 'home.dashbaord',
+            url: '#/dashbaord',
+            text: 'Overview'
+        }];
+
+        prov.setLinks(links).setBreadcrumbs(breadcrumbs);
+    }
+
+    angular
+        .module("ui")
+        .config(['rpBdgtBreadcrumbsModelProvider', config]);
+})(angular);
 
 
 //  Source: ui\_app\js\config\resolve-modules.js
@@ -19778,7 +19821,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["rpResolveModuleProvider", config]);
 })(angular);
 
@@ -19798,7 +19841,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             lazyLoad: [{
                 files: [
                     "lib.realpage.global-header-lang",
-                    "uam.home.base"
+                    "ui.home.base"
                 ]
             }]
         };
@@ -19807,7 +19850,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             controller: "dashboardCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.dashbaord",
+                    "ui.home.dashbaord",
                     "lib.realpage.accordion"
                 ]
             }]
@@ -19817,7 +19860,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             controller: "accountsCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.account-payments",
+                    "ui.home.account-payments",
                     "lib.realpage.form-select-menu-v1",
                     "lib.realpage.common",
                     "lib.realpage.float-scroll",
@@ -19838,7 +19881,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             controller: "statementsCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.view-statements",
+                    "ui.home.view-statements",
                     "lib.realpage.form-select-menu-v1"
 
                 ]
@@ -19849,7 +19892,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             controller: "viewpayCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.viewing-paying",
+                    "ui.home.viewing-paying",
                     "lib.realpage.form-select-menu-v1",
                     "lib.realpage.form-input-text-v1"
                 ]
@@ -19861,7 +19904,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             controller: "loginCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.login",
+                    "ui.login",
                     "lib.realpage.form-input-radio"
                 ]
             }]
@@ -19875,7 +19918,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
                     "lib.angular.motion",
                     "lib.bootstrap.additions",
                     "lib.angular.strap",
-                    "uam.home.floorplan-unit.bundle"
+                    "ui.home.floorplan-unit.bundle"
                 ]
             }]
         };
@@ -19885,7 +19928,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             controller: "CommonAreaCtrl as commonArea",
             lazyLoad: [{
                 files: [
-                    "uam.home.common-area"
+                    "ui.home.common-area"
                 ]
             }]
         };
@@ -19895,7 +19938,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             controller: "ActivityCtrl as activity",
             lazyLoad: [{
                 files: [
-                    "uam.home.activity"
+                    "ui.home.activity"
                 ]
             }]
         };
@@ -19909,7 +19952,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
                     "lib.angular.motion",
                     "lib.bootstrap.additions",
                     "lib.angular.strap",
-                    "uam.home.profile-settings.bundle"
+                    "ui.home.profile-settings.bundle"
                 ]
             }]
         };
@@ -19921,7 +19964,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["rpRoutesProvider", config]);
 })(angular);
 
@@ -19964,14 +20007,14 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
         prov.setData(navData);
     }
     angular
-        .module("uam")
+        .module("ui")
         .run(["rpGlobalNavModel", config]);
 })(angular);
 
 //  Source: ui\_app\js\config\interceptor.js
 (function(app) {
     'use strict';
-    angular.module('uam').factory('errorInterceptor', ['$rootScope', '$q', function($rootScope, $q) {
+    angular.module('ui').factory('errorInterceptor', ['$rootScope', '$q', function($rootScope, $q) {
         return {
             request: function(config) {
                 //writeit ardam kaley o
@@ -19995,7 +20038,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             }
         };
     }]);
-    angular.module('uam').config(['$httpProvider', function($httpProvider) {
+    angular.module('ui').config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('errorInterceptor');
     }]);
 }());
@@ -20022,7 +20065,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("AppCtrl", [AppCtrl]);
 })(angular);
 
@@ -20104,7 +20147,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("rightAsideModal", ["$aside", factory]);
 })(angular);
 
@@ -20149,26 +20192,44 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("modalContext", [factory]);
 })(angular);
+
+//  Source: ui\_app\js\templates\templates.inc.js
+angular.module('ui').run(['$templateCache', function ($templateCache) {
+$templateCache.put("app/templates/breadcrumbs.html",
+"<div class=\"rp-breadcrumbs\"><a class=\"home-icon {{::$ctrl.model.home.icon}}\" href=\"{{::$ctrl.model.home.url}}\"></a><div class=\"pull-left ft-b-r\"><div class=\"product-name\">{{$ctrl.model.product.name}}</div><div class=\"rp-breadcrumbs-links\"><div class=\"rp-breadcrumb home-link\"><a href=\"{{$ctrl.model.home.url}}\" class=\"rp-breadcrumb-text\">{{$ctrl.model.home.text}}</a></div><ul class=\"rp-breadcrumbs-list\"><li ng-repeat=\"link in $ctrl.model.links\" class=\"rp-breadcrumb p-a-0\"><a href=\"{{link.href}}\" class=\"rp-breadcrumb-text\">{{link.text}}</a></li></ul><div class=\"active-page rp-breadcrumb\"><span class=\"active-page-text rp-breadcrumb-text\">{{$ctrl.model.activePage.text}}</span></div></div><div class=\"rp-breadcrumb home-link\" ng-if=\"!$ctrl.model.hasBreadCrumb\"><a href=\"{{$ctrl.model.backLink.href}}\" class=\"rp-breadcrumb-text\"><i class=\"rp-icon-angle-left ft-s-10 p-r-xs\"></i>{{$ctrl.model.backLink.text}}</a></div></div></div>");
+$templateCache.put("app/templates/history-navigation.html",
+"<div class=\"rp-breadcrumbs\" ng-show=\"model.isVisible\"><a class=\"home-icon {{::model.home.icon}}\" href=\"{{::model.home.url}}\"></a><div class=\"pull-left ft-b-r\"><div class=\"product-name\">{{model.product.name}}</div><div class=\"rp-breadcrumbs-links\"><div class=\"home-link\"><a href=\"{{model.url}}\" class=\"rp-breadcrumb-text\"><i class=\"rp-icon-angle-left\"></i>{{model.home.text}}</a></div><div class=\"rp-breadcrumb home-link\"><a href=\"{{model.home.url}}\" class=\"rp-breadcrumb-text\">{{model.home.text}}</a></div><ul class=\"rp-breadcrumbs-list\"><li ng-repeat=\"link in model.links\" class=\"rp-breadcrumb p-a-0\"><a href=\"{{link.href}}\" class=\"rp-breadcrumb-text\">{{link.text}}</a></li></ul><div class=\"active-page rp-breadcrumb\"><span class=\"active-page-text rp-breadcrumb-text\">{{model.activePage.text}}</span></div></div></div></div>");
+$templateCache.put("app/templates/nav.html",
+"<div class=\"leftNavWrapper\"><!--Toggle Wrapper--><div class=\"toggleWrapper\"><a href=\"javascript:void(0);\" class=\"toggleButton\"><i class=\"fa fa-bars\" aria-hidden=\"true\"></i></a></div><!--End Toggle Wrapper--><div class=\"scrollWrapper\"><!-- Left Nav Item Wrapper--><div class=\"topNavWrapper\" ng-repeat=\"navItem in model.navData\"><a ng-href=\"../{{ navItem.link }}\" class=\"topNavHeaderClick\"><div class=\"topNavHeader\"><i class=\"icon\" ng-class=\"navItem.icon\" aria-hidden=\"true\"></i> <span class=\"topNavHeaderText\">{{ navItem.text }}</span> <i ng-show=\"navItem.subNav\" class=\"fa fa-chevron-down endPoint\" aria-hidden=\"true\"></i></div></a><!-- <div class=\"subNavMouseOver\">\n" +
+"              <div class=\"subNavWrapper\" ng-repeat=\"navSubItem in navItem.subNav\">\n" +
+"                <div class=\"subNavItemWrapper\">\n" +
+"                  <a ng-href=\"../{{ navSubItem.link }}\" class=\"subNavClick\">\n" +
+"                    <span class=\"subNavTextWrapper\">{{ navSubItem.text }}</span>\n" +
+"                  </a>\n" +
+"                </div>\n" +
+"              </div>\n" +
+"            </div> --></div><!--End Left Nav Item Wrapper--></div></div>");
+}]);
 
 
 
 //  Source: ui\_common\breadcrumbs\js\components\breadcrumbs.js
-(function (angular) {
+(function(angular) {
     "use strict";
 
     function Controller(rpBdgtBreadcrumbs) {
         var events,
             vm = this;
 
-        vm.$onInit = function () {
-           vm.model = rpBdgtBreadcrumbs;
-        };      
+        vm.$onInit = function() {
+            vm.model = rpBdgtBreadcrumbs;
+        };
 
-        vm.$onDestroy = function () {
-           
+        vm.$onDestroy = function() {
+
         };
     }
 
@@ -20181,7 +20242,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     };
 
     angular
-        .module("budgeting")
+        .module("ui")
         .component("rpBdgtBreadcrumbs", component);
 })(angular);
 
@@ -20379,6 +20440,6 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
     }
 
     angular
-        .module("budgeting")
+        .module("ui")
         .provider("rpBdgtBreadcrumbsModel", [Provider]);
 })(angular);

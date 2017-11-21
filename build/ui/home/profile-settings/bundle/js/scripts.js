@@ -26,7 +26,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("ProfileSettingsCtrl", [
             "$scope",
             "profile-settings-config",
@@ -35,7 +35,7 @@
 })(angular);
 
 //  Source: ui\home\profile-settings\_base\js\models\form-config.js
-(function (angular) {
+(function(angular) {
     "use strict";
 
     function factory(baseFormConfig, menuConfig, inputConfig, textareaConfig) {
@@ -112,7 +112,7 @@
             maxlength: 75,
             readonly: false,
             required: false,
-            pattern:/^[+]?[0-9]{0,1}[-. ]?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+            pattern: /^[+]?[0-9]{0,1}[-. ]?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
             modelOptions: {
                 updateOn: "blur"
             },
@@ -129,7 +129,7 @@
             maxlength: 75,
             readonly: false,
             required: false,
-            pattern:/([\(\+])?([0-9]{1,3}([\s])?)?([\+|\(|\-|\)|\s])?([0-9]{2,4})([\-|\)|\.|\s]([\s])?)?([0-9]{2,4})?([\.|\-|\s])?([0-9]{4,8})/,
+            pattern: /([\(\+])?([0-9]{1,3}([\s])?)?([\+|\(|\-|\)|\s])?([0-9]{2,4})([\-|\)|\.|\s]([\s])?)?([0-9]{2,4})?([\.|\-|\s])?([0-9]{4,8})/,
             modelOptions: {
                 updateOn: "blur"
             },
@@ -225,7 +225,7 @@
     }
 
     angular
-        .module("uam.profieSettings")
+        .module("ui.profieSettings")
         .factory("profile-settings-config", [
             "baseFormConfig",
             "rpFormSelectMenuConfig",

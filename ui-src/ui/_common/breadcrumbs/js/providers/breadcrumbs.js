@@ -191,6 +191,6 @@
     }
 
     angular
-        .module("budgeting")
+        .module("ui")
         .provider("rpBdgtBreadcrumbsModel", [Provider]);
 })(angular);

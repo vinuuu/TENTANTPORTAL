@@ -22,6 +22,6 @@
         };
     }
     angular
-        .module("uam")
+        .module("ui")
         .directive('viewStatement', ['$state', factory]);
 })(angular);

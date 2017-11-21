@@ -200,7 +200,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesModel", [
             "$filter",
             "fpuAmenitiesListConfig",

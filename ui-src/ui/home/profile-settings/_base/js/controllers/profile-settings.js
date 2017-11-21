@@ -24,7 +24,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("ProfileSettingsCtrl", [
             "$scope",
             "profile-settings-config",

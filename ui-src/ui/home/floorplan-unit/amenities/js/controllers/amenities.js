@@ -95,7 +95,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenitiesCtrl", [
             "$scope",
             "fpuAmenitiesDataSvc",

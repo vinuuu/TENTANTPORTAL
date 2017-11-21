@@ -79,7 +79,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsAmenityUpgradeEligibleModel", [
             "unitsAmenityUpgradeEligibleConfig",
             "rpGridModel",

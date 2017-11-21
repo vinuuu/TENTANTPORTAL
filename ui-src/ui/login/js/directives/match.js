@@ -45,7 +45,7 @@
 
 
     angular
-        .module('uam').directive(directiveId, directive);
+        .module('ui').directive(directiveId, directive);
 
     directive.$inject = ['$parse'];
 

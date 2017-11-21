@@ -69,7 +69,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlanUnitAmenityAssignPropConfig", [
             "rpGridConfig",
             factory

@@ -8,6 +8,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsAside", ["rightAsideModal", factory]);
 })(angular);

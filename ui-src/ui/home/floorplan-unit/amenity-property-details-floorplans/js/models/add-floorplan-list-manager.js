@@ -87,7 +87,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("AddFloorPlanListManager", ["$filter", factory]);
 })(angular);
 

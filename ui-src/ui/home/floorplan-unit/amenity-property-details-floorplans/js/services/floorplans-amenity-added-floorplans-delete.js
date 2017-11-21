@@ -36,6 +36,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpAmenityAddedDeleteSvc", ["$q", "$http", floorPlansAmenityAddedDeleteSvc]);
 })(angular);

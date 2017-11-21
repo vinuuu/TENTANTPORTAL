@@ -38,6 +38,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("modalContext", [factory]);
 })(angular);

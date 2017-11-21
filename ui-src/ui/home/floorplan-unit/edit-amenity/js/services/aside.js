@@ -18,7 +18,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .service("fpuEditAmenityAside", [
             "rightAsideModal",
             FpuEditAmenityAside

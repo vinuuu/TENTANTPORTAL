@@ -50,7 +50,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetDeleteConfirmModalCtrl", [
             "$scope",
             "amenitiesModel",

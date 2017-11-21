@@ -38,7 +38,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .directive("fpuAmenityActions", [
             "fpuEditAmenityAside",
             "fpuEditAmenityContext",

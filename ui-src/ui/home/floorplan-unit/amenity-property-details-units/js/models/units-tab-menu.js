@@ -33,6 +33,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetUnitsTabsMenuModel", ["rpTabsMenuModel", "floorPlanUnitAmenityPropDetUnitsTabsMenuConfigModel", factory]);
 })(angular);

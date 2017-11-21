@@ -63,6 +63,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesScrollingTabsModel", ["rpScrollingTabsMenuModel", factory]);
 })(angular);

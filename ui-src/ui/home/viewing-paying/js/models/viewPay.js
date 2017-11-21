@@ -91,7 +91,7 @@
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .factory('viewpayMdl', factory);
     factory.$inject = ['viewpaySelectMenuFormConfig', 'viewpayGrid1Config', "rpGridModel",
         "rpGridTransform", "appLangTranslate"

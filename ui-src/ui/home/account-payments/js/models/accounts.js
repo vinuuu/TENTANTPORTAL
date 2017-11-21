@@ -47,7 +47,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("accountsMdl", AccountsMdl);
     AccountsMdl.$inject = ['accountsSvc'];
 })(angular);

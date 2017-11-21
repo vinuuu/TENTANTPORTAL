@@ -28,7 +28,7 @@
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .controller('loginCtrl', Controller);
     Controller.$inject = ['loginMdl', 'loginFormConfig', '$scope'];
 
@@ -186,7 +186,7 @@
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .factory('loginMdl', factory);
 
     factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state'];
@@ -228,7 +228,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("loginFormConfig", ["baseFormConfig", "rpFormInputRadioConfig", "rpFormSelectMenuConfig", factory]);
 })(angular);
 
@@ -280,7 +280,7 @@
 
 
     angular
-        .module('uam').directive(directiveId, directive);
+        .module('ui').directive(directiveId, directive);
 
     directive.$inject = ['$parse'];
 
@@ -301,7 +301,7 @@
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .factory('loginSvc', factory);
 
     factory.$inject = ['$http'];

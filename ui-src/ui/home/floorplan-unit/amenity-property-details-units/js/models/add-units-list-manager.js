@@ -87,7 +87,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("AddUnitsListManager", ["$filter", factory]);
 })(angular);
 

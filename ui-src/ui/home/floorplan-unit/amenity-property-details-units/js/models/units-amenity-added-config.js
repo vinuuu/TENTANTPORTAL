@@ -150,7 +150,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsAmenityAddedConfig", [
             "rpGridConfig",     
             "fpuAmePropDetUnitsAmeAddActionsConfig",       

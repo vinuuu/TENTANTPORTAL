@@ -1,13 +1,12 @@
 //  App Startup
 
-(function () {
+(function() {
     "use strict";
 
     RealPage.startup.load({
-        appName: "uam",
+        appName: "ui",
 
-        files: [
-            {
+        files: [{
                 js: "{{cdnVer}}/lib/app/js/scripts.min.js",
                 css: "{{cdnVer}}/lib/app/css/styles.min.css"
             },

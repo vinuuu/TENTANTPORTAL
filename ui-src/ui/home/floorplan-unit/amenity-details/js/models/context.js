@@ -8,6 +8,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityDetailsContext", ["modalContext", factory]);
 })(angular);

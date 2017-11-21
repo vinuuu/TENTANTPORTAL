@@ -119,6 +119,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("staementGrid1Config", ["rpGridConfig", Factory]);
 })(angular);

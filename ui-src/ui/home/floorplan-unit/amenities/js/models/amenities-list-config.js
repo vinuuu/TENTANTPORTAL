@@ -127,7 +127,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenitiesListConfig", [
             "rpGridConfig",
             "fpuAmenitiesListActions",

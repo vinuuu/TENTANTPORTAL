@@ -10,6 +10,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["cdnVer", "coreLibLazyloadConfigProvider", config]);
 })(angular);

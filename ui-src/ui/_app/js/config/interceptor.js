@@ -1,6 +1,6 @@
 (function(app) {
     'use strict';
-    angular.module('uam').factory('errorInterceptor', ['$rootScope', '$q', function($rootScope, $q) {
+    angular.module('ui').factory('errorInterceptor', ['$rootScope', '$q', function($rootScope, $q) {
         return {
             request: function(config) {
                 //writeit ardam kaley o
@@ -24,7 +24,7 @@
             }
         };
     }]);
-    angular.module('uam').config(['$httpProvider', function($httpProvider) {
+    angular.module('ui').config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('errorInterceptor');
     }]);
 }());

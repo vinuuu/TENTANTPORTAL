@@ -3,11 +3,11 @@
         <div class="profile-header">
             <div class="profile-header-title">Settings</div>
         </div>
-        <input id ='pc' placeholder="Username" type="text" required>
+        <input id='pc' placeholder="Username" type="text" required>
         <div class="textBox">
-<span class="placeholder">Enter your name</span>
-<input type="text" name="name" placeholder="Enter your name">
-</div>
+            <span class="placeholder">Enter your name</span>
+            <input type="text" name="name" placeholder="Enter your name">
+        </div>
         <div class="profile-headerbox">
             <div class="row">
                 <div class="box-tool">
@@ -186,7 +186,7 @@
                                         <label class="bothicon">&nbsp;Both</label>
                                     </label>
                                 </div>
-                                            <button type="button" class="btn btn-large btn-primary" bs-modal="'modal.html'">Click to open modal</button>
+                                <button type="button" class="btn btn-large btn-primary" bs-modal="'modal.html'">Click to open modal</button>
                             </div>
                         </div>
                     </div>
@@ -197,13 +197,13 @@
     <script>
         $(".textBox input").on("focus", function() {
             $(".placeholder").show().animate({
-            "margin-top": "0px",
-            "font-size": "11px"
+                "margin-top": "0px",
+                "font-size": "11px"
             }, 150);
         });
         $(".textBox input").on("blur", function() {
             $(".placeholder").hide().animate({
-            "margin-top": "20px",
+                "margin-top": "20px",
             }, 150);
         });
     </script>

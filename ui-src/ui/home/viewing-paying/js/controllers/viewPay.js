@@ -16,7 +16,7 @@
         vm.init();
     }
     angular
-        .module('uam')
+        .module('ui')
         .controller('viewpayCtrl', controller);
     controller.$inject = ['viewpayMdl'];
 

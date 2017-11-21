@@ -22,7 +22,7 @@
 
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("statementSelectMenuFormConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig",

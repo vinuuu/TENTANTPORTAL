@@ -43,7 +43,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .directive("fpuAmenityPropDetailsUnitsActions", [
             "fpuAmenityPropDetailsUnitsPricePointAside",
             "fpuAmenityPropDetailsUnitsPricePointContext",

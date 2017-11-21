@@ -41,6 +41,7 @@
 {{{ include("config/_bundle.inc") }}}
 {{{ include("controllers/_bundle.inc") }}}
 {{{ include("models/_bundle.inc") }}}
+{{{ include("templates/templates.inc.js") }}}
 
 
 {{{ include('../../_common/breadcrumbs/js/components/breadcrumbs.js') }}}

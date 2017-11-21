@@ -36,6 +36,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesUpdateSvc", ["$q", "$http", amenitiesUpdateSvc]);
 })(angular);

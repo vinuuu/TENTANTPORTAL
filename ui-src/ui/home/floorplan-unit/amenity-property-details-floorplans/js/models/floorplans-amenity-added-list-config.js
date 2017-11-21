@@ -92,7 +92,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpAmenityAddedConfig", [
             "rpGridConfig",            
             factory

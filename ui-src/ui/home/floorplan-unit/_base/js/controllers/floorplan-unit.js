@@ -26,7 +26,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FloorPlanUnitCtrl", [
             "$scope",
             "amenitiesTabsMenu",

@@ -27,7 +27,7 @@
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .controller('loginCtrl', Controller);
     Controller.$inject = ['loginMdl', 'loginFormConfig', '$scope'];
 

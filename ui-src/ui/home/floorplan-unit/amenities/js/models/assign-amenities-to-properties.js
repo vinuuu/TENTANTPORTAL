@@ -46,6 +46,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("assignAmenitiesToProperties", ["selectAmenityDetailDataSvc", "SelectAmenitiesListManager", "amenityAssignPropModel", "AmenityAssignPropAsideManager", factory]);
 })(angular);

@@ -28,6 +28,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuPropDetUnitsPricePointBulkModel", [factory]);
 })(angular);

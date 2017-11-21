@@ -74,6 +74,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("rightAsideModal", ["$aside", factory]);
 })(angular);

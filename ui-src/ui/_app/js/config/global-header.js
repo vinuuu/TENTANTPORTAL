@@ -33,6 +33,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .run(["cdnVer", "rpGlobalHeaderModel", config]);
 })(angular);

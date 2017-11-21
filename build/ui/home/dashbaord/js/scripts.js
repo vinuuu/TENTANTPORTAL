@@ -27,7 +27,7 @@
 
 
     angular
-        .module('uam')
+        .module('ui')
         .controller('dashboardCtrl', Controller);
 
     Controller.$inject = ["$scope", '$http', 'notificationService', 'dashboardMdl'];
@@ -159,7 +159,7 @@
         return model.init();
     }
     angular
-        .module('uam')
+        .module('ui')
         .factory('dashboardMdl', factory);
 
     factory.$inject = ['dashboardSvc', '$http'];
@@ -180,7 +180,7 @@
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .factory('dashboardSvc', factory);
 
     factory.$inject = ['$http'];

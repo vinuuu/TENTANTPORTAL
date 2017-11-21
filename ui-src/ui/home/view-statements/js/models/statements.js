@@ -62,7 +62,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("statementsdMdl", ["staementGrid1Config",
             "rpGridModel",
             "rpGridTransform", StatementsMdl

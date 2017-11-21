@@ -153,7 +153,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpaPropDetPricePointUnitsCtrl", [
             "$scope",
             "$filter",

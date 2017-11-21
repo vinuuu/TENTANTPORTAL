@@ -5,7 +5,7 @@
 
     function config(resolveModule) {
         var modules, appConfig,
-            appName = "uam";
+            appName = "ui";
 
         modules = {
             "home.base": ["css", "js"],
@@ -32,6 +32,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["rpResolveModuleProvider", config]);
 })(angular);

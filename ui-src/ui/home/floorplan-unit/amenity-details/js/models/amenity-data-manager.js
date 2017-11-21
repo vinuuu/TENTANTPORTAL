@@ -85,7 +85,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("AmenitiesListManager", ["$filter", factory]);
 })(angular);
 

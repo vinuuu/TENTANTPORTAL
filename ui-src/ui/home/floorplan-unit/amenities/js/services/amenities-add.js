@@ -21,7 +21,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesAddSvc", [
             "$resource",
             "$q",

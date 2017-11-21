@@ -164,7 +164,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("accountsCtrl", ["$scope", '$http', 'notificationService', 'accountsMdl',
             'sampleSelectMenuFormConfig', "sampleGrid1Config",
             "rpGridModel",
@@ -223,7 +223,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("accountsMdl", AccountsMdl);
     AccountsMdl.$inject = ['accountsSvc'];
 })(angular);
@@ -260,7 +260,7 @@
 
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("sampleSelectMenuFormConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig",
@@ -391,7 +391,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("sampleGrid1Config", ["rpGridConfig", Factory]);
 })(angular);
 
@@ -408,7 +408,7 @@
             };
         return model;
     }
-    angular.module("uam").
+    angular.module("ui").
     factory('accountsContent', ['appLangTranslate', factory]);
 })(angular);
 
@@ -424,7 +424,7 @@
         };
     }
     angular
-        .module('uam')
+        .module('ui')
         .factory('accountsSvc', Factory);
 
     Factory.$inject = ['$http'];

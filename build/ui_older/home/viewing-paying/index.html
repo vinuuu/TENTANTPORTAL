@@ -1,0 +1,5 @@
+<div class="container"><div class="page-header"><h1 class="text-center">{{page.model.translateNames('viewPayHeader')}}</h1><hr></div><div class="b-b-1">Invoices</div><br><div class="row"><div class="col-md-2"><rp-form-select-menu config="page.model.formConfig.accountHistory" rp-model="page.model.accountHistory"></rp-form-select-menu></div><div class="col-md-2"><rp-form-select-menu config="page.model.formConfig.secondSelect" rp-model="page.model.accountHistory"></rp-form-select-menu></div></div><br><div class="grid-controls"><div class="grid-control-item"><rp-toggle model="page.model.grid.filtersModel.state.active" options="{
+                                        defaultText: 'Filter',
+                                        activeIconClass: 'rp-icon-filter',
+                                        defaultIconClass: 'rp-icon-filter active'
+                                    }"></rp-toggle></div></div><rp-grid model="page.model.grid"></rp-grid></div>

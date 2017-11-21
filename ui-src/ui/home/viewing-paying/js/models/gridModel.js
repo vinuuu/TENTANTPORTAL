@@ -119,6 +119,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("viewpayGrid1Config", ["rpGridConfig", Factory]);
 })(angular);

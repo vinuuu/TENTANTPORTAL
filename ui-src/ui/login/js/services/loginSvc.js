@@ -12,7 +12,7 @@
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .factory('loginSvc', factory);
 
     factory.$inject = ['$http'];

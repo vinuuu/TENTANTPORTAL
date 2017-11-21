@@ -13,7 +13,7 @@
             lazyLoad: [{
                 files: [
                     "lib.realpage.global-header-lang",
-                    "uam.home.base"
+                    "ui.home.base"
                 ]
             }]
         };
@@ -22,7 +22,7 @@
             controller: "dashboardCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.dashbaord",
+                    "ui.home.dashbaord",
                     "lib.realpage.accordion"
                 ]
             }]
@@ -32,7 +32,7 @@
             controller: "accountsCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.account-payments",
+                    "ui.home.account-payments",
                     "lib.realpage.form-select-menu-v1",
                     "lib.realpage.common",
                     "lib.realpage.float-scroll",
@@ -53,7 +53,7 @@
             controller: "statementsCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.view-statements",
+                    "ui.home.view-statements",
                     "lib.realpage.form-select-menu-v1"
 
                 ]
@@ -64,7 +64,7 @@
             controller: "viewpayCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.home.viewing-paying",
+                    "ui.home.viewing-paying",
                     "lib.realpage.form-select-menu-v1",
                     "lib.realpage.form-input-text-v1"
                 ]
@@ -76,7 +76,7 @@
             controller: "loginCtrl as page",
             lazyLoad: [{
                 files: [
-                    "uam.login",
+                    "ui.login",
                     "lib.realpage.form-input-radio"
                 ]
             }]
@@ -90,7 +90,7 @@
                     "lib.angular.motion",
                     "lib.bootstrap.additions",
                     "lib.angular.strap",
-                    "uam.home.floorplan-unit.bundle"
+                    "ui.home.floorplan-unit.bundle"
                 ]
             }]
         };
@@ -100,7 +100,7 @@
             controller: "CommonAreaCtrl as commonArea",
             lazyLoad: [{
                 files: [
-                    "uam.home.common-area"
+                    "ui.home.common-area"
                 ]
             }]
         };
@@ -110,7 +110,7 @@
             controller: "ActivityCtrl as activity",
             lazyLoad: [{
                 files: [
-                    "uam.home.activity"
+                    "ui.home.activity"
                 ]
             }]
         };
@@ -124,7 +124,7 @@
                     "lib.angular.motion",
                     "lib.bootstrap.additions",
                     "lib.angular.strap",
-                    "uam.home.profile-settings.bundle"
+                    "ui.home.profile-settings.bundle"
                 ]
             }]
         };
@@ -136,6 +136,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["rpRoutesProvider", config]);
 })(angular);

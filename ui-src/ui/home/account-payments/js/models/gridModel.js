@@ -120,6 +120,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("sampleGrid1Config", ["rpGridConfig", Factory]);
 })(angular);

@@ -32,6 +32,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("loginFormConfig", ["baseFormConfig", "rpFormInputRadioConfig", "rpFormSelectMenuConfig", factory]);
 })(angular);

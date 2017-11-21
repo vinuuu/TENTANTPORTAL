@@ -74,7 +74,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsAmenityUpgradeEligibleConfig", [
             "rpGridConfig",
             factory

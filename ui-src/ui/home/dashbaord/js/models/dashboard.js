@@ -123,7 +123,7 @@
         return model.init();
     }
     angular
-        .module('uam')
+        .module('ui')
         .factory('dashboardMdl', factory);
 
     factory.$inject = ['dashboardSvc', '$http'];

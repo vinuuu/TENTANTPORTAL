@@ -47,6 +47,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityDetailsTabsConfig", [factory]);
 })(angular);

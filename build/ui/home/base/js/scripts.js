@@ -26,7 +26,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("HomeCtrl", ["$scope", "amenitiesScrollingTabsModel", HomeCtrl]);
 })(angular);
 
@@ -97,6 +97,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesScrollingTabsModel", ["rpScrollingTabsMenuModel", factory]);
 })(angular);

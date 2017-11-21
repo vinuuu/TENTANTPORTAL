@@ -9,7 +9,7 @@
         };
     }
     angular
-        .module('uam')
+        .module('ui')
         .factory('accountsSvc', Factory);
 
     Factory.$inject = ['$http'];

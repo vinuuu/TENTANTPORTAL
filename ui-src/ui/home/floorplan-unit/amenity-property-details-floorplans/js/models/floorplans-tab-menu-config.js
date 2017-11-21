@@ -30,6 +30,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlanUnitAmenityPropDetTabsMenuConfigModel", [factory]);
 })(angular);

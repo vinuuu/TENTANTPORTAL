@@ -37,6 +37,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(['rpBdgtBreadcrumbsModelProvider', config]);
 })(angular);

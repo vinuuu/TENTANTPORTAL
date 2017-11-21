@@ -29,6 +29,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlansAmenityAddedActionsConfig", ["rpGridActions", "rpActionsMenuModel", factory]);
 })(angular);

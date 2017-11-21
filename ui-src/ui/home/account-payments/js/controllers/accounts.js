@@ -163,7 +163,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("accountsCtrl", ["$scope", '$http', 'notificationService', 'accountsMdl',
             'sampleSelectMenuFormConfig', "sampleGrid1Config",
             "rpGridModel",

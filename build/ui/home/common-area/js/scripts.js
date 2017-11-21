@@ -22,7 +22,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("CommonAreaCtrl", ["$scope", CommonAreaCtrl]);
 })(angular);
 

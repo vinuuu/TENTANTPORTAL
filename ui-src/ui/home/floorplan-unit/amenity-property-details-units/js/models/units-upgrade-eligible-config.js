@@ -120,7 +120,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsUpgradeEligibleConfig", [
             "rpGridConfig",      
             "fpuAmePropDetUnitsUpgEliActionsConfig",      

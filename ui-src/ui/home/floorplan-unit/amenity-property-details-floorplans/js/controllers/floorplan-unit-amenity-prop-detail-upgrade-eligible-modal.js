@@ -38,7 +38,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetUpgradeEligibleModalCtrl", [
             "$scope",
             "fpUpgradeEligibleListModel",

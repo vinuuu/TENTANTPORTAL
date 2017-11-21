@@ -1,16 +1,16 @@
-(function (angular) {
+(function(angular) {
     "use strict";
 
     function Controller(rpBdgtBreadcrumbs) {
         var events,
             vm = this;
 
-        vm.$onInit = function () {
-           vm.model = rpBdgtBreadcrumbs;
-        };      
+        vm.$onInit = function() {
+            vm.model = rpBdgtBreadcrumbs;
+        };
 
-        vm.$onDestroy = function () {
-           
+        vm.$onDestroy = function() {
+
         };
     }
 
@@ -23,6 +23,6 @@
     };
 
     angular
-        .module("budgeting")
+        .module("ui")
         .component("rpBdgtBreadcrumbs", component);
 })(angular);

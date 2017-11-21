@@ -1,20 +1,19 @@
-<div class="container-fluid amenities">
-    <rp-global-header>
-    </rp-global-header>
-    <rp-global-nav>
-    </rp-global-nav>
+<div class="app-wrap appNav appHeader appFooter">
+    <!-- Need TO Show the Global Header always -->
+    <!-- Removing the ng-show="appLayout.appHeader" condition -->
+    <rp-global-header></rp-global-header>
 
-    <div class="app">
-        <div class="app-header">
+    <rp-global-nav></rp-global-nav>
+
+    <div class="app-subheader">
+        <div class="white lt box-shadow clearfix whiteBar">
+            <rp-bdgt-breadcrumbs></rp-bdgt-breadcrumbs>
         </div>
-        <div class="app-subheader">
-            <div class="white lt box-shadow clearfix whiteBar">
-                <rp-bdgt-breadcrumbs></rp-bdgt-breadcrumbs>
-            </div>
-        </div>
-        <div ui-view class="app-content white">
-        </div>
-        <div class="app-footer">
-        </div>
+    </div>
+
+    <div id="app-ui" ui-view class="app-content">
+    </div>
+
+    <div class="app-footer" ng-show="appLayout.appFooter">
     </div>
 </div>

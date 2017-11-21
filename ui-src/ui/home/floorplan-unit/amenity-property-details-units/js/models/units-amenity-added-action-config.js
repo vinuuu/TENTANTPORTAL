@@ -29,7 +29,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmePropDetUnitsAmeAddActionsConfig", [
             "rpGridActions",
             "rpActionsMenuModel",

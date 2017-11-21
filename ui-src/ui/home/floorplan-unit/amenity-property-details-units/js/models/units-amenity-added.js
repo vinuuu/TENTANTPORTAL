@@ -170,7 +170,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsAmenityAddedModel", [
             "unitsAmenityAddedConfig",
             "rpGridModel",

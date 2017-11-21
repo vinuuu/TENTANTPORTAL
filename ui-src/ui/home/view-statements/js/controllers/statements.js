@@ -45,6 +45,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("statementsCtrl", ["$scope", '$http', 'notificationService', 'statementsdMdl', 'statementSelectMenuFormConfig', StatementsCtrl]);
 })(angular);

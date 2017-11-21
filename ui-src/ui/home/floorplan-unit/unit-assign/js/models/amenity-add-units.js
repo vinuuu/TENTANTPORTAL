@@ -67,7 +67,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlansAmenityAddunitsModel", [
             "floorPlansAmenityAddUnitsConfig",
             "rpGridModel",

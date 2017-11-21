@@ -116,7 +116,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("dashboardMdl", [DashboardMdl]);
     DashboardMdl.$inject = ['dashboardSvc', '$http'];
 })(angular);

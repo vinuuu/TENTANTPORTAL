@@ -147,7 +147,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsUpgradeEligibleListModel", [
             "unitsUpgradeEligibleConfig",
             "rpGridModel",

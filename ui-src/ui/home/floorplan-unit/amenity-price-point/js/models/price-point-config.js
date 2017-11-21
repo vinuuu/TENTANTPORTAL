@@ -35,7 +35,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("pricePointConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig",

@@ -42,6 +42,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsDataSvc", ["$resource","$window", factory]);
 })(angular);

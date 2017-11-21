@@ -1,0 +1,10 @@
+{
+	"version": 3,
+	"file": "styles.css",
+	"sources": [
+		"../../../../../ui-src/ui/home/viewing-paying/css/styles.scss",
+		"../../../../../ui-src/ui/lib/base/css/styles.scss"
+	],
+	"names": [],
+	"mappings": "AACA,AAAA,MAAM,CAAC;EACH,aAAa,EAAE,iBAAiB,GACnC"
+}

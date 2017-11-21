@@ -42,6 +42,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpDataSvc", ["$resource","$window", factory]);
 })(angular);

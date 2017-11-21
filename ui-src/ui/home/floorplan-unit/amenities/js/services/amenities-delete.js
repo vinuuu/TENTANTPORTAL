@@ -1,6 +1,6 @@
 // Delete Amenities Service
 
-(function (angular) {
+(function(angular) {
     "use strict";
 
     function amenitiesDeleteSvc($q, $http) {
@@ -9,7 +9,7 @@
         url = "/api/delete";
 
         svc = {
-            abort: function () {
+            abort: function() {
                 if (deferred && deferred.resolve) {
                     deferred.resolve();
                 }
@@ -17,7 +17,7 @@
                 return svc;
             },
 
-            deleteSelectedAmenity: function (paramData) {
+            deleteSelectedAmenity: function(paramData) {
                 deferred = $q.defer();
 
                 var reqUrl = url + "/" + paramData.amenityID;
@@ -37,6 +37,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesDeleteSvc", ["$q", "$http", amenitiesDeleteSvc]);
 })(angular);

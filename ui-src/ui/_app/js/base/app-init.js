@@ -4,5 +4,5 @@
     "use strict";
 
     angular
-        .module("uam", ["rpApp"]);
+        .module("ui", ["rpApp"]);
 })();

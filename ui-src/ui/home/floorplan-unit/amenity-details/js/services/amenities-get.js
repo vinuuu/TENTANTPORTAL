@@ -42,6 +42,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityDetailDataSvc", ["$resource","$window", factory]);
 })(angular);

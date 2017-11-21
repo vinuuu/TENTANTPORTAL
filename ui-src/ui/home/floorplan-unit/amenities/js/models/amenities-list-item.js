@@ -76,6 +76,6 @@
 //     }
 
 //     angular
-//         .module("uam")
+//         .module("ui")
 //         .factory("amenitiesListItem", [factory]);
 // })(angular);

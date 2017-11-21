@@ -21,7 +21,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuEditAmenityCtrl", [
             "$scope",
             "fpuEditAmenityAside",

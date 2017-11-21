@@ -43,7 +43,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenityPropertyActionsMenuModel", ["rpActionsMenuModel", factory]);
 })(angular);
 

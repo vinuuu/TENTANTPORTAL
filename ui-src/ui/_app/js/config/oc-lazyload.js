@@ -12,6 +12,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["$ocLazyLoadProvider", config]);
 })(angular);

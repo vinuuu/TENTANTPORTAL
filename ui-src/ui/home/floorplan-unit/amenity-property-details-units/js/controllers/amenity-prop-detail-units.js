@@ -198,7 +198,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetUnitsCtrl", [
             "$scope",
             "fpuAmenityPropDetUnitsTabsMenuModel",

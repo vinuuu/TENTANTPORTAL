@@ -28,7 +28,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FloorPlanUnitCtrl", [
             "$scope",
             "amenitiesTabsMenu",
@@ -75,7 +75,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesTabsMenu", ["rpTabsMenuModel", "amenitiesTabsData", factory]);
 })(angular);
 
@@ -113,7 +113,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesTabsData", [factory]);
 })(angular);
 
@@ -233,7 +233,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenitiesCtrl", [
             "$scope",
             "fpuAmenitiesDataSvc",
@@ -299,7 +299,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetDeleteConfirmModalCtrl", [
             "$scope",
             "amenitiesModel",
@@ -350,7 +350,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .directive("fpuAmenityActions", [
             "fpuEditAmenityAside",
             "fpuEditAmenityContext",
@@ -402,7 +402,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenitiesListActions", [
             "rpGridActions",
             "rpActionsMenuModel",
@@ -540,7 +540,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenitiesListConfig", [
             "rpGridConfig",
             "fpuAmenitiesListActions",
@@ -627,7 +627,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
 //     }
 
 //     angular
-//         .module("uam")
+//         .module("ui")
 //         .factory("amenitiesListItem", [factory]);
 // })(angular);
 
@@ -680,7 +680,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("assignAmenitiesToProperties", ["selectAmenityDetailDataSvc", "SelectAmenitiesListManager", "amenityAssignPropModel", "AmenityAssignPropAsideManager", factory]);
 })(angular);
 
@@ -887,7 +887,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesModel", [
             "$filter",
             "fpuAmenitiesListConfig",
@@ -988,7 +988,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("SelectAmenitiesListManager", ["$filter", factory]);
 })(angular);
 
@@ -1018,7 +1018,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesAddSvc", [
             "$resource",
             "$q",
@@ -1030,7 +1030,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
 //  Source: ui\home\floorplan-unit\amenities\js\services\amenities-delete.js
 // Delete Amenities Service
 
-(function (angular) {
+(function(angular) {
     "use strict";
 
     function amenitiesDeleteSvc($q, $http) {
@@ -1039,7 +1039,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
         url = "/api/delete";
 
         svc = {
-            abort: function () {
+            abort: function() {
                 if (deferred && deferred.resolve) {
                     deferred.resolve();
                 }
@@ -1047,7 +1047,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
                 return svc;
             },
 
-            deleteSelectedAmenity: function (paramData) {
+            deleteSelectedAmenity: function(paramData) {
                 deferred = $q.defer();
 
                 var reqUrl = url + "/" + paramData.amenityID;
@@ -1067,7 +1067,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesDeleteSvc", ["$q", "$http", amenitiesDeleteSvc]);
 })(angular);
 
@@ -1116,7 +1116,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenitiesDataSvc", ["$resource","$window", factory]);
 })(angular);
 
@@ -1160,7 +1160,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesUpdateSvc", ["$q", "$http", amenitiesUpdateSvc]);
 })(angular);
 
@@ -1209,7 +1209,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("selectAmenityDetailDataSvc", ["$resource","$window", factory]);
 })(angular);
 
@@ -1238,7 +1238,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FloorPlanUnitPropertiesCtrl", ["$scope", FloorPlanUnitPropertiesCtrl]);
 })(angular);
 
@@ -1315,7 +1315,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityDetailsCtrl", [
             "$scope",
             "amenityDetailsModel",
@@ -1367,7 +1367,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .directive("fpuAmenityDetailActions", [
             "fpuAmenityPropDetailsAside",
             "fpuAmenityPropDetailsContext",
@@ -1464,7 +1464,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("AmenitiesListManager", ["$filter", factory]);
 })(angular);
 
@@ -1564,7 +1564,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityDetailsConfig", [
             "rpGridConfig",
             factory
@@ -1640,7 +1640,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenityDetailsModel", [
             "rpGridModel",
             "rpGridTransform",
@@ -1666,7 +1666,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityDetailsAside", ["rightAsideModal", factory]);
 })(angular);
 
@@ -1681,7 +1681,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityDetailsContext", ["modalContext", factory]);
 })(angular);
 
@@ -1731,7 +1731,7 @@ $templateCache.put("home/floorplan-unit/amenities/templates/edit-amenity.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityDetailDataSvc", ["$resource","$window", factory]);
 })(angular);
 
@@ -1782,7 +1782,7 @@ $templateCache.put("home/floorplan-unit/amenity-details/templates/units.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuEditAmenityCtrl", [
             "$scope",
             "fpuEditAmenityAside",
@@ -1813,7 +1813,7 @@ $templateCache.put("home/floorplan-unit/amenity-details/templates/units.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .service("fpuEditAmenityAside", [
             "rightAsideModal",
             FpuEditAmenityAside
@@ -1831,7 +1831,7 @@ $templateCache.put("home/floorplan-unit/amenity-details/templates/units.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuEditAmenityContext", ["modalContext", factory]);
 })(angular);
 
@@ -1962,7 +1962,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details/templates/index
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetailsCtrl", [
             "$scope",
             "amenityPropDetailsModel",
@@ -2063,7 +2063,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details/templates/index
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenityPropDetailsModel", [
             "rpGridModel",
             "rpGridTransform",
@@ -2127,7 +2127,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details/templates/index
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityDetailsTabsConfig", [factory]);
 })(angular);
 
@@ -2142,7 +2142,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details/templates/index
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsAside", ["rightAsideModal", factory]);
 })(angular);
 
@@ -2157,7 +2157,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details/templates/index
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsContext", ["modalContext", factory]);
 })(angular);
 
@@ -2208,7 +2208,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details/templates/index
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenityPropertyActionsMenuModel", ["rpActionsMenuModel", factory]);
 })(angular);
 
@@ -2271,7 +2271,7 @@ $templateCache.put("home/floorplan-unit/assign-property/templates/assign-propert
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FloorPlanUnitAmenityAssignPropCtrl", [
             "$scope",
             "pubsub",
@@ -2385,7 +2385,7 @@ $templateCache.put("home/floorplan-unit/assign-property/templates/assign-propert
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenityAssignPropModel", [
             "rpGridModel",
             "rpGridTransform",
@@ -2468,7 +2468,7 @@ $templateCache.put("home/floorplan-unit/assign-property/templates/assign-propert
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlanUnitAmenityAssignPropConfig", [
             "rpGridConfig",
             factory
@@ -2538,7 +2538,7 @@ $templateCache.put("home/floorplan-unit/assign-property/templates/assign-propert
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("AmenityAssignPropAsideManager", ["AmenityAssignPropAsideModel", factory]);
 })(angular);
 
@@ -2603,7 +2603,7 @@ $templateCache.put("home/floorplan-unit/assign-property/templates/assign-propert
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("AmenityAssignPropAsideModel", ["$aside", factory]);
 })(angular);
 
@@ -2625,7 +2625,7 @@ $templateCache.put("home/floorplan-unit/assign-property/templates/assign-propert
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlanUnitAmenityAssignPropDataSvc", ["$resource", factory]);
 })(angular);
 
@@ -2812,7 +2812,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetFloorPlansCtrl", [
             "$scope",
             "fpuAmenityPropDetTabsMenuModel",
@@ -2875,7 +2875,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetFloorPlansModalCtrl", [
             "$scope",
             "fpAmenityAddedModel",
@@ -2926,7 +2926,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetUpgradeEligibleModalCtrl", [
             "$scope",
             "fpUpgradeEligibleListModel",
@@ -2980,7 +2980,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .directive("fpuAmenityPropDetailsFlrPlnActions", [
             "fpAmenityAddedModel",
             "fpUpgradeEligibleListModel",            
@@ -3023,7 +3023,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlanUnitAmenityPropDetTabsMenuConfigModel", [factory]);
 })(angular);
 
@@ -3063,7 +3063,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetTabsMenuModel", ["rpTabsMenuModel", "floorPlanUnitAmenityPropDetTabsMenuConfigModel", factory]);
 })(angular);
 
@@ -3162,7 +3162,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpAmenityAddedConfig", [
             "rpGridConfig",            
             factory
@@ -3338,7 +3338,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpAmenityAddedModel", [
             "fpAmenityAddedConfig",
             "rpGridModel",
@@ -3436,7 +3436,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlansUpgradeEligibleConfig", [
             "rpGridConfig",            
             factory
@@ -3604,7 +3604,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpUpgradeEligibleListModel", [
             "floorPlansUpgradeEligibleConfig",
             "rpGridModel",
@@ -3713,7 +3713,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("AddFloorPlanListManager", ["$filter", factory]);
 })(angular);
 
@@ -3807,7 +3807,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("UpgradeEligibleListManager", ["$filter", factory]);
 })(angular);
 
@@ -3856,7 +3856,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpAmenityAddedDeleteSvc", ["$q", "$http", floorPlansAmenityAddedDeleteSvc]);
 })(angular);
 
@@ -3905,7 +3905,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-floorplans/temp
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpDataSvc", ["$resource","$window", factory]);
 })(angular);
 
@@ -4133,7 +4133,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetUnitsCtrl", [
             "$scope",
             "fpuAmenityPropDetUnitsTabsMenuModel",
@@ -4200,7 +4200,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetUnitsUpgEliModalCtrl", [
             "$scope",
             "unitsUpgradeEligibleListModel",
@@ -4249,7 +4249,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetUnitsConfirmModalCtrl", [
             "$scope",
             "unitsAmenityAddedModel",
@@ -4305,7 +4305,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .directive("fpuAmenityPropDetailsUnitsActions", [
             "fpuAmenityPropDetailsUnitsPricePointAside",
             "fpuAmenityPropDetailsUnitsPricePointContext",
@@ -4353,7 +4353,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetUnitsTabsMenuModel", ["rpTabsMenuModel", "floorPlanUnitAmenityPropDetUnitsTabsMenuConfigModel", factory]);
 })(angular);
 
@@ -4390,7 +4390,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlanUnitAmenityPropDetUnitsTabsMenuConfigModel", [factory]);
 })(angular);
 
@@ -4568,7 +4568,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsAmenityAddedModel", [
             "unitsAmenityAddedConfig",
             "rpGridModel",
@@ -4737,7 +4737,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsAmenityAddedConfig", [
             "rpGridConfig",     
             "fpuAmePropDetUnitsAmeAddActionsConfig",       
@@ -4895,7 +4895,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsUpgradeEligibleListModel", [
             "unitsUpgradeEligibleConfig",
             "rpGridModel",
@@ -5001,7 +5001,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("UnitsUpgradeEligibleListManager", ["$filter", factory]);
 })(angular);
 
@@ -5087,7 +5087,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsAmenityUpgradeEligibleModel", [
             "unitsAmenityUpgradeEligibleConfig",
             "rpGridModel",
@@ -5225,7 +5225,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsUpgradeEligibleConfig", [
             "rpGridConfig",      
             "fpuAmePropDetUnitsUpgEliActionsConfig",      
@@ -5310,7 +5310,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsAmenityUpgradeEligibleConfig", [
             "rpGridConfig",
             factory
@@ -5407,7 +5407,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("AddUnitsListManager", ["$filter", factory]);
 })(angular);
 
@@ -5445,7 +5445,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmePropDetUnitsUpgEliActionsConfig", [
             "rpGridActions",
             "rpActionsMenuModel",
@@ -5485,7 +5485,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmePropDetUnitsAmeAddActionsConfig", [
             "rpGridActions",
             "rpActionsMenuModel",
@@ -5541,7 +5541,7 @@ $templateCache.put("home/floorplan-unit/amenity-property-details-units/templates
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("unitsDataSvc", ["$resource","$window", factory]);
 })(angular);
 
@@ -5719,7 +5719,7 @@ $templateCache.put("home/floorplan-unit/amenity-price-point/templates/price-poin
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpaPropDetPricePointUnitsCtrl", [
             "$scope",
             "$filter",
@@ -5747,7 +5747,7 @@ $templateCache.put("home/floorplan-unit/amenity-price-point/templates/price-poin
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsUnitsPricePointAside", ["rightAsideModal", factory]);
 })(angular);
 
@@ -5762,7 +5762,7 @@ $templateCache.put("home/floorplan-unit/amenity-price-point/templates/price-poin
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsUnitsPricePointContext", ["modalContext", factory]);
 })(angular);
 
@@ -5804,7 +5804,7 @@ $templateCache.put("home/floorplan-unit/amenity-price-point/templates/price-poin
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("pricePointConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig",
@@ -5843,7 +5843,7 @@ $templateCache.put("home/floorplan-unit/amenity-price-point/templates/price-poin
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuPropDetUnitsPricePointBulkModel", [factory]);
 })(angular);
 
@@ -5893,7 +5893,7 @@ $templateCache.put("home/floorplan-unit/amenity-price-point/templates/price-poin
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmePropDetUnitsPricePointDataSvc", ["$resource","$window", factory]);
 })(angular);
 
@@ -5968,7 +5968,7 @@ $templateCache.put("home/floorplan-unit/floorplan-assign/templates/upgrade-eligi
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetAssignFloorPlansModalCtrl", [
             "$scope",
             "fpAmenityAddFloorPlansModel",
@@ -6030,7 +6030,7 @@ $templateCache.put("home/floorplan-unit/floorplan-assign/templates/upgrade-eligi
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetAssignUpgradeEligibleModalCtrl", [
             "$scope",
             "fpAmenityUpgradeEligibleModel",
@@ -6055,7 +6055,7 @@ $templateCache.put("home/floorplan-unit/floorplan-assign/templates/upgrade-eligi
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsFlrPlnAssignAside", ["rightAsideModal", factory]);
 })(angular);
 
@@ -6070,7 +6070,7 @@ $templateCache.put("home/floorplan-unit/floorplan-assign/templates/upgrade-eligi
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsFlrPlnAssignContext", ["modalContext", factory]);
 })(angular);
 
@@ -6086,7 +6086,7 @@ $templateCache.put("home/floorplan-unit/floorplan-assign/templates/upgrade-eligi
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsFlrPlnUpgEliAssignAside", ["rightAsideModal", factory]);
 })(angular);
 
@@ -6101,7 +6101,7 @@ $templateCache.put("home/floorplan-unit/floorplan-assign/templates/upgrade-eligi
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsFlrPlnUpgEliAssignContext", ["modalContext", factory]);
 })(angular);
 
@@ -6172,7 +6172,7 @@ $templateCache.put("home/floorplan-unit/floorplan-assign/templates/upgrade-eligi
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpAmenityUpgradeEligibleModel", [
             "floorPlansAmenityUpgradeEligibleConfig",
             "rpGridModel",
@@ -6254,7 +6254,7 @@ $templateCache.put("home/floorplan-unit/floorplan-assign/templates/upgrade-eligi
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlansAmenityUpgradeEligibleConfig", [
             "rpGridConfig",
             factory
@@ -6334,7 +6334,7 @@ $templateCache.put("home/floorplan-unit/floorplan-assign/templates/upgrade-eligi
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpAmenityAddFloorPlansConfig", [
             "rpGridConfig",
             factory
@@ -6406,7 +6406,7 @@ $templateCache.put("home/floorplan-unit/floorplan-assign/templates/upgrade-eligi
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpAmenityAddFloorPlansModel", [
             "fpAmenityAddFloorPlansConfig",
             "rpGridModel",
@@ -6489,7 +6489,7 @@ $templateCache.put("home/floorplan-unit/unit-assign/templates/assign-unit.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetAmeAddAssignUnitsModalCtrl", [
             "$scope",
             "floorPlansAmenityAddunitsModel",
@@ -6553,7 +6553,7 @@ $templateCache.put("home/floorplan-unit/unit-assign/templates/assign-unit.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetUpgEliAssignUnitsModalCtrl", [
             "$scope",
             "floorPlansUpgEliunitsModel",
@@ -6637,7 +6637,7 @@ $templateCache.put("home/floorplan-unit/unit-assign/templates/assign-unit.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlansAmenityAddunitsModel", [
             "floorPlansAmenityAddUnitsConfig",
             "rpGridModel",
@@ -6758,7 +6758,7 @@ $templateCache.put("home/floorplan-unit/unit-assign/templates/assign-unit.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlansAmenityAddUnitsConfig", [
             "rpGridConfig",
             factory
@@ -6837,7 +6837,7 @@ $templateCache.put("home/floorplan-unit/unit-assign/templates/assign-unit.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlansUpgEliunitsModel", [
             "floorPlansUpgEliUnitsConfig",
             "rpGridModel",
@@ -6958,7 +6958,7 @@ $templateCache.put("home/floorplan-unit/unit-assign/templates/assign-unit.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlansUpgEliUnitsConfig", [
             "rpGridConfig",
             factory
@@ -6977,7 +6977,7 @@ $templateCache.put("home/floorplan-unit/unit-assign/templates/assign-unit.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsUnitAssignAside", ["rightAsideModal", factory]);
 })(angular);
 
@@ -6992,7 +6992,7 @@ $templateCache.put("home/floorplan-unit/unit-assign/templates/assign-unit.html",
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenityPropDetailsUnitUpgEliAssignAside", ["rightAsideModal", factory]);
 })(angular);
 

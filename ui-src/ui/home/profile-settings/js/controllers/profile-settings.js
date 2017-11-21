@@ -21,6 +21,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("ProfileSettingsCtrl", ["$scope", ProfileSettingsCtrl]);
 })(angular);

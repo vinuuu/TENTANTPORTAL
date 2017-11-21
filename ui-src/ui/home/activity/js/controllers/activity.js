@@ -21,6 +21,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("ActivityCtrl", ["$scope", ActivityCtrl]);
 })(angular);

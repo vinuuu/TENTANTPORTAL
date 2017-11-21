@@ -25,6 +25,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("HomeCtrl", ["$scope", "amenitiesScrollingTabsModel", HomeCtrl]);
 })(angular);

@@ -31,6 +31,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("amenitiesTabsData", [factory]);
 })(angular);

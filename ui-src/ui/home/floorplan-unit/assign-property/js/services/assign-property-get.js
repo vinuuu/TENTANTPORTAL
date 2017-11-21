@@ -13,6 +13,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("floorPlanUnitAmenityAssignPropDataSvc", ["$resource", factory]);
 })(angular);

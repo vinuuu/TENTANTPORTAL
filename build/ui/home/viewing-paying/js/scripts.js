@@ -17,7 +17,7 @@
         vm.init();
     }
     angular
-        .module('uam')
+        .module('ui')
         .controller('viewpayCtrl', controller);
     controller.$inject = ['viewpayMdl'];
 
@@ -117,7 +117,7 @@
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .factory('viewpayMdl', factory);
     factory.$inject = ['viewpaySelectMenuFormConfig', 'viewpayGrid1Config', "rpGridModel",
         "rpGridTransform", "appLangTranslate"
@@ -247,7 +247,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("viewpayGrid1Config", ["rpGridConfig", Factory]);
 })(angular);
 
@@ -284,7 +284,7 @@
 
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("viewpaySelectMenuFormConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig", "rpFormInputTextConfig",

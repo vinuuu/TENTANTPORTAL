@@ -69,7 +69,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityDetailsCtrl", [
             "$scope",
             "amenityDetailsModel",

@@ -46,7 +46,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("statementsCtrl", ["$scope", '$http', 'notificationService', 'statementsdMdl', 'statementSelectMenuFormConfig', StatementsCtrl]);
 })(angular);
 
@@ -115,7 +115,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("statementsdMdl", ["staementGrid1Config",
             "rpGridModel",
             "rpGridTransform", StatementsMdl
@@ -147,7 +147,7 @@
 
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("statementSelectMenuFormConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig",
@@ -277,7 +277,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("staementGrid1Config", ["rpGridConfig", Factory]);
 })(angular);
 

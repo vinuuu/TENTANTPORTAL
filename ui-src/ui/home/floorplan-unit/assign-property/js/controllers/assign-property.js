@@ -44,7 +44,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FloorPlanUnitAmenityAssignPropCtrl", [
             "$scope",
             "pubsub",

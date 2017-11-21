@@ -13,7 +13,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(['appLangKeysProvider', config]);
 })(angular);
 
@@ -33,7 +33,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(['appLangBundleProvider', config]);
 })(angular);
 

@@ -10,6 +10,6 @@
             };
         return model;
     }
-    angular.module("uam").
+    angular.module("ui").
     factory('accountsContent', ['appLangTranslate', factory]);
 })(angular);

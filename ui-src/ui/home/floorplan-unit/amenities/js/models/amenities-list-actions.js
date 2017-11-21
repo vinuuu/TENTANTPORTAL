@@ -38,7 +38,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpuAmenitiesListActions", [
             "rpGridActions",
             "rpActionsMenuModel",

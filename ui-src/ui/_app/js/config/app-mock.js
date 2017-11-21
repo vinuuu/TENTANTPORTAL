@@ -54,7 +54,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .run(['$httpBackend', PassThrough])
         .requires.push('ng-mock-e2e');
 })(angular);

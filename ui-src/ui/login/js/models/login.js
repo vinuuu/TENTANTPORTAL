@@ -149,7 +149,7 @@
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .factory('loginMdl', factory);
 
     factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state'];

@@ -49,6 +49,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(['appLangBundleProvider', config]);
 })(angular);

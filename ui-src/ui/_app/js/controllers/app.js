@@ -18,6 +18,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("AppCtrl", [AppCtrl]);
 })(angular);

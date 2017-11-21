@@ -48,7 +48,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .controller("FpuAmenityPropDetAssignFloorPlansModalCtrl", [
             "$scope",
             "fpAmenityAddFloorPlansModel",

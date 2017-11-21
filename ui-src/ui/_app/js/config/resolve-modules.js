@@ -10,6 +10,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["rpResolveModuleProvider", config]);
 })(angular);

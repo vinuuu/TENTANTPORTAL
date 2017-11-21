@@ -26,7 +26,7 @@
 
 
     angular
-        .module('uam')
+        .module('ui')
         .controller('dashboardCtrl', Controller);
 
     Controller.$inject = ["$scope", '$http', 'notificationService', 'dashboardMdl'];

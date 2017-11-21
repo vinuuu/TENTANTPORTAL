@@ -10,7 +10,7 @@
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .factory('dashboardSvc', factory);
 
     factory.$inject = ['$http'];

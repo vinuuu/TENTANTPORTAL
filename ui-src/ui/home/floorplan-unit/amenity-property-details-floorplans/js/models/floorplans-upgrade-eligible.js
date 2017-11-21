@@ -158,7 +158,7 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("fpUpgradeEligibleListModel", [
             "floorPlansUpgradeEligibleConfig",
             "rpGridModel",

@@ -35,6 +35,6 @@
         prov.setData(navData);
     }
     angular
-        .module("uam")
+        .module("ui")
         .run(["rpGlobalNavModel", config]);
 })(angular);

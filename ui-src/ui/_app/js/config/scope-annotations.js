@@ -8,6 +8,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .config(["$compileProvider", config]);
 })(angular);

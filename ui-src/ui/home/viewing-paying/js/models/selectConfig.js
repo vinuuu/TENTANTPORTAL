@@ -30,7 +30,7 @@
 
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("viewpaySelectMenuFormConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig", "rpFormInputTextConfig",

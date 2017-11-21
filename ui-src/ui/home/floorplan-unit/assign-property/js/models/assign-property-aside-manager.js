@@ -60,6 +60,6 @@
     }
 
     angular
-        .module("uam")
+        .module("ui")
         .factory("AmenityAssignPropAsideManager", ["AmenityAssignPropAsideModel", factory]);
 })(angular);
