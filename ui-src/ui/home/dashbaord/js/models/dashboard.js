@@ -13,6 +13,7 @@
 
         model.getdashboardList = function() {
 
+
             var obj = {
                 "request": {
                     "operation": {
@@ -29,9 +30,10 @@
                     }
                 }
             };
-            $http.post('/api/dashboard', obj).then(function(response) {
+            dashboardSvc.getLeaseList(obj).then(function(response) {
                 if (response.data && response.data.length > 0) {
-                    model.list = response.data;
+
+                    model.tenantlist = response.data;
                 }
             });
 

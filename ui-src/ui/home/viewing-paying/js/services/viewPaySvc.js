@@ -5,15 +5,15 @@
 
     function factory($http) {
         return {
-            getLeaseList: function(obj) {
-                return $http.post('/api/dashboard', obj);
+            getInvoiceList: function(obj) {
+                return $http.post('/api/viewPay', obj);
             }
         };
     }
 
     angular
         .module('ui')
-        .factory('dashboardSvc', factory);
+        .factory('viewPaySvc', factory);
 
     factory.$inject = ['$http'];
 

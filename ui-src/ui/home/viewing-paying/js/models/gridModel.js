@@ -14,16 +14,16 @@
                     key: "Date"
                 },
                 {
-                    key: "Lease ID"
+                    key: "LEASEID"
                 },
                 {
-                    key: "Unit ID"
+                    key: "UNITID"
                 },
                 {
-                    key: "Amount"
+                    key: "TOTALDUE"
                 },
                 {
-                    key: "Pay Amount",
+                    key: "TOTALENTERED",
                     type: "custom",
                     templateUrl: "home/viewing-paying/templates/textbox.html"
                 },
@@ -45,19 +45,19 @@
                         text: "Date"
                     },
                     {
-                        key: "Lease ID",
+                        key: "LEASEID",
                         text: "Lease ID"
                     },
                     {
-                        key: "Unit ID",
+                        key: "UNITID",
                         text: "Unit ID"
                     },
                     {
-                        key: "Amount",
+                        key: "TOTALENTERED",
                         text: "Amount"
                     },
                     {
-                        key: "Pay Amount",
+                        key: "TOTALENTERED",
                         text: "Pay Amount"
                     },
                     {
@@ -83,25 +83,25 @@
                     placeholder: "Filter by Date"
                 },
                 {
-                    key: "Lease ID",
+                    key: "LEASEID",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Lease ID"
                 },
                 {
-                    key: "Unit ID",
+                    key: "UNITID",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Unit ID"
                 },
                 {
-                    key: "Amount",
+                    key: "TOTALDUE",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by start Amount"
                 },
                 {
-                    key: "Pay Amount",
+                    key: "TOTALENTERED",
                     type: "textbox",
                     filterDelay: 0,
                     placeholder: "Filter by Pay Amount"

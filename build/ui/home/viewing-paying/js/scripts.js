@@ -27,7 +27,7 @@
 (function() {
     'use strict';
 
-    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate) {
+    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, viewPaySvc, _) {
         var model = {},
             grid = gridModel(),
             translate = langTranslate('viewpay').translate,
@@ -77,41 +77,77 @@
             return translate(key);
         };
 
+
         model.loadData = function() {
-            grid.setData({
-                "records": [{
-                        "id": 1,
-                        "Invoice": "2011/04/25",
-                        "Date": "Invoice",
-                        "Lease ID": "INV-000004-due on 02 Jun 2015",
-                        "Unit ID": "11,000.00",
-                        "Amount": "kkkk",
-                        "Pay Amount": "hjhhhj",
-                        "Status": "hjhhhj"
-                    },
-                    {
-                        "id": 1,
-                        "Invoice": "2011/04/25",
-                        "Date": "Invoice",
-                        "Lease ID": "INV-000004-due on 02 Jun 2015",
-                        "Unit ID": "11,000.00",
-                        "Amount": "kkkk",
-                        "Pay Amount": "hjhhhj",
-                        "Status": "hjhhhj"
-                    },
-                    {
-                        "id": 1,
-                        "Invoice": "2011/04/25",
-                        "Date": "Invoice",
-                        "Lease ID": "INV-000004-due on 02 Jun 2015",
-                        "Unit ID": "11,000.00",
-                        "Amount": "kkkk",
-                        "Pay Amount": "hjhhhj",
-                        "Status": "hjhhhj"
-                    }
-                ]
-            });
+            // grid.setData({
+            //     "records": [{
+            //             "id": 1,
+            //             "Invoice": "2011/04/25",
+            //             "Date": "Invoice",
+            //             "Lease ID": "INV-000004-due on 02 Jun 2015",
+            //             "Unit ID": "11,000.00",
+            //             "Amount": "kkkk",
+            //             "Pay Amount": "hjhhhj",
+            //             "Status": "hjhhhj"
+            //         },
+            //         {
+            //             "id": 1,
+            //             "Invoice": "2011/04/25",
+            //             "Date": "Invoice",
+            //             "Lease ID": "INV-000004-due on 02 Jun 2015",
+            //             "Unit ID": "11,000.00",
+            //             "Amount": "kkkk",
+            //             "Pay Amount": "hjhhhj",
+            //             "Status": "hjhhhj"
+            //         },
+            //         {
+            //             "id": 1,
+            //             "Invoice": "2011/04/25",
+            //             "Date": "Invoice",
+            //             "Lease ID": "INV-000004-due on 02 Jun 2015",
+            //             "Unit ID": "11,000.00",
+            //             "Amount": "kkkk",
+            //             "Pay Amount": "hjhhhj",
+            //             "Status": "hjhhhj"
+            //         }
+            //     ]
+            // });
             //  vm.dataReq = dataSvc.get(grid.setData.bind(grid));
+
+            var inputObj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "pminvoice",
+                                    "fields": "",
+                                    "query": "",
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+
+            //u can use _ now
+            viewPaySvc.getInvoiceList(inputObj).then(function(response) {
+                if (response.data && response.data.length > 0) {
+
+                    // _.each(response.data, function(item) {
+                    //     item.Status = 'hjhhhj';
+                    //     item.Invoice = 'IN1234556';
+                    //     item.Date = '2011/04/25';
+                    // });
+
+
+                    grid.setData({ "records": response.data });
+                }
+            });
+
+
         };
         return model;
     }
@@ -120,7 +156,7 @@
         .module('ui')
         .factory('viewpayMdl', factory);
     factory.$inject = ['viewpaySelectMenuFormConfig', 'viewpayGrid1Config', "rpGridModel",
-        "rpGridTransform", "appLangTranslate"
+        "rpGridTransform", "appLangTranslate", "viewPaySvc", 'underscore'
     ];
 
 })();
@@ -142,16 +178,16 @@
                     key: "Date"
                 },
                 {
-                    key: "Lease ID"
+                    key: "LEASEID"
                 },
                 {
-                    key: "Unit ID"
+                    key: "UNITID"
                 },
                 {
-                    key: "Amount"
+                    key: "TOTALDUE"
                 },
                 {
-                    key: "Pay Amount",
+                    key: "TOTALENTERED",
                     type: "custom",
                     templateUrl: "home/viewing-paying/templates/textbox.html"
                 },
@@ -173,19 +209,19 @@
                         text: "Date"
                     },
                     {
-                        key: "Lease ID",
+                        key: "LEASEID",
                         text: "Lease ID"
                     },
                     {
-                        key: "Unit ID",
+                        key: "UNITID",
                         text: "Unit ID"
                     },
                     {
-                        key: "Amount",
+                        key: "TOTALENTERED",
                         text: "Amount"
                     },
                     {
-                        key: "Pay Amount",
+                        key: "TOTALENTERED",
                         text: "Pay Amount"
                     },
                     {
@@ -211,25 +247,25 @@
                     placeholder: "Filter by Date"
                 },
                 {
-                    key: "Lease ID",
+                    key: "LEASEID",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Lease ID"
                 },
                 {
-                    key: "Unit ID",
+                    key: "UNITID",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Unit ID"
                 },
                 {
-                    key: "Amount",
+                    key: "TOTALDUE",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by start Amount"
                 },
                 {
-                    key: "Pay Amount",
+                    key: "TOTALENTERED",
                     type: "textbox",
                     filterDelay: 0,
                     placeholder: "Filter by Pay Amount"
@@ -299,4 +335,26 @@ $templateCache.put("home/viewing-paying/templates/checkbox.html",
 $templateCache.put("home/viewing-paying/templates/textbox.html",
 "<div class=\"grid-edit-title\"><rp-form-input-text config=\"model.formConfig.lease\" rp-model=\"record[config.key]\"></rp-form-input-text></div>");
 }]);
+
+//  Source: ui\home\viewing-paying\js\services\viewPaySvc.js
+(function() {
+    'use strict';
+
+
+
+    function factory($http) {
+        return {
+            getInvoiceList: function(obj) {
+                return $http.post('/api/viewPay', obj);
+            }
+        };
+    }
+
+    angular
+        .module('ui')
+        .factory('viewPaySvc', factory);
+
+    factory.$inject = ['$http'];
+
+})();
 

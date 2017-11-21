@@ -120,7 +120,7 @@
                         "authentication": {
                             "login": {
                                 "userid": "srihari@realpage.com",
-                                "password": "sriharI$4"
+                                "password": "srihariA!1"
                             }
                         },
                         "content": {
