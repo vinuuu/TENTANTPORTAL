@@ -1,21 +1,22 @@
-<div class="container">
+<div class="container" id="viewpay">
 
-    <!-- <div class="page-header">
-        <h1 class="text-center">{{page.model.translateNames('viewPayHeader')}}</h1>
+    <div class="page-header">
+        <h4>{{page.model.translateNames('viewPayHeader')}}</h4>
         <hr>
-    </div> -->
-    <div class="b-b-1">Invoices</div>
-    <br>
+    </div>
+
     <div class="row">
         <div class="col-md-2">
-            <rp-form-select-menu config="page.model.formConfig.accountHistory" rp-model="page.model.accountHistory">
+            <rp-form-select-menu config="page.model.formConfig.paymentType" rp-model="page.model.paymenttype">
             </rp-form-select-menu>
         </div>
         <div class="col-md-2">
-            <rp-form-select-menu config="page.model.formConfig.secondSelect" rp-model="page.model.accountHistory">
+            <rp-form-select-menu config="page.model.formConfig.secondSelect" rp-model="page.model.leasevalueID">
             </rp-form-select-menu>
         </div>
-
+        <div>
+            <button class="btn btn-primary btnContinue pull-right">Pay Now</button>
+        </div>
     </div>
     <br>
 
@@ -29,18 +30,16 @@
                                     }">
             </rp-toggle>
         </div>
+
     </div>
 
     <rp-grid model="page.model.grid">
     </rp-grid>
+    <div>
 
-
+    </div>
+    <div>
+        <button class="btn btn-primary btnContinue pull-right">Pay Now</button>
+    </div>
 
 </div>
-
-<style>
-    td,
-    th {
-        width: 160px;
-    }
-</style>

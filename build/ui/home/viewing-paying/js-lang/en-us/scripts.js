@@ -26,7 +26,7 @@
     function config(appLangBundle) {
 
         var values = {
-            'viewPayHeader': 'Viewing and paying invoices in portal'
+            'viewPayHeader': 'Invoices'
         };
 
         appLangBundle.lang('en-us').app('viewpay').set(values);

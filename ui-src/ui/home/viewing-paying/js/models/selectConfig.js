@@ -4,14 +4,14 @@
     function Factory(baseFormConfig, menuConfig, inputConfig) {
         var model = baseFormConfig();
 
-        model.accountHistory = menuConfig({
-            nameKey: "accountHisrotyName",
-            valueKey: "accountHisrotyNameID"
+        model.paymentType = menuConfig({
+            nameKey: "paymentTypeName",
+            valueKey: "paymentTypeNameID"
         });
 
         model.secondSelect = menuConfig({
-            nameKey: "accountHisrotyName",
-            valueKey: "accountHisrotyNameID"
+            nameKey: "leaseName",
+            valueKey: "leaseID"
         });
         model.lease = inputConfig({
             id: "Invoice",

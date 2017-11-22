@@ -35,6 +35,11 @@
 
                     model.tenantlist = response.data;
                 }
+
+                // // var gg = angular.element(".acr-content2")[0].offsetHeight;
+                // var element = angular.element(document.querySelector('#myDiv'));
+                // var height = element[0].offsetHeight;
+
             });
 
         };

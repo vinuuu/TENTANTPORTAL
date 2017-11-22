@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, viewPaySvc, _) {
+    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, viewPaySvc, _, timeout) {
         var model = {},
             grid = gridModel(),
             translate = langTranslate('viewpay').translate,
@@ -11,35 +11,21 @@
             model.formConfig = formConfig;
             formConfig.setMethodsSrc(model);
             var options = [{
-                    accountHisrotyName: "Show all trnsactions",
-                    accountHisrotyNameID: "0"
+                    paymentTypeName: "All Transaction",
+                    paymentTypeNameID: "All Transaction"
                 },
                 {
-                    accountHisrotyName: "Lease ID : 123457",
-                    accountHisrotyNameID: "01"
+                    paymentTypeName: "Paid",
+                    paymentTypeNameID: "Paid"
                 },
                 {
-                    accountHisrotyName: "Lease ID : 123458",
-                    accountHisrotyNameID: "02"
-                }
-            ];
-            var options1 = [{
-                    accountHisrotyName: "Lease ID : 123456",
-                    accountHisrotyNameID: "0"
-                },
-                {
-                    accountHisrotyName: "Lease ID : 123457",
-                    accountHisrotyNameID: "01"
-                },
-                {
-                    accountHisrotyName: "Lease ID : 123458",
-                    accountHisrotyNameID: "02"
+                    paymentTypeName: "Due for payment",
+                    paymentTypeNameID: "Due for payment"
                 }
             ];
 
-            formConfig.setOptions("accountHistory", options);
-            formConfig.setOptions("secondSelect", options1);
-
+            formConfig.setOptions("paymentType", options);
+            model.paymenttype = 'All Transaction';
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
@@ -105,17 +91,19 @@
                 }
             };
 
-
             //u can use _ now
             viewPaySvc.getInvoiceList(inputObj).then(function(response) {
                 if (response.data && response.data.length > 0) {
+                    model.leaseArray = [];
 
-                    // _.each(response.data, function(item) {
-                    //     item.Status = 'hjhhhj';
-                    //     item.Invoice = 'IN1234556';
-                    //     item.Date = '2011/04/25';
-                    // });
+                    response.data.forEach(function(item) {
+                        model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
+                    });
 
+                    timeout(function() {
+                        formConfig.setOptions("secondSelect", model.leaseArray);
+                        model.leasevalueID = model.leaseArray[0].leaseID;
+                    }, 500);
 
                     grid.setData({ "records": response.data });
                 }
@@ -130,7 +118,7 @@
         .module('ui')
         .factory('viewpayMdl', factory);
     factory.$inject = ['viewpaySelectMenuFormConfig', 'viewpayGrid1Config', "rpGridModel",
-        "rpGridTransform", "appLangTranslate", "viewPaySvc", 'underscore'
+        "rpGridTransform", "appLangTranslate", "viewPaySvc", 'underscore', '$timeout'
     ];
 
 })();
