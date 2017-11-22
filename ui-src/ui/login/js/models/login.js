@@ -20,39 +20,39 @@
         formConfig.setMethodsSrc(model);
         var options = [{
                 securityQuesnName: "What is your pet's name?",
-                securityQuesnID: "1"
+                securityQuesnID: "What is your pet's name?"
             },
             {
                 securityQuesnName: "What is your mother's maiden name?",
-                securityQuesnID: "2"
+                securityQuesnID: "What is your mother's maiden name?"
             },
             {
                 securityQuesnName: "What is your favorite color?",
-                securityQuesnID: "3"
+                securityQuesnID: "What is your favorite color?"
             },
             {
                 securityQuesnName: "What city were you born in?",
-                securityQuesnID: "4"
+                securityQuesnID: "What city were you born in?"
             },
             {
                 securityQuesnName: "What town was your mother born in?",
-                securityQuesnID: "5"
+                securityQuesnID: "What town was your mother born in?"
             },
             {
                 securityQuesnName: "What town was your father born in?",
-                securityQuesnID: "6"
+                securityQuesnID: "What town was your father born in?"
             },
             {
                 securityQuesnName: "Where did you meet your spouse?",
-                securityQuesnID: "7"
+                securityQuesnID: "Where did you meet your spouse?"
             },
             {
                 securityQuesnName: "What was the make of your first car?",
-                securityQuesnID: "8"
+                securityQuesnID: "What was the make of your first car?"
             },
             {
                 securityQuesnName: "What is the name of the street on which you grew up on?",
-                securityQuesnID: "9"
+                securityQuesnID: "What is the name of the street on which you grew up on?"
             }
         ];
 
@@ -82,8 +82,8 @@
                     "operation": {
                         "authentication": {
                             "login": {
-                                "userid": "srihari@realpage.com",
-                                "password": "srihariA!1"
+                                "userid": model.username,
+                                "password": model.pwd
                             }
                         },
                         "content": {
@@ -94,17 +94,22 @@
                     }
                 }
             };
-
+            model.oldPwd = '';
             loginSvc.getLoginDetails(inputObj).then(function(response) {
                 if (response.data) {
                     if (response.data.api) {
+                        model.oldPwd = model.pwd;
                         count = 0;
-                        sessionStorage.setItem('sessionID', response.data.api[0].sessionid[0]);
-                        sessionStorage.setItem('userName', response.data.api[0].name[0]);
-                        sessionStorage.setItem('companyName', response.data.api[0].companyname[0]);
+                        sessionStorage.setItem('sessionID', response.data.api[0].sessionid);
+                        sessionStorage.setItem('userName', response.data.api[0].name);
+                        sessionStorage.setItem('companyName', response.data.api[0].companyname);
+                        if (response.data.api[0].resetpassword === 'T') {
+                            model.showHideFlag = "firstlogin";
+                            model.strUserName = model.username;
+                        } else {
+                            state.go('home.dashbaord');
+                        }
 
-                        model.showHideFlag = "firstlogin";
-                        model.strUserName = model.username;
                     } else {
                         if (count === 0) {
                             model.pwdSuccess = 'failure';
@@ -135,13 +140,36 @@
         };
 
         model.resetpwdSubmit = function(val) {
-            if (model.showHideFlag === 'confirmpwd') {
-                model.showHideFlag = 'login';
-                model.pwdSuccess = 'success';
-            } else {
-                state.go('home.dashbaord');
-            }
 
+            var changeInputObj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "getchangepwd": {
+                                    "pwdtype": model.showHideFlag === 'firstlogin' ? "login" : "change",
+                                    "newpwd": model.pwd1,
+                                    "oldpwd": model.oldPwd,
+                                    "cnfrmpwd": model.pwd2,
+                                    "secquestion": model.securityquestion,
+                                    "secanswer": model.security_a
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            loginSvc.changePwd(changeInputObj).then(function(response) {
+                if (response.data && response.data.api[0].status === 'success') {
+                    alert(response.data.api[0].message);
+                    if (model.showHideFlag === 'firstlogin') {
+                        state.go('home.dashbaord');
+                    } else {
+                        model.showHideFlag = 'login';
+                        model.pwdSuccess = 'success';
+                    }
+                }
+            });
         };
 
 
