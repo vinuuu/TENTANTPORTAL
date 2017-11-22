@@ -27,10 +27,11 @@
 (function() {
     'use strict';
 
-    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, viewPaySvc, _) {
+    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, viewPaySvc, _, gridPaginationModel) {
         var model = {},
             grid = gridModel(),
             translate = langTranslate('viewpay').translate,
+            gridPagination = gridPaginationModel(),
             gridTransform = gridTransformSvc();
         model.init = function() {
 
@@ -69,6 +70,8 @@
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
+            gridPagination.setGrid(grid).trackSelection(gridConfig.getTrackSelectionConfig());
+            model.gridPagination = gridPagination;
             grid.formConfig = formConfig;
             model.loadData();
             return model;
@@ -77,43 +80,12 @@
             return translate(key);
         };
 
-
+        model.setData = function(data) {
+            gridPagination.setData(data.records).goToPage({
+                number: 0
+            });
+        };
         model.loadData = function() {
-            // grid.setData({
-            //     "records": [{
-            //             "id": 1,
-            //             "Invoice": "2011/04/25",
-            //             "Date": "Invoice",
-            //             "Lease ID": "INV-000004-due on 02 Jun 2015",
-            //             "Unit ID": "11,000.00",
-            //             "Amount": "kkkk",
-            //             "Pay Amount": "hjhhhj",
-            //             "Status": "hjhhhj"
-            //         },
-            //         {
-            //             "id": 1,
-            //             "Invoice": "2011/04/25",
-            //             "Date": "Invoice",
-            //             "Lease ID": "INV-000004-due on 02 Jun 2015",
-            //             "Unit ID": "11,000.00",
-            //             "Amount": "kkkk",
-            //             "Pay Amount": "hjhhhj",
-            //             "Status": "hjhhhj"
-            //         },
-            //         {
-            //             "id": 1,
-            //             "Invoice": "2011/04/25",
-            //             "Date": "Invoice",
-            //             "Lease ID": "INV-000004-due on 02 Jun 2015",
-            //             "Unit ID": "11,000.00",
-            //             "Amount": "kkkk",
-            //             "Pay Amount": "hjhhhj",
-            //             "Status": "hjhhhj"
-            //         }
-            //     ]
-            // });
-            //  vm.dataReq = dataSvc.get(grid.setData.bind(grid));
-
             var inputObj = {
                 "request": {
                     "operation": {
@@ -135,15 +107,7 @@
             //u can use _ now
             viewPaySvc.getInvoiceList(inputObj).then(function(response) {
                 if (response.data && response.data.length > 0) {
-
-                    // _.each(response.data, function(item) {
-                    //     item.Status = 'hjhhhj';
-                    //     item.Invoice = 'IN1234556';
-                    //     item.Date = '2011/04/25';
-                    // });
-
-
-                    grid.setData({ "records": response.data });
+                    model.setData({ "records": response.data });
                 }
             });
 
@@ -156,7 +120,7 @@
         .module('ui')
         .factory('viewpayMdl', factory);
     factory.$inject = ['viewpaySelectMenuFormConfig', 'viewpayGrid1Config', "rpGridModel",
-        "rpGridTransform", "appLangTranslate", "viewPaySvc", 'underscore'
+        "rpGridTransform", "appLangTranslate", "viewPaySvc", 'underscore', 'rpGridPaginationModel',
     ];
 
 })();
@@ -278,7 +242,19 @@
                 }
             ];
         };
+        model.getTrackSelectionConfig = function() {
+            var config = {},
+                columns = model.get();
 
+            columns.forEach(function(column) {
+                if (column.type == "select") {
+                    config.idKey = column.idKey;
+                    config.selectKey = column.key;
+                }
+            });
+
+            return config;
+        };
         return model;
     }
 

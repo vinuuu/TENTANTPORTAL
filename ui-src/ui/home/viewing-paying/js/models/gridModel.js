@@ -114,7 +114,19 @@
                 }
             ];
         };
+        model.getTrackSelectionConfig = function() {
+            var config = {},
+                columns = model.get();
 
+            columns.forEach(function(column) {
+                if (column.type == "select") {
+                    config.idKey = column.idKey;
+                    config.selectKey = column.key;
+                }
+            });
+
+            return config;
+        };
         return model;
     }
 
