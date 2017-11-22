@@ -10,8 +10,13 @@ var RealPage = {};
 
     var ENV = RealPage.ENV || {};
 
+<<<<<<< HEAD
     ENV.APPVER = "1bvi3n9s0";
     ENV.COMPILETIME = "11/22/2017 08:27:15 pm";
+=======
+    ENV.APPVER = "1bvi5kh5a";
+    ENV.COMPILETIME = "11/22/2017 09:00:41 pm";
+>>>>>>> 191798976287109d7c5de5004759bfe3942add93
 
     RealPage.ENV = ENV;
 })(RealPage);
@@ -323,7 +328,11 @@ var logc, logw;
     };
 
     svc.gen = function () {
+<<<<<<< HEAD
         svc.appVer = RealPage.cookie.read('APPVER') || "1bvi3n9s0";
+=======
+        svc.appVer = RealPage.cookie.read('APPVER') || "1bvi5kh5a";
+>>>>>>> 191798976287109d7c5de5004759bfe3942add93
         // svc.appVer = RealPage.debugMode() && !svc.cacheFiles() ? svc.random : svc.appVer;
         return svc;
     };

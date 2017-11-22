@@ -38,7 +38,7 @@
 (function() {
     'use strict';
 
-    function factory(langTranslate, loginSvc, formConfig, state) {
+    function factory(langTranslate, loginSvc, formConfig, state, notifSvc) {
         var model = {},
             translate = langTranslate('login').translate;
         model.formConfig = formConfig;
@@ -198,7 +198,8 @@
             };
             loginSvc.changePwd(changeInputObj).then(function(response) {
                 if (response.data && response.data.api[0].status === 'success') {
-                    alert(response.data.api[0].message);
+                    notifSvc.removeNotifications();
+                    notifSvc.success(response.data.api[0].message);
                     if (model.showHideFlag === 'firstlogin') {
                         state.go('home.dashbaord');
                     } else {
@@ -217,7 +218,7 @@
         .module('ui')
         .factory('loginMdl', factory);
 
-    factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state'];
+    factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state', 'notificationService'];
 
 })();
 
