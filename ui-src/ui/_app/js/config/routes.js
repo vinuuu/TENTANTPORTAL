@@ -5,7 +5,17 @@
 
     function config(RoutesProvider) {
         var routes = {};
-
+        routes["login"] = {
+            url: "/",
+            rerun: true,
+            controller: "loginCtrl as page",
+            lazyLoad: [{
+                files: [
+                    "ui.login",
+                    "lib.realpage.form-input-radio"
+                ]
+            }]
+        };
         routes["home"] = {
             url: "",
             abstract: true,
@@ -62,6 +72,7 @@
         routes["home.viewing-paying"] = {
             url: "/viewpay",
             controller: "viewpayCtrl as page",
+            rerun: true,
             lazyLoad: [{
                 files: [
                     "ui.home.viewing-paying",
@@ -70,17 +81,7 @@
                 ]
             }]
         };
-        routes["login"] = {
-            url: "/login",
-            rerun: true,
-            controller: "loginCtrl as page",
-            lazyLoad: [{
-                files: [
-                    "ui.login",
-                    "lib.realpage.form-input-radio"
-                ]
-            }]
-        };
+
         routes["home.floorplan-unit"] = {
             url: "/floorplan-unit",
             controller: "FloorPlanUnitCtrl as floorPlanUnit",
@@ -131,8 +132,8 @@
 
         RoutesProvider
             .setTemplateUrlPrefix("ui/")
-            .setRoutes(routes);
-        //     .setDefault("/dashbaord");
+            .setRoutes(routes)
+            .setDefault("/");
     }
 
     angular

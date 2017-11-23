@@ -10,7 +10,8 @@
                     <span> {{page.model.translateNames('comapnyAddr')}} </span>
                 </div>
                 <br>
-
+                <rp-busy-indicator ng-if="!page.model.apiReady" model="page.model.busyIndicator">
+                </rp-busy-indicator>
                 <div id="midblock8" ng-if="page.model.showHideFlag === 'login'">
                     <div class="m-t-1 statictxtcls-reset green-font f-w-6 text-center" ng-if="page.model.pwdSuccess==='success'">
                         <span class="clearfix">{{page.model.translateNames('successAlert')}}</span>

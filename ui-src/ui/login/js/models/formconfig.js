@@ -16,7 +16,7 @@
 
 
         model.securityquestion = menuConfig({
-            nameKey: "securityQuesnName",
+            nameKey: "securityQuesnID",
             valueKey: "securityQuesnID"
         });
 

@@ -1,16 +1,30 @@
 (function() {
     'use strict';
 
-    function factory(langTranslate, loginSvc, formConfig, state, notifSvc) {
+    function factory(langTranslate, loginSvc, formConfig, state, notifSvc, busyIndicatorModel) {
         var model = {},
+            busyIndicator,
             translate = langTranslate('login').translate;
         model.formConfig = formConfig;
         model.strUserName = '';
         model.translateNames = function(key) {
             return translate(key);
         };
+        model.toggleGridState = function(flg) {
+            if (flg) {
+                model.apiReady = false;
+                busyIndicator.busy();
+            } else {
+                model.apiReady = true;
+                busyIndicator.off();
+            }
+
+            return model;
+        };
+
         model.init = function() {
             model.securityquestion = "1";
+            busyIndicator = model.busyIndicator = busyIndicatorModel();
             return model;
         };
         model.showhideDiv = function(val) {
@@ -19,45 +33,36 @@
         };
         formConfig.setMethodsSrc(model);
         var options = [{
-                securityQuesnName: "What is your pet's name?",
                 securityQuesnID: "What is your pet's name?"
             },
             {
-                securityQuesnName: "What is your mother's maiden name?",
                 securityQuesnID: "What is your mother's maiden name?"
             },
             {
-                securityQuesnName: "What is your favorite color?",
                 securityQuesnID: "What is your favorite color?"
             },
             {
-                securityQuesnName: "What city were you born in?",
                 securityQuesnID: "What city were you born in?"
             },
             {
-                securityQuesnName: "What town was your mother born in?",
                 securityQuesnID: "What town was your mother born in?"
             },
             {
-                securityQuesnName: "What town was your father born in?",
                 securityQuesnID: "What town was your father born in?"
             },
             {
-                securityQuesnName: "Where did you meet your spouse?",
                 securityQuesnID: "Where did you meet your spouse?"
             },
             {
-                securityQuesnName: "What was the make of your first car?",
                 securityQuesnID: "What was the make of your first car?"
             },
             {
-                securityQuesnName: "What is the name of the street on which you grew up on?",
                 securityQuesnID: "What is the name of the street on which you grew up on?"
             }
         ];
 
         formConfig.setOptions("securityquestion", options);
-
+        model.securityquestion = "What is your pet's name?";
         model.pwdValidation = function(val) {
 
             var regNumber = /(?=.*\d)/,
@@ -76,7 +81,7 @@
         var count = 0;
 
         model.submitLogin = function() {
-
+            model.toggleGridState(true);
             var inputObj = {
                 "request": {
                     "operation": {
@@ -96,6 +101,8 @@
             };
             model.oldPwd = '';
             loginSvc.getLoginDetails(inputObj).then(function(response) {
+                model.toggleGridState(false);
+
                 if (response.data) {
                     if (response.data.api) {
                         model.oldPwd = model.pwd;
@@ -181,6 +188,6 @@
         .module('ui')
         .factory('loginMdl', factory);
 
-    factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state', 'notificationService'];
+    factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state', 'notificationService', 'rpBusyIndicatorModel'];
 
 })();

@@ -14,7 +14,9 @@
                     key: "Date"
                 },
                 {
-                    key: "LEASEID"
+                    key: "LEASEID",
+                    type: "custom",
+                    templateUrl: "home/viewing-paying/templates/textbox.html"
                 },
                 {
                     key: "UNITID"

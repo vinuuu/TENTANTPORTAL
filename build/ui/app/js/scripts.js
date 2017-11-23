@@ -19833,7 +19833,17 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 
     function config(RoutesProvider) {
         var routes = {};
-
+        routes["login"] = {
+            url: "/",
+            rerun: true,
+            controller: "loginCtrl as page",
+            lazyLoad: [{
+                files: [
+                    "ui.login",
+                    "lib.realpage.form-input-radio"
+                ]
+            }]
+        };
         routes["home"] = {
             url: "",
             abstract: true,
@@ -19890,6 +19900,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
         routes["home.viewing-paying"] = {
             url: "/viewpay",
             controller: "viewpayCtrl as page",
+            rerun: true,
             lazyLoad: [{
                 files: [
                     "ui.home.viewing-paying",
@@ -19898,17 +19909,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
                 ]
             }]
         };
-        routes["login"] = {
-            url: "/login",
-            rerun: true,
-            controller: "loginCtrl as page",
-            lazyLoad: [{
-                files: [
-                    "ui.login",
-                    "lib.realpage.form-input-radio"
-                ]
-            }]
-        };
+
         routes["home.floorplan-unit"] = {
             url: "/floorplan-unit",
             controller: "FloorPlanUnitCtrl as floorPlanUnit",
@@ -19959,8 +19960,8 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 
         RoutesProvider
             .setTemplateUrlPrefix("ui/")
-            .setRoutes(routes);
-        //     .setDefault("/dashbaord");
+            .setRoutes(routes)
+            .setDefault("/");
     }
 
     angular
