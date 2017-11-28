@@ -61,9 +61,9 @@
                 TOTALENTERED: "1200",
                 UNITID: "U1"
             }];
-            gridPagination.setData(d).goToPage({
-                number: 0
-            });
+            // gridPagination.setData(d).goToPage({
+            //     number: 0
+            // });
         };
         model.loadData = function() {
             var inputObj = {
@@ -97,7 +97,13 @@
                         model.leasevalueID = model.leaseArray[0].leaseID;
                     }, 500);
 
-                    model.setData({ "records": response.data });
+                    // model.setData({ "records": response.data });
+
+                    gridPagination.setData(response.data).goToPage({
+                        number: 0
+                    });
+
+
                 }
             });
 

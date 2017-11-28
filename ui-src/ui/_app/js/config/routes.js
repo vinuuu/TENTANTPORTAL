@@ -69,13 +69,13 @@
                 ]
             }]
         };
-        routes["home.viewing-paying"] = {
-            url: "/viewpay",
-            controller: "viewpayCtrl as page",
+        routes["home.invoice"] = {
+            url: "/invoice",
+            controller: "invoiceCtrl as page",
             rerun: true,
             lazyLoad: [{
                 files: [
-                    "ui.home.viewing-paying",
+                    "ui.home.invoice",
                     "lib.realpage.form-select-menu-v1",
                     "lib.realpage.form-input-text-v1"
                 ]

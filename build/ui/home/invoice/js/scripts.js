@@ -1,73 +1,72 @@
-//  Source: ui\home\viewing-paying\js\controllers\viewPay.js
+//  Source: ui\home\invoice\js\controllers\invoice.js
 (function() {
     'use strict';
 
 
-
-
-    function controller(viewpayMdl) {
+    function Controller(invoiceMdl) {
         /* jshint validthis:true */
         var vm = this,
             model;
 
-
         vm.init = function() {
-            vm.model = model = viewpayMdl.init();
+            vm.model = model = invoiceMdl.init();
         };
         vm.init();
     }
     angular
-        .module('ui')
-        .controller('viewpayCtrl', controller);
-    controller.$inject = ['viewpayMdl'];
+        .module('uam')
+        .controller('invoiceCtrl', Controller);
+
+    Controller.$inject = ['invoiceMdl'];
 
 })();
 
-//  Source: ui\home\viewing-paying\js\models\viewPay.js
+//  Source: ui\home\invoice\js\models\invoice.js
 (function() {
     'use strict';
 
-    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, viewPaySvc, _, gridPaginationModel, timeout) {
+    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate) {
         var model = {},
             grid = gridModel(),
             translate = langTranslate('viewpay').translate,
-            gridPagination = gridPaginationModel(),
             gridTransform = gridTransformSvc();
-        var gridPaginationConfig = {
-            currentPage: 0,
-            pagesPerGroup: 5,
-            recordsPerPage: 10,
-            currentPageGroup: 0
-        };
-
-
         model.init = function() {
 
             model.formConfig = formConfig;
             formConfig.setMethodsSrc(model);
             var options = [{
-                    paymentTypeName: "All Transaction",
-                    paymentTypeNameID: "All Transaction"
+                    accountHisrotyName: "Show all trnsactions",
+                    accountHisrotyNameID: "0"
                 },
                 {
-                    paymentTypeName: "Paid",
-                    paymentTypeNameID: "Paid"
+                    accountHisrotyName: "Lease ID : 123457",
+                    accountHisrotyNameID: "01"
                 },
                 {
-                    paymentTypeName: "Due for payment",
-                    paymentTypeNameID: "Due for payment"
+                    accountHisrotyName: "Lease ID : 123458",
+                    accountHisrotyNameID: "02"
+                }
+            ];
+            var options1 = [{
+                    accountHisrotyName: "Lease ID : 123456",
+                    accountHisrotyNameID: "0"
+                },
+                {
+                    accountHisrotyName: "Lease ID : 123457",
+                    accountHisrotyNameID: "01"
+                },
+                {
+                    accountHisrotyName: "Lease ID : 123458",
+                    accountHisrotyNameID: "02"
                 }
             ];
 
-            formConfig.setOptions("paymentType", options);
-            model.paymenttype = 'All Transaction';
+            formConfig.setOptions("accountHistory", options);
+            formConfig.setOptions("secondSelect", options1);
+
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
-            gridPagination.setGrid(grid).trackSelection(gridConfig.getTrackSelectionConfig());
-            gridPagination
-                .setConfig(gridPaginationConfig);
-            model.gridPagination = gridPagination;
             grid.formConfig = formConfig;
             model.loadData();
             return model;
@@ -76,78 +75,84 @@
             return translate(key);
         };
 
-        model.setData = function(data) {
-            var d = [{
-                CUSTOMERID: "Sri_lease1",
-                LEASEID: "AH-1038",
-                RECORDID: null,
-                RECORDNO: "26834",
-                STATE: "Posted",
-                TOTALDUE: "1200",
-                TOTALENTERED: "1200",
-                UNITID: "U1"
-            }];
-            // gridPagination.setData(d).goToPage({
-            //     number: 0
-            // });
-        };
         model.loadData = function() {
-            var inputObj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "readByQuery": {
-                                    "object": "pminvoice",
-                                    "fields": "",
-                                    "query": "",
-                                    "returnFormat": "json"
-                                }
-                            }
-                        }
+            grid.setData({
+                "records": [{
+                        "CUSTOMERID": "Sri_lease1",
+                        "LEASEID": "AH-1038",
+                        "RECORDID": "ssss",
+                        "RECORDNO": "26834",
+                        "STATE": "Posted",
+                        "TOTALDUE": "1200",
+                        "Pay Amount": "1200",
+                        "UNITID": "U1"
+                    },
+                    {
+                        "CUSTOMERID": "Sri_lease1",
+                        "LEASEID": "AH-1038",
+                        "RECORDID": "ssss",
+                        "RECORDNO": "26834",
+                        "STATE": "Posted",
+                        "TOTALDUE": "1200",
+                        "Pay Amount": "1200",
+                        "UNITID": "U1"
+                    },
+                    {
+                        "CUSTOMERID": "Sri_lease1",
+                        "LEASEID": "AH-1038",
+                        "RECORDID": "ssss",
+                        "RECORDNO": "26834",
+                        "STATE": "Posted",
+                        "TOTALDUE": "1200",
+                        "Pay Amount": "1200",
+                        "UNITID": "U1"
                     }
-                }
-            };
-
-            //u can use _ now
-            viewPaySvc.getInvoiceList(inputObj).then(function(response) {
-                if (response.data && response.data.length > 0) {
-                    model.leaseArray = [];
-
-                    response.data.forEach(function(item) {
-                        model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
-                    });
-
-                    timeout(function() {
-                        formConfig.setOptions("secondSelect", model.leaseArray);
-                        model.leasevalueID = model.leaseArray[0].leaseID;
-                    }, 500);
-
-                    // model.setData({ "records": response.data });
-
-                    gridPagination.setData(response.data).goToPage({
-                        number: 0
-                    });
-
-
-                }
+                ]
             });
-
-
+            //  vm.dataReq = dataSvc.get(grid.setData.bind(grid));
         };
         return model;
     }
 
     angular
-        .module('ui')
-        .factory('viewpayMdl', factory);
+        .module('uam')
+        .factory('invoiceMdl', factory);
     factory.$inject = ['viewpaySelectMenuFormConfig', 'viewpayGrid1Config', "rpGridModel",
-        "rpGridTransform", "appLangTranslate", "viewPaySvc", 'underscore', 'rpGridPaginationModel', '$timeout'
+        "rpGridTransform", "appLangTranslate"
     ];
 
 })();
 
-//  Source: ui\home\viewing-paying\js\models\gridModel.js
+//  Source: ui\home\invoice\js\services\invoice.js
+(function() {
+    'use strict';
+
+
+    function factory($http) {
+
+        return {
+            getInvoiceList: function(obj) {
+                return $http.post('/api/viewPay', obj);
+            }
+        };
+
+    }
+
+    angular
+        .module('uam')
+        .factory('invoiceSvc', factory);
+    factory.$inject = ['$http'];
+})();
+
+//  Source: ui\home\invoice\js\templates\templates.inc.js
+angular.module('ui').run(['$templateCache', function ($templateCache) {
+$templateCache.put("home/invoice/templates/checkbox.html",
+"");
+$templateCache.put("home/invoice/templates/textbox.html",
+"<div class=\"grid-edit-title\"><rp-form-input-text config=\"model.formConfig.lease\" rp-model=\"record[config.key]\"></rp-form-input-text></div>");
+}]);
+
+//  Source: ui\home\invoice\js\models\gridModel.js
 (function(angular) {
     "use strict";
 
@@ -164,9 +169,8 @@
                     key: "Date"
                 },
                 {
-                    key: "LEASEID",
-                    type: "custom",
-                    templateUrl: "home/viewing-paying/templates/textbox.html"
+                    key: "LEASEID"
+
                 },
                 {
                     key: "UNITID"
@@ -175,9 +179,9 @@
                     key: "TOTALDUE"
                 },
                 {
-                    key: "TOTALENTERED",
+                    key: "Pay Amount",
                     type: "custom",
-                    templateUrl: "home/viewing-paying/templates/textbox.html"
+                    templateUrl: "home/invoice/templates/textbox.html"
                 },
                 {
                     key: "Status"
@@ -205,11 +209,11 @@
                         text: "Unit ID"
                     },
                     {
-                        key: "TOTALENTERED",
+                        key: "TOTALDUE",
                         text: "Amount"
                     },
                     {
-                        key: "TOTALENTERED",
+                        key: "Pay Amount",
                         text: "Pay Amount"
                     },
                     {
@@ -287,7 +291,7 @@
         .factory("viewpayGrid1Config", ["rpGridConfig", Factory]);
 })(angular);
 
-//  Source: ui\home\viewing-paying\js\models\selectConfig.js
+//  Source: ui\home\invoice\js\models\selectConfig.js
 (function(angular) {
     "use strict";
 
@@ -304,8 +308,8 @@
             valueKey: "leaseID"
         });
         model.lease = inputConfig({
-            id: "Invoice",
-            fieldName: "Invoice"
+            id: "Pay Amount",
+            fieldName: "Pay Amount"
         });
         model.setOptions = function(fieldName, fieldOptions) {
             if (model[fieldName]) {
@@ -327,35 +331,4 @@
             Factory
         ]);
 })(angular);
-
-//  Source: ui\home\viewing-paying\js\templates\templates.inc.js
-angular.module('ui').run(['$templateCache', function ($templateCache) {
-$templateCache.put("home/viewing-paying/templates/checkbox.html",
-"");
-$templateCache.put("home/viewing-paying/templates/textbox.html",
-"<div class=\"grid-edit-title\">{{record[config.key]}}<!-- <rp-form-input-text config=\"model.formConfig.lease\" rp-model=\"record[config.key]\">\n" +
-"    </rp-form-input-text> --></div>");
-}]);
-
-//  Source: ui\home\viewing-paying\js\services\viewPaySvc.js
-(function() {
-    'use strict';
-
-
-
-    function factory($http) {
-        return {
-            getInvoiceList: function(obj) {
-                return $http.post('/api/viewPay', obj);
-            }
-        };
-    }
-
-    angular
-        .module('ui')
-        .factory('viewPaySvc', factory);
-
-    factory.$inject = ['$http'];
-
-})();
 

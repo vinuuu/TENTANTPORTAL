@@ -19690,7 +19690,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             "home.dashbaord": ["css", "js"],
             "home.account-payments": ["css", "js", "lang"],
             "home.view-statements": ["css", "js"],
-            "home.viewing-paying": ["css", "js", "lang"],
+            "home.invoice": ["css", "js", "lang"],
             "login": ["css", "js", "lang"],
             "home.common-area": ["css", "js"],
             "home.activity": ["css", "js"],
@@ -19897,13 +19897,13 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
                 ]
             }]
         };
-        routes["home.viewing-paying"] = {
-            url: "/viewpay",
-            controller: "viewpayCtrl as page",
+        routes["home.invoice"] = {
+            url: "/invoice",
+            controller: "invoiceCtrl as page",
             rerun: true,
             lazyLoad: [{
                 files: [
-                    "ui.home.viewing-paying",
+                    "ui.home.invoice",
                     "lib.realpage.form-select-menu-v1",
                     "lib.realpage.form-input-text-v1"
                 ]

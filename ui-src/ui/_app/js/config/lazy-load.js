@@ -12,7 +12,7 @@
             "home.dashbaord": ["css", "js"],
             "home.account-payments": ["css", "js", "lang"],
             "home.view-statements": ["css", "js"],
-            "home.viewing-paying": ["css", "js", "lang"],
+            "home.invoice": ["css", "js", "lang"],
             "login": ["css", "js", "lang"],
             "home.common-area": ["css", "js"],
             "home.activity": ["css", "js"],
