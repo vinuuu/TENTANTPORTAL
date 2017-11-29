@@ -31,7 +31,7 @@
 
     angular
         .module("ui")
-        .factory("viewpaySelectMenuFormConfig", [
+        .factory("invoiceSelectMenuFormConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig", "rpFormInputTextConfig",
             Factory

@@ -25,48 +25,47 @@
 (function() {
     'use strict';
 
-    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate) {
+    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, invoiceSvc, _, gridPaginationModel, timeout) {
         var model = {},
             grid = gridModel(),
             translate = langTranslate('viewpay').translate,
+            gridPagination = gridPaginationModel(),
             gridTransform = gridTransformSvc();
+        var gridPaginationConfig = {
+            currentPage: 0,
+            pagesPerGroup: 5,
+            recordsPerPage: 10,
+            currentPageGroup: 0
+        };
+
+
         model.init = function() {
 
             model.formConfig = formConfig;
             formConfig.setMethodsSrc(model);
             var options = [{
-                    accountHisrotyName: "Show all trnsactions",
-                    accountHisrotyNameID: "0"
+                    paymentTypeName: "All Transaction",
+                    paymentTypeNameID: "All Transaction"
                 },
                 {
-                    accountHisrotyName: "Lease ID : 123457",
-                    accountHisrotyNameID: "01"
+                    paymentTypeName: "Paid",
+                    paymentTypeNameID: "Paid"
                 },
                 {
-                    accountHisrotyName: "Lease ID : 123458",
-                    accountHisrotyNameID: "02"
-                }
-            ];
-            var options1 = [{
-                    accountHisrotyName: "Lease ID : 123456",
-                    accountHisrotyNameID: "0"
-                },
-                {
-                    accountHisrotyName: "Lease ID : 123457",
-                    accountHisrotyNameID: "01"
-                },
-                {
-                    accountHisrotyName: "Lease ID : 123458",
-                    accountHisrotyNameID: "02"
+                    paymentTypeName: "Due for payment",
+                    paymentTypeNameID: "Due for payment"
                 }
             ];
 
-            formConfig.setOptions("accountHistory", options);
-            formConfig.setOptions("secondSelect", options1);
-
+            formConfig.setOptions("paymentType", options);
+            model.paymenttype = 'All Transaction';
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
+            gridPagination.setGrid(grid).trackSelection(gridConfig.getTrackSelectionConfig());
+            gridPagination
+                .setConfig(gridPaginationConfig);
+            model.gridPagination = gridPagination;
             grid.formConfig = formConfig;
             model.loadData();
             return model;
@@ -75,50 +74,59 @@
             return translate(key);
         };
 
-        model.loadData = function() {
-            grid.setData({
-                "records": [{
-                        "CUSTOMERID": "Sri_lease1",
-                        "LEASEID": "AH-1038",
-                        "RECORDID": "ssss",
-                        "RECORDNO": "26834",
-                        "STATE": "Posted",
-                        "TOTALDUE": "1200",
-                        "Pay Amount": "1200",
-                        "UNITID": "U1"
-                    },
-                    {
-                        "CUSTOMERID": "Sri_lease1",
-                        "LEASEID": "AH-1038",
-                        "RECORDID": "ssss",
-                        "RECORDNO": "26834",
-                        "STATE": "Posted",
-                        "TOTALDUE": "1200",
-                        "Pay Amount": "1200",
-                        "UNITID": "U1"
-                    },
-                    {
-                        "CUSTOMERID": "Sri_lease1",
-                        "LEASEID": "AH-1038",
-                        "RECORDID": "ssss",
-                        "RECORDNO": "26834",
-                        "STATE": "Posted",
-                        "TOTALDUE": "1200",
-                        "Pay Amount": "1200",
-                        "UNITID": "U1"
-                    }
-                ]
+        model.setData = function(data) {
+            gridPagination.setData(data.records).goToPage({
+                number: 0
             });
-            //  vm.dataReq = dataSvc.get(grid.setData.bind(grid));
+        };
+        model.loadData = function() {
+            var inputObj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "pminvoice",
+                                    "fields": "",
+                                    "query": "",
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            invoiceSvc.getInvoiceList(inputObj).then(function(response) {
+                if (response.data && response.data.length > 0) {
+                    model.leaseArray = [];
+
+                    response.data.forEach(function(item) {
+                        model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
+                    });
+
+                    timeout(function() {
+                        formConfig.setOptions("secondSelect", model.leaseArray);
+                        model.leasevalueID = model.leaseArray[0].leaseID;
+                    }, 500);
+
+                    model.setData({ "records": response.data });
+
+
+
+                }
+            });
+
+
         };
         return model;
     }
 
     angular
-        .module('uam')
+        .module('ui')
         .factory('invoiceMdl', factory);
-    factory.$inject = ['viewpaySelectMenuFormConfig', 'viewpayGrid1Config', "rpGridModel",
-        "rpGridTransform", "appLangTranslate"
+    factory.$inject = ['invoiceSelectMenuFormConfig', 'invoiceGrid1Config', "rpGridModel",
+        "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore', 'rpGridPaginationModel', '$timeout'
     ];
 
 })();
@@ -162,6 +170,11 @@ $templateCache.put("home/invoice/templates/textbox.html",
 
         model.get = function() {
             return [{
+                    key: "isSelect",
+                    type: "select",
+                    idKey: "id"
+                },
+                {
                     key: "Invoice",
 
                 },
@@ -176,12 +189,12 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     key: "UNITID"
                 },
                 {
-                    key: "TOTALDUE"
+                    key: "TOTALENTERED"
                 },
                 {
                     key: "Pay Amount",
                     type: "custom",
-                    templateUrl: "home/invoice/templates/textbox.html"
+                    templateUrl: "app/templates/textbox.html"
                 },
                 {
                     key: "Status"
@@ -193,6 +206,11 @@ $templateCache.put("home/invoice/templates/textbox.html",
         model.getHeaders = function() {
             return [
                 [{
+                        key: "isSelect",
+                        type: "select",
+                        enabled: false
+                    },
+                    {
                         key: "Invoice",
                         text: "Invoice"
                     },
@@ -210,15 +228,15 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     },
                     {
                         key: "TOTALDUE",
-                        text: "Amount"
+                        text: "TOTALENTERED"
                     },
                     {
                         key: "Pay Amount",
-                        text: "Pay Amount"
+                        text: "PayAmount"
                     },
                     {
                         key: "Status",
-                        text: "Status"
+                        text: "STATE"
                     }
                 ]
             ];
@@ -227,6 +245,23 @@ $templateCache.put("home/invoice/templates/textbox.html",
 
         model.getFilters = function() {
             return [{
+                    key: "isSelect",
+                    value: "",
+                    type: "menu",
+                    options: [{
+                            value: "",
+                            name: "All"
+                        },
+                        {
+                            value: true,
+                            name: "Remote"
+                        },
+                        {
+                            value: false,
+                            name: "Local"
+                        }
+                    ]
+                }, {
                     key: "Invoice",
                     type: "text",
                     filterDelay: 0,
@@ -288,7 +323,7 @@ $templateCache.put("home/invoice/templates/textbox.html",
 
     angular
         .module("ui")
-        .factory("viewpayGrid1Config", ["rpGridConfig", Factory]);
+        .factory("invoiceGrid1Config", ["rpGridConfig", Factory]);
 })(angular);
 
 //  Source: ui\home\invoice\js\models\selectConfig.js
@@ -325,7 +360,7 @@ $templateCache.put("home/invoice/templates/textbox.html",
 
     angular
         .module("ui")
-        .factory("viewpaySelectMenuFormConfig", [
+        .factory("invoiceSelectMenuFormConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig", "rpFormInputTextConfig",
             Factory

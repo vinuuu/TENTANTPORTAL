@@ -14,23 +14,26 @@
         });
 
         var links = {
-            'home': {
-                href: '#/',
+            'home.dashbaord': {
+                href: '#/dashbaord',
                 text: 'Overview'
             },
 
-            'home.dashbaord': {},
+            'home.invoice': {
+                href: '#/invoice',
+                text: 'Invoice'
+            },
 
         };
 
         var breadcrumbs = [{
-            name: 'home',
-            url: '/',
-            text: "Budgeting"
-        }, {
             name: 'home.dashbaord',
-            url: '#/dashbaord',
-            text: 'Overview'
+            url: '/dashbaord',
+            text: "Overview"
+        }, {
+            name: 'home.invoice',
+            url: '/invoice',
+            text: 'Invoice'
         }];
 
         prov.setLinks(links).setBreadcrumbs(breadcrumbs);

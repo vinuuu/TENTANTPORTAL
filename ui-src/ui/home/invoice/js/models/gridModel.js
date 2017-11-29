@@ -7,6 +7,11 @@
 
         model.get = function() {
             return [{
+                    key: "isSelect",
+                    type: "select",
+                    idKey: "id"
+                },
+                {
                     key: "Invoice",
 
                 },
@@ -21,12 +26,12 @@
                     key: "UNITID"
                 },
                 {
-                    key: "TOTALDUE"
+                    key: "TOTALENTERED"
                 },
                 {
                     key: "Pay Amount",
                     type: "custom",
-                    templateUrl: "home/invoice/templates/textbox.html"
+                    templateUrl: "app/templates/textbox.html"
                 },
                 {
                     key: "Status"
@@ -38,6 +43,11 @@
         model.getHeaders = function() {
             return [
                 [{
+                        key: "isSelect",
+                        type: "select",
+                        enabled: false
+                    },
+                    {
                         key: "Invoice",
                         text: "Invoice"
                     },
@@ -55,15 +65,15 @@
                     },
                     {
                         key: "TOTALDUE",
-                        text: "Amount"
+                        text: "TOTALENTERED"
                     },
                     {
                         key: "Pay Amount",
-                        text: "Pay Amount"
+                        text: "PayAmount"
                     },
                     {
                         key: "Status",
-                        text: "Status"
+                        text: "STATE"
                     }
                 ]
             ];
@@ -72,6 +82,23 @@
 
         model.getFilters = function() {
             return [{
+                    key: "isSelect",
+                    value: "",
+                    type: "menu",
+                    options: [{
+                            value: "",
+                            name: "All"
+                        },
+                        {
+                            value: true,
+                            name: "Remote"
+                        },
+                        {
+                            value: false,
+                            name: "Local"
+                        }
+                    ]
+                }, {
                     key: "Invoice",
                     type: "text",
                     filterDelay: 0,
@@ -133,5 +160,5 @@
 
     angular
         .module("ui")
-        .factory("viewpayGrid1Config", ["rpGridConfig", Factory]);
+        .factory("invoiceGrid1Config", ["rpGridConfig", Factory]);
 })(angular);

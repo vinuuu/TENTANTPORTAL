@@ -13,4 +13,6 @@ $templateCache.put("app/templates/nav.html",
 "                </div>\n" +
 "              </div>\n" +
 "            </div> --></div><!--End Left Nav Item Wrapper--></div></div>");
+$templateCache.put("app/templates/textbox.html",
+"<div class=\"grid-edit-title\"><rp-form-input-text config=\"model.formConfig.lease\" rp-model=\"record[config.key]\"></rp-form-input-text></div>");
 }]);

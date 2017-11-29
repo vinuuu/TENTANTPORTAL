@@ -7,12 +7,12 @@
 
     <div class="row">
         <div class="col-md-2">
-            <!-- <rp-form-select-menu config="page.model.formConfig.paymentType" rp-model="page.model.paymenttype">
-            </rp-form-select-menu> -->
+            <rp-form-select-menu config="page.model.formConfig.paymentType" rp-model="page.model.paymenttype">
+            </rp-form-select-menu>
         </div>
         <div class="col-md-2">
-            <!-- <rp-form-select-menu config="page.model.formConfig.secondSelect" rp-model="page.model.leasevalueID">
-            </rp-form-select-menu> -->
+            <rp-form-select-menu config="page.model.formConfig.secondSelect" rp-model="page.model.leasevalueID">
+            </rp-form-select-menu>
         </div>
         <div>
             <button class="btn btn-primary btnContinue pull-right">Pay Now</button>
@@ -20,22 +20,41 @@
     </div>
     <br>
 
-    <div class="grid-controls">
+    <div class="rp-action-bar box">
+        <div class="grid-controls">
+            <div class="grid-control-item">
+                <i class="icon rp-icon-printer"></i>
+                <span class="text">Print</span>
+            </div>
+            <div class="grid-control-item">
+                <rp-toggle model="page.model.grid.filtersModel.state.active" options="{
+                    defaultText: 'Filter',
+                    activeIconClass: 'rp-icon-filter',
+                    defaultIconClass: 'rp-icon-filter active'
+                }">
+                </rp-toggle>
+            </div>
+        </div>
 
-        <div class="grid-control-item">
-            <rp-toggle model="page.model.grid.filtersModel.state.active" options="{
-                                            defaultText: 'Filter',
-                                            activeIconClass: 'rp-icon-filter',
-                                            defaultIconClass: 'rp-icon-filter active'
-                                        }">
-            </rp-toggle>
+        <div rp-grid-model="page.model.grid" class="action-item rp-grid-select ft-form">
+            <label class="md-check dark-bluebox rp-grid-select-label">
+                <input
+                    type="checkbox"
+                    ng-true-value="true"
+                    ng-false-value="false"
+                    class="rp-form-checkbox"
+                    ng-model="gridSelect.model.selected"
+                    ng-change="gridSelect.model.publishState()" />
+                <i class="primary"></i>
+            </label>
+            <span class="rp-grid-select-icon rp-icon-angle-down"></span>
         </div>
     </div>
 
     <rp-grid model="page.model.grid">
     </rp-grid>
-    <!-- <rp-grid-pagination model="page.model.gridPagination">
-    </rp-grid-pagination> -->
+    <rp-grid-pagination model="page.model.gridPagination">
+    </rp-grid-pagination>
     <div>
 
     </div>

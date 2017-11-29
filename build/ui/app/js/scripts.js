@@ -19780,23 +19780,26 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
         });
 
         var links = {
-            'home': {
-                href: '#/',
+            'home.dashbaord': {
+                href: '#/dashbaord',
                 text: 'Overview'
             },
 
-            'home.dashbaord': {},
+            'home.invoice': {
+                href: '#/invoice',
+                text: 'Invoice'
+            },
 
         };
 
         var breadcrumbs = [{
-            name: 'home',
-            url: '/',
-            text: "Budgeting"
-        }, {
             name: 'home.dashbaord',
-            url: '#/dashbaord',
-            text: 'Overview'
+            url: '/dashbaord',
+            text: "Overview"
+        }, {
+            name: 'home.invoice',
+            url: '/invoice',
+            text: 'Invoice'
         }];
 
         prov.setLinks(links).setBreadcrumbs(breadcrumbs);
@@ -19985,7 +19988,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             iconClassName: 'rp-icon-card'
         }, {
             labelText: 'Invoices',
-            labelLink: '#/viewpay',
+            labelLink: '#/invoice',
             iconClassName: 'rp-icon-file-document'
         }, {
             labelText: 'Maitenance Request',
@@ -20213,6 +20216,8 @@ $templateCache.put("app/templates/nav.html",
 "                </div>\n" +
 "              </div>\n" +
 "            </div> --></div><!--End Left Nav Item Wrapper--></div></div>");
+$templateCache.put("app/templates/textbox.html",
+"<div class=\"grid-edit-title\"><rp-form-input-text config=\"model.formConfig.lease\" rp-model=\"record[config.key]\"></rp-form-input-text></div>");
 }]);
 
 
