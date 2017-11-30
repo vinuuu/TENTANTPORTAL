@@ -133,15 +133,11 @@
 
         };
 
-        model.checkUserName = function(val) {
-            model.showHideFlag = val;
-            model.strUserName = model.u_e_id;
-        };
 
-        model.sendVerifycode = function(val) {
-            model.showHideFlag = 'confirmpwd';
-            model.displaymob_email = model.emailCode ? model.emailCode : (model.mobcode1 ? model.mobcode1 : '');
-        };
+        // model.sendVerifycode = function(val) {
+        //     model.showHideFlag = 'confirmpwd';
+        //     model.displaymob_email = model.emailCode ? model.emailCode : (model.mobcode1 ? model.mobcode1 : '');
+        // };
         model.radiochange = function(val) {
             alert(val);
         };
@@ -173,12 +169,132 @@
                     if (model.showHideFlag === 'firstlogin') {
                         state.go('home.dashbaord');
                     } else {
-                        model.showHideFlag = 'login';
-                        model.pwdSuccess = 'success';
+                        // model.showHideFlag = 'login';
+                        // model.pwdSuccess = 'success';
                     }
                 }
             });
         };
+
+
+
+        model.checkUserName = function(val) {
+
+            var obj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "getforgotpwd": {
+                                    "type": "question",
+                                    "userid": model.u_e_id
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            loginSvc.forgotPwd(obj).then(function(response) {
+                if (response.data.api) {
+                    if (response.data.api[0].status === 'success') {
+                        model.securityQusn = response.data.api[0].secquestion;
+                        model.showHideFlag = val;
+                        model.strUserName = model.u_e_id;
+                    }
+                }
+            });
+        };
+
+        model.answerSecurityQusn = function(val) {
+            var obj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "getforgotpwd": {
+                                    "type": "authcode",
+                                    "userid": model.strUserName,
+                                    "secquestion": model.securityQusn,
+                                    "secanswer": model.question1
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            loginSvc.forgotPwd(obj).then(function(response) {
+                if (response.data.api) {
+                    if (response.data.api[0].status === 'success') {
+                        model.showHideFlag = val;
+                        alert(response.data.api[0].message);
+                    }
+                }
+            });
+        };
+
+        model.checkSixDigitCode = function(val) {
+            var obj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "getforgotpwd": {
+                                    "type": "validateauthcode",
+                                    "userid": model.strUserName,
+                                    // "authcode": "154418"
+                                    "authcode": model.emailCode
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            loginSvc.forgotPwd(obj).then(function(response) {
+                if (response.data.api) {
+                    if (response.data.api[0].status === 'success') {
+                        model.showHideFlag = val;
+                        model.userToken = response.data.api[0].usertoken;
+                        alert(response.data.api[0].message);
+                    }
+                }
+            });
+        };
+
+        model.forgotpwdSubmit = function(val) {
+            var obj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "getforgotpwd": {
+                                    "type": "changepassword",
+                                    "userid": model.strUserName,
+                                    "authcode": model.emailCode,
+                                    // "authcode": "154418",
+                                    "usertoken": model.userToken,
+                                    "newpwd": model.pwd1,
+                                    "cnfrmpwd": model.pwd2
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            loginSvc.forgotPwd(obj).then(function(response) {
+                if (response.data.api) {
+                    if (response.data.api[0].status === 'success') {
+                        model.showHideFlag = 'login';
+                        model.pwdSuccess = 'success';
+                        // alert(response.data.api[0].message);
+                    }
+                }
+            });
+        };
+
 
 
         return model.init();

@@ -12,7 +12,7 @@
                     idKey: "id"
                 },
                 {
-                    key: "Invoice",
+                    key: "RECORDNO",
 
                 },
                 {
@@ -34,7 +34,7 @@
                     templateUrl: "app/templates/textbox.html"
                 },
                 {
-                    key: "Status"
+                    key: "STATE"
                 }
             ];
         };
@@ -48,7 +48,7 @@
                         enabled: false
                     },
                     {
-                        key: "Invoice",
+                        key: "RECORDNO",
                         text: "Invoice"
                     },
                     {
@@ -72,8 +72,8 @@
                         text: "PayAmount"
                     },
                     {
-                        key: "Status",
-                        text: "STATE"
+                        key: "STATE",
+                        text: "Status"
                     }
                 ]
             ];
@@ -91,15 +91,15 @@
                         },
                         {
                             value: true,
-                            name: "Remote"
+                            name: "Selected"
                         },
                         {
                             value: false,
-                            name: "Local"
+                            name: "Not Selected"
                         }
                     ]
                 }, {
-                    key: "Invoice",
+                    key: "RECORDNO",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Invoice"
@@ -130,15 +130,15 @@
                 },
                 {
                     key: "TOTALENTERED",
-                    type: "textbox",
+                    type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Pay Amount"
                 },
                 {
-                    key: "Status",
-                    type: "textbox",
+                    key: "STATE",
+                    type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by Status"
+                    placeholder: "Filter by STATE"
                 }
             ];
         };

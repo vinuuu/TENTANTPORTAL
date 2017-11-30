@@ -49,13 +49,19 @@
         model.translateNames = function(key) {
             return translate(key);
         };
-
+        model.onPaymentTypeSelection = function(value) {
+            //api call
+        };
+        model.onLeaseSelection = function(value) {
+            //api call
+        };
         model.setData = function(data) {
             gridPagination.setData(data.records).goToPage({
                 number: 0
             });
         };
         model.loadData = function() {
+
             var inputObj = {
                 "request": {
                     "operation": {
@@ -78,18 +84,16 @@
                     model.leaseArray = [];
 
                     response.data.forEach(function(item) {
+                        item.disableSelection = item.STATE === 'Paid' ? true : false;
                         model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
                     });
 
                     timeout(function() {
-                        formConfig.setOptions("secondSelect", model.leaseArray);
+                        formConfig.setOptions("leaseddl", model.leaseArray);
                         model.leasevalueID = model.leaseArray[0].leaseID;
                     }, 500);
 
                     model.setData({ "records": response.data });
-
-
-
                 }
             });
 

@@ -73,13 +73,19 @@
         model.translateNames = function(key) {
             return translate(key);
         };
-
+        model.onPaymentTypeSelection = function(value) {
+            //api call
+        };
+        model.onLeaseSelection = function(value) {
+            //api call
+        };
         model.setData = function(data) {
             gridPagination.setData(data.records).goToPage({
                 number: 0
             });
         };
         model.loadData = function() {
+
             var inputObj = {
                 "request": {
                     "operation": {
@@ -102,18 +108,16 @@
                     model.leaseArray = [];
 
                     response.data.forEach(function(item) {
+                        item.disableSelection = item.STATE === 'Paid' ? true : false;
                         model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
                     });
 
                     timeout(function() {
-                        formConfig.setOptions("secondSelect", model.leaseArray);
+                        formConfig.setOptions("leaseddl", model.leaseArray);
                         model.leasevalueID = model.leaseArray[0].leaseID;
                     }, 500);
 
                     model.setData({ "records": response.data });
-
-
-
                 }
             });
 
@@ -175,7 +179,7 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     idKey: "id"
                 },
                 {
-                    key: "Invoice",
+                    key: "RECORDNO",
 
                 },
                 {
@@ -197,7 +201,7 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     templateUrl: "app/templates/textbox.html"
                 },
                 {
-                    key: "Status"
+                    key: "STATE"
                 }
             ];
         };
@@ -211,7 +215,7 @@ $templateCache.put("home/invoice/templates/textbox.html",
                         enabled: false
                     },
                     {
-                        key: "Invoice",
+                        key: "RECORDNO",
                         text: "Invoice"
                     },
                     {
@@ -235,8 +239,8 @@ $templateCache.put("home/invoice/templates/textbox.html",
                         text: "PayAmount"
                     },
                     {
-                        key: "Status",
-                        text: "STATE"
+                        key: "STATE",
+                        text: "Status"
                     }
                 ]
             ];
@@ -254,15 +258,15 @@ $templateCache.put("home/invoice/templates/textbox.html",
                         },
                         {
                             value: true,
-                            name: "Remote"
+                            name: "Selected"
                         },
                         {
                             value: false,
-                            name: "Local"
+                            name: "Not Selected"
                         }
                     ]
                 }, {
-                    key: "Invoice",
+                    key: "RECORDNO",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Invoice"
@@ -293,15 +297,15 @@ $templateCache.put("home/invoice/templates/textbox.html",
                 },
                 {
                     key: "TOTALENTERED",
-                    type: "textbox",
+                    type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Pay Amount"
                 },
                 {
-                    key: "Status",
-                    type: "textbox",
+                    key: "STATE",
+                    type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by Status"
+                    placeholder: "Filter by STATE"
                 }
             ];
         };
@@ -335,12 +339,14 @@ $templateCache.put("home/invoice/templates/textbox.html",
 
         model.paymentType = menuConfig({
             nameKey: "paymentTypeName",
-            valueKey: "paymentTypeNameID"
+            valueKey: "paymentTypeNameID",
+            onChange: model.getMethod("onPaymentTypeSelection")
         });
 
-        model.secondSelect = menuConfig({
+        model.leaseddl = menuConfig({
             nameKey: "leaseName",
-            valueKey: "leaseID"
+            valueKey: "leaseID",
+            onChange: model.getMethod("onLeaseSelection")
         });
         model.lease = inputConfig({
             id: "Pay Amount",

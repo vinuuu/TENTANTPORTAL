@@ -87,17 +87,21 @@
                 <div id="midblock4" ng-show="page.model.showHideFlag === 'question'">
 
                     <div class="m-t-1 statictxtcls-reset fontcls"><span>{{page.model.translateNames('random-qusns')}} </span></div>
+                    <div class="m-t-1 statictxtcls-reset fontcls"><span> </span></div>
                     <form name="questionForm" novalidate role="form">
                         <div class="innerbody-nobackground m-t-2">
                             <div class="form-group clearfix">
                                 <div class="lh m-l-1">
-                                    <span class="clearfix fontcls">{{page.model.translateNames('q-1')}} </span>
+                                    <!-- <span class="clearfix fontcls">{{page.model.translateNames('q-1')}} </span> -->
+                                    <span class="clearfix fontcls">{{page.model.securityQusn}}</span>
                                 </div>
-                                <div class="col-md-12"> <input type="text" class="form-control" ng-maxlength="6" ng-model="page.model.question1" required></div>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" ng-maxlength="6" ng-model="page.model.question1" required>
+                                </div>
                             </div>
 
                             <div class="form-group text-center clearfix">
-                                <input type="button" value="Continue" ng-click="page.model.showhideDiv('verifyCode');" ng-disabled="questionForm.$invalid" class="center-block m-t-2 btn btn-primary btnContinue1">
+                                <input type="button" value="Continue" ng-click="page.model.answerSecurityQusn('verifyCode');" ng-disabled="questionForm.$invalid" class="center-block m-t-2 btn btn-primary btnContinue1">
                             </div>
                         </div>
                     </form>
@@ -125,7 +129,7 @@
                                 </div>
                             </div>
                             <div class="form-group text-center clearfix">
-                                <input type="button" value="Continue" ng-click="page.model.sendVerifycode();" class="center-block m-t-1 btn btn-primary btnContinue1">
+                                <input type="button" value="Continue" ng-click="page.model.checkSixDigitCode('confirmpwd');" class="center-block m-t-1 btn btn-primary btnContinue1">
                                 <div>
                                     <a href="javcascrip:void(0);" class="linkcls" ng-click="page.model.showhideDiv('confirmpwd');"> {{page.model.translateNames('returnToLogin')}}</a>
                                 </div>
@@ -225,7 +229,7 @@
                                 <div class="col-md-12"> <input type="text" class="form-control" ng-maxlength="100" ng-model="page.model.security_a" required></div>
                             </div>
                             <div class="form-group text-center clearfix">
-                                <input type="button" ng-value="page.model.showHideFlag === 'firstlogin'?'Update':'Change password'" ng-disabled="confirmpwdForm.$invalid" ng-click="page.model.resetpwdSubmit();" ng-class="page.model.showHideFlag === 'firstlogin'?'btnContinue-firstlogin':'btnContinue1'"
+                                <input type="button" ng-value="page.model.showHideFlag === 'firstlogin'?'Update':'Change password'" ng-disabled="confirmpwdForm.$invalid" ng-click=" page.model.showHideFlag === 'firstlogin'?page.model.resetpwdSubmit();:page.model.forgotpwdSubmit();" ng-class="page.model.showHideFlag === 'firstlogin'?'btnContinue-firstlogin':'btnContinue1'"
                                     class="center-block m-t-1 btn btn-primary">
                             </div>
                         </div>

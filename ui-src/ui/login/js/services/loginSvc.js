@@ -8,6 +8,9 @@
             },
             changePwd: function(obj) {
                 return $http.post('/api/changepwd', obj);
+            },
+            forgotPwd: function(obj) {
+                return $http.post('/api/forgotPwd', obj);
             }
         };
     }

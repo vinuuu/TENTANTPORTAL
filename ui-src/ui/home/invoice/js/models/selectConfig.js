@@ -6,12 +6,14 @@
 
         model.paymentType = menuConfig({
             nameKey: "paymentTypeName",
-            valueKey: "paymentTypeNameID"
+            valueKey: "paymentTypeNameID",
+            onChange: model.getMethod("onPaymentTypeSelection")
         });
 
-        model.secondSelect = menuConfig({
+        model.leaseddl = menuConfig({
             nameKey: "leaseName",
-            valueKey: "leaseID"
+            valueKey: "leaseID",
+            onChange: model.getMethod("onLeaseSelection")
         });
         model.lease = inputConfig({
             id: "Pay Amount",
