@@ -29,12 +29,14 @@
                     key: "TOTALENTERED"
                 },
                 {
-                    key: "Pay Amount",
+                    key: "TOTALDUE",
                     type: "custom",
                     templateUrl: "app/templates/textbox.html"
                 },
                 {
-                    key: "STATE"
+                    key: "STATE",
+                    type: "custom",
+                    templateUrl: "app/templates/labelStatus.html"
                 }
             ];
         };
@@ -64,12 +66,12 @@
                         text: "Unit ID"
                     },
                     {
-                        key: "TOTALDUE",
-                        text: "TOTALENTERED"
+                        key: "TOTALENTERED",
+                        text: "Amount"
                     },
                     {
-                        key: "Pay Amount",
-                        text: "PayAmount"
+                        key: "TOTALDUE",
+                        text: "Pay Amount"
                     },
                     {
                         key: "STATE",
@@ -78,7 +80,6 @@
                 ]
             ];
         };
-
 
         model.getFilters = function() {
             return [{
@@ -123,13 +124,13 @@
                     placeholder: "Filter by Unit ID"
                 },
                 {
-                    key: "TOTALDUE",
+                    key: "TOTALENTERED",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by start Amount"
+                    placeholder: "Filter by Amount"
                 },
                 {
-                    key: "TOTALENTERED",
+                    key: "TOTALDUE",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Pay Amount"

@@ -51,9 +51,11 @@
         };
         model.onPaymentTypeSelection = function(value) {
             //api call
+            model.loadData();
         };
         model.onLeaseSelection = function(value) {
             //api call
+            model.loadData();
         };
         model.setData = function(data) {
             gridPagination.setData(data.records).goToPage({
@@ -82,7 +84,7 @@
             invoiceSvc.getInvoiceList(inputObj).then(function(response) {
                 if (response.data && response.data.length > 0) {
                     model.leaseArray = [];
-
+                    model.leaseArray.push({ leaseID: '', leaseName: 'All' });
                     response.data.forEach(function(item) {
                         item.disableSelection = item.STATE === 'Paid' ? true : false;
                         model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
@@ -90,7 +92,7 @@
 
                     timeout(function() {
                         formConfig.setOptions("leaseddl", model.leaseArray);
-                        model.leasevalueID = model.leaseArray[0].leaseID;
+                        model.leasevalueID = '';
                     }, 500);
 
                     model.setData({ "records": response.data });

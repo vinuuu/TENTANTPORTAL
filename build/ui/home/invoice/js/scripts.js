@@ -75,9 +75,11 @@
         };
         model.onPaymentTypeSelection = function(value) {
             //api call
+            model.loadData();
         };
         model.onLeaseSelection = function(value) {
             //api call
+            model.loadData();
         };
         model.setData = function(data) {
             gridPagination.setData(data.records).goToPage({
@@ -106,7 +108,7 @@
             invoiceSvc.getInvoiceList(inputObj).then(function(response) {
                 if (response.data && response.data.length > 0) {
                     model.leaseArray = [];
-
+                    model.leaseArray.push({ leaseID: '', leaseName: 'All' });
                     response.data.forEach(function(item) {
                         item.disableSelection = item.STATE === 'Paid' ? true : false;
                         model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
@@ -114,7 +116,7 @@
 
                     timeout(function() {
                         formConfig.setOptions("leaseddl", model.leaseArray);
-                        model.leasevalueID = model.leaseArray[0].leaseID;
+                        model.leasevalueID = '';
                     }, 500);
 
                     model.setData({ "records": response.data });
@@ -160,6 +162,8 @@
 angular.module('ui').run(['$templateCache', function ($templateCache) {
 $templateCache.put("home/invoice/templates/checkbox.html",
 "");
+$templateCache.put("home/invoice/templates/labelStatus.html",
+"<div class=\"grid-edit-title\">dddd <span style=\"color:red\">haiiii</span></div>");
 $templateCache.put("home/invoice/templates/textbox.html",
 "<div class=\"grid-edit-title\"><rp-form-input-text config=\"model.formConfig.lease\" rp-model=\"record[config.key]\"></rp-form-input-text></div>");
 }]);
@@ -196,12 +200,14 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     key: "TOTALENTERED"
                 },
                 {
-                    key: "Pay Amount",
+                    key: "TOTALDUE",
                     type: "custom",
                     templateUrl: "app/templates/textbox.html"
                 },
                 {
-                    key: "STATE"
+                    key: "STATE",
+                    type: "custom",
+                    templateUrl: "app/templates/labelStatus.html"
                 }
             ];
         };
@@ -231,12 +237,12 @@ $templateCache.put("home/invoice/templates/textbox.html",
                         text: "Unit ID"
                     },
                     {
-                        key: "TOTALDUE",
-                        text: "TOTALENTERED"
+                        key: "TOTALENTERED",
+                        text: "Amount"
                     },
                     {
-                        key: "Pay Amount",
-                        text: "PayAmount"
+                        key: "TOTALDUE",
+                        text: "Pay Amount"
                     },
                     {
                         key: "STATE",
@@ -245,7 +251,6 @@ $templateCache.put("home/invoice/templates/textbox.html",
                 ]
             ];
         };
-
 
         model.getFilters = function() {
             return [{
@@ -290,13 +295,13 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     placeholder: "Filter by Unit ID"
                 },
                 {
-                    key: "TOTALDUE",
+                    key: "TOTALENTERED",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by start Amount"
+                    placeholder: "Filter by Amount"
                 },
                 {
-                    key: "TOTALENTERED",
+                    key: "TOTALDUE",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Pay Amount"

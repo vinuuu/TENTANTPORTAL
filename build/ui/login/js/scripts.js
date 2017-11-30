@@ -280,8 +280,8 @@
                                 "getforgotpwd": {
                                     "type": "validateauthcode",
                                     "userid": model.strUserName,
-                                    "authcode": "154418"
-                                        // "authcode": model.emailCode
+                                    // "authcode": "154418"
+                                    "authcode": model.emailCode
                                 }
                             }
                         }
@@ -309,7 +309,8 @@
                                 "getforgotpwd": {
                                     "type": "changepassword",
                                     "userid": model.strUserName,
-                                    "authcode": "154418",
+                                    "authcode": model.emailCode,
+                                    // "authcode": "154418",
                                     "usertoken": model.userToken,
                                     "newpwd": model.pwd1,
                                     "cnfrmpwd": model.pwd2
