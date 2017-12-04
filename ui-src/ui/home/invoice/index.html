@@ -4,7 +4,8 @@
         <h4>{{page.model.translateNames('viewPayHeader')}}</h4>
         <hr>
     </div>
-
+    <rp-busy-indicator ng-if="!page.model.apiReady" model="page.model.busyIndicator">
+    </rp-busy-indicator>
     <div class="row">
         <div class="col-md-2">
             <rp-form-select-menu config="page.model.formConfig.paymentType" rp-model="page.model.paymenttype">
@@ -50,7 +51,9 @@
             <span class="rp-grid-select-icon rp-icon-angle-down"></span>
         </div>
     </div>
-
+    <div ng-if="page.model.customWorkSheetsCount()" class="cust-margin-top">
+        {{page.model.customWorkSheetsCount()}}/{{page.model.totalCount}} custom worksheets selected
+    </div>
     <rp-grid model="page.model.grid">
     </rp-grid>
     <div class="row m-t-1">

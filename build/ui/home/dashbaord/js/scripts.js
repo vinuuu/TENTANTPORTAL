@@ -39,16 +39,30 @@
 
 
 
-    function factory(dashboardSvc, $http) {
+    function factory(dashboardSvc, $http, busyIndicatorModel) {
         var model = {},
+            busyIndicator,
+            apiReady = false,
             response = {};
+
         model.init = function() {
+            busyIndicator = model.busyIndicator = busyIndicatorModel();
+            return model;
+        };
+        model.toggleGridState = function(flg) {
+            if (flg) {
+                model.apiReady = false;
+                busyIndicator.busy();
+            } else {
+                model.apiReady = true;
+                busyIndicator.off();
+            }
 
             return model;
         };
 
         model.getdashboardList = function() {
-
+            model.toggleGridState(true);
 
             var obj = {
                 "request": {
@@ -67,6 +81,7 @@
                 }
             };
             dashboardSvc.getLeaseList(obj).then(function(response) {
+                model.toggleGridState(false);
                 if (response.data && response.data.length > 0) {
 
                     model.tenantlist = response.data;
@@ -169,7 +184,7 @@
         .module('ui')
         .factory('dashboardMdl', factory);
 
-    factory.$inject = ['dashboardSvc', '$http'];
+    factory.$inject = ['dashboardSvc', '$http', 'rpBusyIndicatorModel'];
 })();
 
 //  Source: ui\home\dashbaord\js\services\dashboardSvc.js

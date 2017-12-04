@@ -1,9 +1,10 @@
 (function() {
     'use strict';
 
-    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, invoiceSvc, _, gridPaginationModel, timeout) {
+    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, invoiceSvc, _, gridPaginationModel, timeout, busyIndicatorModel) {
         var model = {},
             grid = gridModel(),
+            busyIndicator,
             translate = langTranslate('viewpay').translate,
             gridPagination = gridPaginationModel(),
             gridTransform = gridTransformSvc();
@@ -13,11 +14,31 @@
             recordsPerPage: 10,
             currentPageGroup: 0
         };
+        model.toggleGridState = function(flg) {
+            if (flg) {
+                model.apiReady = false;
+                busyIndicator.busy();
+            } else {
+                model.apiReady = true;
+                busyIndicator.off();
+            }
+
+            return model;
+        };
+        model.customWorkSheetsCount = function() {
+            var tot = model.getSelectedList();
+            return tot.length;
+        };
+        model.getSelectedList = function() {
+            return _.where(model.grid.data.records, { isSelect: 'true' });
+        };
 
 
         model.init = function() {
 
             model.formConfig = formConfig;
+            model.totalCount = 0;
+            busyIndicator = model.busyIndicator = busyIndicatorModel();
             formConfig.setMethodsSrc(model);
             var options = [{
                     paymentTypeName: "All Transaction",
@@ -63,7 +84,7 @@
             });
         };
         model.loadData = function() {
-
+            model.toggleGridState(true);
             var inputObj = {
                 "request": {
                     "operation": {
@@ -80,12 +101,19 @@
                     }
                 }
             };
+            q.all([invoiceSvc.getInvoiceList(inputObj),
+                invoiceSvc.getInvoiceList(inputObj)
+            ]).catch(vm.error).then(function(data) {
 
-            invoiceSvc.getInvoiceList(inputObj).then(function(response) {
-                if (response.data && response.data.length > 0) {
+                //data[0].records
+                //data[0].records
+
+                model.toggleGridState(false);
+                if (data[0] && data[0].length > 0) {
+                    model.totalCount = data[0].length;
                     model.leaseArray = [];
                     model.leaseArray.push({ leaseID: '', leaseName: 'All' });
-                    response.data.forEach(function(item) {
+                    data[0].forEach(function(item) {
                         item.disableSelection = item.STATE === 'Paid' ? true : false;
                         model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
                     });
@@ -95,9 +123,13 @@
                         model.leasevalueID = '';
                     }, 500);
 
-                    model.setData({ "records": response.data });
+                    model.setData({ "records": data[0] });
                 }
+
             });
+            // invoiceSvc.getInvoiceList(inputObj).then(function(response) {
+
+            // });
 
 
         };
@@ -108,7 +140,7 @@
         .module('ui')
         .factory('invoiceMdl', factory);
     factory.$inject = ['invoiceSelectMenuFormConfig', 'invoiceGrid1Config', "rpGridModel",
-        "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore', 'rpGridPaginationModel', '$timeout'
+        "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore', 'rpGridPaginationModel', '$timeout', 'rpBusyIndicatorModel'
     ];
 
 })();

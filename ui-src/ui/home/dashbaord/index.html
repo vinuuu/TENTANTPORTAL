@@ -3,6 +3,8 @@
         <h3 class="text-center">Overview</h3>
         <hr>
     </div>
+    <rp-busy-indicator ng-if="!page.model.apiReady" model="page.model.busyIndicator">
+    </rp-busy-indicator>
     <div rp-accordion="tenant-accordion">
         <div rp-accordion-panel class="acr-hdr rp-accordion-panel theme-1" ng-class="{'expand': $index === 0}" ng-repeat="item in page.model.tenantlist">
             <h3 class="rp-accordion-panel-title theme-1">

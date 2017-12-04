@@ -25,9 +25,10 @@
 (function() {
     'use strict';
 
-    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, invoiceSvc, _, gridPaginationModel, timeout) {
+    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, invoiceSvc, _, gridPaginationModel, timeout, busyIndicatorModel) {
         var model = {},
             grid = gridModel(),
+            busyIndicator,
             translate = langTranslate('viewpay').translate,
             gridPagination = gridPaginationModel(),
             gridTransform = gridTransformSvc();
@@ -37,11 +38,31 @@
             recordsPerPage: 10,
             currentPageGroup: 0
         };
+        model.toggleGridState = function(flg) {
+            if (flg) {
+                model.apiReady = false;
+                busyIndicator.busy();
+            } else {
+                model.apiReady = true;
+                busyIndicator.off();
+            }
+
+            return model;
+        };
+        model.customWorkSheetsCount = function() {
+            var tot = model.getSelectedList();
+            return tot.length;
+        };
+        model.getSelectedList = function() {
+            return _.where(model.grid.data.records, { isSelect: 'true' });
+        };
 
 
         model.init = function() {
 
             model.formConfig = formConfig;
+            model.totalCount = 0;
+            busyIndicator = model.busyIndicator = busyIndicatorModel();
             formConfig.setMethodsSrc(model);
             var options = [{
                     paymentTypeName: "All Transaction",
@@ -87,7 +108,7 @@
             });
         };
         model.loadData = function() {
-
+            model.toggleGridState(true);
             var inputObj = {
                 "request": {
                     "operation": {
@@ -106,7 +127,9 @@
             };
 
             invoiceSvc.getInvoiceList(inputObj).then(function(response) {
+                model.toggleGridState(false);
                 if (response.data && response.data.length > 0) {
+                    model.totalCount = response.data.length;
                     model.leaseArray = [];
                     model.leaseArray.push({ leaseID: '', leaseName: 'All' });
                     response.data.forEach(function(item) {
@@ -132,7 +155,7 @@
         .module('ui')
         .factory('invoiceMdl', factory);
     factory.$inject = ['invoiceSelectMenuFormConfig', 'invoiceGrid1Config', "rpGridModel",
-        "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore', 'rpGridPaginationModel', '$timeout'
+        "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore', 'rpGridPaginationModel', '$timeout', 'rpBusyIndicatorModel'
     ];
 
 })();
