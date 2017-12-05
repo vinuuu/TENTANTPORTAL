@@ -41,7 +41,8 @@
             'failureAlert',
             'warningAlert',
             'accountLocked',
-            'lockedAlert'
+            'lockedAlert',
+            'RsndCode'
         ];
 
         appLangKeys.app('login').set(keys);

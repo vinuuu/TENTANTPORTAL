@@ -9,4 +9,7 @@
 #viewpay th {
   width: 160px; }
 
+#viewpay .TOTALPAYING input {
+  text-align: right; }
+
 /*# sourceMappingURL=styles.css.map */

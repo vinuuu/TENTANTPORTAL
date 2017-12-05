@@ -26,10 +26,11 @@
                     key: "UNITID"
                 },
                 {
-                    key: "TOTALENTERED"
+                    key: "TOTALENTERED",
+                    type: "currency"
                 },
                 {
-                    key: "TOTALDUE",
+                    key: "TOTALPAYING",
                     type: "custom",
                     templateUrl: "app/templates/textbox.html"
                 },
@@ -70,7 +71,7 @@
                         text: "Amount"
                     },
                     {
-                        key: "TOTALDUE",
+                        key: "TOTALPAYING",
                         text: "Pay Amount"
                     },
                     {
@@ -130,7 +131,7 @@
                     placeholder: "Filter by Amount"
                 },
                 {
-                    key: "TOTALDUE",
+                    key: "TOTALPAYING",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Pay Amount"

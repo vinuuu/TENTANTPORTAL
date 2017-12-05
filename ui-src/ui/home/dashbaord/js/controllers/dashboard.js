@@ -11,9 +11,6 @@
             vm.model = model = dashboardMdl;
             vm.destWatch = $scope.$on("$destroy", vm.destroy);
             model.getdashboardList();
-
-            model.mockData();
-
         };
         vm.destroy = function() {
             vm.destWatch();

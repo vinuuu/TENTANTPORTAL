@@ -12,4 +12,13 @@
 #accounts th {
   width: 160px; }
 
+#accounts .m-l-p-8 {
+  margin-left: 8px; }
+
+#accounts .m-l-m-23 {
+  margin-left: -23px; }
+
+#accounts .linkcls {
+  color: blue; }
+
 /*# sourceMappingURL=styles.css.map */

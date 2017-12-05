@@ -1,20 +1,17 @@
 <div class="container" id=accounts>
-    <div class="page-header">
-        <h1 class="text-center">{{page.content.pageHeading}}</h1>
-        <hr>
-    </div>
+
     <div class="row boder-bottom">
         <div class="col-md-6">
-            <h5 class="currentbal"><b>Current Balance</b></h5>
+            <h2 class="currentbal"><b>Current Balance</b></h2>
         </div>
         <div class="col-md-6">
             <div class="col-md-6">
-                <h6><b><label for="amount">$27,885.14</label></b></h6>
+                <h4><b><label for="amount">$27,885.14</label></b></h4>
                 <div>Due february 1,2016</div>
             </div>
             <div class="col-md-6">
                 <input type="button" value="Pay Now" class="btn btn-primary btncls">
-                <div class="m-l-2"> {{page.content.pageComingSoon}} </div>
+                <!-- <div class="m-l-2"> {{page.content.pageComingSoon}} </div> -->
             </div>
         </div>
     </div>
@@ -22,7 +19,7 @@
     <div class="row boder-bottom">
         <div class="col-md-8 m-t-2">Details</div>
         <div class="col-md-4 p-t-1 p-b-1">
-            <rp-form-select-menu config="page.formConfig.leaseData" rp-model="page.model.accountHistory">
+            <rp-form-select-menu config="page.model.formConfig.leaseData" rp-model="page.model.accountHistory">
             </rp-form-select-menu>
         </div>
     </div>
@@ -46,8 +43,7 @@
             <div class="col-md-8">
                 {{page.model.custData.PrevoiusStatement}}
                 <div>
-                    <a href="javascript:void(0);">View Previous Statement</a>
-
+                    <span class="glyphicon glyphicon-file m-l-m-23 linkcls"></span> <a href="#/invoice/0" class="btn-link linkcls m-l-p-8">View Previous Statement</a>
                 </div>
             </div>
         </div>
@@ -78,7 +74,7 @@
             </div>
             <div class="col-md-8">
                 {{page.model.custData.currentStatement}}
-                <div><a>View Previous Statement</a></div>
+                <div> <span class="glyphicon glyphicon-file m-l-m-23 linkcls"></span><a href="#/invoice/0" class="btn-link linkcls m-l-p-8">View Previous Statement</a></div>
             </div>
         </div>
         <br>
@@ -107,7 +103,7 @@
         <div class="col-md-4">
 
 
-            <rp-form-select-menu config="page.formConfig.accountHistory" rp-model="page.model.accountHistory">
+            <rp-form-select-menu config="page.model.formConfig.accountHistory" rp-model="page.model.accountHistory">
             </rp-form-select-menu>
 
 
@@ -115,12 +111,10 @@
     </div>
 
 
-
-
     <div class="grid-controls">
 
         <div class="grid-control-item">
-            <rp-toggle model="page.grid.filtersModel.state.active" options="{
+            <rp-toggle model="page.model.grid.filtersModel.state.active" options="{
                 defaultText: 'Filter',
                 activeIconClass: 'rp-icon-filter',
                 defaultIconClass: 'rp-icon-filter active'
@@ -129,7 +123,7 @@
         </div>
     </div>
 
-    <rp-grid model="page.grid">
+    <rp-grid model="page.model.grid">
     </rp-grid>
 
 

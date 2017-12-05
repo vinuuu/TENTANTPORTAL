@@ -16,17 +16,17 @@
             </rp-form-select-menu>
         </div>
         <div>
-            <button class="btn btn-primary btnContinue pull-right">Pay Now</button>
+            <button class="btn btn-primary btnContinue pull-right" ng-disabled="page.model.TotalPaidAmount>0">Pay Now</button>
         </div>
     </div>
     <br>
 
     <div class="rp-action-bar box">
         <div class="grid-controls">
-            <div class="grid-control-item">
+            <!-- <div class="grid-control-item">
                 <i class="icon rp-icon-printer"></i>
                 <span class="text">Print</span>
-            </div>
+            </div> -->
             <div class="grid-control-item">
                 <rp-toggle model="page.model.grid.filtersModel.state.active" options="{
                     defaultText: 'Filter',
@@ -51,14 +51,14 @@
             <span class="rp-grid-select-icon rp-icon-angle-down"></span>
         </div>
     </div>
-    <div ng-if="page.model.customWorkSheetsCount()" class="cust-margin-top">
-        {{page.model.customWorkSheetsCount()}}/{{page.model.totalCount}} custom worksheets selected
+    <div ng-if="page.model.invoicesCount()" class="cust-margin-top">
+        {{page.model.invoicesCount()}}/{{page.model.totalCount}} <span class="p-l-2"> Invoices selected </span>
     </div>
     <rp-grid model="page.model.grid">
     </rp-grid>
     <div class="row m-t-1">
         <span class="col-md-8 text-right font-bold">Total</span>
-        <span class="col-md-4 text-center font-bold">20000</span>
+        <span class="col-md-4 text-center font-bold">{{(page.model.TotalPaidAmount()|| 0) | currency }}</span>
     </div>
     <rp-grid-pagination model="page.model.gridPagination">
     </rp-grid-pagination>
@@ -66,6 +66,6 @@
 
     </div>
     <div>
-        <button class="btn btn-primary btnContinue pull-right">Pay Now</button>
+        <button class="btn btn-primary btnContinue pull-right" ng-disabled="page.model.TotalPaidAmount>0">Pay Now</button>
     </div>
 </div>

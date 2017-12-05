@@ -163,24 +163,19 @@
                             model.pwdSuccess = 'warning';
                         } else {
                             model.pwdSuccess = 'locked';
+
                         }
                     }
                 }
             });
-
         };
 
-
-        // model.sendVerifycode = function(val) {
-        //     model.showHideFlag = 'confirmpwd';
-        //     model.displaymob_email = model.emailCode ? model.emailCode : (model.mobcode1 ? model.mobcode1 : '');
-        // };
         model.radiochange = function(val) {
             alert(val);
         };
 
         model.resetpwdSubmit = function(val) {
-
+            model.toggleGridState(true);
             var changeInputObj = {
                 "request": {
                     "operation": {
@@ -200,6 +195,7 @@
                 }
             };
             loginSvc.changePwd(changeInputObj).then(function(response) {
+                model.toggleGridState(false);
                 if (response.data && response.data.api[0].status === 'success') {
                     notifSvc.removeNotifications();
                     notifSvc.success(response.data.api[0].message);
@@ -216,7 +212,7 @@
 
 
         model.checkUserName = function(val) {
-
+            model.toggleGridState(true);
             var obj = {
                 "request": {
                     "operation": {
@@ -233,17 +229,23 @@
             };
 
             loginSvc.forgotPwd(obj).then(function(response) {
+                model.toggleGridState(false);
                 if (response.data.api) {
                     if (response.data.api[0].status === 'success') {
                         model.securityQusn = response.data.api[0].secquestion;
                         model.showHideFlag = val;
                         model.strUserName = model.u_e_id;
+                        model.strErrUSernameFlag = false;
                     }
+                } else {
+                    model.strErrUSernameFlag = true;
+                    model.elseErrMessage(response.data);
                 }
             });
         };
 
         model.answerSecurityQusn = function(val) {
+            model.toggleGridState(true);
             var obj = {
                 "request": {
                     "operation": {
@@ -262,16 +264,22 @@
             };
 
             loginSvc.forgotPwd(obj).then(function(response) {
+                model.toggleGridState(false);
                 if (response.data.api) {
                     if (response.data.api[0].status === 'success') {
                         model.showHideFlag = val;
-                        alert(response.data.api[0].message);
+                        model.strErrQusn = false;
+                        notifSvc.success(response.data.api[0].message);
                     }
+                } else {
+                    model.strErrQusn = true;
+                    model.elseErrMessage(response.data);
                 }
             });
         };
 
         model.checkSixDigitCode = function(val) {
+            model.toggleGridState(true);
             var obj = {
                 "request": {
                     "operation": {
@@ -280,7 +288,6 @@
                                 "getforgotpwd": {
                                     "type": "validateauthcode",
                                     "userid": model.strUserName,
-                                    // "authcode": "154418"
                                     "authcode": model.emailCode
                                 }
                             }
@@ -288,19 +295,23 @@
                     }
                 }
             };
-
             loginSvc.forgotPwd(obj).then(function(response) {
+                model.toggleGridState(false);
                 if (response.data.api) {
                     if (response.data.api[0].status === 'success') {
                         model.showHideFlag = val;
                         model.userToken = response.data.api[0].usertoken;
-                        alert(response.data.api[0].message);
+                        model.strErrVerifyCode = false;
                     }
+                } else {
+                    model.strErrVerifyCode = true;
+                    model.elseErrMessage(response.data);
                 }
             });
         };
 
-        model.forgotpwdSubmit = function(val) {
+        model.forgotpwdSubmit = function() {
+            model.toggleGridState(true);
             var obj = {
                 "request": {
                     "operation": {
@@ -310,7 +321,6 @@
                                     "type": "changepassword",
                                     "userid": model.strUserName,
                                     "authcode": model.emailCode,
-                                    // "authcode": "154418",
                                     "usertoken": model.userToken,
                                     "newpwd": model.pwd1,
                                     "cnfrmpwd": model.pwd2
@@ -322,18 +332,51 @@
             };
 
             loginSvc.forgotPwd(obj).then(function(response) {
+                model.toggleGridState(false);
                 if (response.data.api) {
                     if (response.data.api[0].status === 'success') {
                         model.showHideFlag = 'login';
                         model.pwdSuccess = 'success';
+
                         // alert(response.data.api[0].message);
                     }
                 }
             });
         };
 
+        model.elseErrMessage = function(exception) {
+            // exception = {
+            //     "control": [{
+            //         "status": [{
+            //             "cdata": "failure"
+            //         }],
+            //         "senderid": [{
+            //             "cdata": null
+            //         }],
+            //         "controlid": [{
+            //             "cdata": null
+            //         }]
+            //     }],
+            //     "errormessage": [{
+            //         "error": [{
+            //             "errorno": [{
+            //                 "cdata": "XL03000006"
+            //             }],
+            //             "description": [{
+            //                 "cdata": ""
+            //             }],
+            //             "description2": [{
+            //                 "cdata": "Userid do not match. Please try again."
+            //             }],
+            //             "correction": [{
+            //                 "cdata": ""
+            //             }]
+            //         }]
+            //     }]
+            // }
 
-
+            model.elseStr = exception.errormessage[0].error[0].description[0].cdata !== '' ? exception.errormessage[0].error[0].description[0].cdata : exception.errormessage[0].error[0].description2[0].cdata;
+        };
         return model.init();
     }
 

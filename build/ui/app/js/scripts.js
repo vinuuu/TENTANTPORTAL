@@ -19691,6 +19691,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             "home.account-payments": ["css", "js", "lang"],
             "home.view-statements": ["css", "js"],
             "home.invoice": ["css", "js", "lang"],
+            "home.error": ["css", "js", "lang"],
             "login": ["css", "js", "lang"],
             "home.common-area": ["css", "js"],
             "home.activity": ["css", "js"],
@@ -19901,18 +19902,34 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             }]
         };
         routes["home.invoice"] = {
-            url: "/invoice",
+            url: "/invoice/:id",
             controller: "invoiceCtrl as page",
             rerun: true,
             lazyLoad: [{
                 files: [
+                    "ui.home.dashbaord",
                     "ui.home.invoice",
                     "lib.realpage.form-select-menu-v1",
                     "lib.realpage.form-input-text-v1"
                 ]
             }]
         };
-
+        routes["home.error"] = {
+            url: "/error/:errorCode",
+            controller: "ErrorCtrl as page",
+            params: {
+                errorCode: '404',
+                templateUrl: undefined,
+                model: undefined
+            },
+            lazyLoad: [{
+                serie: true,
+                rerun: true,
+                files: [
+                    "ui.home.error"
+                ]
+            }]
+        };
         routes["home.floorplan-unit"] = {
             url: "/floorplan-unit",
             controller: "FloorPlanUnitCtrl as floorPlanUnit",

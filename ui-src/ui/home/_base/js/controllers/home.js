@@ -1,22 +1,16 @@
 //  Home Controller
 
-(function (angular, undefined) {
+(function(angular, undefined) {
     "use strict";
 
     function HomeCtrl($scope, tabsModel) {
         var vm = this;
 
-        vm.init = function () {
-            vm.tabsModel = tabsModel.get();
-            vm.destWatch = $scope.$on("$destroy", vm.destroy);
-            vm.changeWatch = tabsModel.subscribe(tabsModel.change);
+        vm.init = function() {
+
         };
 
-        vm.destroy = function () {
-            vm.destWatch();
-            vm.changeWatch();
-            tabsModel.reset();
-            tabsModel = undefined;
+        vm.destroy = function() {
             vm = undefined;
             $scope = undefined;
         };
@@ -26,5 +20,5 @@
 
     angular
         .module("ui")
-        .controller("HomeCtrl", ["$scope", "amenitiesScrollingTabsModel", HomeCtrl]);
+        .controller("HomeCtrl", ["$scope", "baseModel", HomeCtrl]);
 })(angular);

@@ -42,7 +42,8 @@
             'failureAlert',
             'warningAlert',
             'accountLocked',
-            'lockedAlert'
+            'lockedAlert',
+            'RsndCode'
         ];
 
         appLangKeys.app('login').set(keys);
@@ -77,7 +78,7 @@
             's2': 'Step two',
             's3': 'Step three',
             'how-reset-pwd': 'How would you like to reset your password',
-            'email-me': 'Email me a verification code',
+            'email-me': 'Please enter verification code',
             'to-number': 'Text me a verification code to number on file',
             'answer': 'Answer the following to verify this account is yours',
             'verifyCode': 'Enter Verification Code',
@@ -98,7 +99,8 @@
             'failureAlert': 'You have entered an invalid username and/or password. Please check your credentials',
             'warningAlert': 'You have one more attempt to enter a valid username and password before your account will be locked.',
             'accountLocked': 'Your account has been locked for 30 minutes.',
-            'lockedAlert': 'If you have forgotten your username or password click the forgot password link below once your account has been unlocked'
+            'lockedAlert': 'If you have forgotten your username or password click the forgot password link below once your account has been unlocked',
+            'RsndCode': 'Resend Code'
         };
 
         appLangBundle.lang('en-us').app('login').set(values);

@@ -70,18 +70,34 @@
             }]
         };
         routes["home.invoice"] = {
-            url: "/invoice",
+            url: "/invoice/:id",
             controller: "invoiceCtrl as page",
             rerun: true,
             lazyLoad: [{
                 files: [
+                    "ui.home.dashbaord",
                     "ui.home.invoice",
                     "lib.realpage.form-select-menu-v1",
                     "lib.realpage.form-input-text-v1"
                 ]
             }]
         };
-
+        routes["home.error"] = {
+            url: "/error/:errorCode",
+            controller: "ErrorCtrl as page",
+            params: {
+                errorCode: '404',
+                templateUrl: undefined,
+                model: undefined
+            },
+            lazyLoad: [{
+                serie: true,
+                rerun: true,
+                files: [
+                    "ui.home.error"
+                ]
+            }]
+        };
         routes["home.floorplan-unit"] = {
             url: "/floorplan-unit",
             controller: "FloorPlanUnitCtrl as floorPlanUnit",

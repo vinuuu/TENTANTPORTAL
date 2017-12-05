@@ -25,7 +25,9 @@
 (function() {
     'use strict';
 
-    function factory(formConfig, gridConfig, gridModel, gridTransformSvc, langTranslate, invoiceSvc, _, gridPaginationModel, timeout, busyIndicatorModel) {
+    function factory(formConfig, gridConfig, gridModel, gridTransformSvc,
+        langTranslate, invoiceSvc, _, gridPaginationModel,
+        timeout, busyIndicatorModel, q, dashboardSvc, baseModel) {
         var model = {},
             grid = gridModel(),
             busyIndicator,
@@ -35,7 +37,7 @@
         var gridPaginationConfig = {
             currentPage: 0,
             pagesPerGroup: 5,
-            recordsPerPage: 10,
+            recordsPerPage: 6,
             currentPageGroup: 0
         };
         model.toggleGridState = function(flg) {
@@ -49,15 +51,19 @@
 
             return model;
         };
-        model.customWorkSheetsCount = function() {
+        model.invoicesCount = function() {
             var tot = model.getSelectedList();
             return tot.length;
         };
         model.getSelectedList = function() {
-            return _.where(model.grid.data.records, { isSelect: 'true' });
+            return _.where(model.grid.data.records, { isSelect: true });
         };
 
-
+        model.TotalPaidAmount = function() {
+            return _.reduce(_.pluck(model.grid.data.records, 'TOTALPAYING'), function(memoizer, number) {
+                return Number(memoizer || 0) + Number(number || 0);
+            });
+        };
         model.init = function() {
 
             model.formConfig = formConfig;
@@ -109,6 +115,22 @@
         };
         model.loadData = function() {
             model.toggleGridState(true);
+            var obj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "leaseoccupancy",
+                                    "fields": "",
+                                    "query": "",
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
             var inputObj = {
                 "request": {
                     "operation": {
@@ -125,27 +147,29 @@
                     }
                 }
             };
-
-            invoiceSvc.getInvoiceList(inputObj).then(function(response) {
+            q.all([invoiceSvc.getInvoiceList(inputObj),
+                dashboardSvc.getLeaseList(obj)
+            ]).catch(baseModel.error).then(function(data) {
                 model.toggleGridState(false);
-                if (response.data && response.data.length > 0) {
-                    model.totalCount = response.data.length;
+                if (data && data.length > 0) {
+                    model.totalCount = data[0].data.length;
                     model.leaseArray = [];
                     model.leaseArray.push({ leaseID: '', leaseName: 'All' });
-                    response.data.forEach(function(item) {
+                    data[0].data.forEach(function(item) {
                         item.disableSelection = item.STATE === 'Paid' ? true : false;
+                    });
+                    model.leaseArray.push({ leaseID: '', leaseName: 'All' });
+                    data[1].data.forEach(function(item) {
                         model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
                     });
 
-                    timeout(function() {
-                        formConfig.setOptions("leaseddl", model.leaseArray);
-                        model.leasevalueID = '';
-                    }, 500);
+                    formConfig.setOptions("leaseddl", model.leaseArray);
+                    model.leasevalueID = '';
 
-                    model.setData({ "records": response.data });
+                    model.setData({ "records": data[0].data });
                 }
-            });
 
+            });
 
         };
         return model;
@@ -155,7 +179,9 @@
         .module('ui')
         .factory('invoiceMdl', factory);
     factory.$inject = ['invoiceSelectMenuFormConfig', 'invoiceGrid1Config', "rpGridModel",
-        "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore', 'rpGridPaginationModel', '$timeout', 'rpBusyIndicatorModel'
+        "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore',
+        'rpGridPaginationModel', '$timeout',
+        'rpBusyIndicatorModel', '$q', 'dashboardSvc', 'baseModel'
     ];
 
 })();
@@ -220,10 +246,11 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     key: "UNITID"
                 },
                 {
-                    key: "TOTALENTERED"
+                    key: "TOTALENTERED",
+                    type: "currency"
                 },
                 {
-                    key: "TOTALDUE",
+                    key: "TOTALPAYING",
                     type: "custom",
                     templateUrl: "app/templates/textbox.html"
                 },
@@ -264,7 +291,7 @@ $templateCache.put("home/invoice/templates/textbox.html",
                         text: "Amount"
                     },
                     {
-                        key: "TOTALDUE",
+                        key: "TOTALPAYING",
                         text: "Pay Amount"
                     },
                     {
@@ -324,7 +351,7 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     placeholder: "Filter by Amount"
                 },
                 {
-                    key: "TOTALDUE",
+                    key: "TOTALPAYING",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Pay Amount"

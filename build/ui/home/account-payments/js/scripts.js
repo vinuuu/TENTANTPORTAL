@@ -4,23 +4,95 @@
 (function(angular, undefined) {
     "use strict";
 
-    function AccountsCtrl($scope, $http, notifSvc, accountsMdl, formConfig, gridConfig, gridModel, gridTransformSvc, accountsContent) {
+    function AccountsCtrl($scope, $http, notifSvc, accountsMdl, accountsContent) {
+        // function AccountsCtrl($scope, $http, notifSvc, accountsMdl, formConfig, gridConfig, gridModel, gridTransformSvc, accountsContent) {
         var vm = this,
             model,
-            content = accountsContent,
-            grid = gridModel(),
-            gridTransform = gridTransformSvc();
+            content = accountsContent;
+        // grid = gridModel(),
+        // gridTransform = gridTransformSvc();
         $scope.response = {};
 
         vm.init = function() {
             vm.model = model = accountsMdl;
             var ddd = model.response.custData;
             vm.content = content;
-            vm.formConfig = formConfig;
-            // vm.destWatch = $scope.$on("$destroy", vm.destroy);
+            // vm.formConfig = formConfig;
+            vm.destWatch = $scope.$on("$destroy", vm.destroy);
             model.mockData();
 
-            formConfig.setMethodsSrc(vm);
+            // formConfig.setMethodsSrc(vm);
+            // var options = [{
+            //         accountHisrotyName: "Current Month",
+            //         accountHisrotyNameID: "0"
+            //     },
+            //     {
+            //         accountHisrotyName: "last 3 Month",
+            //         accountHisrotyNameID: "01"
+            //     },
+            //     {
+            //         accountHisrotyName: "last 6 Month",
+            //         accountHisrotyNameID: "02"
+            //     }
+            // ];
+
+            // formConfig
+            //     .setOptions("accountHistory", options);
+            // formConfig.setOptions("leaseData", options);
+
+            // vm.grid = grid;
+            // gridTransform.watch(grid);
+            // grid.setConfig(gridConfig);
+            // vm.loadData();
+            vm.vaaaaa = "hhhhhh";
+
+        };
+        vm.destroy = function() {
+            vm.destWatch();
+            vm = undefined;
+            $scope = undefined;
+        };
+
+
+
+
+        vm.init();
+    }
+
+    angular
+        .module("ui")
+        .controller("accountsCtrl", ["$scope", '$http', 'notificationService', 'accountsMdl',
+            "accountsContent",
+            AccountsCtrl
+        ]);
+    // angular
+    //     .module("ui")
+    //     .controller("accountsCtrl", ["$scope", '$http', 'notificationService', 'accountsMdl',
+    //         'sampleSelectMenuFormConfig', "sampleGrid1Config",
+    //         "rpGridModel",
+    //         "rpGridTransform", "accountsContent",
+    //         AccountsCtrl
+    //     ]);
+})(angular);
+
+//  Source: ui\home\account-payments\js\models\accounts.js
+//  Home Controller
+
+(function() {
+    "use strict";
+
+    function AccountsMdl(accountsSvc, formConfig, gridConfig, gridModel, gridTransformSvc) {
+        var model = {},
+
+            // translate = langTranslate('error').translate,
+            grid = gridModel(),
+            gridTransform = gridTransformSvc();
+        model.response = {};
+        model.init = function() {
+            model.mockData();
+            model.formConfig = formConfig;
+
+            formConfig.setMethodsSrc(model);
             var options = [{
                     accountHisrotyName: "Current Month",
                     accountHisrotyNameID: "0"
@@ -39,21 +111,43 @@
                 .setOptions("accountHistory", options);
             formConfig.setOptions("leaseData", options);
 
-            vm.grid = grid;
+            model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
-            vm.loadData();
-            vm.vaaaaa = "hhhhhh";
-
+            model.loadData();
+            return model;
         };
-        vm.destroy = function() {
-            vm.destWatch();
-            vm = undefined;
-            $scope = undefined;
+        // model.translateNames = function(key) {
+        //     return translate(key);
+        // };
+        model.mockData = function() {
+            model.custData = {
+                tenantName: 'Kim Resident',
+                leaseTerm: '1/1/2016-12/31/2018',
+                PrevoiusStatement: 'XXXXXXXXXXXXXXXX',
+                PreviousBalance: '$27,885.14',
+                lastPayment: '$27,885.16',
+                lastPaymentReceivedOn: '1/1/2016',
+                currentStatement: 'XXXXXXXXXXXX',
+                currentBalance: '$27,885.14',
+                dueDate: '2/1/2016'
+            };
+            model.accountHistory = "01";
         };
 
+        model.bindtenantdata = function(response) {
+            model.list = response.records;
+        };
 
-        vm.loadData = function() {
+        model.getCustData = function() {
+            // accountsSvc.getcustData().then(function() {
+
+            // }).catch(function() {
+            model.mockData();
+            // });
+        };
+
+        model.loadData = function() {
             grid.setData({
                 "records": [{
                         "id": 1,
@@ -160,72 +254,16 @@
             //  vm.dataReq = dataSvc.get(grid.setData.bind(grid));
         };
 
-        vm.init();
-    }
-
-    angular
-        .module("ui")
-        .controller("accountsCtrl", ["$scope", '$http', 'notificationService', 'accountsMdl',
-            'sampleSelectMenuFormConfig', "sampleGrid1Config",
-            "rpGridModel",
-            "rpGridTransform", "accountsContent",
-            AccountsCtrl
-        ]);
-})(angular);
-
-//  Source: ui\home\account-payments\js\models\accounts.js
-//  Home Controller
-
-(function() {
-    "use strict";
-
-    function AccountsMdl(accountsSvc) {
-        var model = {};
-        // translate = langTranslate('error').translate,
-        model.response = {};
-        model.init = function() {
-            model.mockData();
-            return model;
-        };
-        // model.translateNames = function(key) {
-        //     return translate(key);
-        // };
-        model.mockData = function() {
-            model.custData = {
-                tenantName: 'Kim Resident',
-                leaseTerm: '1/1/2016-12/31/2018',
-                PrevoiusStatement: 'XXXXXXXXXXXXXXXX',
-                PreviousBalance: '$27,885.14',
-                lastPayment: '$27,885.16',
-                lastPaymentReceivedOn: '1/1/2016',
-                currentStatement: 'XXXXXXXXXXXX',
-                currentBalance: '$27,885.14',
-                dueDate: '2/1/2016'
-            };
-            model.accountHistory = "01";
-        };
-
-        model.bindtenantdata = function(response) {
-            model.list = response.records;
-        };
-
-        model.getCustData = function() {
-            // accountsSvc.getcustData().then(function() {
-
-            // }).catch(function() {
-            model.mockData();
-            // });
-        };
-
-
-
         return model;
     }
 
     angular
         .module("ui")
         .factory("accountsMdl", AccountsMdl);
-    AccountsMdl.$inject = ['accountsSvc'];
+    AccountsMdl.$inject = ['accountsSvc', 'sampleSelectMenuFormConfig', "sampleGrid1Config",
+        "rpGridModel",
+        "rpGridTransform"
+    ];
 })(angular);
 
 //  Source: ui\home\account-payments\js\models\accounts-config.js
