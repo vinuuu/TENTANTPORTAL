@@ -19777,7 +19777,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 
         prov.setHome({
             icon: "rp-icon-statistics-5",
-            text: "PMC NAME"
+            text: "Home"
         });
 
         var links = {
@@ -19786,10 +19786,9 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
                 text: 'Overview'
             },
 
-            'home.invoice': {
-                href: '#/invoice',
-                text: 'Invoice'
-            },
+            'home.invoice': {},
+
+            'home.statements': {}
 
         };
 
@@ -19799,8 +19798,12 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             text: "Overview"
         }, {
             name: 'home.invoice',
-            url: '/invoice',
+            url: '/invoice/lease/:id',
             text: 'Invoice'
+        }, {
+            name: 'home.statements',
+            url: '/statements/lease/:id',
+            text: 'View Statements'
         }];
 
         prov.setLinks(links).setBreadcrumbs(breadcrumbs);
@@ -19874,6 +19877,8 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             controller: "accountsCtrl as page",
             lazyLoad: [{
                 files: [
+                    "ui.home.dashbaord",
+                    "ui.home.invoice",
                     "ui.home.account-payments",
                     "lib.realpage.form-select-menu-v1",
                     "lib.realpage.common",
@@ -19891,10 +19896,11 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             }]
         };
         routes["home.view-statements"] = {
-            url: "/statements",
+            url: "/statements/lease/:id",
             controller: "statementsCtrl as page",
             lazyLoad: [{
                 files: [
+                    "ui.home.dashbaord",
                     "ui.home.view-statements",
                     "lib.realpage.form-select-menu-v1"
 
@@ -19902,7 +19908,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             }]
         };
         routes["home.invoice"] = {
-            url: "/invoice/:id",
+            url: "/invoice/lease/:id",
             controller: "invoiceCtrl as page",
             rerun: true,
             lazyLoad: [{
@@ -20005,7 +20011,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             iconClassName: 'rp-icon-card'
         }, {
             labelText: 'Invoices',
-            labelLink: '#/invoice',
+            labelLink: '#/invoice/lease/:id',
             iconClassName: 'rp-icon-file-document'
         }, {
             labelText: 'Maitenance Request',
@@ -20220,7 +20226,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
 //  Source: ui\_app\js\templates\templates.inc.js
 angular.module('ui').run(['$templateCache', function ($templateCache) {
 $templateCache.put("app/templates/breadcrumbs.html",
-"<div class=\"rp-breadcrumbs\"><a class=\"home-icon {{::$ctrl.model.home.icon}}\" href=\"{{::$ctrl.model.home.url}}\"></a><div class=\"pull-left ft-b-r\"><div class=\"product-name\">{{$ctrl.model.product.name}}</div><div class=\"rp-breadcrumbs-links\"><div class=\"rp-breadcrumb home-link\"><a href=\"{{$ctrl.model.home.url}}\" class=\"rp-breadcrumb-text\">{{$ctrl.model.home.text}}</a></div><ul class=\"rp-breadcrumbs-list\"><li ng-repeat=\"link in $ctrl.model.links\" class=\"rp-breadcrumb p-a-0\"><a href=\"{{link.href}}\" class=\"rp-breadcrumb-text\">{{link.text}}</a></li></ul><div class=\"active-page rp-breadcrumb\"><span class=\"active-page-text rp-breadcrumb-text\">{{$ctrl.model.activePage.text}}</span></div></div><div class=\"rp-breadcrumb home-link\" ng-if=\"!$ctrl.model.hasBreadCrumb\"><a href=\"{{$ctrl.model.backLink.href}}\" class=\"rp-breadcrumb-text\"><i class=\"rp-icon-angle-left ft-s-10 p-r-xs\"></i>{{$ctrl.model.backLink.text}}</a></div></div></div>");
+"<div class=\"rp-breadcrumbs\"><a class=\"home-icon {{::$ctrl.model.home.icon}}\" href=\"{{::$ctrl.model.home.url}}\"></a><div class=\"pull-left ft-b-r\"><div class=\"product-name\">{{$ctrl.model.product.name}}</div><div class=\"rp-breadcrumbs-links\"><div class=\"rp-breadcrumb home-link\"><a href=\"#/dashbaord\" class=\"rp-breadcrumb-text\">{{$ctrl.model.home.text}}</a></div><ul class=\"rp-breadcrumbs-list\"><li ng-repeat=\"link in $ctrl.model.links\" class=\"rp-breadcrumb p-a-0\"><a href=\"{{link.href}}\" class=\"rp-breadcrumb-text\">{{link.text}}</a></li></ul><div class=\"active-page rp-breadcrumb\"><span class=\"active-page-text rp-breadcrumb-text\">{{$ctrl.model.activePage.text}}</span></div></div><div class=\"rp-breadcrumb home-link\" ng-if=\"!$ctrl.model.hasBreadCrumb\"><a href=\"{{$ctrl.model.backLink.href}}\" class=\"rp-breadcrumb-text\"><i class=\"rp-icon-angle-left ft-s-10 p-r-xs\"></i>{{$ctrl.model.backLink.text}}</a></div></div></div>");
 $templateCache.put("app/templates/history-navigation.html",
 "<div class=\"rp-breadcrumbs\" ng-show=\"model.isVisible\"><a class=\"home-icon {{::model.home.icon}}\" href=\"{{::model.home.url}}\"></a><div class=\"pull-left ft-b-r\"><div class=\"product-name\">{{model.product.name}}</div><div class=\"rp-breadcrumbs-links\"><div class=\"home-link\"><a href=\"{{model.url}}\" class=\"rp-breadcrumb-text\"><i class=\"rp-icon-angle-left\"></i>{{model.home.text}}</a></div><div class=\"rp-breadcrumb home-link\"><a href=\"{{model.home.url}}\" class=\"rp-breadcrumb-text\">{{model.home.text}}</a></div><ul class=\"rp-breadcrumbs-list\"><li ng-repeat=\"link in model.links\" class=\"rp-breadcrumb p-a-0\"><a href=\"{{link.href}}\" class=\"rp-breadcrumb-text\">{{link.text}}</a></li></ul><div class=\"active-page rp-breadcrumb\"><span class=\"active-page-text rp-breadcrumb-text\">{{model.activePage.text}}</span></div></div></div></div>");
 $templateCache.put("app/templates/nav.html",

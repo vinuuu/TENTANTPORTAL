@@ -88,7 +88,7 @@ hr {
 }
 
 .panel-default {
-    border-color: #ddd;
+    border-color: #ddd !important;
 }
 
 .panel {
@@ -103,10 +103,9 @@ hr {
 // .panel-body {
 //     padding: 15px;
 // }
-.form-group {
-    margin-bottom: 0rem !important;
-}
-
+// .form-group {
+//     margin-bottom: 0rem !important;
+// }
 .label {
     display: inline-block;
     margin-bottom: 0rem !important;

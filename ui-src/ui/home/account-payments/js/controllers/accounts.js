@@ -13,12 +13,12 @@
         $scope.response = {};
 
         vm.init = function() {
+            vm.destWatch = $scope.$on("$destroy", vm.destroy);
             vm.model = model = accountsMdl;
             var ddd = model.response.custData;
             vm.content = content;
             // vm.formConfig = formConfig;
-            vm.destWatch = $scope.$on("$destroy", vm.destroy);
-            model.mockData();
+            // model.mockData();
 
             // formConfig.setMethodsSrc(vm);
             // var options = [{

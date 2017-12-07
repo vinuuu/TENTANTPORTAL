@@ -1,0 +1,34 @@
+#statements {
+    label {
+        margin-bottom: .3em;
+    }
+    .btn {
+        border-radius: 6px;
+    }
+    .bodydivcls {
+        border: 1px solid #dcd8d8;
+        border-radius: 6px;
+        height: 600px;
+    }
+    .accountscls {
+        border-top: 1px solid black;
+        border-bottom: 1px solid;
+        display: inline;
+        padding: 2px;
+    }
+    .b-b-1 {
+        border-bottom: 1px solid black;
+    }
+    .bgcolor {
+        background-color: #e8e5e5;
+        padding: 5px;
+    }
+    .WHENCREATED,
+    .TYPE,
+    .DESCRIPTION,
+    .AMOUNT,
+    .PAYMENT,
+    .BALANCE {
+        width: 160px;
+    }
+}

@@ -3,187 +3,176 @@
 (function() {
     "use strict";
 
-    function AccountsMdl(accountsSvc, formConfig, gridConfig, gridModel, gridTransformSvc) {
+    function AccountsMdl(accountsSvc, formConfig, gridConfig, gridModel, gridTransformSvc,
+        dashboardSvc, baseModel, busyIndicatorModel, invoiceSvc, gridPaginationModel, moment, q) {
         var model = {},
+            busyIndicator,
 
             // translate = langTranslate('error').translate,
             grid = gridModel(),
+            gridPagination = gridPaginationModel(),
             gridTransform = gridTransformSvc();
+        var gridPaginationConfig = {
+            currentPage: 0,
+            pagesPerGroup: 5,
+            recordsPerPage: 6,
+            currentPageGroup: 0
+        };
         model.response = {};
         model.init = function() {
-            model.mockData();
-            model.formConfig = formConfig;
-
+            busyIndicator = model.busyIndicator = busyIndicatorModel();
+            model.leaseArray = [];
             formConfig.setMethodsSrc(model);
+            model.formConfig = formConfig;
             var options = [{
                     accountHisrotyName: "Current Month",
-                    accountHisrotyNameID: "0"
+                    accountHisrotyNameID: moment().format('YYYY MM DD')
                 },
                 {
                     accountHisrotyName: "last 3 Month",
-                    accountHisrotyNameID: "01"
+                    accountHisrotyNameID: moment().subtract(3, 'month').format('YYYY MM DD')
                 },
                 {
                     accountHisrotyName: "last 6 Month",
-                    accountHisrotyNameID: "02"
+                    accountHisrotyNameID: moment().subtract(6, 'month').format('YYYY MM DD')
                 }
             ];
 
             formConfig
                 .setOptions("accountHistory", options);
-            formConfig.setOptions("leaseData", options);
 
+            model.accountHistoryType = moment().format('YYYY MM DD');
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
-            model.loadData();
+            gridPagination.setGrid(grid);
+            gridPagination
+                .setConfig(gridPaginationConfig);
+            model.gridPagination = gridPagination;
+            grid.formConfig = formConfig;
+            model.bindLeaseIDToDDl();
             return model;
         };
-        // model.translateNames = function(key) {
-        //     return translate(key);
-        // };
-        model.mockData = function() {
-            model.custData = {
-                tenantName: 'Kim Resident',
-                leaseTerm: '1/1/2016-12/31/2018',
-                PrevoiusStatement: 'XXXXXXXXXXXXXXXX',
-                PreviousBalance: '$27,885.14',
-                lastPayment: '$27,885.16',
-                lastPaymentReceivedOn: '1/1/2016',
-                currentStatement: 'XXXXXXXXXXXX',
-                currentBalance: '$27,885.14',
-                dueDate: '2/1/2016'
-            };
-            model.accountHistory = "01";
-        };
 
+
+        model.onaccountHistorySelection = function(key) {
+            model.getCustData({ leaseid: model.leaseid, asofDate: moment(key) });
+        };
         model.bindtenantdata = function(response) {
             model.list = response.records;
         };
 
-        model.getCustData = function() {
-            // accountsSvc.getcustData().then(function() {
+        model.onleaseDataSelection = function(key) {
+            model.getCustData({ leaseid: key, asofDate: moment(model.accountHistoryType) });
 
-            // }).catch(function() {
-            model.mockData();
-            // });
         };
 
-        model.loadData = function() {
-            grid.setData({
-                "records": [{
-                        "id": 1,
-                        "name": "Tiger Nixon",
-                        "title": "System Architect",
-                        "location": "Edinburgh",
-                        "extn": "5421",
-                        "startDate": "2011/04/25",
-                        "salary": 320800,
-                        "isRemote": false
-                    },
-                    {
-                        "id": 49,
-                        "name": "Zorita Serrano",
-                        "title": "Software Engineer",
-                        "location": "San Francisco",
-                        "extn": "4389",
-                        "startDate": "2012/06/01",
-                        "salary": 115000,
-                        "isRemote": false
-                    },
-                    {
-                        "id": 50,
-                        "name": "Jennifer Acosta",
-                        "title": "Junior Javascript Developer",
-                        "location": "Edinburgh",
-                        "extn": "3431",
-                        "startDate": "2013/02/01",
-                        "salary": 75650,
-                        "isRemote": false
-                    },
-                    {
-                        "id": 51,
-                        "name": "Cara Stevens",
-                        "title": "Sales Assistant",
-                        "location": "New York",
-                        "extn": "3990",
-                        "startDate": "2011/12/06",
-                        "salary": 145600,
-                        "isRemote": false
-                    },
-                    {
-                        "id": 52,
-                        "name": "Hermione Butler",
-                        "title": "Regional Director",
-                        "location": "London",
-                        "extn": "1016",
-                        "startDate": "2011/03/21",
-                        "salary": 356250,
-                        "isRemote": false
-                    },
-                    {
-                        "id": 53,
-                        "name": "Lael Greer",
-                        "title": "Systems Administrator",
-                        "location": "London",
-                        "extn": "6733",
-                        "startDate": "2009/02/27",
-                        "salary": 103500,
-                        "isRemote": false
-                    },
-                    {
-                        "id": 54,
-                        "name": "Jonas Alexander",
-                        "title": "Developer",
-                        "location": "San Francisco",
-                        "extn": "8196",
-                        "startDate": "2010/07/14",
-                        "salary": 86500,
-                        "isRemote": false
-                    },
-                    {
-                        "id": 55,
-                        "name": "Shad Decker",
-                        "title": "Regional Director",
-                        "location": "Edinburgh",
-                        "extn": "6373",
-                        "startDate": "2008/11/13",
-                        "salary": 183000,
-                        "isRemote": false
-                    },
-                    {
-                        "id": 56,
-                        "name": "Michael Bruce",
-                        "title": "Javascript Developer",
-                        "location": "Singapore",
-                        "extn": "5384",
-                        "startDate": "2011/06/27",
-                        "salary": 183000,
-                        "isRemote": false
-                    },
-                    {
-                        "id": 57,
-                        "name": "Donna Snider",
-                        "title": "Customer Support",
-                        "location": "New York",
-                        "extn": "4226",
-                        "startDate": "2011/01/25",
-                        "salary": 112000,
-                        "isRemote": false
+        model.bindLeaseIDToDDl = function() {
+            model.toggleGridState(true);
+            var obj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "leaseoccupancy",
+                                    "fields": "",
+                                    "query": "",
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
                     }
-                ]
+                }
+            };
+            dashboardSvc.getLeaseList(obj).catch(baseModel.error).then(function(response) {
+                response.data.forEach(function(item) {
+                    model.leaseArray.push({ accountHisrotyNameID: item.LEASEID, accountHisrotyName: 'LeaseID :' + item.LEASEID });
+                });
+
+                formConfig.setOptions("leaseData", model.leaseArray);
+                model.accountHistory = model.leaseArray[0].accountHisrotyNameID;
+                model.getCustData({ leaseid: model.accountHistory, asofDate: moment(model.accountHistoryType) });
+                model.toggleGridState(false);
+
             });
-            //  vm.dataReq = dataSvc.get(grid.setData.bind(grid));
+
         };
 
-        return model;
+        model.getCustData = function(data) {
+            model.toggleGridState(true);
+            var obj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "getTenantBalance": {
+                                    "leaseid": data.leaseid,
+                                    "asofdate": {
+                                        "year": data.asofDate.year(),
+                                        "month": (data.asofDate.month() + 1),
+                                        "day": "01"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            var inputObj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "pminvoice",
+                                    "fields": "",
+                                    "query": "(LEASEID = '" + data.leaseid + "')",
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            q.all([accountsSvc.getAccountsInfo(obj),
+                invoiceSvc.getInvoiceList(inputObj)
+
+            ]).catch(baseModel.error).then(function(data) {
+                model.toggleGridState(false);
+                model.custData = data[0].data.api[0];
+                gridPagination.setData(data[1].data).goToPage({
+                    number: 0
+                });
+
+            });
+
+        };
+
+        model.toggleGridState = function(flg) {
+            if (flg) {
+                model.apiReady = false;
+                busyIndicator.busy();
+            } else {
+                model.apiReady = true;
+                busyIndicator.off();
+            }
+
+            return model;
+        };
+        return model.init();
     }
 
     angular
         .module("ui")
         .factory("accountsMdl", AccountsMdl);
-    AccountsMdl.$inject = ['accountsSvc', 'sampleSelectMenuFormConfig', "sampleGrid1Config",
+    AccountsMdl.$inject = ['accountsSvc', 'accountsConfig', "sampleGrid1Config",
         "rpGridModel",
-        "rpGridTransform"
+        "rpGridTransform",
+        'dashboardSvc',
+        'baseModel',
+        'rpBusyIndicatorModel', 'invoiceSvc', 'rpGridPaginationModel', 'moment',
+        '$q'
     ];
 })(angular);

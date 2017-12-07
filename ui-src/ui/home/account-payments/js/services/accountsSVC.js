@@ -3,8 +3,8 @@
 
     function Factory(http) {
         return {
-            getcustData: function() {
-                return http.get('api/controller/getcustdata');
+            getAccountsInfo: function(obj) {
+                return http.post('/api/accounts', obj);
             }
         };
     }

@@ -6,22 +6,22 @@
 
         model.get = function() {
             return [{
-                    key: "Date"
+                    key: "WHENCREATED"
                 },
                 {
-                    key: "Transactions"
+                    key: "TYPE"
                 },
                 {
-                    key: "Details"
+                    key: "DESCRIPTION"
                 },
                 {
-                    key: "Amount"
+                    key: "AMOUNT"
                 },
                 {
-                    key: "Payments"
+                    key: "PAYMENT"
                 },
                 {
-                    key: "Balance"
+                    key: "BALANCE"
                 }
             ];
         };
@@ -30,28 +30,28 @@
         model.getHeaders = function() {
             return [
                 [{
-                        key: "Date",
+                        key: "WHENCREATED",
                         text: "Date",
                         isSortable: true
                     },
                     {
-                        key: "Transactions",
+                        key: "TYPE",
                         text: "Transactions"
                     },
                     {
-                        key: "Details",
+                        key: "DESCRIPTION",
                         text: "Details"
                     },
                     {
-                        key: "Amount",
+                        key: "AMOUNT",
                         text: "Amount"
                     },
                     {
-                        key: "Payments",
+                        key: "PAYMENT",
                         text: "Payments"
                     },
                     {
-                        key: "Balance",
+                        key: "BALANCE",
                         text: "Balance"
                     }
                 ]
@@ -77,44 +77,56 @@
 
         model.getFilters = function() {
             return [{
-                    key: "Date",
+                    key: "WHENCREATED",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Date"
                 },
                 {
-                    key: "Transactions",
+                    key: "TYPE",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Transactions"
                 },
                 {
-                    key: "Details",
+                    key: "DESCRIPTION",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Details"
                 },
                 {
-                    key: "Amount",
+                    key: "AMOUNT",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Amount"
                 },
                 {
-                    key: "Payments",
+                    key: "PAYMENT",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by start Payments"
                 },
                 {
-                    key: "Balance",
+                    key: "BALANCE",
                     type: "textbox",
                     filterDelay: 0,
                     placeholder: "Filter by Balance"
                 }
             ];
         };
+        model.getTrackSelectionConfig = function() {
+            var config = {},
+                columns = model.get();
 
+            columns.forEach(function(column) {
+                if (column.type == "select") {
+                    config.idKey = column.idKey;
+                    config.selectKey = column.key;
+                }
+            });
+
+            return config;
+        };
         return model;
     }
 

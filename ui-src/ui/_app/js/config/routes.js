@@ -42,6 +42,8 @@
             controller: "accountsCtrl as page",
             lazyLoad: [{
                 files: [
+                    "ui.home.dashbaord",
+                    "ui.home.invoice",
                     "ui.home.account-payments",
                     "lib.realpage.form-select-menu-v1",
                     "lib.realpage.common",
@@ -59,10 +61,11 @@
             }]
         };
         routes["home.view-statements"] = {
-            url: "/statements",
+            url: "/statements/lease/:id",
             controller: "statementsCtrl as page",
             lazyLoad: [{
                 files: [
+                    "ui.home.dashbaord",
                     "ui.home.view-statements",
                     "lib.realpage.form-select-menu-v1"
 
@@ -70,7 +73,7 @@
             }]
         };
         routes["home.invoice"] = {
-            url: "/invoice/:id",
+            url: "/invoice/lease/:id",
             controller: "invoiceCtrl as page",
             rerun: true,
             lazyLoad: [{

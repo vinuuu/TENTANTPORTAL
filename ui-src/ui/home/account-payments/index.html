@@ -6,8 +6,10 @@
         </div>
         <div class="col-md-6">
             <div class="col-md-6">
-                <h4><b><label for="amount">$27,885.14</label></b></h4>
-                <div>Due february 1,2016</div>
+                <h4><b><label for="amount">
+                        {{page.model.custData.currentbalane || 0|currency}}
+                </label></b></h4>
+                <div>Due {{page.model.custData.duedate}}</div>
             </div>
             <div class="col-md-6">
                 <input type="button" value="Pay Now" class="btn btn-primary btncls">
@@ -15,118 +17,122 @@
             </div>
         </div>
     </div>
+    <rp-busy-indicator ng-if="!page.model.apiReady" model="page.model.busyIndicator">
+    </rp-busy-indicator>
 
-    <div class="row boder-bottom">
-        <div class="col-md-8 m-t-2">Details</div>
-        <div class="col-md-4 p-t-1 p-b-1">
-            <rp-form-select-menu config="page.model.formConfig.leaseData" rp-model="page.model.accountHistory">
-            </rp-form-select-menu>
-        </div>
-    </div>
-    <br>
-    <div>
-        <div class="row">
-            <div class="col-md-4">
-                Tenant Name
-                <div>Lease Term</div>
-            </div>
-            <div class="col-md-8">
-                {{page.model.custData.tenantName}}
-                <div>{{page.model.custData.leaseTerm}}</div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-                Previous Statement - January 2016
-            </div>
-            <div class="col-md-8">
-                {{page.model.custData.PrevoiusStatement}}
-                <div>
-                    <span class="glyphicon glyphicon-file m-l-m-23 linkcls"></span> <a href="#/invoice/0" class="btn-link linkcls m-l-p-8">View Previous Statement</a>
+
+    <div class="panel panel-default p-l-1 acr-content2 m-t-1">
+        <div class="panel-body p-r-16">
+            <div class="row boder-bottom">
+                <div class="col-md-8 m-t-2 font-bold">Details</div>
+                <div class="col-md-4 p-t-1 p-b-1">
+                    <rp-form-select-menu config="page.model.formConfig.leaseData" rp-model="page.model.accountHistory">
+                    </rp-form-select-menu>
                 </div>
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-                Previous Balance
+            <br>
+            <div>
+                <div class="row">
+                    <div class="col-md-4 font-bold">
+                        Tenant Name
+                        <div>Lease Term</div>
+                    </div>
+                    <div class="col-md-8">
+                        {{page.model.custData.tenant}}
+                        <div>{{page.model.custData.leaseinfo[0].LEASESTART}} - {{page.model.custData.leaseinfo[0].LEASEEND}}</div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4 font-bold">
+                        Previous Statement - {{page.model.custData.prevstatement}}
+                    </div>
+                    <div class="col-md-8">
+                        <!-- {{page.model.custData.PrevoiusStatement}} -->XXXXXXXXXX(need to bind)
+                        <div>
+                            <span class="glyphicon glyphicon-file m-l-m-23 linkcls"></span> <a href="#/statements/lease/0" class="btn-link linkcls m-l-p-8">View Previous Statement</a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4 font-bold">
+                        Previous Balance
+                    </div>
+                    <div class="col-md-8">
+                        {{page.model.custData.prevbalance||0 | currency}}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4 font-bold">
+                        Last Payment Received
+                    </div>
+                    <div class="col-md-8">
+                        <!-- {{page.model.custData.lastPayment}} -->(need to bind)
+
+                        <div>
+                            <!-- {{page.model.custData.lastPaymentReceivedOn}} -->(need to bind)
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4 font-bold">
+                        Current Statement - February 2016(need to bind)
+                    </div>
+                    <div class="col-md-8">
+                        <!-- {{page.model.custData.currentStatement}} -->(need to bind)
+                        <div> <span class="glyphicon glyphicon-file m-l-m-23 linkcls"></span><a href="#/statements/lease/0" class="btn-link linkcls m-l-p-8">View Previous Statement</a></div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4 font-bold">
+                        Current Balance
+                        <div>Due Date</div>
+                    </div>
+                    <div class="col-md-8">
+                        {{page.model.custData.currentbalane||0|currency}}
+                        <div>{{page.model.custData.duedate}}</div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="button" value="Pay Now" class="btn btn-primary  pull-right btncls">
+                    </div>
+                </div>
+
             </div>
-            <div class="col-md-8">
-                {{page.model.custData.PreviousBalance}}
+            <br>
+            <div class="boder-bottom row">
+
+                <div class="col-md-8 m-t-1 font-bold">Account History</div>
+                <div class="col-md-4 p-b-1">
+                    <rp-form-select-menu config="page.model.formConfig.accountHistory" rp-model="page.model.accountHistoryType">
+                    </rp-form-select-menu>
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-                Last Payment Received
-            </div>
-            <div class="col-md-8">
-                {{page.model.custData.lastPayment}}
 
-                <div>{{page.model.custData.lastPaymentReceivedOn}}</div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-                Current Statement - February 2016
-            </div>
-            <div class="col-md-8">
-                {{page.model.custData.currentStatement}}
-                <div> <span class="glyphicon glyphicon-file m-l-m-23 linkcls"></span><a href="#/invoice/0" class="btn-link linkcls m-l-p-8">View Previous Statement</a></div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-                Current Balance
-                <div>Due Date</div>
-            </div>
-            <div class="col-md-8">
-                {{page.model.custData.currentBalance}}
-                <div>{{page.model.custData.dueDate}}</div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <input type="button" value="Pay Now" class="btn btn-primary  pull-right btncls">
-            </div>
-        </div>
+            <div class="grid-controls">
 
-    </div>
-    <br>
-    <div class="boder-bottom row">
-
-        <div class="col-md-8">Account History</div>
-        <div class="col-md-4">
-
-
-            <rp-form-select-menu config="page.model.formConfig.accountHistory" rp-model="page.model.accountHistory">
-            </rp-form-select-menu>
-
-
-        </div>
-    </div>
-
-
-    <div class="grid-controls">
-
-        <div class="grid-control-item">
-            <rp-toggle model="page.model.grid.filtersModel.state.active" options="{
+                <div class="grid-control-item">
+                    <rp-toggle model="page.model.grid.filtersModel.state.active" options="{
                 defaultText: 'Filter',
                 activeIconClass: 'rp-icon-filter',
                 defaultIconClass: 'rp-icon-filter active'
             }">
-            </rp-toggle>
+                    </rp-toggle>
+                </div>
+            </div>
+
+            <rp-grid model="page.model.grid">
+            </rp-grid>
+            <rp-grid-pagination model="page.model.gridPagination">
+            </rp-grid-pagination>
         </div>
     </div>
-
-    <rp-grid model="page.model.grid">
-    </rp-grid>
-
-
 
 </div>
 

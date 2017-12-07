@@ -22,14 +22,12 @@
   background-color: #e8e5e5;
   padding: 5px; }
 
-#statements .Date,
-#statements .Transactions,
-#statements .Amount,
-#statements .Payments,
-#statements .Balance {
+#statements .WHENCREATED,
+#statements .TYPE,
+#statements .DESCRIPTION,
+#statements .AMOUNT,
+#statements .PAYMENT,
+#statements .BALANCE {
   width: 160px; }
-
-#statements .Details {
-  width: 260px; }
 
 /*# sourceMappingURL=styles.css.map */

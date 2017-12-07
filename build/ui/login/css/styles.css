@@ -86,7 +86,8 @@
     padding-left: 3px; }
   #login .error {
     color: red;
-    font-size: 11px; }
+    font-size: 13px;
+    font-weight: 600; }
   #login .md-check > i {
     margin-top: 2px; }
   #login .radio > i {

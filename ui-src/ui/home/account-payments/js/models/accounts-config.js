@@ -6,11 +6,13 @@
 
         model.accountHistory = menuConfig({
             nameKey: "accountHisrotyName",
-            valueKey: "accountHisrotyNameID"
+            valueKey: "accountHisrotyNameID",
+            onChange: model.getMethod("onaccountHistorySelection")
         });
         model.leaseData = menuConfig({
             nameKey: "accountHisrotyName",
-            valueKey: "accountHisrotyNameID"
+            valueKey: "accountHisrotyNameID",
+            onChange: model.getMethod("onleaseDataSelection")
         });
 
 
@@ -30,7 +32,7 @@
 
     angular
         .module("ui")
-        .factory("sampleSelectMenuFormConfig", [
+        .factory("accountsConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig",
             Factory

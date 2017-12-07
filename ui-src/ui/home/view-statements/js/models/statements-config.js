@@ -4,9 +4,15 @@
     function Factory(baseFormConfig, menuConfig) {
         var model = baseFormConfig();
 
-        model.accountHistory = menuConfig({
-            nameKey: "accountHisrotyName",
-            valueKey: "accountHisrotyNameID"
+        model.leaseIdList = menuConfig({
+            nameKey: "leaseName",
+            valueKey: "leaseID",
+            onChange: model.getMethod("onLeaseIdChange")
+        });
+        model.dateRange = menuConfig({
+            nameKey: "dateRangeName",
+            valueKey: "dateRangeID",
+            onChange: model.getMethod("onDataRange")
         });
 
         model.setOptions = function(fieldName, fieldOptions) {
@@ -23,7 +29,7 @@
 
     angular
         .module("ui")
-        .factory("statementSelectMenuFormConfig", [
+        .factory("statementConfig", [
             "baseFormConfig",
             "rpFormSelectMenuConfig",
             Factory

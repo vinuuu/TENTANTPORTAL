@@ -10,7 +10,7 @@
 
         prov.setHome({
             icon: "rp-icon-statistics-5",
-            text: "PMC NAME"
+            text: "Home"
         });
 
         var links = {
@@ -19,10 +19,9 @@
                 text: 'Overview'
             },
 
-            'home.invoice': {
-                href: '#/invoice',
-                text: 'Invoice'
-            },
+            'home.invoice': {},
+
+            'home.statements': {}
 
         };
 
@@ -32,8 +31,12 @@
             text: "Overview"
         }, {
             name: 'home.invoice',
-            url: '/invoice',
+            url: '/invoice/lease/:id',
             text: 'Invoice'
+        }, {
+            name: 'home.statements',
+            url: '/statements/lease/:id',
+            text: 'View Statements'
         }];
 
         prov.setLinks(links).setBreadcrumbs(breadcrumbs);

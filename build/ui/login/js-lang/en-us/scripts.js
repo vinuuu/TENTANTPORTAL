@@ -78,7 +78,7 @@
             's2': 'Step two',
             's3': 'Step three',
             'how-reset-pwd': 'How would you like to reset your password',
-            'email-me': 'Please enter verification code',
+            'email-me': 'Please enter Authorization code',
             'to-number': 'Text me a verification code to number on file',
             'answer': 'Answer the following to verify this account is yours',
             'verifyCode': 'Enter Verification Code',

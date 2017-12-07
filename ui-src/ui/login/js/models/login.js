@@ -130,6 +130,10 @@
                         }
                     }
                 }
+            }).catch(function(exception) {
+                model.toggleGridState(false);
+                model.pwdSuccess = 'failure';
+
             });
         };
 
@@ -204,6 +208,10 @@
                     model.strErrUSernameFlag = true;
                     model.elseErrMessage(response.data);
                 }
+            }).catch(function(exe) {
+                model.toggleGridState(false);
+                model.strErrUSernameFlag = true;
+                model.elseErrMessage(exe.data);
             });
         };
 
@@ -238,6 +246,10 @@
                     model.strErrQusn = true;
                     model.elseErrMessage(response.data);
                 }
+            }).catch(function(exe) {
+                model.toggleGridState(false);
+                model.strErrQusn = true;
+                model.elseErrMessage(exe.data);
             });
         };
 
@@ -270,6 +282,10 @@
                     model.strErrVerifyCode = true;
                     model.elseErrMessage(response.data);
                 }
+            }).catch(function(exe) {
+                model.toggleGridState(false);
+                model.strErrVerifyCode = true;
+                model.elseErrMessage(exe.data);
             });
         };
 
@@ -304,6 +320,10 @@
                         // alert(response.data.api[0].message);
                     }
                 }
+            }).catch(function(exe) {
+                model.toggleGridState(false);
+                notifSvc.error(model.elseErrMessage(exe.data));
+
             });
         };
 
@@ -339,6 +359,7 @@
             // }
 
             model.elseStr = exception.errormessage[0].error[0].description[0].cdata !== '' ? exception.errormessage[0].error[0].description[0].cdata : exception.errormessage[0].error[0].description2[0].cdata;
+            return model.elseStr;
         };
         return model.init();
     }

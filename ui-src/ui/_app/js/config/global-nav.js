@@ -12,7 +12,7 @@
             iconClassName: 'rp-icon-card'
         }, {
             labelText: 'Invoices',
-            labelLink: '#/invoice',
+            labelLink: '#/invoice/lease/:id',
             iconClassName: 'rp-icon-file-document'
         }, {
             labelText: 'Maitenance Request',

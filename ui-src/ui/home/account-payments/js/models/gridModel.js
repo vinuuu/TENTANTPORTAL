@@ -5,72 +5,76 @@
         var model = gridConfig();
 
         model.get = function() {
-            return [{
-                    key: "name"
+            return [
+
+                {
+                    key: "Date"
                 },
                 {
-                    key: "title"
+                    key: "RECORDNO",
                 },
                 {
-                    key: "location"
+                    key: "LEASEID"
+
                 },
                 {
-                    key: "extn"
+                    key: "UNITID"
                 },
                 {
-                    key: "startDate"
-                },
-                {
-                    key: "salary",
+                    key: "TOTALENTERED",
                     type: "currency"
-                }
+                },
+                {
+                    key: "STATE",
+                    type: "custom",
+                    templateUrl: "app/templates/labelStatus.html"
+                },
+                {
+                    key: "datePaid"
+                },
+                {
+                    key: "file",
+                    type: "custom"
+                },
             ];
         };
 
 
         model.getHeaders = function() {
             return [
-                [{
-                        key: "name",
-                        text: "Employee Name",
-                        isSortable: true
-                    },
-                    {
-                        key: "title",
-                        text: "Title"
-                    },
-                    {
-                        key: "location",
-                        text: "Location"
-                    },
-                    {
-                        key: "extn",
-                        text: "Extn"
-                    },
-                    {
-                        key: "startDate",
-                        text: "Start Date"
-                    },
-                    {
-                        key: "salary",
-                        text: "Salary"
-                    }
-                ]
-            ];
-        };
+                [
 
-        model.getGroupHeaders = function() {
-            return [
-                [{
-                        text: ""
+                    {
+                        key: "Date",
+                        text: "Date"
                     },
                     {
-                        text: "Employee Details-1",
-                        colSpan: 2
+                        key: "RECORDNO",
+                        text: "Invoice"
                     },
                     {
-                        text: "Employee Details-2",
-                        colSpan: 3
+                        key: "LEASEID",
+                        text: "Lease ID"
+                    },
+                    {
+                        key: "UNITID",
+                        text: "Unit ID"
+                    },
+                    {
+                        key: "TOTALENTERED",
+                        text: "Amount"
+                    },
+                    {
+                        key: "STATE",
+                        text: "Status"
+                    },
+                    {
+                        key: "datePaid",
+                        text: "datePaid"
+                    },
+                    {
+                        key: "file",
+                        text: "file"
                     }
                 ]
             ];
@@ -78,41 +82,48 @@
 
         model.getFilters = function() {
             return [{
-                    key: "name",
+                    key: "Date",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by name"
+                    placeholder: "Filter by Date"
                 },
                 {
-                    key: "title",
+                    key: "RECORDNO",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by title"
+                    placeholder: "Filter by Invoice"
                 },
                 {
-                    key: "location",
+                    key: "LEASEID",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by location"
+                    placeholder: "Lease ID"
                 },
                 {
-                    key: "extn",
+                    key: "UNITID",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by extn"
+                    placeholder: "Filter by Unit ID"
                 },
                 {
-                    key: "startDate",
+                    key: "TOTALENTERED",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by start date"
+                    placeholder: "Filter by Amount"
                 },
                 {
-                    key: "salary",
+                    key: "STATE",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by salary"
+                    placeholder: "Filter by STATE"
+                },
+                {
+                    key: "datePaid",
+                    type: "text",
+                    filterDelay: 0,
+                    placeholder: "Filter by datePaid"
                 }
+
             ];
         };
 
