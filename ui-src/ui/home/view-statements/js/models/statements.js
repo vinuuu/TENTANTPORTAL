@@ -4,19 +4,19 @@
     "use strict";
 
     function StatementsMdl(gridConfig, gridModel, gridTransformSvc, formConfig, q, baseModel, busyIndicatorModel, statementSvc,
-        dashboardSvc, timeout, stateParams, gridPaginationModel) {
+        dashboardSvc, timeout, stateParams, gridPaginationModel, moment, _) {
         var model = {},
             busyIndicator,
             response = {},
             grid = gridModel(),
-            gridPagination = gridPaginationModel(),
+            // gridPagination = gridPaginationModel(),
             gridTransform = gridTransformSvc();
-        var gridPaginationConfig = {
-            currentPage: 0,
-            pagesPerGroup: 5,
-            recordsPerPage: 6,
-            currentPageGroup: 0
-        };
+        // var gridPaginationConfig = {
+        //     currentPage: 0,
+        //     pagesPerGroup: 5,
+        //     recordsPerPage: 6,
+        //     currentPageGroup: 0
+        // };
         model.statementData = {};
         model.formConfig = formConfig;
         model.leaseArray = [];
@@ -25,51 +25,50 @@
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
-            gridPagination.setGrid(grid).trackSelection(gridConfig.getTrackSelectionConfig());
-            gridPagination
-                .setConfig(gridPaginationConfig);
-            model.gridPagination = gridPagination;
+            // gridPagination.setGrid(grid).trackSelection(gridConfig.getTrackSelectionConfig());
+            // gridPagination
+            //     .setConfig(gridPaginationConfig);
+            // model.gridPagination = gridPagination;
             grid.formConfig = formConfig;
-
-            model.loadData();
-
-            return model;
-        };
-        model.mockData = function() {
-            model.bindtenantdata(response);
-        };
-        model.bindtenantdata = function(response) {
-            model.list = response.records;
-        };
-
-
-        model.loadData = function() {
-            formConfig.setMethodsSrc(model);
-
             var DateRangeoptions = [{
                     dateRangeName: "This Year",
-                    dateRangeID: "01"
+                    dateRangeID: "01/01/" + moment().format('YYYY')
                 },
                 {
                     dateRangeName: "Past 6 Months",
-                    dateRangeID: "02"
+                    dateRangeID: moment().subtract(6, 'month').format('MM/DD/YYYY')
                 },
                 {
                     dateRangeName: "Past 3 Months",
-                    dateRangeID: "03"
+                    dateRangeID: moment().subtract(3, 'month').format('MM/DD/YYYY')
                 },
                 {
                     dateRangeName: "Current Month",
-                    dateRangeID: "04"
+                    dateRangeID: moment().format('MM/DD/YYYY')
                 },
                 {
                     dateRangeName: "Prior Month",
-                    dateRangeID: "05"
+                    dateRangeID: moment().subtract(1, 'month').format('MM/DD/YYYY')
                 }
             ];
 
             formConfig.setOptions("dateRange", DateRangeoptions);
-            model.dateRange = "01";
+            model.dateRange = moment().format('MM/DD/YYYY');
+            return model;
+        };
+
+        model.bindtenantdata = function(response) {
+            model.list = response.records;
+        };
+        model.TotalPaidAmount = function() {
+            return _.reduce(_.pluck(model.grid.data.records, 'BALANCE'), function(memoizer, number) {
+                return Number(memoizer || 0) + Number(number || 0);
+            });
+        };
+
+        model.loadData = function() {
+            model.toggleGridState(true);
+            formConfig.setMethodsSrc(model);
 
             var obj = {
                 "request": {
@@ -88,16 +87,14 @@
                 }
             };
             dashboardSvc.getLeaseList(obj).catch(baseModel.error).then(function(response) {
-                model.leaseArray.push({ leaseID: '', leaseName: 'All' });
                 response.data.forEach(function(item) {
                     model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
                 });
-                timeout(function() {
-                    formConfig.setOptions("leaseIdList", model.leaseArray);
-                    model.leaseId = stateParams.id;
-                }, 1000);
+                // timeout(function() {
+                formConfig.setOptions("leaseIdList", model.leaseArray);
+                model.leaseId = stateParams.id;
+                // }, 1000);
 
-                model.toggleGridState(false);
                 model.getStatement();
 
             });
@@ -112,16 +109,16 @@
                             "function": {
                                 "getTenantStatement": {
                                     // "leaseid": "AH-1038",
-                                    "leaseid": stateParams.id,
+                                    "leaseid": model.leaseId,
                                     "fromdate": {
-                                        "year": "2015",
-                                        "month": "01",
+                                        "year": moment(model.dateRange).year(),
+                                        "month": moment(model.dateRange).month() + 1,
                                         "day": "01"
                                     },
                                     "todate": {
-                                        "year": "2018",
-                                        "month": "01",
-                                        "day": "01"
+                                        "year": moment().format('YYYY'),
+                                        "month": moment().month() + 1,
+                                        "day": moment().format('DD')
                                     }
                                 }
                             }
@@ -133,7 +130,7 @@
                 model.toggleGridState(false);
                 if (response.data.api) {
                     model.statementData = response.data.api[0];
-                    model.setData({
+                    grid.setData({
                         "records": model.statementData.payinfo
                     });
                 } else {
@@ -142,11 +139,11 @@
             });
 
         };
-        model.setData = function(data) {
-            gridPagination.setData(data.records).goToPage({
-                number: 0
-            });
-        };
+        // model.setData = function(data) {
+        //     gridPagination.setData(data.records).goToPage({
+        //         number: 0
+        //     });
+        // };
         model.toggleGridState = function(flg) {
             if (flg) {
                 model.apiReady = false;
@@ -160,39 +157,14 @@
         };
 
         model.onLeaseIdChange = function(value) {
-            model.callingDummyApi();
+            model.getStatement();
         };
 
         model.onDataRange = function(value) {
-            model.callingDummyApi();
+            model.getStatement();
         };
 
-        model.callingDummyApi = function() {
 
-            model.toggleGridState(true);
-            //dummy api call
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "readByQuery": {
-                                    "object": "leaseoccupancy",
-                                    "fields": "",
-                                    "query": "",
-                                    "returnFormat": "json"
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            dashboardSvc.getLeaseList(obj).catch(baseModel.error).then(function(response) {
-                model.toggleGridState(false);
-            }).catch(function(ex) {
-                model.toggleGridState(false);
-            });
-        };
 
         return model.init();
     }
@@ -201,6 +173,7 @@
         .module("ui")
         .factory("statementsdMdl", ["staementGrid1Config", "rpGridModel", "rpGridTransform", "statementConfig", '$q',
             'baseModel', 'rpBusyIndicatorModel', 'statementSvc', 'dashboardSvc', '$timeout', '$stateParams', 'rpGridPaginationModel',
+            "moment", "underscore",
             StatementsMdl
         ]);
 })(angular);

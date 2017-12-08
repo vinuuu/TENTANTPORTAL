@@ -9,8 +9,8 @@
         width: 140px;
         border-radius: 18px;
     }
-    .p-r-16 {
-        padding-right: 16px;
+    .p-r-25 {
+        padding-right: 25px;
     }
     td,
     th {
@@ -27,5 +27,19 @@
     }
     .boder-full {
         border: 1px solid #e4e6e7;
+    }
+    .TOTALENTERED {
+        td {
+            text-align: right;
+        }
+    }
+    .m-t-34 {
+        margin-top: 34px !important;
+    }
+    .m-B-12 {
+        margin-bottom: 12px;
+    }
+    .m-l-m-12 {
+        margin-left: -12px;
     }
 }

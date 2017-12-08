@@ -10,6 +10,7 @@
         vm.init = function() {
             vm.model = model = statementsMdl;
             vm.destWatch = $scope.$on("$destroy", vm.destroy);
+            model.loadData();
         };
         vm.destroy = function() {
             vm.destWatch();
@@ -22,5 +23,7 @@
 
     angular
         .module("ui")
-        .controller("statementsCtrl", ["$scope", '$http', 'notificationService', 'statementsdMdl', StatementsCtrl]);
+        .controller("statementsCtrl", ["$scope", '$http', 'notificationService', 'statementsdMdl',
+            StatementsCtrl
+        ]);
 })(angular);

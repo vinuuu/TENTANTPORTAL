@@ -459,7 +459,7 @@ logc("UI Compiled on: " + RealPage.ENV.COMPILETIME);
 
         files: [
             {
-                js: "v1.8.0/lib/app/js/scripts.min.js",
+                js: "v1.8.0/lib/app/js/scripts.js",
                 css: "v1.8.0/lib/app/css/styles.min.css"
             },
             {

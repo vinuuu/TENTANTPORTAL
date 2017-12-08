@@ -12,6 +12,32 @@
             });
 
         };
+        // model.getTenantStatement = function(leaseid, Fromdate, ToDate) {
+        //     return {
+        //         "request": {
+        //             "operation": {
+        //                 "content": {
+        //                     "function": {
+        //                         "getTenantStatement": {
+        //                             "leaseid": leaseid,
+        //                             "fromdate": {
+        //                                 "year": date.year,
+        //                                 "month": date.month,
+        //                                 "day": date.day
+        //                             },
+        //                             "todate": {
+        //                                 "year": ToDate.year,
+        //                                 "month": ToDate.month,
+        //                                 "day": ToDate.day
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     };
+        // }
+
         return model;
     }
 

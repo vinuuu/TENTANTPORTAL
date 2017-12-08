@@ -10,8 +10,8 @@ var RealPage = {};
 
     var ENV = RealPage.ENV || {};
 
-    ENV.APPVER = "1c0mnt2oo";
-    ENV.COMPILETIME = "12/07/2017 01:52:36 am";
+    ENV.APPVER = "1c0p9q114";
+    ENV.COMPILETIME = "12/08/2017 01:43:59 am";
 
     RealPage.ENV = ENV;
 })(RealPage);
@@ -323,7 +323,7 @@ var logc, logw;
     };
 
     svc.gen = function () {
-        svc.appVer = RealPage.cookie.read('APPVER') || "1c0mnt2oo";
+        svc.appVer = RealPage.cookie.read('APPVER') || "1c0p9q114";
         // svc.appVer = RealPage.debugMode() && !svc.cacheFiles() ? svc.random : svc.appVer;
         return svc;
     };
@@ -458,7 +458,7 @@ logc("UI Compiled on: " + RealPage.ENV.COMPILETIME);
         appName: "ui",
 
         files: [{
-                js: "v1.8.0/lib/app/js/scripts.min.js",
+                js: "v1.8.0/lib/app/js/scripts.js",
                 css: "v1.8.0/lib/app/css/styles.min.css"
             },
             {

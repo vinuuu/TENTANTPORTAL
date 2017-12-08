@@ -20240,7 +20240,7 @@ $templateCache.put("app/templates/nav.html",
 "              </div>\n" +
 "            </div> --></div><!--End Left Nav Item Wrapper--></div></div>");
 $templateCache.put("app/templates/textbox.html",
-"<div class=\"grid-edit-title\"><rp-form-input-text config=\"model.formConfig.lease\" rp-model=\"record[config.key]\"></rp-form-input-text></div>");
+"<div class=\"grid-edit-title\"><rp-form-input-text config=\"model.formConfig.payAmount\" rp-model=\"record[config.key]\"></rp-form-input-text><!-- <input onblur=\"model.onPayAmount(record)\" ng-value=\"\" /> --></div>");
 }]);
 
 

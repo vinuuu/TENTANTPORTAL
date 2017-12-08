@@ -17,6 +17,7 @@
             vm.model = model = accountsMdl;
             var ddd = model.response.custData;
             vm.content = content;
+
             // vm.formConfig = formConfig;
             // model.mockData();
 

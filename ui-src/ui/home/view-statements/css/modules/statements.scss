@@ -8,7 +8,6 @@
     .bodydivcls {
         border: 1px solid #dcd8d8;
         border-radius: 6px;
-        height: 600px;
     }
     .accountscls {
         border-top: 1px solid black;
@@ -25,10 +24,15 @@
     }
     .WHENCREATED,
     .TYPE,
-    .DESCRIPTION,
-    .AMOUNT,
-    .PAYMENT,
-    .BALANCE {
-        width: 160px;
+    .DESCRIPTION {
+        width: 20%;
+    }
+    .rp-grid-body-1 {
+        .AMOUNT,
+        .PAYMENT,
+        .BALANCE {
+            width: 13%;
+            // text-align: right;
+        }
     }
 }

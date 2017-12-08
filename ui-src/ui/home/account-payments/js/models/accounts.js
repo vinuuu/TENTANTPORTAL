@@ -142,6 +142,7 @@
             ]).catch(baseModel.error).then(function(data) {
                 model.toggleGridState(false);
                 model.custData = data[0].data.api[0];
+                model.custData.duedate = new Date(model.custData.duedate);
                 gridPagination.setData(data[1].data).goToPage({
                     number: 0
                 });

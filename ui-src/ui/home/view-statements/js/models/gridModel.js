@@ -15,13 +15,16 @@
                     key: "DESCRIPTION"
                 },
                 {
-                    key: "AMOUNT"
+                    key: "AMOUNT",
+                    type: "currency"
                 },
                 {
-                    key: "PAYMENT"
+                    key: "PAYMENT",
+                    type: "currency"
                 },
                 {
-                    key: "BALANCE"
+                    key: "BALANCE",
+                    type: "currency"
                 }
             ];
         };

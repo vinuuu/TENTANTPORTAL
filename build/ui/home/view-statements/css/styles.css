@@ -6,8 +6,7 @@
 
 #statements .bodydivcls {
   border: 1px solid #dcd8d8;
-  border-radius: 6px;
-  height: 600px; }
+  border-radius: 6px; }
 
 #statements .accountscls {
   border-top: 1px solid black;
@@ -24,10 +23,12 @@
 
 #statements .WHENCREATED,
 #statements .TYPE,
-#statements .DESCRIPTION,
-#statements .AMOUNT,
-#statements .PAYMENT,
-#statements .BALANCE {
-  width: 160px; }
+#statements .DESCRIPTION {
+  width: 20%; }
+
+#statements .rp-grid-body-1 .AMOUNT,
+#statements .rp-grid-body-1 .PAYMENT,
+#statements .rp-grid-body-1 .BALANCE {
+  width: 13%; }
 
 /*# sourceMappingURL=styles.css.map */

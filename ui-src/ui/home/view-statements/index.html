@@ -28,24 +28,24 @@
         </div>
     </div>
     <br>
-    <div class="bodydivcls">
+    <div class="p-l-1 p-r-1 p-b-1 bodydivcls">
         <br>
         <br>
-        <address class="text-right p-r-2">
+        <address class="text-right">
            Zykar <br>
            2362 Kelly Drive <br>
            Charieston WV 25301 <br>
            U.S.A
         </address>
         <br>
-        <div class="text-right  p-r-2">
+        <div class="text-right">
             <h5 class="font-bold">Statements of Accounts</h5>
             <div class="accountscls p-l-3">
                 {{page.model.statementData.fromdate}} To {{page.model.statementData.todate}}
             </div>
         </div>
         <br>
-        <div class="form-horizontal p-r-1">
+        <div class="row form-horizontal">
             <div class="col-md-8 m-t-3">
                 To <br> {{page.model.statementData.tenant}}
             </div>
@@ -99,10 +99,10 @@
 
         <div class="row m-t-1">
             <span class="col-md-8 text-right font-bold">Balance Due</span>
-            <span class="col-md-4 text-center font-bold">$ 20000</span>
+            <span class="col-md-4 text-center font-bold">{{page.model.TotalPaidAmount()||0|currency}}</span>
         </div>
-        <rp-grid-pagination model="page.model.gridPagination">
-        </rp-grid-pagination>
+        <!-- <rp-grid-pagination model="page.model.gridPagination">
+        </rp-grid-pagination> -->
 
 
     </div>

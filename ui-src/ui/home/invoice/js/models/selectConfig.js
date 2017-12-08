@@ -15,9 +15,10 @@
             valueKey: "leaseID",
             onChange: model.getMethod("onLeaseSelection")
         });
-        model.lease = inputConfig({
+        model.payAmount = inputConfig({
             id: "Pay Amount",
-            fieldName: "Pay Amount"
+            fieldName: "Pay Amount",
+            onBlur: model.getMethod("onPayAmount")
         });
         model.setOptions = function(fieldName, fieldOptions) {
             if (model[fieldName]) {

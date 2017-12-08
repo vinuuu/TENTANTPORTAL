@@ -18,6 +18,7 @@
             vm.model = model = accountsMdl;
             var ddd = model.response.custData;
             vm.content = content;
+
             // vm.formConfig = formConfig;
             // model.mockData();
 
@@ -220,6 +221,7 @@
             ]).catch(baseModel.error).then(function(data) {
                 model.toggleGridState(false);
                 model.custData = data[0].data.api[0];
+                model.custData.duedate = new Date(model.custData.duedate);
                 gridPagination.setData(data[1].data).goToPage({
                     number: 0
                 });

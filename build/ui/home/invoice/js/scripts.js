@@ -3,13 +3,14 @@
     'use strict';
 
 
-    function Controller(invoiceMdl) {
+    function Controller(invoiceMdl, stateParams) {
         /* jshint validthis:true */
         var vm = this,
             model;
 
         vm.init = function() {
             vm.model = model = invoiceMdl.init();
+            model.loadData(stateParams.id === 0 ? undefined : stateParams.id);
         };
         vm.init();
     }
@@ -17,7 +18,7 @@
         .module('uam')
         .controller('invoiceCtrl', Controller);
 
-    Controller.$inject = ['invoiceMdl'];
+    Controller.$inject = ['invoiceMdl', '$stateParams'];
 
 })();
 
@@ -64,6 +65,11 @@
                 return Number(memoizer || 0) + Number(number || 0);
             });
         };
+        model.onPayAmount = function(val) {
+            alert(1);
+            console.log(val);
+            // model.TotalPaidAmountmethod();
+        };
         model.init = function() {
 
             model.formConfig = formConfig;
@@ -94,9 +100,10 @@
                 .setConfig(gridPaginationConfig);
             model.gridPagination = gridPagination;
             grid.formConfig = formConfig;
-            model.loadData();
+            // model.loadData();
             return model;
         };
+
         model.translateNames = function(key) {
             return translate(key);
         };
@@ -106,14 +113,15 @@
         };
         model.onLeaseSelection = function(value) {
             //api call
-            model.loadData();
+            model.loadData(model.leasevalueID);
         };
         model.setData = function(data) {
             gridPagination.setData(data.records).goToPage({
                 number: 0
             });
         };
-        model.loadData = function() {
+        model.loadData = function(leaseid) {
+            var leaseidInput = leaseid === undefined ? '' : "(LEASEID = '" + leaseid + "')";
             model.toggleGridState(true);
             var obj = {
                 "request": {
@@ -139,7 +147,7 @@
                                 "readByQuery": {
                                     "object": "pminvoice",
                                     "fields": "",
-                                    "query": "",
+                                    "query": leaseidInput,
                                     "returnFormat": "json"
                                 }
                             }
@@ -181,7 +189,7 @@
     factory.$inject = ['invoiceSelectMenuFormConfig', 'invoiceGrid1Config', "rpGridModel",
         "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore',
         'rpGridPaginationModel', '$timeout',
-        'rpBusyIndicatorModel', '$q', 'dashboardSvc', 'baseModel'
+        'rpBusyIndicatorModel', '$q', 'dashboardSvc', 'baseModel',
     ];
 
 })();
@@ -403,9 +411,10 @@ $templateCache.put("home/invoice/templates/textbox.html",
             valueKey: "leaseID",
             onChange: model.getMethod("onLeaseSelection")
         });
-        model.lease = inputConfig({
+        model.payAmount = inputConfig({
             id: "Pay Amount",
-            fieldName: "Pay Amount"
+            fieldName: "Pay Amount",
+            onBlur: model.getMethod("onPayAmount")
         });
         model.setOptions = function(fieldName, fieldOptions) {
             if (model[fieldName]) {

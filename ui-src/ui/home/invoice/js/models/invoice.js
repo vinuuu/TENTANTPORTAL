@@ -40,6 +40,11 @@
                 return Number(memoizer || 0) + Number(number || 0);
             });
         };
+        model.onPayAmount = function(val) {
+            alert(1);
+            console.log(val);
+            // model.TotalPaidAmountmethod();
+        };
         model.init = function() {
 
             model.formConfig = formConfig;
@@ -70,9 +75,10 @@
                 .setConfig(gridPaginationConfig);
             model.gridPagination = gridPagination;
             grid.formConfig = formConfig;
-            model.loadData();
+            // model.loadData();
             return model;
         };
+
         model.translateNames = function(key) {
             return translate(key);
         };
@@ -82,14 +88,15 @@
         };
         model.onLeaseSelection = function(value) {
             //api call
-            model.loadData();
+            model.loadData(model.leasevalueID);
         };
         model.setData = function(data) {
             gridPagination.setData(data.records).goToPage({
                 number: 0
             });
         };
-        model.loadData = function() {
+        model.loadData = function(leaseid) {
+            var leaseidInput = leaseid === undefined ? '' : "(LEASEID = '" + leaseid + "')";
             model.toggleGridState(true);
             var obj = {
                 "request": {
@@ -115,7 +122,7 @@
                                 "readByQuery": {
                                     "object": "pminvoice",
                                     "fields": "",
-                                    "query": "",
+                                    "query": leaseidInput,
                                     "returnFormat": "json"
                                 }
                             }
@@ -157,7 +164,7 @@
     factory.$inject = ['invoiceSelectMenuFormConfig', 'invoiceGrid1Config', "rpGridModel",
         "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore',
         'rpGridPaginationModel', '$timeout',
-        'rpBusyIndicatorModel', '$q', 'dashboardSvc', 'baseModel'
+        'rpBusyIndicatorModel', '$q', 'dashboardSvc', 'baseModel',
     ];
 
 })();
