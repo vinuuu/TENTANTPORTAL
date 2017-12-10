@@ -4,4 +4,5 @@
 {{{ include("models/gridModel.js") }}}
 {{{ include("models/accounts-content.js") }}}
 {{{ include("services/accountsSVC.js") }}}
+{{{ include("templates/templates.inc.js") }}}
 

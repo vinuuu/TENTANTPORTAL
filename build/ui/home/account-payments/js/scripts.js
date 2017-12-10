@@ -328,15 +328,14 @@
                 },
                 {
                     key: "STATE",
-                    type: "custom",
-                    templateUrl: "app/templates/labelStatus.html"
                 },
                 {
                     key: "datePaid"
                 },
                 {
                     key: "file",
-                    type: "custom"
+                    type: "custom",
+                    templateUrl: "app/templates/fileSymbols.html"
                 },
             ];
         };
@@ -473,5 +472,11 @@
 
 
 })();
+
+//  Source: ui\home\account-payments\js\templates\templates.inc.js
+angular.module('ui').run(['$templateCache', function ($templateCache) {
+$templateCache.put("home/account-payments/templates/label.html",
+"<span class=\"glyphicon glyphicon-file\"></span>");
+}]);
 
 

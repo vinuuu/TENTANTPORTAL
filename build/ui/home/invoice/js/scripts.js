@@ -265,7 +265,8 @@ $templateCache.put("home/invoice/templates/textbox.html",
                 {
                     key: "STATE",
                     type: "custom",
-                    templateUrl: "app/templates/labelStatus.html"
+                    // templateUrl: 'home/invoice/templates/labelStatus.html'
+                    templateUrl: "app/templates/label.html"
                 }
             ];
         };

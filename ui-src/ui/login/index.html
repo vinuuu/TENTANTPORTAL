@@ -69,10 +69,9 @@
                             <div class="form-group clearfix text-center">
                                 <span class="fontcls">{{page.model.translateNames('Enter-username-email')}} </span>
                                 <div class="col-md-12">
-                                    <input type="text" name="u_e_id" class="form-control" ng-model="page.model.u_e_id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="anjana@gmail.com" required>
+                                    <input type="text" name="u_e_id" class="form-control" ng-change="page.model.elseStr=''" ng-model="page.model.u_e_id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="anjana@gmail.com" required>
                                     <span ng-show="resetForm.u_e_id.$error.pattern" class="error">Please enter valid email</span>
                                     <span ng-show="page.model.strErrUSernameFlag && !(resetForm.u_e_id.$error.pattern)" class="error">{{page.model.elseStr}}</span>
-
                                 </div>
                             </div>
 
@@ -86,8 +85,8 @@
                     </form>
                 </div>
                 <div id="midblock4" ng-show="page.model.showHideFlag === 'question'">
-                    <div class="m-t-1 statictxtcls-reset fontcls"><span>{{page.model.translateNames('random-qusns')}} </span></div>
-                    <div class="m-t-1 statictxtcls-reset fontcls"><span> </span></div>
+                    <div class="m-t-1 statictxtcls-reset fontcls p-l-16"><span>{{page.model.translateNames('random-qusns')}} </span></div>
+                    <!-- <div class="m-t-1 statictxtcls-reset fontcls"><span> </span></div> -->
                     <form name="questionForm" novalidate role="form">
                         <div class="innerbody-nobackground m-t-2">
                             <div class="form-group clearfix">
@@ -95,7 +94,7 @@
                                     <span class="clearfix fontcls">{{page.model.securityQusn}}</span>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" ng-model="page.model.question1" required>
+                                    <input type="text" class="form-control" ng-change="page.model.elseStr=''" ng-model="page.model.question1" required>
                                     <span ng-show="page.model.strErrQusn" class="error">{{page.model.elseStr}}</span>
                                 </div>
                             </div>
@@ -123,7 +122,7 @@
                                     {{page.model.translateNames('email-me')}}
                                 </div>
                                 <div class="col-md-12 m-t-1">
-                                    <input type="text" name="emailCode" ng-pattern="/[0-9]/" maxlength="6" minlength="6" required class="form-control" ng-model="page.model.emailCode" placeholder="Enter the 6 digit code">
+                                    <input type="text" name="emailCode" ng-pattern="/[0-9]/" ng-change="page.model.elseStr=''" maxlength="6" minlength="6" required class="form-control" ng-model="page.model.emailCode" placeholder="Enter the 6 digit code">
                                     <div class="text-center">
                                         <span ng-show="verifyform.emailCode.$error.pattern" class="error">Enter only numbers</span>
                                         <span ng-show="page.model.strErrVerifyCode && !(verifyform.emailCode.$error.pattern)" class="error">{{page.model.elseStr}}</span>

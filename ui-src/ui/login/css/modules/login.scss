@@ -65,7 +65,7 @@ $inactive:#bdb8b8;
     }
     .innerbody-nobackground {
         @extend .statictxtcls-reset;
-        line-height: 54px;
+        // line-height: 54px;
     }
     .btnContinue {
         width: 94%;
@@ -178,5 +178,8 @@ $inactive:#bdb8b8;
     }
     .marging-t-5 {
         margin-top: 6px;
+    }
+    .p-l-16 {
+        padding-left: 16px;
     }
 }

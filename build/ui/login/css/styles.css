@@ -36,8 +36,6 @@
     line-height: 21px; }
   #login .innerbody1 {
     line-height: 54px; }
-  #login .innerbody-nobackground {
-    line-height: 54px; }
   #login .btnContinue {
     width: 94%;
     border-radius: 20px; }
@@ -114,5 +112,7 @@
     font-size: 17px; }
   #login .marging-t-5 {
     margin-top: 6px; }
+  #login .p-l-16 {
+    padding-left: 16px; }
 
 /*# sourceMappingURL=styles.css.map */

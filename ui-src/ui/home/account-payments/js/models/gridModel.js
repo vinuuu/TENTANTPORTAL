@@ -26,15 +26,14 @@
                 },
                 {
                     key: "STATE",
-                    type: "custom",
-                    templateUrl: "app/templates/labelStatus.html"
                 },
                 {
                     key: "datePaid"
                 },
                 {
                     key: "file",
-                    type: "custom"
+                    type: "custom",
+                    templateUrl: "app/templates/fileSymbols.html"
                 },
             ];
         };
