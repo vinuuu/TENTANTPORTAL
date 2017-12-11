@@ -3,7 +3,7 @@
 
     function factory(formConfig, gridConfig, gridModel, gridTransformSvc,
         langTranslate, invoiceSvc, _, gridPaginationModel,
-        timeout, busyIndicatorModel, q, dashboardSvc, baseModel) {
+        timeout, busyIndicatorModel, q, dashboardSvc, baseModel, stateParams) {
         var model = {},
             grid = gridModel(),
             busyIndicator,
@@ -88,7 +88,7 @@
         };
         model.onLeaseSelection = function(value) {
             //api call
-            model.loadData(model.leasevalueID);
+            model.bindGrid(model.leasevalueID);
         };
         model.setData = function(data) {
             gridPagination.setData(data.records).goToPage({
@@ -147,7 +147,7 @@
                     });
 
                     formConfig.setOptions("leaseddl", model.leaseArray);
-                    model.leasevalueID = '';
+                    model.leasevalueID = stateParams.id;
 
                     model.setData({ "records": data[0].data });
                 }
@@ -155,6 +155,39 @@
             });
 
         };
+
+
+        model.bindGrid = function(leaseid) {
+            model.toggleGridState(true);
+            var leaseidInput = leaseid === undefined ? '' : "(LEASEID = '" + leaseid + "')";
+            var inputObj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "pminvoice",
+                                    "fields": "",
+                                    "query": leaseidInput,
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            invoiceSvc.getInvoiceList(inputObj).then(function(response) {
+                model.toggleGridState(false);
+                model.totalCount = response.data.length;
+                response.data.forEach(function(item) {
+                    item.disableSelection = item.STATE === 'Paid' ? true : false;
+                    model.setData({ "records": response.data });
+                });
+            }).catch(function(ex) {
+                model.toggleGridState(false);
+            });
+        };
+
         return model;
     }
 
@@ -164,7 +197,7 @@
     factory.$inject = ['invoiceSelectMenuFormConfig', 'invoiceGrid1Config', "rpGridModel",
         "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore',
         'rpGridPaginationModel', '$timeout',
-        'rpBusyIndicatorModel', '$q', 'dashboardSvc', 'baseModel',
+        'rpBusyIndicatorModel', '$q', 'dashboardSvc', 'baseModel', '$stateParams'
     ];
 
 })();
