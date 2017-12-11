@@ -36,7 +36,7 @@
                 model.home = prov.home;
                 model.updateFromStorage();
                 model.product = prov.product;
-                $rootScope.$on(ev, model.setLinks);
+                $rootScope.$on('$locationChangeSuccess', model.setLinks);
                 return model;
             };
 

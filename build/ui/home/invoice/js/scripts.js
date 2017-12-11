@@ -66,7 +66,6 @@
             });
         };
         model.onPayAmount = function(val) {
-            alert(1);
             console.log(val);
             // model.TotalPaidAmountmethod();
         };
@@ -273,11 +272,11 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     idKey: "id"
                 },
                 {
-                    key: "RECORDNO",
+                    key: "RECORDID",
 
                 },
                 {
-                    key: "Date"
+                    key: "WHENCREATED"
                 },
                 {
                     key: "LEASEID"
@@ -288,6 +287,10 @@ $templateCache.put("home/invoice/templates/textbox.html",
                 },
                 {
                     key: "TOTALENTERED",
+                    type: "currency"
+                },
+                {
+                    key: "TOTALDUE",
                     type: "currency"
                 },
                 {
@@ -313,11 +316,11 @@ $templateCache.put("home/invoice/templates/textbox.html",
                         enabled: false
                     },
                     {
-                        key: "RECORDNO",
+                        key: "RECORDID",
                         text: "Invoice"
                     },
                     {
-                        key: "Date",
+                        key: "WHENCREATED",
                         text: "Date"
                     },
                     {
@@ -331,6 +334,10 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     {
                         key: "TOTALENTERED",
                         text: "Amount"
+                    },
+                    {
+                        key: "TOTALDUE",
+                        text: "Amount Due"
                     },
                     {
                         key: "TOTALPAYING",
@@ -363,13 +370,13 @@ $templateCache.put("home/invoice/templates/textbox.html",
                         }
                     ]
                 }, {
-                    key: "RECORDNO",
+                    key: "RECORDID",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Invoice"
                 },
                 {
-                    key: "Date",
+                    key: "WHENCREATED",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Date"
@@ -391,6 +398,12 @@ $templateCache.put("home/invoice/templates/textbox.html",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Amount"
+                },
+                {
+                    key: "TOTALDUE",
+                    type: "text",
+                    filterDelay: 0,
+                    placeholder: "Filter by Amount Due"
                 },
                 {
                     key: "TOTALPAYING",

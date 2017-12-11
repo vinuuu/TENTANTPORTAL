@@ -41,7 +41,6 @@
             });
         };
         model.onPayAmount = function(val) {
-            alert(1);
             console.log(val);
             // model.TotalPaidAmountmethod();
         };

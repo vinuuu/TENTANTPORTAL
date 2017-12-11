@@ -22,6 +22,7 @@
 {{{ include("../../lib/realpage/form-select-menu-v1/js/scripts.js") }}}
 {{{ include("../../lib/realpage/form-textarea-v1/js/scripts.js") }}}
 {{{ //include("../../lib/realpage/form-track-changes/js/scripts.js") }}}
+{{{ include("../../lib/realpage/page-title/js/scripts.js") }}}
 {{{ include("../../lib/realpage/global-header/js/scripts.js") }}}
 {{{ include("../../lib/realpage/global-nav/js/scripts.js") }}}
 {{{ include("../../lib/realpage/grid-controls/js/scripts.js") }}}

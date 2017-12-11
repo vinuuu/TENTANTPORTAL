@@ -109,9 +109,9 @@
                                 "getTenantBalance": {
                                     "leaseid": data.leaseid,
                                     "asofdate": {
-                                        "year": data.asofDate.year(),
-                                        "month": (data.asofDate.month() + 1),
-                                        "day": "01"
+                                        "year": moment().year(),
+                                        "month": (moment().month() + 1),
+                                        "day": moment().day()
                                     }
                                 }
                             }

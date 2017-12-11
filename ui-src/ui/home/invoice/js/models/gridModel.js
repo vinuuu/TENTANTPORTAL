@@ -12,11 +12,11 @@
                     idKey: "id"
                 },
                 {
-                    key: "RECORDNO",
+                    key: "RECORDID",
 
                 },
                 {
-                    key: "Date"
+                    key: "WHENCREATED"
                 },
                 {
                     key: "LEASEID"
@@ -27,6 +27,10 @@
                 },
                 {
                     key: "TOTALENTERED",
+                    type: "currency"
+                },
+                {
+                    key: "TOTALDUE",
                     type: "currency"
                 },
                 {
@@ -52,11 +56,11 @@
                         enabled: false
                     },
                     {
-                        key: "RECORDNO",
+                        key: "RECORDID",
                         text: "Invoice"
                     },
                     {
-                        key: "Date",
+                        key: "WHENCREATED",
                         text: "Date"
                     },
                     {
@@ -70,6 +74,10 @@
                     {
                         key: "TOTALENTERED",
                         text: "Amount"
+                    },
+                    {
+                        key: "TOTALDUE",
+                        text: "Amount Due"
                     },
                     {
                         key: "TOTALPAYING",
@@ -102,13 +110,13 @@
                         }
                     ]
                 }, {
-                    key: "RECORDNO",
+                    key: "RECORDID",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Invoice"
                 },
                 {
-                    key: "Date",
+                    key: "WHENCREATED",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Date"
@@ -130,6 +138,12 @@
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Amount"
+                },
+                {
+                    key: "TOTALDUE",
+                    type: "text",
+                    filterDelay: 0,
+                    placeholder: "Filter by Amount Due"
                 },
                 {
                     key: "TOTALPAYING",

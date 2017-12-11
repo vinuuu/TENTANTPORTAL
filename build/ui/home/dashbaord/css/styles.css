@@ -27,4 +27,7 @@
   width: 81%;
   border-radius: 20px; }
 
+#dashboard .no-bottom {
+  margin-bottom: 0rem !important; }
+
 /*# sourceMappingURL=styles.css.map */

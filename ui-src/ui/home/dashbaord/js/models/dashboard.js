@@ -3,7 +3,7 @@
 
 
 
-    function factory(dashboardSvc, $http, busyIndicatorModel) {
+    function factory(dashboardSvc, $http, busyIndicatorModel, accountsSvc, moment) {
         var model = {},
             busyIndicator,
             apiReady = false,
@@ -11,6 +11,7 @@
 
         model.init = function() {
             busyIndicator = model.busyIndicator = busyIndicatorModel();
+            model.cuurentmonth = moment().format('MMM YYYY');
             return model;
         };
         model.toggleGridState = function(flg) {
@@ -24,6 +25,7 @@
 
             return model;
         };
+
 
         model.getdashboardList = function() {
             model.toggleGridState(true);
@@ -45,21 +47,41 @@
                 }
             };
             dashboardSvc.getLeaseList(obj).then(function(response) {
-                model.toggleGridState(false);
                 if (response.data && response.data.length > 0) {
-
                     model.tenantlist = response.data;
+                    model.bindleaseDetailsData(model.tenantlist[0]);
                 }
-
-                // // var gg = angular.element(".acr-content2")[0].offsetHeight;
-                // var element = angular.element(document.querySelector('#myDiv'));
-                // var height = element[0].offsetHeight;
-
             });
 
         };
 
-
+        model.bindleaseDetailsData = function(item) {
+            model.toggleGridState(true);
+            var obj = {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "getTenantBalance": {
+                                    "leaseid": item.LEASEID,
+                                    "asofdate": {
+                                        "year": moment().year(),
+                                        "month": (moment().month() + 1),
+                                        "day": moment().day()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            accountsSvc.getAccountsInfo(obj).then(function(response) {
+                model.toggleGridState(false);
+                if (response.data) {
+                    item.leaseDetailsData = model.custData = response.data.api[0];
+                }
+            });
+        };
 
         model.bindtenantdata = function(response) {
             model.list = response.records;
@@ -70,5 +92,5 @@
         .module('ui')
         .factory('dashboardMdl', factory);
 
-    factory.$inject = ['dashboardSvc', '$http', 'rpBusyIndicatorModel'];
+    factory.$inject = ['dashboardSvc', '$http', 'rpBusyIndicatorModel', 'accountsSvc', 'moment'];
 })();

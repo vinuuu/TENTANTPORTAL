@@ -33,6 +33,7 @@
             lazyLoad: [{
                 files: [
                     "ui.home.dashbaord",
+                    "ui.home.account-payments",
                     "lib.realpage.accordion"
                 ]
             }]

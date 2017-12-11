@@ -60,11 +60,7 @@
         model.bindtenantdata = function(response) {
             model.list = response.records;
         };
-        model.TotalPaidAmount = function() {
-            return _.reduce(_.pluck(model.grid.data.records, 'BALANCE'), function(memoizer, number) {
-                return Number(memoizer || 0) + Number(number || 0);
-            });
-        };
+
 
         model.loadData = function() {
             model.toggleGridState(true);

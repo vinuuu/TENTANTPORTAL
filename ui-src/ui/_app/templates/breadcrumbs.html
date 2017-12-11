@@ -1,8 +1,8 @@
-<div class="rp-breadcrumbs">
+<div class="rp-breadcrumbs" ng-show="$ctrl.model.isVisible">
     <a class="home-icon {{::$ctrl.model.home.icon}}" href="{{::$ctrl.model.home.url}}"></a>
     <div class="pull-left ft-b-r">
         <div class="product-name">{{$ctrl.model.product.name}}</div>
-        <div class="rp-breadcrumbs-links">
+        <div class="rp-breadcrumbs-links" ng-if="$ctrl.model.hasBreadCrumb">
             <div class="rp-breadcrumb home-link"><a href="#/dashbaord" class="rp-breadcrumb-text">{{$ctrl.model.home.text}}</a></div>
             <ul class="rp-breadcrumbs-list">
                 <li ng-repeat="link in $ctrl.model.links" class="rp-breadcrumb p-a-0"><a href="{{link.href}}" class="rp-breadcrumb-text">{{link.text}}</a></li>

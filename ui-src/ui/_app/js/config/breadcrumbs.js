@@ -21,7 +21,10 @@
 
             'home.invoice': {},
 
-            'home.statements': {}
+            'home.statements': {},
+
+            'home.account-payments': {}
+
 
         };
 
@@ -36,7 +39,13 @@
         }, {
             name: 'home.statements',
             url: '/statements/lease/:id',
-            text: 'View Statements'
+            text: 'View Statements',
+            backLink: 'home.dashbaord',
+            links: ['home.dashbaord']
+        }, {
+            name: 'home.account-payments',
+            url: '/accounts',
+            text: 'Account Statements'
         }];
 
         prov.setLinks(links).setBreadcrumbs(breadcrumbs);
