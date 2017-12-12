@@ -12,4 +12,7 @@
 #viewpay .TOTALPAYING input {
   text-align: right; }
 
+#viewpay .is-select {
+  width: 4%; }
+
 /*# sourceMappingURL=styles.css.map */

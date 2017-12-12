@@ -75,6 +75,8 @@
             model.gridPagination = gridPagination;
             grid.formConfig = formConfig;
             // model.loadData();
+            model.loadData();
+
             return model;
         };
 
@@ -82,6 +84,7 @@
             return translate(key);
         };
         model.onPaymentTypeSelection = function(value) {
+            console.log(value);
             //api call
             model.loadData();
         };
@@ -146,7 +149,7 @@
                     });
 
                     formConfig.setOptions("leaseddl", model.leaseArray);
-                    model.leasevalueID = stateParams.id;
+                    model.leasevalueID = '';
 
                     model.setData({ "records": data[0].data });
                 }

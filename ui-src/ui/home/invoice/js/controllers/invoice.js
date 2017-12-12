@@ -9,7 +9,6 @@
 
         vm.init = function() {
             vm.model = model = invoiceMdl.init();
-            model.loadData(stateParams.id === 0 ? undefined : stateParams.id);
         };
         vm.init();
     }

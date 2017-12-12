@@ -8,7 +8,7 @@
             return [
 
                 {
-                    key: "Date"
+                    key: "WHENCREATED"
                 },
                 {
                     key: "RECORDNO",
@@ -30,11 +30,11 @@
                 {
                     key: "datePaid"
                 },
-                {
-                    key: "file",
-                    type: "custom",
-                    templateUrl: "app/templates/fileSymbols.html"
-                },
+                // {
+                //     key: "file",
+                //     type: "custom",
+                //     templateUrl: "app/templates/fileSymbols.html"
+                // },
             ];
         };
 
@@ -44,7 +44,7 @@
                 [
 
                     {
-                        key: "Date",
+                        key: "WHENCREATED",
                         text: "Date"
                     },
                     {
@@ -70,18 +70,18 @@
                     {
                         key: "datePaid",
                         text: "datePaid"
-                    },
-                    {
-                        key: "file",
-                        text: "file"
                     }
+                    // {
+                    //     key: "file",
+                    //     text: "file"
+                    // }
                 ]
             ];
         };
 
         model.getFilters = function() {
             return [{
-                    key: "Date",
+                    key: "WHENCREATED",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by Date"

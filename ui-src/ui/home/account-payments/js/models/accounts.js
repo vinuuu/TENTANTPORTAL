@@ -87,13 +87,12 @@
             };
             dashboardSvc.getLeaseList(obj).catch(baseModel.error).then(function(response) {
                 response.data.forEach(function(item) {
-                    model.leaseArray.push({ accountHisrotyNameID: item.LEASEID, accountHisrotyName: 'LeaseID :' + item.LEASEID });
+                    model.leaseArray.push({ accountHisrotyNameID: item.LEASEID, accountHisrotyName: item.LEASEID });
                 });
 
                 formConfig.setOptions("leaseData", model.leaseArray);
                 model.accountHistory = model.leaseArray[0].accountHisrotyNameID;
                 model.getCustData({ leaseid: model.accountHistory, asofDate: moment(model.accountHistoryType) });
-                model.toggleGridState(false);
 
             });
 

@@ -33,26 +33,26 @@
                         <span class="control-label col-md-12 ">{{item.RENTABLEAREA}} Sq.ft.</span>
                     </div>
                 </div>
-                <div class="rp-accordion-panel-content lease-accordion-content ">
+                <div class="rp-accordion-panel-content lease-accordion-content">
                     <div class="row m-t-1 ">
                         <div class="col-md-6 ">
-                            <div id="myDiv " class="panel panel-default p-l-1 acr-content2 ">
+                            <div id="myDiv " class="panel panel-default p-l-1 acr-content2">
                                 <div class="panel-body ">
                                     <label class="font-bold ">Details</label>
                                     <form class="form-horizontal finalAmt ">
-                                        <div class="form-group m-t-1 ">
-                                            <label class="font-bold control-label col-sm-8 ">Previous Statement</label>
-                                            <div class="col-sm-4 ">
+                                        <div class="form-group m-t-1 no-bottom">
+                                            <label class="font-bold control-label col-sm-8">Previous Statement</label>
+                                            <div class="col-sm-4">
                                                 <span ng-bind="item.leaseDetailsData.prevstatement"></span>
                                             </div>
                                         </div>
-                                        <div class="form-group ">
+                                        <div class="form-group  no-bottom">
                                             <label class="font-bold control-label col-sm-8 ">Previous Balance</label>
                                             <div class="col-sm-4 ">
                                                 <span ng-bind="(item.leaseDetailsData.prevbalance||0|currency)"></span>
                                             </div>
                                         </div>
-                                        <div class="form-group ">
+                                        <div class="form-group  no-bottom">
                                             <label class="font-bold control-label col-sm-8 ">Payments/Credits</label>
                                             <div class="col-sm-4 ">
                                                 <span ng-bind="(item.leaseDetailsData.credits||0|currency)">
@@ -69,7 +69,7 @@
                                         <div class="form-group no-bottom">
                                             <a href="#/statements/lease/{{item.LEASEID}} " ng-click="page.viewStatment(inneritem.details.statementID) " class="m-l-2 col-sm-6 btn-link linkcls ">View Statement</a>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group  no-bottom">
                                             <label class=" font-bold control-label col-sm-8 ">Current Balance</label>
                                             <span class="col-sm-4 finalAmt " ng-bind="(item.leaseDetailsData.currentbalane||0|currency)">
                                             </span>
