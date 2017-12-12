@@ -53,7 +53,7 @@
 (function() {
     'use strict';
 
-    function factory(langTranslate, loginSvc, formConfig, state, notifSvc, busyIndicatorModel) {
+    function factory(langTranslate, loginSvc, formConfig, state, notifSvc, busyIndicatorModel, globalHeaderUsername) {
         var model = {},
             busyIndicator,
             translate = langTranslate('login').translate;
@@ -162,6 +162,7 @@
                         sessionStorage.setItem('sessionID', response.data.api[0].sessionid);
                         sessionStorage.setItem('userName', response.data.api[0].name);
                         sessionStorage.setItem('companyName', response.data.api[0].companyname);
+                        globalHeaderUsername.setUsername(response.data.api[0].name);
                         if (response.data.api[0].resetpassword === 'T') {
                             model.showHideFlag = "firstlogin";
                             model.strUserName = model.username;
@@ -420,7 +421,7 @@
         .module('ui')
         .factory('loginMdl', factory);
 
-    factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state', 'notificationService', 'rpBusyIndicatorModel'];
+    factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state', 'notificationService', 'rpBusyIndicatorModel', 'globalHeaderUsername'];
 
 })();
 

@@ -1,13 +1,11 @@
 //  Init Username
 
-(function (angular) {
+(function(angular) {
     "use strict";
 
-    function config(username) {
-        username.set();
-    }
+    function config(headerUsername) {}
 
     angular
-        .module("rp-demo")
+        .module("ui")
         .run(["globalHeaderUsername", config]);
 })(angular);

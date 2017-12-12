@@ -1,20 +1,21 @@
 //  Header Username
 
-(function (angular, undefined) {
+(function(angular, undefined) {
     "use strict";
 
     function GlobalHeaderUsername(headerModel) {
         var svc = this;
 
-        svc.set = function () {
+        svc.nameWatch = angular.noop;
+        svc.setUsername = function(name) {
             headerModel.extendData({
-                username: "Demo User"
+                username: name
             });
         };
     }
 
     angular
-        .module("rp-demo")
+        .module("ui")
         .service("globalHeaderUsername", [
             "rpGlobalHeaderModel",
             GlobalHeaderUsername

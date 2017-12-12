@@ -1,39 +1,48 @@
 //  Global Header Config
 
-(function (angular) {
+(function(angular) {
     "use strict";
 
-    function config(cdnVer, headerModel) {
+    function config(cdnVer, headerModel, state) {
         headerModel.extendData({
-            showProductName: true,
-            productNameText: "AngularJS RAUL Demo"
+            productLink: "#/dashbaord",
+            // showProductName: true,
+            // productNameText: "Commerical"
         });
 
-        headerModel.setUserLinks([
-            {
-                "newWin": true,
-                "text": "Client Portal",
-                "url": "/product/clientportal"
-            },
-            {
-                "text": "Manage Profile",
-                "event": "manageProfile.rpGlobalHeader"
-            },
-            {
-                "text": "Sign out",
-                "event": "signout.rpGlobalHeader"
-            }
-        ]);
+        headerModel.setUserLinks([{
+            "text": "Sign out",
+            "event": "signout.rpGlobalHeader"
+        }]);
 
         headerModel.setToolbarIcons({
             homeIcon: {
-                url: "#/",
+                // url: "#/",
                 active: true
             }
         });
+        headerModel.setToolbarIcons({
+            homeIcon: {
+                url: "#/dashboard",
+                active: true
+            },
+
+            helpIcon: {
+                active: true
+            }
+        });
+        headerModel.userLinks.invoke = function(link) {
+            sessionStorage.removeItem('sessionID');
+            sessionStorage.removeItem('userName');
+            sessionStorage.removeItem('companyName');
+            state.go('login');
+        };
+        headerModel.toolbarIcons.invoke = function(icon) {
+            state.go('home.dashbaord');
+        };
     }
 
     angular
-        .module("rp-demo")
-        .run(["cdnVer", "rpGlobalHeaderModel", config]);
+        .module("ui")
+        .run(["cdnVer", "rpGlobalHeaderModel", '$state', config]);
 })(angular);

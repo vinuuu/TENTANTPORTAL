@@ -47,3 +47,4 @@
 
 {{{ include('../../_common/breadcrumbs/js/components/breadcrumbs.js') }}}
 {{{ include('../../_common/breadcrumbs/js/providers/breadcrumbs.js') }}}
+{{{ include('../../_common/global-header/js/_bundle.inc') }}}
