@@ -19979,6 +19979,7 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
             controller: "loginCtrl as page",
             lazyLoad: [{
                 files: [
+                    "ui.home.base",
                     "ui.login",
                     "lib.realpage.form-input-radio"
                 ]

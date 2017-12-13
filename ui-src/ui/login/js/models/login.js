@@ -1,7 +1,8 @@
 (function() {
     'use strict';
 
-    function factory(langTranslate, loginSvc, formConfig, state, notifSvc, busyIndicatorModel, globalHeaderUsername) {
+    function factory(langTranslate, loginSvc, formConfig, state, notifSvc, busyIndicatorModel,
+        globalHeaderUsername, baseModel) {
         var model = {},
             busyIndicator,
             translate = langTranslate('login').translate;
@@ -10,6 +11,7 @@
         model.translateNames = function(key) {
             return translate(key);
         };
+
         model.toggleGridState = function(flg) {
             if (flg) {
                 model.apiReady = false;
@@ -82,25 +84,8 @@
 
         model.submitLogin = function() {
             model.toggleGridState(true);
-            var inputObj = {
-                "request": {
-                    "operation": {
-                        "authentication": {
-                            "login": {
-                                "userid": model.username,
-                                "password": model.pwd
-                            }
-                        },
-                        "content": {
-                            "function": {
-                                "getTPAPISession": {}
-                            }
-                        }
-                    }
-                }
-            };
             model.oldPwd = '';
-            loginSvc.getLoginDetails(inputObj).then(function(response) {
+            loginSvc.getLoginDetails(baseModel.submitLoginInput(model.username, model.pwd)).then(function(response) {
                 model.toggleGridState(false);
 
                 if (response.data) {
@@ -144,25 +129,7 @@
 
         model.resetpwdSubmit = function(val) {
             model.toggleGridState(true);
-            var changeInputObj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "getchangepwd": {
-                                    "pwdtype": model.showHideFlag === 'firstlogin' ? "login" : "change",
-                                    "newpwd": model.pwd1,
-                                    "oldpwd": model.oldPwd,
-                                    "cnfrmpwd": model.pwd2,
-                                    "secquestion": model.securityquestion,
-                                    "secanswer": model.security_a
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            loginSvc.changePwd(changeInputObj).then(function(response) {
+            loginSvc.changePwd(baseModel.resetpwdSubmitInput(model.pwd1, model.pwd2, model.oldPwd, model.securityquestion, model.security_a)).then(function(response) {
                 model.toggleGridState(false);
                 if (response.data && response.data.api[0].status === 'success') {
                     notifSvc.removeNotifications();
@@ -170,8 +137,7 @@
                     if (model.showHideFlag === 'firstlogin') {
                         state.go('home.dashbaord');
                     } else {
-                        // model.showHideFlag = 'login';
-                        // model.pwdSuccess = 'success';
+
                     }
                 }
             });
@@ -181,22 +147,7 @@
 
         model.checkUserName = function(val) {
             model.toggleGridState(true);
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "getforgotpwd": {
-                                    "type": "question",
-                                    "userid": model.u_e_id
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-
-            loginSvc.forgotPwd(obj).then(function(response) {
+            loginSvc.forgotPwd(baseModel.checkUserNameInput(model.u_e_id)).then(function(response) {
                 model.toggleGridState(false);
                 if (response.data.api) {
                     if (response.data.api[0].status === 'success') {
@@ -218,24 +169,8 @@
 
         model.answerSecurityQusn = function(val) {
             model.toggleGridState(true);
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "getforgotpwd": {
-                                    "type": "authcode",
-                                    "userid": model.strUserName,
-                                    "secquestion": model.securityQusn,
-                                    "secanswer": model.question1
-                                }
-                            }
-                        }
-                    }
-                }
-            };
 
-            loginSvc.forgotPwd(obj).then(function(response) {
+            loginSvc.forgotPwd(baseModel.answerSecurityQusnInput(model.strUserName, model.securityQusn, model.question1)).then(function(response) {
                 model.toggleGridState(false);
                 if (response.data.api) {
                     if (response.data.api[0].status === 'success') {
@@ -256,22 +191,7 @@
 
         model.checkSixDigitCode = function(val) {
             model.toggleGridState(true);
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "getforgotpwd": {
-                                    "type": "validateauthcode",
-                                    "userid": model.strUserName,
-                                    "authcode": model.emailCode
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            loginSvc.forgotPwd(obj).then(function(response) {
+            loginSvc.forgotPwd(baseModel.checkSixDigitCodeInput(model.strUserName, model.emailCode)).then(function(response) {
                 model.toggleGridState(false);
                 if (response.data.api) {
                     if (response.data.api[0].status === 'success') {
@@ -292,33 +212,13 @@
 
         model.forgotpwdSubmit = function() {
             model.toggleGridState(true);
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "getforgotpwd": {
-                                    "type": "changepassword",
-                                    "userid": model.strUserName,
-                                    "authcode": model.emailCode,
-                                    "usertoken": model.userToken,
-                                    "newpwd": model.pwd1,
-                                    "cnfrmpwd": model.pwd2
-                                }
-                            }
-                        }
-                    }
-                }
-            };
 
-            loginSvc.forgotPwd(obj).then(function(response) {
+            loginSvc.forgotPwd(baseModel.forgotpwdSubmitInput(model.strUserName, model.emailCode, model.userToken, model.pwd1, model.pwd2)).then(function(response) {
                 model.toggleGridState(false);
                 if (response.data.api) {
                     if (response.data.api[0].status === 'success') {
                         model.showHideFlag = 'login';
                         model.pwdSuccess = 'success';
-
-                        // alert(response.data.api[0].message);
                     }
                 }
             }).catch(function(exe) {
@@ -329,36 +229,6 @@
         };
 
         model.elseErrMessage = function(exception) {
-            // exception = {
-            //     "control": [{
-            //         "status": [{
-            //             "cdata": "failure"
-            //         }],
-            //         "senderid": [{
-            //             "cdata": null
-            //         }],
-            //         "controlid": [{
-            //             "cdata": null
-            //         }]
-            //     }],
-            //     "errormessage": [{
-            //         "error": [{
-            //             "errorno": [{
-            //                 "cdata": "XL03000006"
-            //             }],
-            //             "description": [{
-            //                 "cdata": ""
-            //             }],
-            //             "description2": [{
-            //                 "cdata": "Userid do not match. Please try again."
-            //             }],
-            //             "correction": [{
-            //                 "cdata": ""
-            //             }]
-            //         }]
-            //     }]
-            // }
-
             model.elseStr = exception.errormessage[0].error[0].description[0].cdata !== '' ? exception.errormessage[0].error[0].description[0].cdata : exception.errormessage[0].error[0].description2[0].cdata;
             return model.elseStr;
         };
@@ -369,6 +239,8 @@
         .module('ui')
         .factory('loginMdl', factory);
 
-    factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state', 'notificationService', 'rpBusyIndicatorModel', 'globalHeaderUsername'];
+    factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state',
+        'notificationService', 'rpBusyIndicatorModel', 'globalHeaderUsername', 'baseModel'
+    ];
 
 })();

@@ -34,9 +34,7 @@
 (function() {
     'use strict';
 
-
-
-    function factory(dashboardSvc, $http, busyIndicatorModel, accountsSvc, moment) {
+    function factory(dashboardSvc, $http, busyIndicatorModel, accountsSvc, moment, baseModel) {
         var model = {},
             busyIndicator,
             apiReady = false,
@@ -63,23 +61,23 @@
         model.getdashboardList = function() {
             model.toggleGridState(true);
 
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "readByQuery": {
-                                    "object": "leaseoccupancy",
-                                    "fields": "",
-                                    "query": "",
-                                    "returnFormat": "json"
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            dashboardSvc.getLeaseList(obj).then(function(response) {
+            // var obj = {
+            //     "request": {
+            //         "operation": {
+            //             "content": {
+            //                 "function": {
+            //                     "readByQuery": {
+            //                         "object": "leaseoccupancy",
+            //                         "fields": "",
+            //                         "query": "",
+            //                         "returnFormat": "json"
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // };
+            dashboardSvc.getLeaseList(baseModel.LeaseIDBinding()).then(function(response) {
                 if (response.data && response.data.length > 0) {
                     model.tenantlist = response.data;
                     model.bindleaseDetailsData(model.tenantlist[0]);
@@ -90,25 +88,25 @@
 
         model.bindleaseDetailsData = function(item) {
             model.toggleGridState(true);
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "getTenantBalance": {
-                                    "leaseid": item.LEASEID,
-                                    "asofdate": {
-                                        "year": moment().year(),
-                                        "month": (moment().month() + 1),
-                                        "day": moment().day()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            accountsSvc.getAccountsInfo(obj).then(function(response) {
+            // var obj = {
+            //     "request": {
+            //         "operation": {
+            //             "content": {
+            //                 "function": {
+            //                     "getTenantBalance": {
+            //                         "leaseid": item.LEASEID,
+            //                         "asofdate": {
+            //                             "year": moment().year(),
+            //                             "month": (moment().month() + 1),
+            //                             "day": moment().day()
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // };
+            accountsSvc.getAccountsInfo(baseModel.AccountsInput(item.LEASEID)).then(function(response) {
                 model.toggleGridState(false);
                 if (response.data) {
                     item.leaseDetailsData = model.custData = response.data.api[0];
@@ -125,7 +123,7 @@
         .module('ui')
         .factory('dashboardMdl', factory);
 
-    factory.$inject = ['dashboardSvc', '$http', 'rpBusyIndicatorModel', 'accountsSvc', 'moment'];
+    factory.$inject = ['dashboardSvc', '$http', 'rpBusyIndicatorModel', 'accountsSvc', 'moment', 'baseModel'];
 })();
 
 //  Source: ui\home\dashbaord\js\services\dashboardSvc.js

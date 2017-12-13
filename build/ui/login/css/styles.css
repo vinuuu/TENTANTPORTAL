@@ -84,7 +84,7 @@
     padding-left: 3px; }
   #login .error {
     color: red;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600; }
   #login .md-check > i {
     margin-top: 2px; }
@@ -114,5 +114,8 @@
     margin-top: 6px; }
   #login .p-l-16 {
     padding-left: 16px; }
+  #login .ui-pnotify {
+    margin-right: 36%;
+    margin-top: 14%; }
 
 /*# sourceMappingURL=styles.css.map */

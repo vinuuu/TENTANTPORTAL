@@ -148,23 +148,23 @@
 
         model.bindLeaseIDToDDl = function() {
             model.toggleGridState(true);
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "readByQuery": {
-                                    "object": "leaseoccupancy",
-                                    "fields": "",
-                                    "query": "",
-                                    "returnFormat": "json"
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            dashboardSvc.getLeaseList(obj).catch(baseModel.error).then(function(response) {
+            // var obj = {
+            //     "request": {
+            //         "operation": {
+            //             "content": {
+            //                 "function": {
+            //                     "readByQuery": {
+            //                         "object": "leaseoccupancy",
+            //                         "fields": "",
+            //                         "query": "",
+            //                         "returnFormat": "json"
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // };
+            dashboardSvc.getLeaseList(baseModel.LeaseIDBinding()).catch(baseModel.error).then(function(response) {
                 response.data.forEach(function(item) {
                     model.leaseArray.push({ accountHisrotyNameID: item.LEASEID, accountHisrotyName: item.LEASEID });
                 });
@@ -179,48 +179,14 @@
 
         model.getCustData = function(data) {
             model.toggleGridState(true);
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "getTenantBalance": {
-                                    "leaseid": data.leaseid,
-                                    "asofdate": {
-                                        "year": moment().year(),
-                                        "month": (moment().month() + 1),
-                                        "day": moment().day()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            var inputObj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "readByQuery": {
-                                    "object": "pminvoice",
-                                    "fields": "",
-                                    "query": "(LEASEID = '" + data.leaseid + "')",
-                                    "returnFormat": "json"
-                                }
-                            }
-                        }
-                    }
-                }
-            };
 
-            q.all([accountsSvc.getAccountsInfo(obj),
-                invoiceSvc.getInvoiceList(inputObj)
-
+            q.all([accountsSvc.getAccountsInfo(baseModel.AccountsInput(data.leaseid)),
+                invoiceSvc.getInvoiceList(baseModel.invoiceListInput(data.leaseid))
             ]).catch(baseModel.error).then(function(data) {
                 model.toggleGridState(false);
                 model.custData = data[0].data.api[0];
                 model.custData.duedate = new Date(model.custData.duedate);
+                model.custData.currentDate = moment().format('MMMM YYYY');
                 gridPagination.setData(data[1].data).goToPage({
                     number: 0
                 });

@@ -65,31 +65,13 @@
         model.loadData = function() {
             model.toggleGridState(true);
             formConfig.setMethodsSrc(model);
-
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "readByQuery": {
-                                    "object": "leaseoccupancy",
-                                    "fields": "",
-                                    "query": "",
-                                    "returnFormat": "json"
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            dashboardSvc.getLeaseList(obj).catch(baseModel.error).then(function(response) {
+            dashboardSvc.getLeaseList(baseModel.LeaseIDBinding()).catch(baseModel.error).then(function(response) {
                 response.data.forEach(function(item) {
-                    model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
+                    model.leaseArray.push({ leaseID: item.LEASEID, leaseName: item.LEASEID });
                 });
-                // timeout(function() {
+
                 formConfig.setOptions("leaseIdList", model.leaseArray);
                 model.leaseId = stateParams.id;
-                // }, 1000);
 
                 model.getStatement();
 
@@ -98,31 +80,31 @@
 
         model.getStatement = function() {
             model.toggleGridState(true);
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "getTenantStatement": {
-                                    // "leaseid": "AH-1038",
-                                    "leaseid": model.leaseId,
-                                    "fromdate": {
-                                        "year": moment(model.dateRange).year(),
-                                        "month": moment(model.dateRange).month() + 1,
-                                        "day": "01"
-                                    },
-                                    "todate": {
-                                        "year": moment().format('YYYY'),
-                                        "month": moment().month() + 1,
-                                        "day": moment().format('DD')
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            statementSvc.getStatementList(obj).catch(baseModel.error).then(function(response) {
+            // var obj = {
+            //     "request": {
+            //         "operation": {
+            //             "content": {
+            //                 "function": {
+            //                     "getTenantStatement": {
+            //                         // "leaseid": "AH-1038",
+            //                         "leaseid": model.leaseId,
+            //                         "fromdate": {
+            //                             "year": moment(model.dateRange).year(),
+            //                             "month": moment(model.dateRange).month() + 1,
+            //                             "day": "01"
+            //                         },
+            //                         "todate": {
+            //                             "year": moment().format('YYYY'),
+            //                             "month": moment().month() + 1,
+            //                             "day": moment().format('DD')
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // };
+            statementSvc.getStatementList(baseModel.statementInput(model.leaseId, model.dateRange)).catch(baseModel.error).then(function(response) {
                 model.toggleGridState(false);
                 if (response.data.api) {
                     model.statementData = response.data.api[0];

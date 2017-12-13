@@ -138,7 +138,7 @@ $inactive:#bdb8b8;
     }
     .error {
         color: red;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 600;
     }
     .md-check>i {
@@ -181,5 +181,9 @@ $inactive:#bdb8b8;
     }
     .p-l-16 {
         padding-left: 16px;
+    }
+    .ui-pnotify {
+        margin-right: 36%;
+        margin-top: 14%;
     }
 }

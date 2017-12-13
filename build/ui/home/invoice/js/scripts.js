@@ -122,42 +122,43 @@
             });
         };
         model.loadData = function(leaseid) {
-            var leaseidInput = leaseid === undefined ? '' : "(LEASEID = '" + leaseid + "')";
+            // var leaseid = leaseid === undefined ? '' : leaseid;
             model.toggleGridState(true);
-            var obj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "readByQuery": {
-                                    "object": "leaseoccupancy",
-                                    "fields": "",
-                                    "query": "",
-                                    "returnFormat": "json"
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            var inputObj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "readByQuery": {
-                                    "object": "pminvoice",
-                                    "fields": "",
-                                    "query": leaseidInput,
-                                    "returnFormat": "json"
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            q.all([invoiceSvc.getInvoiceList(inputObj),
-                dashboardSvc.getLeaseList(obj)
+            // var obj = {
+            //     "request": {
+            //         "operation": {
+            //             "content": {
+            //                 "function": {
+            //                     "readByQuery": {
+            //                         "object": "leaseoccupancy",
+            //                         "fields": "",
+            //                         "query": "",
+            //                         "returnFormat": "json"
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // };
+            // var inputObj = {
+            //     "request": {
+            //         "operation": {
+            //             "content": {
+            //                 "function": {
+            //                     "readByQuery": {
+            //                         "object": "pminvoice",
+            //                         "fields": "",
+            //                         "query": leaseidInput,
+            //                         "returnFormat": "json"
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // };
+
+            q.all([invoiceSvc.getInvoiceList(baseModel.invoiceListInput(leaseid)),
+                dashboardSvc.getLeaseList(baseModel.LeaseIDBinding())
             ]).catch(baseModel.error).then(function(data) {
                 model.toggleGridState(false);
                 if (data && data.length > 0) {
@@ -185,24 +186,24 @@
 
         model.bindGrid = function(leaseid) {
             model.toggleGridState(true);
-            var leaseidInput = leaseid === undefined ? '' : "(LEASEID = '" + leaseid + "')";
-            var inputObj = {
-                "request": {
-                    "operation": {
-                        "content": {
-                            "function": {
-                                "readByQuery": {
-                                    "object": "pminvoice",
-                                    "fields": "",
-                                    "query": leaseidInput,
-                                    "returnFormat": "json"
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            invoiceSvc.getInvoiceList(inputObj).then(function(response) {
+
+            // var inputObj = {
+            //     "request": {
+            //         "operation": {
+            //             "content": {
+            //                 "function": {
+            //                     "readByQuery": {
+            //                         "object": "pminvoice",
+            //                         "fields": "",
+            //                         "query": leaseidInput,
+            //                         "returnFormat": "json"
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // };
+            invoiceSvc.getInvoiceList(baseModel.invoiceListInput(leaseid)).then(function(response) {
                 model.toggleGridState(false);
                 model.totalCount = response.data.length;
                 response.data.forEach(function(item) {
