@@ -36,7 +36,8 @@
                 {
                     key: "TOTALPAYING",
                     type: "custom",
-                    templateUrl: "app/templates/textbox.html"
+                    templateUrl: "app/templates/textbox.html",
+                    method: model.onPayAmount
                 },
                 {
                     key: "STATE",

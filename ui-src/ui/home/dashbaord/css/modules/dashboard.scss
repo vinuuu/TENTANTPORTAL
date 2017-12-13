@@ -3,9 +3,9 @@ $border-color:#e4e6e7;
     .finalAmt {
         border-top: 1px solid black;
     }
-    .linkcls {
-        color: blue;
-    }
+    // .linkcls {
+    //     color: blue;
+    // }
     .acr-hdr {
         border: 1px solid white;
         -webkit-box-shadow: 1px 1px 1px 0 white;
@@ -18,12 +18,12 @@ $border-color:#e4e6e7;
     }
     .acr-content2 {
         border: 1px solid $border-color;
-        // height: 245px;
+        height: 237px;
         padding: 12px;
     }
     .acr-content3 {
         border: 1px solid $border-color;
-        height: 271px;
+        height: 237px;
         padding: 12px;
     }
     .btnContinue {

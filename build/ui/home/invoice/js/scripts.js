@@ -10,7 +10,6 @@
 
         vm.init = function() {
             vm.model = model = invoiceMdl.init();
-            model.loadData(stateParams.id === 0 ? undefined : stateParams.id);
         };
         vm.init();
     }
@@ -100,6 +99,8 @@
             model.gridPagination = gridPagination;
             grid.formConfig = formConfig;
             // model.loadData();
+            model.loadData();
+
             return model;
         };
 
@@ -107,6 +108,7 @@
             return translate(key);
         };
         model.onPaymentTypeSelection = function(value) {
+            console.log(value);
             //api call
             model.loadData();
         };
@@ -171,7 +173,7 @@
                     });
 
                     formConfig.setOptions("leaseddl", model.leaseArray);
-                    model.leasevalueID = stateParams.id;
+                    model.leasevalueID = '';
 
                     model.setData({ "records": data[0].data });
                 }
@@ -296,7 +298,8 @@ $templateCache.put("home/invoice/templates/textbox.html",
                 {
                     key: "TOTALPAYING",
                     type: "custom",
-                    templateUrl: "app/templates/textbox.html"
+                    templateUrl: "app/templates/textbox.html",
+                    method: model.onPayAmount
                 },
                 {
                     key: "STATE",

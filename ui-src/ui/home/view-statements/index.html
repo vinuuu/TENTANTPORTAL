@@ -18,7 +18,7 @@
             </rp-form-select-menu>
         </div>
         <div class="col-md-1 form-group  m-t-2">
-            <input type="button" value="Go" class="btn btn-primary">
+            <input type="button" value="Go" class="btn btn-primary" ng-click="page.model.onLeaseIdChange();">
         </div>
         <div class="col-md-5 col-md-push-2 form-group m-t-2">
             <input type="button" value="Download PDF" class="btn btn-success pull-right">
@@ -98,8 +98,8 @@
         </rp-grid>
 
         <div class="row m-t-1">
-            <div class="col-md-8"> <span class="font-bold pull-right">Balance Due</span></div>
-            <div class="col-md-4 text-right"> <span class="text-font-bold m-r-3">{{page.model.statementData.dueamount|currency}}</span></div>
+            <div class="col-md-10"> <span class="font-bold pull-right">Balance Due</span></div>
+            <div class="col-md-2 text-right"> <span class="text-font-bold pull-left p-l-2">{{page.model.statementData.dueamount|currency}}</span></div>
         </div>
         <!-- <rp-grid-pagination model="page.model.gridPagination">
         </rp-grid-pagination> -->
