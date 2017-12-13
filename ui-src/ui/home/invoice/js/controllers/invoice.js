@@ -2,13 +2,17 @@
     'use strict';
 
 
-    function Controller(invoiceMdl, stateParams) {
+    function Controller(invoiceMdl, stateParams, gridConfig) {
         /* jshint validthis:true */
         var vm = this,
             model;
 
         vm.init = function() {
+            gridConfig.setSrc(vm);
             vm.model = model = invoiceMdl.init();
+        };
+        vm.onPayAmount = function(record) {
+            model.onPayAmount(record);
         };
         vm.init();
     }
@@ -16,6 +20,6 @@
         .module('uam')
         .controller('invoiceCtrl', Controller);
 
-    Controller.$inject = ['invoiceMdl', '$stateParams'];
+    Controller.$inject = ['invoiceMdl', '$stateParams', 'invoiceGrid1Config', ];
 
 })();
