@@ -20379,10 +20379,7 @@ $templateCache.put("app/templates/nav.html",
 "              </div>\n" +
 "            </div> --></div><!--End Left Nav Item Wrapper--></div></div>");
 $templateCache.put("app/templates/textbox.html",
-"<!-- <div class=\"grid-edit-title\">\n" +
-"    <rp-form-input-text config=\"model.formConfig.payAmount\" rp-model=\"record[config.key]\">\n" +
-"    </rp-form-input-text>\n" +
-"</div> --><!-- ng-class=\"inputText.getState()\" config=\"model.formConfig.payAmount\" rp-model=\"record[config.key]\" style=\"\" --> {{config}}<div ng-if=\"record.STATE !=='Paid'\" class=\"rp-form-input-text ng-isolate-scope touched\"><div class=\"rp-form-input-text-table\"><div class=\"rp-form-input-text-row\"><div class=\"rp-form-input-text-cell rp-form-input-text-field-wrap\"><input class=\"rp-form-input-text-field\" id=\"Pay Amount\" maxlength=\"\" minlength=\"\" name=\"Pay Amount\" ng-blur=\"config.onPayAmount(record)\" ng-change=\"inputText.onChange(rpModel)\" ng-model=\"record[config.key]\" ng-trim=\"true\" placeholder=\"\" type=\"text\" autocomplete=\"off\"></div></div></div></div>");
+"<div ng-if=\"record.STATE !=='Paid'\" class=\"rp-form-input-text ng-isolate-scope touched\"><div class=\"rp-form-input-text-table\"><div class=\"rp-form-input-text-row\"><div class=\"rp-form-input-text-cell rp-form-input-text-field-wrap\"><input class=\"rp-form-input-text-field\" id=\"Pay Amount\" maxlength=\"\" minlength=\"\" name=\"Pay Amount\" ng-blur=\"config.onPayAmount(record)\" ng-change=\"inputText.onChange(rpModel)\" ng-model=\"record[config.key]\" ng-trim=\"true\" placeholder=\"\" type=\"text\" autocomplete=\"off\"></div></div></div></div>");
 }]);
 
 

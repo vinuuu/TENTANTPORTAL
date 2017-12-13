@@ -36,13 +36,13 @@
         };
 
         model.TotalPaidAmount = function() {
-            return _.reduce(_.pluck(model.grid.data.records, 'TOTALPAYING'), function(memoizer, number) {
+            return _.reduce(_.pluck(_.where(model.grid.data.records, { isSelect: true }), 'TOTALPAYING'), function(memoizer, number) {
                 return Number(memoizer || 0) + Number(number || 0);
             });
         };
-        model.onPayAmount = function(val) {
-            console.log(val);
-            // model.TotalPaidAmountmethod();
+        model.onPayAmount = function(record) {
+            record.isSelect = Number(record.TOTALPAYING) > 0 ? true : false;
+            model.TotalPaidAmount();
         };
         model.init = function() {
 
@@ -50,7 +50,7 @@
             model.totalCount = 0;
             busyIndicator = model.busyIndicator = busyIndicatorModel();
             formConfig.setMethodsSrc(model);
-            gridConfig.setSrc(model);
+
             var options = [{
                     paymentTypeName: "All Transaction",
                     paymentTypeNameID: "All Transaction"
