@@ -1,0 +1,10 @@
+{
+	"version": 3,
+	"file": "styles.css",
+	"sources": [
+		"../../../../../ui-src/ui/home/common-area/css/styles.scss",
+		"../../../../../ui-src/ui/lib/base/css/styles.scss"
+	],
+	"names": [],
+	"mappings": ""
+}

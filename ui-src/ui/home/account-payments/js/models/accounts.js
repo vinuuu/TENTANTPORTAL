@@ -45,7 +45,7 @@
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
-            gridPagination.setGrid(grid);
+            gridPagination.setGrid(grid).trackSelection(gridConfig.getTrackSelectionConfig());
             gridPagination
                 .setConfig(gridPaginationConfig);
             model.gridPagination = gridPagination;

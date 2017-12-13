@@ -1,0 +1,39 @@
+#accounts .boder-bottom {
+  border-bottom: 1px solid #b7adad; }
+
+#accounts .currentbal {
+  margin-top: 2%; }
+
+#accounts .btncls {
+  width: 140px;
+  border-radius: 18px; }
+
+#accounts .p-r-25 {
+  padding-right: 25px; }
+
+#accounts td,
+#accounts th {
+  width: 160px; }
+
+#accounts .m-l-p-8 {
+  margin-left: 8px; }
+
+#accounts .m-l-m-23 {
+  margin-left: -23px; }
+
+#accounts .boder-full {
+  border: 1px solid #e4e6e7; }
+
+#accounts .TOTALENTERED td {
+  text-align: right; }
+
+#accounts .m-t-34 {
+  margin-top: 34px !important; }
+
+#accounts .m-B-12 {
+  margin-bottom: 12px; }
+
+#accounts .m-l-m-12 {
+  margin-left: -12px; }
+
+/*# sourceMappingURL=styles.css.map */

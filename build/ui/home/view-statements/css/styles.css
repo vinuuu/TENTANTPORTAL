@@ -1,0 +1,34 @@
+#statements label {
+  margin-bottom: .3em; }
+
+#statements .btn {
+  border-radius: 6px; }
+
+#statements .bodydivcls {
+  border: 1px solid #dcd8d8;
+  border-radius: 6px; }
+
+#statements .accountscls {
+  border-top: 1px solid black;
+  border-bottom: 1px solid;
+  display: inline;
+  padding: 2px; }
+
+#statements .b-b-1 {
+  border-bottom: 1px solid black; }
+
+#statements .bgcolor {
+  background-color: #e8e5e5;
+  padding: 5px; }
+
+#statements .WHENCREATED,
+#statements .TYPE,
+#statements .DESCRIPTION {
+  width: 20%; }
+
+#statements .rp-grid-body-1 .AMOUNT,
+#statements .rp-grid-body-1 .PAYMENT,
+#statements .rp-grid-body-1 .BALANCE {
+  width: 13%; }
+
+/*# sourceMappingURL=styles.css.map */

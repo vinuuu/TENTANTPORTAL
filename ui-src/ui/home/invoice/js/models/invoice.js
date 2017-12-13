@@ -53,7 +53,7 @@
 
             var options = [{
                     paymentTypeName: "All Transaction",
-                    paymentTypeNameID: "All Transaction"
+                    paymentTypeNameID: ""
                 },
                 {
                     paymentTypeName: "Paid",
@@ -66,7 +66,7 @@
             ];
 
             formConfig.setOptions("paymentType", options);
-            model.paymenttype = 'All Transaction';
+            model.paymenttype = '';
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
@@ -75,7 +75,6 @@
                 .setConfig(gridPaginationConfig);
             model.gridPagination = gridPagination;
             grid.formConfig = formConfig;
-            // model.loadData();
             model.loadData();
 
             return model;
@@ -85,56 +84,22 @@
             return translate(key);
         };
         model.onPaymentTypeSelection = function(value) {
-            console.log(value);
-            //api call
-            model.loadData();
+            model.bindGrid();
         };
         model.onLeaseSelection = function(value) {
             //api call
-            model.bindGrid(model.leasevalueID);
+            model.bindGrid();
         };
         model.setData = function(data) {
             gridPagination.setData(data.records).goToPage({
                 number: 0
             });
         };
-        model.loadData = function(leaseid) {
+        model.loadData = function() {
             // var leaseid = leaseid === undefined ? '' : leaseid;
             model.toggleGridState(true);
-            // var obj = {
-            //     "request": {
-            //         "operation": {
-            //             "content": {
-            //                 "function": {
-            //                     "readByQuery": {
-            //                         "object": "leaseoccupancy",
-            //                         "fields": "",
-            //                         "query": "",
-            //                         "returnFormat": "json"
-            //                     }
-            //                 }
-            //             }
-            //         }
-            //     }
-            // };
-            // var inputObj = {
-            //     "request": {
-            //         "operation": {
-            //             "content": {
-            //                 "function": {
-            //                     "readByQuery": {
-            //                         "object": "pminvoice",
-            //                         "fields": "",
-            //                         "query": leaseidInput,
-            //                         "returnFormat": "json"
-            //                     }
-            //                 }
-            //             }
-            //         }
-            //     }
-            // };
 
-            q.all([invoiceSvc.getInvoiceList(baseModel.invoiceListInput(leaseid)),
+            q.all([invoiceSvc.getInvoiceList(baseModel.invoiceListTransactionInput(model.leasevalueID, model.paymenttype)),
                 dashboardSvc.getLeaseList(baseModel.LeaseIDBinding())
             ]).catch(baseModel.error).then(function(data) {
                 model.toggleGridState(false);
@@ -147,7 +112,7 @@
                     });
                     model.leaseArray.push({ leaseID: '', leaseName: 'All' });
                     data[1].data.forEach(function(item) {
-                        model.leaseArray.push({ leaseID: item.LEASEID, leaseName: 'LeaseID :' + item.LEASEID });
+                        model.leaseArray.push({ leaseID: item.LEASEID, leaseName: item.LEASEID });
                     });
 
                     formConfig.setOptions("leaseddl", model.leaseArray);
@@ -161,32 +126,16 @@
         };
 
 
-        model.bindGrid = function(leaseid) {
+        model.bindGrid = function() {
             model.toggleGridState(true);
 
-            // var inputObj = {
-            //     "request": {
-            //         "operation": {
-            //             "content": {
-            //                 "function": {
-            //                     "readByQuery": {
-            //                         "object": "pminvoice",
-            //                         "fields": "",
-            //                         "query": leaseidInput,
-            //                         "returnFormat": "json"
-            //                     }
-            //                 }
-            //             }
-            //         }
-            //     }
-            // };
-            invoiceSvc.getInvoiceList(baseModel.invoiceListInput(leaseid)).then(function(response) {
+            invoiceSvc.getInvoiceList(baseModel.invoiceListTransactionInput(model.leasevalueID, model.paymenttype)).then(function(response) {
                 model.toggleGridState(false);
                 model.totalCount = response.data.length;
                 response.data.forEach(function(item) {
                     item.disableSelection = item.STATE === 'Paid' ? true : false;
-                    model.setData({ "records": response.data });
                 });
+                model.setData({ "records": response.data });
             }).catch(function(ex) {
                 model.toggleGridState(false);
             });

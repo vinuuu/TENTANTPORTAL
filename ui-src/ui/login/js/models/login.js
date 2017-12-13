@@ -118,7 +118,16 @@
                 }
             }).catch(function(exception) {
                 model.toggleGridState(false);
-                model.pwdSuccess = 'failure';
+                if (count === 0) {
+                    model.pwdSuccess = 'failure';
+                    count++;
+                } else if (count === 1) {
+                    count++;
+                    model.pwdSuccess = 'warning';
+                } else {
+                    model.pwdSuccess = 'locked';
+
+                }
 
             });
         };

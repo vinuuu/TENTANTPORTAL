@@ -69,7 +69,7 @@
                     },
                     {
                         key: "WHENPAID",
-                        text: "datePaid"
+                        text: "DatePaid"
                     }
                     // {
                     //     key: "file",
@@ -96,7 +96,7 @@
                     key: "LEASEID",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Lease ID"
+                    placeholder: "Filter by Lease ID"
                 },
                 {
                     key: "UNITID",
@@ -114,18 +114,30 @@
                     key: "STATE",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by STATE"
+                    placeholder: "Filter by Status"
                 },
                 {
                     key: "WHENPAID",
                     type: "text",
                     filterDelay: 0,
-                    placeholder: "Filter by datePaid"
+                    placeholder: "Filter by DatePaid"
                 }
 
             ];
         };
+        model.getTrackSelectionConfig = function() {
+            var config = {},
+                columns = model.get();
 
+            columns.forEach(function(column) {
+                if (column.type == "select") {
+                    config.idKey = column.idKey;
+                    config.selectKey = column.key;
+                }
+            });
+
+            return config;
+        };
         return model;
     }
 

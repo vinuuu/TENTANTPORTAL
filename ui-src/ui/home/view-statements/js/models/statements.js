@@ -53,7 +53,7 @@
             ];
 
             formConfig.setOptions("dateRange", DateRangeoptions);
-            model.dateRange = moment().format('MM/DD/YYYY');
+            model.dateRange = stateParams.m === "-1" ? moment().subtract(1, 'month').format('MM/DD/YYYY') : moment().format('MM/DD/YYYY');
             return model;
         };
 

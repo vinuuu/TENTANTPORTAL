@@ -213,7 +213,33 @@
                                     "object": "pminvoice",
                                     "fields": "",
                                     // "query": leaseID,
-                                    "query": "(leaseid = '" + leaseid + "' TRX_TOTALDUE = 0 AND TRX_TOTALENTERED NOT IN '0' AND WHENCREATED >= '" + date + "' )",
+                                    "query": "(leaseid = '" + leaseid + "' AND TRX_TOTALDUE = 0 AND TRX_TOTALENTERED NOT IN '0' AND WHENCREATED >= '" + date + "' )",
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+        };
+
+        //all for empty,paid ofr paid,due for paymtn for due
+        model.invoiceListTransactionInput = function(leaseid, transcation) {
+            var leaseID = leaseid === '' || leaseid === undefined ? '' : "LEASEID = '" + leaseid + "'";
+            transcation = transcation === '' ? '' : transcation === 'Paid' ?
+                " TRX_TOTALDUE = 0 AND TRX_TOTALENTERED NOT IN '0'" : " TRX_TOTALPAID = '0' AND TRX_TOTALSELECTED = 0";
+            var query = ((leaseID.length > 2 && transcation.length > 2) ? leaseID + ' AND ' : leaseID) + transcation;
+            query = query.length > 2 ? "(" + query + ")" : query;
+            return {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "pminvoice",
+                                    "fields": "",
+                                    "query": query,
                                     "returnFormat": "json"
                                 }
                             }

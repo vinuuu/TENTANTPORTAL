@@ -38,10 +38,10 @@
             text: 'Invoice'
         }, {
             name: 'home.statements',
-            url: '/statements/lease/:id',
+            url: '/statements/lease/:id/month/:m',
             text: 'View Statements',
             backLink: 'home.dashbaord',
-            links: ['home.dashbaord']
+            links: ['home.dashbaord', 'home.account-payments']
         }, {
             name: 'home.account-payments',
             url: '/accounts',

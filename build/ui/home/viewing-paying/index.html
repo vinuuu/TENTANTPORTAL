@@ -1,0 +1,5 @@
+<div class="container" id="viewpay"><div class="page-header"><h4>{{page.model.translateNames('viewPayHeader')}}</h4><hr></div><div class="row"><div class="col-md-2"><rp-form-select-menu config="page.model.formConfig.paymentType" rp-model="page.model.paymenttype"></rp-form-select-menu></div><div class="col-md-2"><rp-form-select-menu config="page.model.formConfig.secondSelect" rp-model="page.model.leasevalueID"></rp-form-select-menu></div><div><button class="btn btn-primary btnContinue pull-right">Pay Now</button></div></div><br><div class="grid-controls"><div class="grid-control-item"><rp-toggle model="page.model.grid.filtersModel.state.active" options="{
+                                        defaultText: 'Filter',
+                                        activeIconClass: 'rp-icon-filter',
+                                        defaultIconClass: 'rp-icon-filter active'
+                                    }"></rp-toggle></div></div><rp-grid model="page.model.grid"></rp-grid><rp-grid-pagination model="page.model.gridPagination"></rp-grid-pagination><div></div><div><button class="btn btn-primary btnContinue pull-right">Pay Now</button></div></div>

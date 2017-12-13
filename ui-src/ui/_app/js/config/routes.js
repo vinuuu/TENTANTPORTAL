@@ -63,7 +63,7 @@
             }]
         };
         routes["home.view-statements"] = {
-            url: "/statements/lease/:id",
+            url: "/statements/lease/:id/month/:m",
             controller: "statementsCtrl as page",
             lazyLoad: [{
                 files: [

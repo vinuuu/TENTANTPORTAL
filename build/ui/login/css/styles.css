@@ -1,0 +1,121 @@
+#login {
+  background-color: transparent;
+  background-image: url("../../../ui/login/images/backgroundimage.jpg"); }
+  #login .block {
+    background-color: #ffffff; }
+  #login .loginlogo {
+    color: #2ec4f1;
+    font-size: 23px;
+    font-family: cursive; }
+  #login .mainheader {
+    background-color: #f0f0f0;
+    line-height: 39px;
+    margin-left: -12px;
+    margin-right: -12px; }
+  #login .bordercls {
+    border: 1px solid black; }
+  #login .maindiv-center {
+    float: none;
+    margin: 0 auto; }
+  #login .statictxtcls, #login .innerbody, #login .innerbody-login {
+    margin-left: 10%;
+    margin-right: 10%; }
+  #login .statictxtcls-reset, #login .innerbody-firstlogin, #login .innerbody-login-pwd, #login .innerbody1, #login .innerbody-nobackground {
+    margin-left: 16%;
+    margin-right: 16%; }
+  #login .midcommoncls, #login .innerbody, #login .innerbody-firstlogin, #login .innerbody-login-pwd, #login .innerbody1 {
+    border: 1px solid #dcd0d0;
+    background-color: #f0f0f0;
+    padding: 3%; }
+  #login .innerbody {
+    line-height: 40px; }
+  #login .innerbody-login {
+    padding: 3%;
+    line-height: 21px; }
+  #login .innerbody-login-pwd {
+    line-height: 21px; }
+  #login .innerbody1 {
+    line-height: 54px; }
+  #login .btnContinue {
+    width: 94%;
+    border-radius: 20px; }
+  #login .btnContinue1 {
+    width: 81%;
+    border-radius: 20px; }
+  #login .btnContinue-firstlogin {
+    width: 33%;
+    border-radius: 20px; }
+  #login .linkcls {
+    color: rgba(0, 0, 255, 0.65);
+    font-size: 13px; }
+  #login .footercls {
+    margin-top: 24%;
+    line-height: 39px; }
+  #login .logoplaceholder {
+    background-color: #e4dede;
+    padding: 2% 9% 2% 9%; }
+  #login .circleshape {
+    padding: 7%;
+    width: 44%; }
+  #login .activecolor, #login .activecls {
+    color: blue; }
+  #login .inactivecolor, #login .inactivecls {
+    color: #bdb8b8; }
+  #login .activecls {
+    border: 1px solid blue; }
+  #login .inactivecls {
+    border: 1px solid #bdb8b8; }
+  #login .lh {
+    line-height: 24px; }
+  #login .red-font, #login .pwd, #login .dangertext, #login .login-failue {
+    color: red; }
+  #login .pwd {
+    font-size: 11px; }
+  #login .green-font {
+    color: green; }
+  #login .dangertext {
+    font-size: 13px; }
+  #login input[type=password] {
+    font-size: 1rem !important; }
+  #login .required::after {
+    content: "*";
+    color: red;
+    font-size: 14px;
+    padding-left: 3px; }
+  #login .error {
+    color: red;
+    font-size: 14px;
+    font-weight: 600; }
+  #login .md-check > i {
+    margin-top: 2px; }
+  #login .radio > i {
+    margin-top: 17px; }
+  #login .fontcls {
+    color: rgba(0, 0, 0, 0.55); }
+  #login .f-w-6, #login .linkcls, #login .fontcls, #login .lockedcls {
+    font-weight: 600; }
+  #login .login-failue {
+    border: 1px solid red;
+    font-weight: 600; }
+  #login .failurecls {
+    font-size: 14px;
+    margin-top: 4px;
+    color: rgba(255, 0, 0, 0.68);
+    font-weight: 600; }
+  #login .warningcls {
+    margin-right: 10px;
+    width: 93%;
+    color: #ffc200;
+    font-weight: 600;
+    margin-left: 13px; }
+  #login .lockedcls {
+    font-size: 17px; }
+  #login .marging-t-5 {
+    margin-top: 6px; }
+  #login .p-l-16 {
+    padding-left: 16px; }
+  #login .ui-pnotify {
+    margin-right: 36%;
+    margin-top: 14%; }
+
+/*# sourceMappingURL=styles.css.map */

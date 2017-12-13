@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-md-8">
                         <div>
-                            <span class="glyphicon glyphicon-file m-l-m-23 linkcls"></span> <a href="#/statements/lease/{{page.model.accountHistory}}" class="btn-link linkcls m-l-p-8">View Previous Statement</a>
+                            <span class="glyphicon glyphicon-file m-l-m-23 linkcls"></span> <a href="#/statements/lease/{{page.model.accountHistory}}/month/-1" class="btn-link linkcls m-l-p-8">View Previous Statement</a>
                         </div>
                     </div>
                 </div>
@@ -68,11 +68,9 @@
                         Last Payment Received
                     </div>
                     <div class="col-md-8">
-                        {{page.model.custData.credits}}
+                        {{page.model.custData.credits|currency}}
 
-                        <div>
-                            <!-- {{page.model.custData.lastPaymentReceivedOn}} -->(need to bind)
-                        </div>
+
                     </div>
                 </div>
                 <br>
@@ -81,8 +79,8 @@
                         Current Statement - {{page.model.custData.currentDate}}
                     </div>
                     <div class="col-md-8">
-                        {{page.model.custData.currentstatement}}
-                        <div> <span class="glyphicon glyphicon-file m-l-m-23 linkcls"></span><a href="#/statements/lease/{{page.model.accountHistory}}" class="btn-link linkcls m-l-p-8">View Previous Statement</a></div>
+                        {{page.model.custData.currentstatement|currency}}
+                        <div> <span class="glyphicon glyphicon-file m-l-m-23 linkcls"></span><a href="#/statements/lease/{{page.model.accountHistory}}/month/0" class="btn-link linkcls m-l-p-8">View Current Statement</a></div>
                     </div>
                 </div>
                 <br>
@@ -114,7 +112,7 @@
                 </div>
             </div>
             <div class="boder-bottom"></div>
-            <div class="grid-controls">
+            <div class="grid-controls p-t-1">
 
                 <div class="grid-control-item">
                     <rp-toggle model="page.model.grid.filtersModel.state.active" options="{
