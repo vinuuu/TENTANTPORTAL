@@ -28,7 +28,7 @@
                     key: "STATE",
                 },
                 {
-                    key: "datePaid"
+                    key: "WHENPAID"
                 },
                 // {
                 //     key: "file",
@@ -68,7 +68,7 @@
                         text: "Status"
                     },
                     {
-                        key: "datePaid",
+                        key: "WHENPAID",
                         text: "datePaid"
                     }
                     // {
@@ -117,7 +117,7 @@
                     placeholder: "Filter by STATE"
                 },
                 {
-                    key: "datePaid",
+                    key: "WHENPAID",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by datePaid"

@@ -105,22 +105,22 @@
             model.formConfig = formConfig;
             var options = [{
                     accountHisrotyName: "Current Month",
-                    accountHisrotyNameID: moment().format('YYYY MM DD')
+                    accountHisrotyNameID: moment().format('MM/DD/YYYY')
                 },
                 {
                     accountHisrotyName: "last 3 Month",
-                    accountHisrotyNameID: moment().subtract(3, 'month').format('YYYY MM DD')
+                    accountHisrotyNameID: moment().subtract(3, 'month').format('MM/DD/YYYY')
                 },
                 {
                     accountHisrotyName: "last 6 Month",
-                    accountHisrotyNameID: moment().subtract(6, 'month').format('YYYY MM DD')
+                    accountHisrotyNameID: moment().subtract(6, 'month').format('MM/DD/YYYY')
                 }
             ];
 
             formConfig
                 .setOptions("accountHistory", options);
 
-            model.accountHistoryType = moment().format('YYYY MM DD');
+            model.accountHistoryType = moment().format('MM/DD/YYYY');
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
@@ -135,7 +135,7 @@
 
 
         model.onaccountHistorySelection = function(key) {
-            model.getCustData({ leaseid: model.leaseid, asofDate: moment(key) });
+            model.getCustData({ leaseid: model.accountHistory, asofDate: model.accountHistoryType });
         };
         model.bindtenantdata = function(response) {
             model.list = response.records;
@@ -181,7 +181,7 @@
             model.toggleGridState(true);
 
             q.all([accountsSvc.getAccountsInfo(baseModel.AccountsInput(data.leaseid)),
-                invoiceSvc.getInvoiceList(baseModel.invoiceListInput(data.leaseid))
+                invoiceSvc.getInvoiceList(baseModel.invoiceListWithDateInput(data.leaseid, model.accountHistoryType))
             ]).catch(baseModel.error).then(function(data) {
                 model.toggleGridState(false);
                 model.custData = data[0].data.api[0];
@@ -295,7 +295,7 @@
                     key: "STATE",
                 },
                 {
-                    key: "datePaid"
+                    key: "WHENPAID"
                 },
                 // {
                 //     key: "file",
@@ -335,7 +335,7 @@
                         text: "Status"
                     },
                     {
-                        key: "datePaid",
+                        key: "WHENPAID",
                         text: "datePaid"
                     }
                     // {
@@ -384,7 +384,7 @@
                     placeholder: "Filter by STATE"
                 },
                 {
-                    key: "datePaid",
+                    key: "WHENPAID",
                     type: "text",
                     filterDelay: 0,
                     placeholder: "Filter by datePaid"

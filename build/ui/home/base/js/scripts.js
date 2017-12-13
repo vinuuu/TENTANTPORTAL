@@ -227,6 +227,34 @@
 
         };
 
+
+
+
+        model.invoiceListWithDateInput = function(leaseid, date) {
+            // var leaseID = leaseid === undefined ? '' : "(LEASEID = '" + leaseid + "')";
+            return {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "pminvoice",
+                                    "fields": "",
+                                    // "query": leaseID,
+                                    "query": "(leaseid = '" + leaseid + "' TRX_TOTALDUE = 0 AND TRX_TOTALENTERED NOT IN '0' AND WHENCREATED >= '" + date + "' )",
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+        };
+
+
+
+
         model.statementInput = function(leaseId, dateRange) {
             return {
                 "request": {
