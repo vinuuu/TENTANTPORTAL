@@ -50,6 +50,7 @@
             model.totalCount = 0;
             busyIndicator = model.busyIndicator = busyIndicatorModel();
             formConfig.setMethodsSrc(model);
+            gridConfig.setSrc(model);
             var options = [{
                     paymentTypeName: "All Transaction",
                     paymentTypeNameID: "All Transaction"

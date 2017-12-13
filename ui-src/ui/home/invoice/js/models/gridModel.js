@@ -37,12 +37,11 @@
                     key: "TOTALPAYING",
                     type: "custom",
                     templateUrl: "app/templates/textbox.html",
-                    method: model.onPayAmount
+                    onPayAmount: model.getMethod('onPayAmount'),
                 },
                 {
                     key: "STATE",
                     type: "custom",
-                    // templateUrl: 'home/invoice/templates/labelStatus.html'
                     templateUrl: "app/templates/label.html"
                 }
             ];

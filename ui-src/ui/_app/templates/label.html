@@ -1,3 +1,9 @@
-<div class="grid-edit-title">
-    <span style="color:red;" ng-bind="record[config.key]"></span>
+<span ng-show="false">{{record.color=record["DUE_IN_DAYS"].includes('Due Today')?'orange':(record["DUE_IN_DAYS"].includes('days')?'red':'blue')}}</span>
+<div class="grid-edit-title" ng-if="record[config.key]==='Paid'">
+    <span style="color:rgb(9, 82, 9);" ng-bind="record[config.key]"></span>
+</div>
+<div class="grid-edit-title" ng-if="record[config.key]!=='Paid'" ng-switch="record.color">
+    <span ng-switch-when="orange" style="color:rgb(248, 183, 86);" ng-bind="record.DUE_IN_DAYS"></span>
+    <span ng-switch-when="red" style="color:rgb(247, 56, 9);" ng-bind="record.DUE_IN_DAYS"></span>
+    <span ng-switch-when="blue" style="color:rgb(62, 62, 247);" ng-bind="record.DUE_IN_DAYS"></span>
 </div>

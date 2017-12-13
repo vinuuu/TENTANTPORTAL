@@ -30,6 +30,23 @@
     Controller.$inject = ["$scope", '$http', 'notificationService', 'dashboardMdl'];
 })();
 
+//  Configure Meta Data
+
+(function(angular) {
+    "use strict";
+
+    function config(prov) {
+        prov.setProduct({
+            name: sessionStorage.getItem('companyName')
+        });
+
+    }
+
+    angular
+        .module("ui")
+        .config(['rpBdgtBreadcrumbsModelProvider', config]);
+})(angular);
+
 //  Source: ui\home\dashbaord\js\models\dashboard.js
 (function() {
     'use strict';
