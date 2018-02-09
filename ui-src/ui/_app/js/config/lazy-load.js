@@ -13,6 +13,7 @@
             "home.account-payments": ["css", "js", "lang"],
             "home.view-statements": ["css", "js"],
             "home.invoice": ["css", "js", "lang"],
+            "home.settings": ["css", "js","lang"],
             "home.error": ["css", "js", "lang"],
             "login": ["css", "js", "lang"],
             "home.common-area": ["css", "js"],

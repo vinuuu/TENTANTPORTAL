@@ -81,6 +81,16 @@
                 ]
             }]
         };
+        routes["home.settings"]={
+            url: "/settings",
+            controller: "SettingsCtrl as page",
+            lazyLoad: [{
+                rerun: true,
+                files: [
+                    "ui.home.settings",
+                ]
+            }]
+        };
         routes["home.error"] = {
             url: "/error/:errorCode",
             controller: "ErrorCtrl as page",

@@ -1,0 +1,124 @@
+<div class="container" id="settings">
+
+    <h1 ng-bind="page.model.pageHeading"></h1>
+    <div class="row panel panel-default p-l-1 acr-content2 m-t-1">
+            <div class="col-md-12">
+                    <h3 class="demo-page-title-1">Profile Information</h3>
+                    <div class="b-b m-y-sm"></div>
+                </div>
+        <div class="col-md-3">
+            <img class="block" src="https://s.realpage.com/wp-content/themes/realpage/images/webcast.png" height="grunt" width="180" /> 
+
+            <button class="btn medium rounded primary w-full m-b-md">Change Profile Picture</button>
+        </div>
+        <div class="col-md-9">
+                <div class="row sample-fit-form-row">
+                        <div class="col-md-6">
+                            <label class="form-label" for="field02">First Name</label>
+                            <rp-form-input-text config="page.formConfig.field02" rp-model="page.model.firstName">
+                            </rp-form-input-text>
+                        </div>
+                        <div class="col-md-6">
+                                <label class="form-label" for="lastName">Last Name</label>
+                                <rp-form-input-text config="page.formConfig.lastName" rp-model="page.model.lastName">
+                                </rp-form-input-text>
+                       </div>        
+                </div>
+                <div class="row sample-fit-form-row">
+                            <div class="col-md-6">
+                                <label class="form-label" for="Phone">Phone</label>
+                                <rp-form-input-text config="page.formConfig.Phone" rp-model="page.model.Phone">
+                                </rp-form-input-text>
+                            </div>
+                            <div class="col-md-6">
+                                    <label class="form-label" for="Fax">Fax</label>
+                                    <rp-form-input-text config="page.formConfig.Fax" rp-model="page.model.Fax">
+                                    </rp-form-input-text>
+                           </div>        
+                </div>
+        </div>
+        </div>
+        <div class="row panel panel-default p-l-1 acr-content2 m-t-1">
+                <div class="col-md-12">
+                        <h3 class="demo-page-title-1">Security</h3>
+                        <div class="b-b m-y-sm">
+                         
+                        </div>
+                </div>
+                <div class="row sample-fit-form-row">
+                        <div class="col-md-3">                                
+                        </div>
+                        <div class="col-md-5 m-t-2 font-bold m-t-34">User Name</div>
+                        <div class="col-md-4 p-t-1 p-b-1 m-b-12">
+                            {{page.model.UserName}}                            
+                        </div>
+                </div>
+                <div class="row sample-fit-form-row">
+                        <div class="col-md-3">                                
+                        </div>
+                        <div class="col-md-5 m-t-2 font-bold m-t-34">
+                            <div>
+                                Email Address
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4 p-t-1 p-b-1 m-b-12">
+                            {{page.model.EmailAddress}}
+                        </div>
+                </div>
+                <div class="row sample-fit-form-row">
+                        <div class="col-md-3">                                
+                        </div>
+                        <div class="col-md-5 m-t-2 font-bold m-t-34">
+                            <div>
+                                Password
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4 p-t-1 p-b-1 m-b-12">
+                            <button class="btn medium rounded primary w-full m-b-md" ng-click="page.changePassword()">Change Password</button>
+                        </div>
+                </div>
+                <div class="row sample-fit-form-row">
+                        <div class="col-md-3">                                
+                        </div>
+                        <div class="col-md-5 m-t-2 font-bold m-t-34">
+                            <div>
+                                Recovery Email Address
+                            </div>                            
+                        </div>
+                        <div class="col-md-4 p-t-1 p-b-1 m-b-12">
+                                <div class="col-md-8 m-t-2 font-normal m-t-34">{{page.model.RecoveryEmailID}}</div>
+                        </div>
+                </div>
+                <div class="row sample-fit-form-row">
+                        <div class="col-md-3">                                
+                        </div>
+                        <div class="col-md-5 m-t-2 font-bold m-t-34">
+                            <div>
+                                Recovery Mobile Number
+                            </div>                            
+                        </div>
+                        <div class="col-md-4 p-t-1 p-b-1 m-b-12">
+                                <div>{{page.model.RecoveryMobNumber}}</div>
+                        </div>
+                </div>
+                <div class="row sample-fit-form-row">
+                    <div class="col-md-3">                                
+                    </div>
+                    <div class="col-md-5 m-t-2 font-bold m-t-34">
+                        <div>
+                            <rp-form-select-menu config="page.formConfig.securityquestion" rp-model="page.model.securityquestion">
+                            </rp-form-select-menu>
+                        </div>                            
+                    </div>
+                    <div class="col-md-4 p-t-1 p-b-1 m-b-12">
+                        <button class="btn medium rounded primary w-full m-b-md" ng-click="page.changePassword()">Change Recovery Answer</button>
+                    </div>
+            </div>
+
+              
+        </div>   
+    
+</div>
+

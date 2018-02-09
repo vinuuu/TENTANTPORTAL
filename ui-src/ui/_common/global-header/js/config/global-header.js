@@ -13,6 +13,9 @@
         headerModel.setUserLinks([{
             "text": "Sign out",
             "event": "signout.rpGlobalHeader"
+        },{
+            "text": "Settings",
+            "event": "signout.rpGlobalHeader"
         }]);
 
         headerModel.setToolbarIcons({
@@ -32,6 +35,10 @@
             // }
         });
         headerModel.userLinks.invoke = function(link) {
+            if(link.text==="Settings"){
+                state.go('home.settings');
+            }
+            else{
             //var URL="https://rpidevntw008.realpage.com/users/sarroju/Q12018RELEASE-QA.accounting/tenant/apigw.phtml";
             var URL = 'api/logout';
             http.post(URL,
@@ -52,7 +59,7 @@
                 sessionStorage.removeItem('companyName');
                 state.go('login');
             });
-            
+        }
         };
         headerModel.toolbarIcons.invoke = function(icon) {
             state.go('home.dashbaord');
