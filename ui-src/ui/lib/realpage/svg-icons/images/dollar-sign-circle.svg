@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="57px" viewBox="0 0 62 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Revenue Management</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#0076CC" offset="0%"></stop>
+            <stop stop-color="#178DE3" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-2">
+            <stop stop-color="#0076CC" offset="0%"></stop>
+            <stop stop-color="#178DE3" offset="100%"></stop>
+        </linearGradient>
+        <path d="M63.3378787,32.7599992 L68.4786786,32.7599992 C66.0997986,45.6422389 54.8026389,55.4399986 41.2399993,55.4399986 C29.6782395,55.4399986 19.7569998,48.3159588 15.6040399,38.2359591 L11,42.8399989 L11,27.7199993 L26.1199996,27.7199993 L19.5402798,34.2997192 C22.3677197,43.6060789 31.0213995,50.3999988 41.2399993,50.3999988 C52.012999,50.3999988 61.0371188,42.8450389 63.3378787,32.7599992 Z M66.3946386,17.2040396 L70.9986785,12.5999997 L70.9986785,27.7199993 L55.8786789,27.7199993 L62.4583987,21.1427995 C59.6309588,11.8339197 50.977279,5.03999988 40.7586793,5.03999988 C29.9856795,5.03999988 20.9615598,12.5949597 18.6607998,22.6799994 L13.5199999,22.6799994 C15.8988799,9.79775976 27.1960396,0 40.7586793,0 C52.322959,0 62.2441987,7.12151982 66.3946386,17.2040396 Z M43.25,25.25 C46.9715,25.25 50,28.2785 50,32 C50,35.7215 46.9715,38.75 43.25,38.75 L43.25,41 L38.75,41 L38.75,38.75 L34.25,38.75 L34.25,34.25 L43.25,34.25 C44.492,34.25 45.5,33.242 45.5,32 C45.5,30.758 44.492,29.75 43.25,29.75 L38.75,29.75 C35.0285,29.75 32,26.7215 32,23 C32,19.2785 35.0285,16.25 38.75,16.25 L38.75,14 L43.25,14 L43.25,16.25 L47.75,16.25 L47.75,20.75 L38.75,20.75 C37.508,20.75 36.5,21.758 36.5,23 C36.5,24.242 37.508,25.25 38.75,25.25 L43.25,25.25 Z" id="path-3"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-365.000000, -625.000000)">
+            <g id="Asset-Optimization" transform="translate(24.000000, 592.000000)">
+                <g id="Revenue-Management" transform="translate(331.000000, 34.000000)">
+                    <g>
+                        <use stroke="#979797" fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        <use stroke="url(#linearGradient-2)" xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

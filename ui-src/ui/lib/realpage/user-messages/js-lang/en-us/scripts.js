@@ -92,4 +92,3 @@
         .module("rpUserMessages")
         .config(['appLangBundleProvider', config]);
 })(angular);
-

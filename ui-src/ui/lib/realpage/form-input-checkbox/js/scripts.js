@@ -5,7 +5,7 @@
     "use strict";
 
     function rpFormInputCheckbox($timeout, checkboxConfig) {
-        function pre(scope, elem, attr) {
+        function pre(scope) {
             scope.config = scope.config || checkboxConfig();
         }
 
@@ -15,12 +15,14 @@
 
             dir.init = function () {
                 scope.checkbox = dir;
+                dir.destWatch = scope.$on("$destroy", dir.destroy);
+            };
 
-                dir.state = {
+            dir.getState = function () {
+                return {
+                    "disabled": dir.isDisabled(),
                     "has-label": scope.rpLabelText !== undefined
                 };
-
-                dir.destWatch = scope.$on("$destroy", dir.destroy);
             };
 
             dir.onChange = function () {
@@ -30,6 +32,10 @@
             dir.evalOnChange = function () {
                 scope.rpOnChange();
                 scope.config.data.onChange(scope.rpModel);
+            };
+
+            dir.isDisabled = function () {
+                return scope.rpDisabled || config.isDisabled();
             };
 
             dir.destroy = function () {
@@ -45,7 +51,7 @@
             dir.init();
         }
 
-        function compile(elem, attr, trans) {
+        function compile() {
             return {
                 pre: pre,
                 post: post
@@ -57,6 +63,7 @@
                 rpModel: "=",
                 config: "=?",
                 rpOnChange: "&",
+                rpDisabled: "=?",
                 rpLabelText: "=?"
             },
             restrict: "E",
@@ -94,11 +101,15 @@
         p.init = function () {
             var s = this;
 
+            index++;
+
             s.data = {
                 trueValue: true,
+                disabled: false,
                 falseValue: false,
                 onChange: angular.noop,
-                id: "rp-checkbox-" + index++
+                name: "rpCheckbox" + index,
+                id: "rp-checkbox-" + index
             };
         };
 
@@ -106,6 +117,11 @@
             var s = this;
             angular.extend(s.data, data || {});
             return s;
+        };
+
+        p.isDisabled = function () {
+            var s = this;
+            return s.data.disabled;
         };
 
         p.destroy = function () {
@@ -126,6 +142,5 @@
 //  Source: _lib\realpage\form-input-checkbox\js\templates\templates.inc.js
 angular.module("rpFormInputCheckbox").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/form-input-checkbox/templates/input-checkbox.html",
-"<div class=\"rp-form-input-checkbox\" ng-class=\"checkbox.state\"><label class=\"rp-form-input-checkbox-btn\"><input type=\"checkbox\" ng-model=\"rpModel\" id=\"{{config.data.id}}\" name=\"{{config.data.name}}\" ng-value=\"config.data.value\" ng-change=\"checkbox.onChange(rpModel)\"> <i></i></label><label class=\"rp-form-input-checkbox-label\" for=\"{{config.data.id}}\">{{rpLabelText}}</label></div>");
+"<div class=\"rp-form-input-checkbox\" ng-class=\"checkbox.getState()\"><label class=\"rp-form-input-checkbox-btn\"><input type=\"checkbox\" ng-model=\"rpModel\" id=\"{{config.data.id}}\" name=\"{{config.data.name}}\" ng-value=\"config.data.value\" ng-disabled=\"checkbox.isDisabled()\" ng-change=\"checkbox.onChange(rpModel)\"> <i></i></label><label class=\"rp-form-input-checkbox-label\" for=\"{{config.data.id}}\">{{rpLabelText}}</label></div>");
 }]);
-

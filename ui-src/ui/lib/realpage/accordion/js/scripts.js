@@ -256,4 +256,3 @@ angular.module("rpAccordion", []);
             AccordionSvc
         ]);
 })(angular);
-

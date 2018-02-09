@@ -75,4 +75,3 @@
             GlobalHeaderActions
         ]);
 })(angular);
-

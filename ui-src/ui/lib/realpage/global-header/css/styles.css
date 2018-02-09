@@ -206,6 +206,8 @@
     font-weight: bold;
     line-height: 18px;
     letter-spacing: 0.005em;
+    height: 50px;
+    overflow: hidden;
     margin-left: 5px;
     line-height: 50px; }
   .rp-gh-app-switcher-product {

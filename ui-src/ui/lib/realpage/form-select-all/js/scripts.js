@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\form-select-all\js\_bundle.inc
 angular.module("rpFormSelectAll", []);
 
 //  Source: _lib\realpage\form-select-all\js\templates\select-all.js
@@ -129,4 +128,3 @@ angular.module("rpFormSelectAll", []);
         .module('rpFormSelectAll')
         .directive('rpSelectAll', [rpSelectAll]);
 })(angular);
-

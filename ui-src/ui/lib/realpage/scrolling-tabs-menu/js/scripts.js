@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\scrolling-tabs-menu\js\_bundle.inc
 angular.module("rpScrollingTabsMenu", []);
 
 //  Source: _lib\realpage\scrolling-tabs-menu\js\templates\templates.inc.js

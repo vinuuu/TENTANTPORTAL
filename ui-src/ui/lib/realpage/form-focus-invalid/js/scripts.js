@@ -39,4 +39,3 @@
         .module("rpFormFocusInvalid")
         .directive("rpFocusInvalidField", [rpFocusInvalidField]);
 })(angular);
-

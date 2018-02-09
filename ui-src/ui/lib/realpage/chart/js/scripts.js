@@ -978,4 +978,3 @@ $templateCache.put("realpage/chart/templates/pie-chart2.html",
         .module("rpChart")
         .factory("rpLineChart2Config", ["rpBaseChartConfig", factory]);
 })(angular);
-

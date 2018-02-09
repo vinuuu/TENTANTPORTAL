@@ -1,20 +1,30 @@
 $border-color:#e4e6e7;
 #dashboard {
     .finalAmt {
-        border-top: 1px solid black;
+        border-bottom: 1px solid black;
     }
     // .linkcls {
     //     color: blue;
     // }
+    .graybg{
+        background-color: #f8f4f4!important
+    }
+    .progress-bar{        
+        background-color: green !important;
+        }
     .acr-hdr {
         border: 1px solid white;
         -webkit-box-shadow: 1px 1px 1px 0 white;
+    }
+    .slider span.bar.selection {
+        background-color: greenyellow !important    
     }
     .acr-content1 {
         border: 1px solid $border-color;
         margin-left: 1px;
         margin-right: 1px;
         padding: 12px 12px 12px 0px;
+        cursor: pointer;
     }
     .acr-content2 {
         border: 1px solid $border-color;
@@ -32,5 +42,13 @@ $border-color:#e4e6e7;
     }
     .no-bottom {
         margin-bottom: 0rem !important
+    }
+    .scroll-div {
+        height: 350px;
+        overflow: scroll;
+    }
+    .jumbotron {
+        padding: 1rem 2rem !important;
+        margin-bottom: 0px;
     }
 }

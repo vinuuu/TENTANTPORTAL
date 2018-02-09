@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\slide-toggle\js\_bundle.inc
 angular.module("rpSlideToggle", []);
 
 //  Source: _lib\realpage\slide-toggle\js\directives\slide-toggle.js
@@ -85,4 +84,3 @@ angular.module("rpSlideToggle", []);
         .module("rpSlideToggle")
         .directive('rpSlideToggle', ['timeout', rpSlideToggle]);
 })(angular);
-

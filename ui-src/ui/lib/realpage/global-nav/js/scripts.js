@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\global-nav\js\_bundle.inc
 //  Source: _lib\realpage\global-nav\js\plugin\init.js
 // Global Nav Containers
 
@@ -693,4 +692,3 @@ angular.module("rpGlobalNav", []);
         .module("rpGlobalNav")
         .factory("rpGlobalNavModel", ["eventStream", factory]);
 })(angular);
-

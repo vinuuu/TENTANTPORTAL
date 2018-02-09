@@ -3,10 +3,10 @@
 
 
 
-    function factory($http) {
+    function factory($http,baseSvc) {
         return {
             getInvoiceList: function(obj) {
-                return $http.post('/api/viewPay', obj);
+                return baseSvc.getTenentData('/api/payments', obj);
             }
         };
     }
@@ -15,6 +15,6 @@
         .module('ui')
         .factory('viewPaySvc', factory);
 
-    factory.$inject = ['$http'];
+    factory.$inject = ['$http','baseSvc'];
 
 })();

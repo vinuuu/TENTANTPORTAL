@@ -3,7 +3,7 @@
 (function(angular) {
     "use strict";
 
-    function config(cdnVer, headerModel, state) {
+    function config(cdnVer, headerModel, state, http) {
         headerModel.extendData({
             productLink: "#/dashbaord",
             // showProductName: true,
@@ -17,7 +17,7 @@
 
         headerModel.setToolbarIcons({
             homeIcon: {
-                // url: "#/",
+                 url: "#/dashboard",
                 active: true
             }
         });
@@ -27,15 +27,32 @@
                 active: true
             },
 
-            helpIcon: {
-                active: true
-            }
+            // helpIcon: {
+            //     active: true
+            // }
         });
         headerModel.userLinks.invoke = function(link) {
-            sessionStorage.removeItem('sessionID');
-            sessionStorage.removeItem('userName');
-            sessionStorage.removeItem('companyName');
-            state.go('login');
+            //var URL="https://rpidevntw008.realpage.com/users/sarroju/Q12018RELEASE-QA.accounting/tenant/apigw.phtml";
+            var URL = 'api/logout';
+            http.post(URL,
+                {
+                    "request": {
+                      "operation": {
+                        "content": {
+                          "function": {
+                               "getlogout": {}
+                          }
+                        }
+                      }
+                    }
+                  }
+            ).then(function(){
+                sessionStorage.removeItem('sessionID');
+                sessionStorage.removeItem('userName');
+                sessionStorage.removeItem('companyName');
+                state.go('login');
+            });
+            
         };
         headerModel.toolbarIcons.invoke = function(icon) {
             state.go('home.dashbaord');
@@ -44,5 +61,17 @@
 
     angular
         .module("ui")
-        .run(["cdnVer", "rpGlobalHeaderModel", '$state', config]);
+        .run(["cdnVer", "rpGlobalHeaderModel", '$state', '$http', config]);
 })(angular);
+
+angular.module("ui").filter('IsNumber',['$filter', function ($filter) {
+    return function (item) {
+      if (angular.isNumber(item)) {
+         return $filter('currency')(item);
+      }
+      else{
+          return item !=""?'$'+item:"";
+      }   
+      return item;
+    };
+  }]); 

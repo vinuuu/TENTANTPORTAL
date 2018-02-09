@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\form-textarea\js\_bundle.inc
 angular.module("rpFormTextarea", []);
 
 //  Source: _lib\realpage\form-textarea\js\directives\textarea.js
@@ -192,4 +191,3 @@ angular.module("rpFormTextarea", []);
         .module('rpFormTextarea')
         .factory('rpFormTextareaHtml', [factory]);
 })(angular);
-

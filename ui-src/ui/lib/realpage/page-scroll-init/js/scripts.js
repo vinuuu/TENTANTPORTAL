@@ -51,4 +51,3 @@
             RpPageScrollInit
         ]);
 })(angular);
-

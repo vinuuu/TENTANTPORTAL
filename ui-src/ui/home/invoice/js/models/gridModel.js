@@ -26,12 +26,17 @@
                     key: "UNITID"
                 },
                 {
+                    key: "ACCOUNTLABEL"
+                },
+                {
                     key: "TOTALENTERED",
-                    type: "currency"
+                    type: "custom",
+                    templateUrl: "app/templates/currency.html",
                 },
                 {
                     key: "TOTALDUE",
-                    type: "currency"
+                    type: "custom",
+                    templateUrl: "app/templates/currency.html",
                 },
                 {
                     key: "TOTALPAYING",
@@ -53,11 +58,11 @@
                 [{
                         key: "isSelect",
                         type: "select",
-                        enabled: false
+                        enabled: true
                     },
                     {
                         key: "RECORDID",
-                        text: "Invoice"
+                        text: "Invoice number"
                     },
                     {
                         key: "WHENCREATED",
@@ -72,16 +77,20 @@
                         text: "Unit ID"
                     },
                     {
+                        key: "ACCOUNTLABEL",
+                        text: "Account label"
+                    },                    
+                    {
                         key: "TOTALENTERED",
                         text: "Amount"
                     },
                     {
                         key: "TOTALDUE",
-                        text: "Amount Due"
+                        text: "Amount due"
                     },
                     {
                         key: "TOTALPAYING",
-                        text: "Pay Amount"
+                        text: "Pay amount"
                     },
                     {
                         key: "STATE",

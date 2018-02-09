@@ -6,7 +6,7 @@
                 //writeit ardam kaley o
 
                 config.headers = config.headers || {};
-                if (config.url != "/api/login" && config.url != "/api/forgotPwd") {
+                if (config.url != "api/login" && config.url != "api/forgotPwd") {
                     config.headers['authentication-token'] = sessionStorage.getItem('sessionID');
                 }
                 config.headers['Content-Type'] = 'application/json';

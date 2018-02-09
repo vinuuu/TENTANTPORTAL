@@ -4342,4 +4342,3 @@ angular.module("template/tabs/tab.html", []).run(["$templateCache", function($te
         "</li>\n" +
         "");
 }]);
-

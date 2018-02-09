@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         skip: [],
 
         cdn: {
-            cdnVer: "v1.8.0"
+            cdnVer: "v1.9.0"
         }
     };
 };

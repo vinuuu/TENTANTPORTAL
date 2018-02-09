@@ -51,7 +51,7 @@
             var s = this;
 
             s.list.forEach(function (item) {
-                if (item.isActive()) {
+                if (item.isActive() && !item.isDisabled()) {
                     item.setSelected(bool);
                 }
             });
@@ -69,7 +69,7 @@
                 selectedCount = 0;
 
             s.list.forEach(function (item) {
-                if (item.isActive()) {
+                if (item.isActive() && !item.isDisabled()) {
                     activeCount++;
 
                     if (item.isSelected()) {
@@ -95,7 +95,7 @@
                 bool = !s.selected;
 
             s.list.forEach(function (item) {
-                if (item.isActive()) {
+                if (item.isActive() && !item.isDisabled()) {
                     item.setSelected(bool);
                 }
             });
@@ -159,10 +159,15 @@
         p.init = function () {
             var s = this;
             s.data = {
-                obj: {},
+                obj: {}
+            };
+
+            s.keys = {
                 activeKey: "active",
+                disabledKey: "disabled",
                 selectionKey: "selected"
             };
+
             s.changeCallback = angular.noop;
         };
 
@@ -176,13 +181,23 @@
 
         p.setData = function (data) {
             var s = this;
-            s.data = data || {};
+
+            s.data = data || {
+                obj: {}
+            };
+
+            angular.forEach(s.keys, function (val, key) {
+                if (s.data[key]) {
+                    s.keys[key] = s.data[key];
+                }
+            });
+
             return s;
         };
 
         p.setSelected = function (bool) {
             var s = this;
-            s.data.obj[s.data.selectionKey] = bool;
+            s.data.obj[s.keys.selectionKey] = bool;
             return s;
         };
 
@@ -198,12 +213,17 @@
 
         p.isActive = function () {
             var s = this;
-            return s.data.obj[s.data.activeKey];
+            return s.data.obj[s.keys.activeKey];
         };
 
         p.isSelected = function () {
             var s = this;
-            return s.data.obj[s.data.selectionKey];
+            return s.data.obj[s.keys.selectionKey];
+        };
+
+        p.isDisabled = function () {
+            var s = this;
+            return s.data.obj[s.keys.disabledKey];
         };
 
         // Destroy
@@ -280,4 +300,3 @@ angular.module("app").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/select-all/templates/select-all.html",
 "<div class=\"rp-select-all\" rp-stop-event=\"click\"><span class=\"rp-select-all-state\" ng-class=\"{'selected': rpModel.selected}\"></span> <span class=\"rp-select-all-label\">{{rpLabelText}}</span></div>");
 }]);
-

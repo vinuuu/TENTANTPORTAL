@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\dialog\js\_bundle.inc
 angular.module("rpDialog", []);
 
 // Templates
@@ -259,4 +258,3 @@ angular.module("rpDialog", []);
         .module("rpDialog")
         .directive('rpDialogs', ['rpDialogSvc', rpDialogs]);
 })(angular);
-

@@ -84,4 +84,3 @@
         .module("rpModal")
         .factory("rpModalModel", ["$modal", factory]);
 })(angular);
-

@@ -1,4 +1,3 @@
-//  Source: _lib\_base\css\variables\_bundle.cssinc
 //  Source: _lib\_base\css\variables\variables.scss
 // UI Kit: RealPage Colors
 
@@ -889,7 +888,6 @@ $pre-color:                   $gray-dark !default;
 $pre-border-color:            #ccc !default;
 $pre-scrollable-max-height:   340px !default;
 
-//  Source: _lib\__foundation-ui-styles\sass\variables\_bundle.cssinc
 //  Source: _lib\__foundation-ui-styles\sass\variables\colors.scss
 $red:   	#f44336;
 $red-50:    #ffebee;
@@ -1435,7 +1433,6 @@ $lgScAndBelow:      "screen and (max-width: #{$maxLgScWd})";
 
 $exLgSc:            "screen and (min-width: #{$minExLgScWd})";
 
-//  Source: _lib\_base\css\mixins\_bundle.cssinc
 //  Source: node_modules\font-awesome\scss\_variables.scss
 // Variables
 // --------------------------
@@ -4029,4 +4026,3 @@ $fa-var-youtube-square: "\f166";
     -o-transition-duration: $duration;
     transition-duration: $duration;
 }
-

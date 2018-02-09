@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\nav-tabs\js\_bundle.inc
 angular.module("rpNavTabs", []);
 
 
@@ -136,4 +135,3 @@ $templateCache.put("realpage/nav-tabs/templates/sample-tab.html",
         .module("rpNavTabs")
         .directive("rpNavTabs", [rpNavTabs]);
 })(angular);
-

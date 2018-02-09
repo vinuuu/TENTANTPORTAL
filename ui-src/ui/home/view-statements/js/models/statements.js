@@ -69,9 +69,9 @@
                 response.data.forEach(function(item) {
                     model.leaseArray.push({ leaseID: item.LEASEID, leaseName: item.LEASEID });
                 });
-
+                model.leaseArray.push({ leaseID: "", leaseName: "All"});
                 formConfig.setOptions("leaseIdList", model.leaseArray);
-                model.leaseId = stateParams.id;
+                model.leaseId = "";
 
                 model.getStatement();
 
@@ -80,30 +80,6 @@
 
         model.getStatement = function() {
             model.toggleGridState(true);
-            // var obj = {
-            //     "request": {
-            //         "operation": {
-            //             "content": {
-            //                 "function": {
-            //                     "getTenantStatement": {
-            //                         // "leaseid": "AH-1038",
-            //                         "leaseid": model.leaseId,
-            //                         "fromdate": {
-            //                             "year": moment(model.dateRange).year(),
-            //                             "month": moment(model.dateRange).month() + 1,
-            //                             "day": "01"
-            //                         },
-            //                         "todate": {
-            //                             "year": moment().format('YYYY'),
-            //                             "month": moment().month() + 1,
-            //                             "day": moment().format('DD')
-            //                         }
-            //                     }
-            //                 }
-            //             }
-            //         }
-            //     }
-            // };
             statementSvc.getStatementList(baseModel.statementInput(model.leaseId, model.dateRange)).catch(baseModel.error).then(function(response) {
                 model.toggleGridState(false);
                 if (response.data.api) {

@@ -1137,4 +1137,3 @@
     };
     e.footable.plugins.register(o, n)
 })(jQuery, window);
-

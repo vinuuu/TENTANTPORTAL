@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="60px" viewBox="0 0 50 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Performance Analytics</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#0076CC" offset="0%"></stop>
+            <stop stop-color="#178DE3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-495.000000, -625.000000)" fill-rule="nonzero" fill="url(#linearGradient-1)">
+            <g id="Asset-Optimization" transform="translate(24.000000, 592.000000)">
+                <g id="Performance-Analytics" transform="translate(455.000000, 33.000000)">
+                    <path d="M16,55 L66,55 L66,60 L16,60 L16,55 Z M36,33 L46,33 L46,53 L36,53 L36,33 Z M51,23 L61,23 L61,54 L51,54 L51,23 Z M21,43 L31,43 L31,53 L21,53 L21,43 Z M20.4612089,36 L17,32.5390264 L44.6431631,4.89529508 L38.3131162,4.89529508 L38.3131162,0 L53,0 L53,14.6858852 L48.1043721,14.6858852 L48.1043721,8.35871634 L20.4612089,36 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

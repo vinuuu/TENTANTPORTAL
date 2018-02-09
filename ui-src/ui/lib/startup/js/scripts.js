@@ -1,4 +1,3 @@
-//  Source: _rp-core\_startup\js\_bundle.inc
 //  Source: _rp-core\_app\js\startup\env.js
 // Environment
 
@@ -322,7 +321,7 @@ var logc, logw;
     };
 
     svc.gen = function () {
-        svc.appVer = RealPage.cookie.read('APPVER') || "{{appVer}}";
+        svc.appVer = RealPage.cookie.read('APPVER') || RealPage.ENV.APPVER;
         // svc.appVer = RealPage.debugMode() && !svc.cacheFiles() ? svc.random : svc.appVer;
         return svc;
     };
@@ -446,4 +445,3 @@ var logc, logw;
 
 //  Source: _rp-core\_app\js\startup\compile-time.js
 logc("UI Compiled on: " + RealPage.ENV.COMPILETIME);
-

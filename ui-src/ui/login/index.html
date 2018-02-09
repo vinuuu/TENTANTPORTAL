@@ -22,18 +22,26 @@
                         <br>
                         <span class="m-t-1">{{page.model.translateNames('lockedAlert')}}</span>
                     </div>
-                    <form name="loginForm" novalidate>
+                    <div class="m-t-1 statictxtcls-reset red-font" ng-if="page.model.pwdSuccess==='Adminlocked'">
+                        <span class="clearfix lockedcls">Your account has been locked, please contact administrator </span>                        
+                    </div>
+                    <div class="m-t-1 statictxtcls-reset red-font" ng-if="page.model.pwdSuccess==='Inactive'">
+                        <span class="clearfix lockedcls">Your account has been disabled, please contact administrator </span>                        
+                    </div>
+                    <form name="loginForm" autocomplete="off" novalidate ng-submit="loginForm.$valid?page.model.submitLogin():''">
                         <div class="innerbody-login m-t-1">
                             <div class="form-group clearfix">
                                 <span class="m-l-1 fontcls">{{page.model.translateNames('uName')}}</span>
                                 <div class="col-md-12">
-                                    <input name="username" ng-class="page.model.pwdSuccess==='failure'  || page.model.pwdSuccess==='warning'?'login-failue':''" type="text" class="form-control" ng-model="page.model.username" required>
+                                    <input name="username" readonly 
+                                    onfocus="this.removeAttribute('readonly');" ng-class="page.model.pwdSuccess==='failure'  || page.model.pwdSuccess==='warning'?'login-failue':''" type="text" class="form-control" ng-model="page.model.username" required>
                                 </div>
                             </div>
                             <div class="form-group clearfix">
                                 <span class="m-l-1 fontcls">{{page.model.translateNames('pwd')}}</span>
                                 <div class="col-md-12">
-                                    <input type="password" name="pwd" ng-class="page.model.pwdSuccess==='failure' || page.model.pwdSuccess==='warning'?'login-failue':''" class="form-control" ng-model="page.model.pwd" required>
+                                    <input type="password"  readonly 
+                                    onfocus="this.removeAttribute('readonly');" name="pwd" ng-class="page.model.pwdSuccess==='failure' || page.model.pwdSuccess==='warning'?'login-failue':''" class="form-control" ng-model="page.model.pwd" required>
                                 </div>
 
                                 <div class="failurecls col-md-12" ng-if="page.model.pwdSuccess==='failure'">
@@ -51,7 +59,7 @@
                              </label>
                             </div>
                             <div class="form-group text-center clearfix">
-                                <input type="button" value="Login" ng-disabled="loginForm.$invalid" ng-click="page.model.submitLogin();" class="center-block m-t-3 btn btn-primary btnContinue">
+                                <input type="submit" value="Login" ng-disabled="loginForm.$invalid"  class="center-block m-t-3 btn btn-primary btnContinue">
                             </div>
                             <div class="text-center">
                                 <a href="javcascrip:void(0);" class="linkcls" ng-click="page.model.showhideDiv('reset');">{{page.model.translateNames('ForgotPwd')}}</a>
@@ -61,7 +69,7 @@
                     </form>
 
                 </div>
-
+   
                 <div id="midblock2" ng-show="page.model.showHideFlag === 'reset'">
                     <form name="resetForm" novalidate>
                         <div class="text-center m-t-1 statictxtcls fontcls"><span>{{page.model.translateNames('username-email')}}</span></div>
@@ -69,7 +77,8 @@
                             <div class="form-group clearfix text-center">
                                 <span class="fontcls">{{page.model.translateNames('Enter-username-email')}} </span>
                                 <div class="col-md-12">
-                                    <input type="text" name="u_e_id" class="form-control" ng-change="page.model.elseStr=''" ng-model="page.model.u_e_id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="anjana@gmail.com" required>
+                                    <input type="text" readonly 
+                                    onfocus="this.removeAttribute('readonly');" name="u_e_id" class="form-control" ng-change="page.model.elseStr=''" ng-model="page.model.u_e_id" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" placeholder="anjana@gmail.com" required>
                                     <span ng-show="resetForm.u_e_id.$error.pattern" class="error">Please enter valid email</span>
                                     <span ng-show="page.model.strErrUSernameFlag && !(resetForm.u_e_id.$error.pattern)" class="error">{{page.model.elseStr}}</span>
                                 </div>
@@ -94,7 +103,8 @@
                                     <span class="clearfix fontcls">{{page.model.securityQusn}}</span>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" ng-change="page.model.elseStr=''" ng-model="page.model.question1" required>
+                                    <input type="text" readonly 
+                                    onfocus="this.removeAttribute('readonly');" class="form-control" ng-change="page.model.elseStr=''" ng-model="page.model.question1" required>
                                     <span ng-show="page.model.strErrQusn" class="error">{{page.model.elseStr}}</span>
                                 </div>
                             </div>
@@ -122,7 +132,8 @@
                                     {{page.model.translateNames('email-me')}}
                                 </div>
                                 <div class="col-md-12 m-t-1">
-                                    <input type="text" name="emailCode" ng-pattern="/[0-9]/" ng-change="page.model.elseStr=''" maxlength="6" minlength="6" required class="form-control" ng-model="page.model.emailCode" placeholder="Enter the 6 digit code">
+                                    <input type="text" readonly 
+                                    onfocus="this.removeAttribute('readonly');" name="emailCode" ng-pattern="/[0-9]/" ng-change="page.model.elseStr=''" maxlength="6" minlength="6" required class="form-control" ng-model="page.model.emailCode" placeholder="Enter the 6 digit code">
                                     <div class="text-center">
                                         <span ng-show="verifyform.emailCode.$error.pattern" class="error">Enter only numbers</span>
                                         <span ng-show="page.model.strErrVerifyCode && !(verifyform.emailCode.$error.pattern)" class="error">{{page.model.elseStr}}</span>
@@ -160,7 +171,10 @@
                         <div class="innerbody-login-pwd m-t-2">
                             <div class="form-group clearfix">
                                 <div class="lh m-l-1">
-                                    <span class="clearfix font-bold fontcls">{{page.model.translateNames('enter_pwd1')}}  {{page.model.strUserName}} {{page.model.translateNames('enter_pwd2')}} </span>
+                                    <span class="clearfix font-bold fontcls">{{page.model.translateNames('enter_pwd1')}}  {{page.model.strUserName}}  </span>
+                                </div>
+                                <div class="lh m-l-1">
+                                <span>{{page.model.translateNames('enter_pwd2')}}</span>
                                 </div>
                                 <div class="lh m-l-1">
 
@@ -186,12 +200,21 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 clearfix m-t-1">
-                                    <input type="password" name="pwd1" ng-change="page.model.pwdValidation(page.model.pwd1)" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/" ng-maxlength="100" ng-model="page.model.pwd1" class="form-control" required>
+                                    <div class="form-config">
+                                        <label class="form-label">New Password</label>
+                                        <!-- ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/" -->
+                                    <input type="password" readonly 
+                                    onfocus="this.removeAttribute('readonly');" name="pwd1" ng-keyup="page.model.pwdValidation(page.model.pwd1)"  ng-maxlength="100" ng-model="page.model.pwd1" class="form-control" required>
                                     <span class="pwd m-l-1" ng-show="confirmpwdForm.pwd1.$error.pattern">Please enter valid password </span>
-
                                 </div>
-                                <div class="col-md-12 clearfix m-t-1"> <input type="password" name="pwd2" ng-match="page.model.pwd1" ng-model="page.model.pwd2" class="form-control" required></div>
+                                </div>
+                                <div class="col-md-12 clearfix m-t-1"> 
+                                        <div class="form-config">
+                                                <label class="form-label">Confirm Password</label>
+                                    <input type="password" readonly 
+                                    onfocus="this.removeAttribute('readonly');" name="pwd2" ng-match="page.model.pwd1" ng-model="page.model.pwd2" class="form-control" required></div>
                                 <span class="pwd m-l-1" ng-show="confirmpwdForm.pwd2.$error.match"> {{page.model.translateNames('pwd-match-restrict')}} </span>
+                                </div>  
                             </div>
                             <div class="form-group clearfix" ng-show="page.model.showHideFlag === 'firstlogin'">
                                 <span class="m-l-1">Security Questions </span>
@@ -202,7 +225,8 @@
                             </div>
                             <div class="form-group clearfix" ng-if="page.model.showHideFlag === 'firstlogin'">
                                 <span class="m-l-1"> Answer </span>
-                                <div class="col-md-12"> <input type="text" class="form-control" ng-maxlength="100" ng-model="page.model.security_a" required></div>
+                                <div class="col-md-12"> <input type="text" readonly 
+                                    onfocus="this.removeAttribute('readonly');" class="form-control" ng-maxlength="100" ng-model="page.model.security_a" required></div>
                             </div>
                             <div class="form-group text-center clearfix">
                                 <input type="button" ng-value="page.model.showHideFlag === 'firstlogin' ? 'Update':'Change password' " ng-disabled="confirmpwdForm.$invalid" ng-click=" page.model.showHideFlag === 'firstlogin'?page.model.resetpwdSubmit():page.model.forgotpwdSubmit()"

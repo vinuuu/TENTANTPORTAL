@@ -5,7 +5,7 @@
     </div>
     <rp-busy-indicator ng-if="!page.model.apiReady" model="page.model.busyIndicator">
     </rp-busy-indicator>
-    <div rp-accordion="tenant-accordion">
+    <div ng-if="false" rp-accordion="tenant-accordion">
         <div rp-accordion-panel class="acr-hdr rp-accordion-panel theme-1" ng-class="{'expand': $index === 0}" ng-repeat="item in page.model.tenantlist">
             <h3 class="rp-accordion-panel-title theme-1" ng-click="page.model.bindleaseDetailsData(item)">
                 <span class="rp-accordion-panel-title-text theme-1">
@@ -20,15 +20,19 @@
                         <label class="control-label font-bold col-md-12 ">Lease ID</label>
                         <span class="control-label col-md-12">{{item.LEASEID}}</span>
                     </div>
-                    <div class="form-group col-md-3 p-l-0 p-r-0 ">
+                    <div class="form-group col-md-2 p-l-0 p-r-0 ">
                         <label class="control-label font-bold col-md-12 ">Lease Term</label>
                         <span class="control-label col-md-12 ">{{item.LEASESTART}} - {{item.LEASEEND}}</span>
                     </div>
                     <div class="form-group col-md-3 p-l-0 p-r-0 ">
+                        <label class="control-label font-bold col-md-12 ">Property</label>
+                        <span class="control-label col-md-12 ">{{item.PROPERTY}}</span>
+                    </div>
+                    <div class="form-group col-md-2 p-l-0 p-r-0 ">
                         <label class="control-label font-bold col-md-12">Unit</label>
                         <span class="control-label col-md-12 ">{{item.UNIT}}</span>
                     </div>
-                    <div class="form-group col-md-3 p-l-0 p-r-0 ">
+                    <div class="form-group col-md-2 p-l-0 p-r-0 ">
                         <label class="control-label font-bold col-md-12 ">Space Size</label>
                         <span class="control-label col-md-12 ">{{item.RENTABLEAREA}} Sq.ft.</span>
                     </div>
@@ -49,20 +53,20 @@
                                         <div class="form-group  no-bottom">
                                             <label class="font-bold control-label col-sm-8 ">Previous Balance</label>
                                             <div class="col-sm-4 ">
-                                                <span ng-bind="(item.leaseDetailsData.prevbalance||0|currency)"></span>
+                                                <span ng-bind="(item.leaseDetailsData.prevbalance||0|IsNumber)"></span>
                                             </div>
                                         </div>
                                         <div class="form-group  no-bottom">
                                             <label class="font-bold control-label col-sm-8 ">Payments/Credits</label>
                                             <div class="col-sm-4 ">
-                                                <span ng-bind="(item.leaseDetailsData.credits||0|currency)">
+                                                <span ng-bind="(item.leaseDetailsData.credits||0|IsNumber)">
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="form-group no-bottom">
                                             <label class="font-bold control-label col-sm-8 " ng-bind="page.model.cuurentmonth"></label>
                                             <div class="col-sm-4 ">
-                                                <span ng-bind="(item.leaseDetailsData.currentstatement||0|currency)">
+                                                <span ng-bind="(item.leaseDetailsData.currentstatement||0|IsNumber)">
                                             </span>
                                             </div>
                                         </div>
@@ -71,7 +75,7 @@
                                         </div>
                                         <div class="form-group  no-bottom">
                                             <label class=" font-bold control-label col-sm-8 ">Current Balance</label>
-                                            <span class="col-sm-4 finalAmt " ng-bind="(item.leaseDetailsData.currentbalane||0|currency)">
+                                            <span class="col-sm-4 finalAmt " ng-bind="(item.leaseDetailsData.currentbalane||0|IsNumber)">
                                             </span>
                                         </div>
                                     </form>
@@ -85,8 +89,8 @@
                                     <div class="form-group m-t-1 ">
                                         <h4 class="col-sm-7 "> February 1,2016</h4>
                                         <div class="col-sm-5 ">
-                                            <button class="btn btn-primary btnContinue pull-right ">Pay Now</button>
-                                            <!-- <div class="m-l-2 text-center "> Coming soon</div> -->
+                                            <button ng-disabled="true" class="btn btn btnContinue pull-right ">Pay Now</button>
+                                            <div class="m-l-2 text-center "> Coming soon</div>
                                         </div>
                                     </div>
                                 </form>
@@ -98,4 +102,112 @@
             </div>
         </div>
     </div>
+    <div class="jumbotron">
+        <h4>Lease Information</h4>      
+      </div>
+    <div class="scroll-div">
+        <div ng-repeat="item in page.model.tenantlist" style="max-height: 250px;" class="acr-content  rp-accordion-panel-content sample-accordion-content">
+            <div ng-click="page.model.bindleaseDetailsData(item)" class="p-t-1 inner-accordion theme-1 row acr-content1" ng-class="(page.model.selectedLease === item.LEASEID)?'graybg':''">
+                <div class="form-group col-md-2 p-l-0 p-r-0 ">
+                    <label class="control-label font-bold col-md-12 ">Lease ID</label>
+                    <span class="control-label col-md-12">{{item.LEASEID}}</span>
+                </div>
+                <div class="form-group col-md-3 p-l-0 p-r-0 ">
+                    <label class="control-label font-bold col-md-12 ">Lease Term</label>
+                    <span class="control-label col-md-12 ">{{item.LEASESTART}} - {{item.LEASEEND}}</span>
+                </div>
+                <div class="form-group col-md-3 p-l-0 p-r-0 ">
+                    <label class="control-label font-bold col-md-12 ">Property</label>
+                    <span class="control-label col-md-12 ">{{item.PROPERTY}}</span>
+                </div>
+                <div class="form-group col-md-2 p-l-0 p-r-0 ">
+                    <label class="control-label font-bold col-md-12">Unit</label>
+                    <span class="control-label col-md-12 ">{{item.UNIT}}</span>
+                </div>
+                <div class="form-group col-md-2 p-l-0 p-r-0 ">
+                    <label class="control-label font-bold col-md-12 ">Space Size</label>
+                    <span class="control-label col-md-12 ">{{item.RENTABLEAREA}} Sq.ft.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rp-accordion-panel-content lease-accordion-content">
+        <div class="row m-t-1 ">
+            <div class="col-md-6 ">
+                <div id="myDiv " class="panel panel-default p-l-1 acr-content2">
+                    <div class="panel-body ">
+                        <label class="font-bold p-r-1">Payments</label></br>
+                        <div class="row finalAmt"></div>
+                        <div class="row  text-center p-t-1" style="margin-bottom:-15px !important">
+                            <span class="font-bold" ng-bind="page.model.leaseDetailsData.currentstatement"></span>
+                        </div>
+                        <div class="row">
+                            <div class="m-t-1">
+                                <div class="col-md-2">
+                                    <span class="font-bold" ng-bind="page.model.leaseDetailsData.prevbalance|IsNumber"> </span>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{page.model.leaseDetailsData.percentage}}" aria-valuemin="0" aria-valuemax="100" ng-style="page.model.getpercentage">
+                                            <span class="sr-only">{{page.model.leaseDetailsData.percentage}}% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <span class="font-bold" ng-bind="page.model.leaseDetailsData.currentbalane|IsNumber"> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row  text-center">
+                            <span style="color:green" class="font-bold">Paid of {{page.model.leaseDetailsData.credits|IsNumber }}({{page.model.leaseDetailsData.roundPercentage}}%)</span>
+                        </div>
+                        <div class="row text-center p-t-2">
+                            <div class="form-group no-bottom">
+                                <!-- ng-if="page.model.permissions.Statements==1" -->
+                                <a ng-if="page.model.permissions.Payments==1" style="padding-left: 15rem;" href="#/accounts/lease/{{page.model.leaseDetailsData.leaseID}}" class="col-sm-6 btn-link linkcls ">View</a>
+                                <a ng-if="page.model.permissions.Payments==0" ng-disabled="true" alt="Need Role To Invoice" clss="col-sm-6 btn-link linkcls ">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 ">
+                <div class="panel panel-default acr-content3 ">
+                    <label class="font-bold ">Outstanding Invoices</label>
+                    <div class="row finalAmt "></div>
+                    <div class="row p-t-2 p-l-3">
+                        <div class="col-md-4">
+                            <label class="font-bold p-l-1" style="font-size: 21px;color: red" ng-bind="page.model.leaseDetailsData.overdue_stats"></label>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="font-bold" style="font-size: 21px;color: green" ng-bind="page.model.leaseDetailsData.due_stats"></label>
+                        </div>
+                        <div class="col-md-4" style="border-left: 1px solid #dddddd;">
+                            <label class="font-bold" style="font-size: 21px;" ng-bind="page.model.leaseDetailsData.currentbalane|IsNumber"></label>
+                        </div>
+                    </div>
+                    <div class="row p-l-3">
+                        <div class="col-md-4">
+                            <label class="font-bold">Overdue</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="font-bold">Due</label>
+                        </div>
+                        <div class="col-md-4" style="border-left: 1px solid #dddddd;">
+                            <label class="font-bold">Total</label>
+                        </div>
+                    </div>
+                    <div class="row text-center p-t-2">
+                            <div class="form-group no-bottom">
+                                <!-- ng-if="page.model.permissions.Statements==1" -->
+                                <a ng-if="page.model.permissions.Invoices==1" style="padding-left: 15rem;" href="#/invoice/lease/{{page.model.leaseDetailsData.leaseID}}/month/0" class="col-sm-6 btn-link linkcls ">View</a>
+                                <a ng-if="page.model.permissions.Invoices==0" ng-disabled="true" alt="Need Role To Invoice" clss="col-sm-6 btn-link linkcls ">View</a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

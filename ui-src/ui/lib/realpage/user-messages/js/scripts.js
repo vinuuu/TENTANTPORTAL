@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\user-messages\js\_bundle.inc
 angular.module("rpUserMessages", []);
 
 //  Source: _lib\realpage\user-messages\js\templates\user-messages.js
@@ -427,4 +426,3 @@ angular.module("rpUserMessages", []);
             toggleMessageContent
         ]);
 })(angular);
-

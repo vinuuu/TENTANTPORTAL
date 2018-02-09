@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\session-info\js\_bundle.inc
 angular.module("rpSessionInfo", []);
 
 //  Source: _lib\realpage\session-info\js\services\session.js
@@ -151,4 +150,3 @@ angular.module("rpSessionInfo", []);
             factory
         ]);
 })(angular);
-

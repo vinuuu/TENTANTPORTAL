@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\form-input-date\js\_bundle.inc
 angular.module("rpFormInputDate", []);
 
 //  Source: _lib\realpage\form-input-date\js\templates\input-date.js
@@ -288,4 +287,3 @@ angular.module("rpFormInputDate", []);
         .module('rpFormInputDate')
         .directive('inputTypeDate', ['keycode', inputTypeDate]);
 })(angular);
-

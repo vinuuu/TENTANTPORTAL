@@ -24,15 +24,17 @@
     }
     .WHENCREATED,
     .TYPE,
+    .ACCOUNTLABEL 
     .DESCRIPTION {
         width: 20%;
     }
-    .rp-grid-body-1 {
+    .rp-grid-body-1,.rp-grid-row {
         .AMOUNT,
         .PAYMENT,
         .BALANCE {
             width: 13%;
-            // text-align: right;
+             text-align: right;
         }
+      
     }
 }

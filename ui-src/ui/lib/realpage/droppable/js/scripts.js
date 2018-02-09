@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\droppable\js\_bundle.inc
 angular.module("rpDroppable", []);
 
 //  Source: _lib\realpage\droppable\js\services\droppable.js
@@ -53,4 +52,3 @@ angular.module("rpDroppable", []);
         .module("rpDroppable")
         .directive('rpDroppable', ['rpDroppableSvc', 'rectangle', rpDroppable]);
 })(angular);
-

@@ -1,5 +1,5 @@
 <span ng-show="false">{{record.color=record["DUE_IN_DAYS"].includes('Due Today')?'orange':(record["DUE_IN_DAYS"].includes('days')?'red':'blue')}}</span>
-<div class="grid-edit-title" ng-if="record[config.key]==='Paid'">
+<div class="grid-edit-title" ng-if="record[config.key]==='Paid' || record[config.key]==='Reversed' || record[config.key]==='Reversal' ">
     <span style="color:rgb(9, 82, 9);" ng-bind="record[config.key]"></span>
 </div>
 <div class="grid-edit-title" ng-if="record[config.key]!=='Paid'" ng-switch="record.color">

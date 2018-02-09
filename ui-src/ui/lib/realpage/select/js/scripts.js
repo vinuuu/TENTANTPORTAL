@@ -379,4 +379,3 @@ angular.module("rpSelect").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/select/templates/select-option.html",
 "<span class=\"rp-select-option-text\" ng-bind-html=\"option[config.data.displayDataKey] | highlight: $select.search\"></span>");
 }]);
-

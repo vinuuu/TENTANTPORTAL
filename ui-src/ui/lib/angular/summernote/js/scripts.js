@@ -8195,4 +8195,3 @@ angular.module('summernote', [])
       }
     };
   }]);
-

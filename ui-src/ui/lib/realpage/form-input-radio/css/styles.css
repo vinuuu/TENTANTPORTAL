@@ -1,6 +1,9 @@
 .rp-form-input-radio {
-  padding-left: 28px;
-  position: relative; }
+  display: inline-block; }
+  .rp-form-input-radio.has-label {
+    display: block;
+    padding-left: 28px;
+    position: relative; }
   .rp-form-input-radio.label-1 {
     padding-left: 0;
     padding-right: 28px; }
@@ -8,9 +11,12 @@
     display: inline-block; }
   .rp-form-input-radio label {
     margin: 0;
-    height: 40px;
+    height: 18px;
     display: block;
     cursor: pointer;
+    line-height: 18px; }
+  .rp-form-input-radio.has-label label {
+    height: 40px;
     line-height: 40px; }
   .rp-form-input-radio input {
     top: 0;
@@ -18,12 +24,14 @@
     position: absolute;
     margin: 0 0 0 -100px; }
   .rp-form-input-radio-btn {
-    top: 0;
-    left: 0;
-    width: 28px;
+    width: 18px;
     overflow: hidden;
-    position: absolute;
     white-space: nowrap; }
+    .has-label .rp-form-input-radio-btn {
+      top: 0;
+      left: 0;
+      width: 28px;
+      position: absolute; }
   .rp-form-input-radio.label-1 .rp-form-input-radio-btn {
     right: 0;
     left: auto;

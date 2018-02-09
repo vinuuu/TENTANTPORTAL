@@ -21,7 +21,7 @@
             <input type="button" value="Go" class="btn btn-primary" ng-click="page.model.onLeaseIdChange();">
         </div>
         <div class="col-md-5 col-md-push-2 form-group m-t-2">
-            <input type="button" value="Download PDF" class="btn btn-success pull-right">
+            <input type="button" value="Download PDF" class="ng-hide  btn btn-success pull-right" ng-click="page.downloadpdf();">
         </div>
         <div class="col-md-1 form-group m-t-2">
             <input type="button" value="Print" class="btn btn-default" ng-click="page.printDiv();">
@@ -32,10 +32,10 @@
         <br>
         <br>
         <address class="text-right">
-           Zykar <br>
-           2362 Kelly Drive <br>
-           Charieston WV 25301 <br>
-           U.S.A
+                {{page.model.statementData.billingaddress[0].BILLING.PRINTAS}} <br>
+                {{page.model.statementData.billingaddress[0].BILLING.ADDRESS1}} <br>
+                {{page.model.statementData.billingaddress[0].BILLING.CITY}} {{page.model.statementData.billingaddress[0].BILLING.STATE}} <br>
+                {{page.model.statementData.billingaddress[0].BILLING.COUNTRY}}  {{page.model.statementData.billingaddress[0].BILLING.ZIP}}
         </address>
         <br>
         <div class="text-right">
@@ -54,25 +54,25 @@
                 <div class="form-group">
                     <label for="bal" class="col-md-6">Opening Balance</label>
                     <div class="col-md-6 text-right">
-                        {{page.model.statementData.openingbalance |currency}}
+                        {{page.model.statementData.openingbalance |IsNumber}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="bal" class="col-md-6">Invoiced Amount</label>
                     <div class="col-md-6 text-right">
-                        {{page.model.statementData.invoiceamount|currency}}
+                        {{page.model.statementData.invoiceamount|IsNumber}}
                     </div>
                 </div>
                 <div class="form-group b-b-1">
                     <label for="bal" class="col-md-6">Amount Paid</label>
                     <div class="col-md-6 text-right">
-                        {{page.model.statementData.paidamount|currency}}
+                        {{page.model.statementData.paidamount|IsNumber}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="bal" class="col-md-6">Balance Due</label>
                     <div class="col-md-6 text-right">
-                        {{page.model.statementData.dueamount|currency}}
+                        {{page.model.statementData.dueamount|IsNumber}}
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
         <br>
 
 
-        <div class="grid-controls">
+        <div ng-if="false" class="grid-controls">
 
             <div class="grid-control-item">
                 <rp-toggle model="page.model.grid.filtersModel.state.active" options="{
@@ -98,8 +98,8 @@
         </rp-grid>
 
         <div class="row m-t-1">
-            <div class="col-md-10"> <span class="font-bold pull-right">Balance Due</span></div>
-            <div class="col-md-2 text-right"> <span class="text-font-bold pull-left p-l-2">{{page.model.statementData.dueamount|currency}}</span></div>
+            <div class="col-md-11"> <span class="font-bold pull-right">Balance Due</span></div>
+            <div class="col-md-1"> <span class="text-font-bold">{{page.model.statementData.dueamount|IsNumber}}</span></div>
         </div>
         <!-- <rp-grid-pagination model="page.model.gridPagination">
         </rp-grid-pagination> -->

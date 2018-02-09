@@ -97,3 +97,8 @@
     .rp-form-input-checkbox input:checked + i:before {
       visibility: visible;
       background: #0076cc; }
+  .rp-form-input-checkbox input:disabled + i {
+    background: rgba(0, 0, 0, 0.05);
+    border: solid 1px #c9cdcf; }
+    .rp-form-input-checkbox input:disabled + i:before {
+      background: #afb3b6; }

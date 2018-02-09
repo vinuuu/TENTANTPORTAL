@@ -4,7 +4,7 @@
     "use strict";
 
     function AccountsMdl(accountsSvc, formConfig, gridConfig, gridModel, gridTransformSvc,
-        dashboardSvc, baseModel, busyIndicatorModel, invoiceSvc, gridPaginationModel, moment, q) {
+        dashboardSvc, baseModel, busyIndicatorModel, invoiceSvc, gridPaginationModel, moment, q,stateParams) {
         var model = {},
             busyIndicator,
 
@@ -24,16 +24,19 @@
             model.leaseArray = [];
             formConfig.setMethodsSrc(model);
             model.formConfig = formConfig;
-            var options = [{
+            var options =  [{
+                    accountHisrotyName: "All",
+                    accountHisrotyNameID: ''
+                },{
                     accountHisrotyName: "Current Month",
-                    accountHisrotyNameID: moment().format('MM/DD/YYYY')
+                    accountHisrotyNameID: moment().format("MM/01/YYYY")
                 },
                 {
-                    accountHisrotyName: "last 3 Month",
+                    accountHisrotyName: "Last 3 Months",
                     accountHisrotyNameID: moment().subtract(3, 'month').format('MM/DD/YYYY')
                 },
                 {
-                    accountHisrotyName: "last 6 Month",
+                    accountHisrotyName: "Last 6 Months",
                     accountHisrotyNameID: moment().subtract(6, 'month').format('MM/DD/YYYY')
                 }
             ];
@@ -41,7 +44,7 @@
             formConfig
                 .setOptions("accountHistory", options);
 
-            model.accountHistoryType = moment().format('MM/DD/YYYY');
+            model.accountHistoryType = "";
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);
@@ -68,30 +71,14 @@
         };
 
         model.bindLeaseIDToDDl = function() {
-            model.toggleGridState(true);
-            // var obj = {
-            //     "request": {
-            //         "operation": {
-            //             "content": {
-            //                 "function": {
-            //                     "readByQuery": {
-            //                         "object": "leaseoccupancy",
-            //                         "fields": "",
-            //                         "query": "",
-            //                         "returnFormat": "json"
-            //                     }
-            //                 }
-            //             }
-            //         }
-            //     }
-            // };
+            model.toggleGridState(true);           
             dashboardSvc.getLeaseList(baseModel.LeaseIDBinding()).catch(baseModel.error).then(function(response) {
                 response.data.forEach(function(item) {
                     model.leaseArray.push({ accountHisrotyNameID: item.LEASEID, accountHisrotyName: item.LEASEID });
-                });
-
+                });                
+                model.leaseArray.push({ accountHisrotyNameID: '', accountHisrotyName: 'All' });                
                 formConfig.setOptions("leaseData", model.leaseArray);
-                model.accountHistory = model.leaseArray[0].accountHisrotyNameID;
+                model.accountHistory = stateParams.id!=="0"?stateParams.id:"";
                 model.getCustData({ leaseid: model.accountHistory, asofDate: moment(model.accountHistoryType) });
 
             });
@@ -102,7 +89,7 @@
             model.toggleGridState(true);
 
             q.all([accountsSvc.getAccountsInfo(baseModel.AccountsInput(data.leaseid)),
-                invoiceSvc.getInvoiceList(baseModel.invoiceListWithDateInput(data.leaseid, model.accountHistoryType))
+                invoiceSvc.getInvoiceList(baseModel.invoiceListWithDateInputNoLeaseIDinPayments(data.leaseid,model.accountHistoryType))
             ]).catch(baseModel.error).then(function(data) {
                 model.toggleGridState(false);
                 model.custData = data[0].data.api[0];
@@ -139,6 +126,6 @@
         'dashboardSvc',
         'baseModel',
         'rpBusyIndicatorModel', 'invoiceSvc', 'rpGridPaginationModel', 'moment',
-        '$q'
+        '$q','$stateParams'
     ];
 })(angular);

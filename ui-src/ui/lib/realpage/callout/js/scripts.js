@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\callout\js\_bundle.inc
 angular.module("rpCallout", []);
 
 //  Source: _lib\realpage\callout\js\directives\callout.js
@@ -58,4 +57,3 @@ angular.module("rpCallout", []);
         .module("rpCallout")
         .directive('rpCallout', ['timeout', rpCallout]);
 })(angular);
-

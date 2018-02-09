@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\scrolling-datepicker\js\_bundle.inc
 angular.module("rpScrollingDatepicker", []);
 
 //  Source: _lib\realpage\scrolling-datepicker\js\models\scrolling-datepicker.js
@@ -213,4 +212,3 @@ angular.module("rpScrollingDatepicker", []);
         .module("rpScrollingDatepicker")
         .run(['$templateCache', installTemplate]);
 })(angular);
-

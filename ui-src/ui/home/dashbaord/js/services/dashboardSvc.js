@@ -3,10 +3,10 @@
 
 
 
-    function factory($http) {
+    function factory($http,baseSvc) {
         return {
             getLeaseList: function(obj) {
-                return $http.post('/api/dashboard', obj);
+                return baseSvc.getTenentData('/api/dashboard', obj);
             }
         };
     }
@@ -15,6 +15,6 @@
         .module('ui')
         .factory('dashboardSvc', factory);
 
-    factory.$inject = ['$http'];
+    factory.$inject = ['$http','baseSvc'];
 
 })();

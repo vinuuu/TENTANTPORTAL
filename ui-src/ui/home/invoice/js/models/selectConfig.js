@@ -9,7 +9,11 @@
             valueKey: "paymentTypeNameID",
             onChange: model.getMethod("onPaymentTypeSelection")
         });
-
+        model.accountHistory = menuConfig({
+            nameKey: "accountHisrotyName",
+            valueKey: "accountHisrotyNameID",
+            onChange: model.getMethod("onaccountHistorySelection")
+        });
         model.leaseddl = menuConfig({
             nameKey: "leaseName",
             valueKey: "leaseID",

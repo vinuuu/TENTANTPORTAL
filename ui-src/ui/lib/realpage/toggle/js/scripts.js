@@ -111,4 +111,3 @@ $templateCache.put("realpage/toggle/templates/toggle.html",
         .module("rpToggle")
         .directive("rpToggle", ["timeout", rpToggle]);
 })(angular);
-

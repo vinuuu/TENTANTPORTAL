@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\form-checkbox\js\_bundle.inc
 angular.module("rpFormCheckbox", []);
 
 //  Source: _lib\realpage\form-checkbox\js\directives\checkbox.js
@@ -174,4 +173,3 @@ angular.module("rpFormCheckbox", []);
         .module('rpFormCheckbox')
         .factory('rpFormCheckboxHtml', [factory]);
 })(angular);
-

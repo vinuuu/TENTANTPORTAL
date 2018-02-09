@@ -207,4 +207,3 @@ angular.module("rpSessionTimeout").run(["$templateCache", function($templateCach
 $templateCache.put("realpage/session-timeout/templates/session-timeout.html",
 "<div class=\"modal rp-session-timeout-modal am-fade-and-slide-top\" tabindex=\"-1\" role=\"dialog\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" ng-click=\"sessionTimeout.extendSession()\">×</button><h4 class=\"modal-title\">Are You Still There?</h4></div><div class=\"modal-body\"><p>For security reasons, your session will end soon due to inactivity.</p><p>Your session will end in <strong>{{sessionTimeout.timer.data.min}} min(s) {{sessionTimeout.timer.data.sec}} sec(s)</strong>.</p></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-primary\" ng-click=\"sessionTimeout.extendSession()\">Extend Session</button></div></div></div></div>");
 }]);
-

@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\form-select-menu-v1\js\_bundle.inc
 angular.module("rpFormSelectMenu", []);
 
 //  Source: _lib\realpage\form-select-menu-v1\js\templates\templates.inc.js
@@ -408,4 +407,3 @@ $templateCache.put("realpage/form-select-menu-v1/templates/form-select-menu.html
         .module("rpFormSelectMenu")
         .filter("rpFormSelectMenuFilter", ["$filter", filter]);
 })(angular);
-

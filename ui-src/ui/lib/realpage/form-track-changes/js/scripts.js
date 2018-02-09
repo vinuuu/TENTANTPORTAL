@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\form-track-changes\js\_bundle.inc
 angular.module("rpFormTrackChanges", []);
 
 //  Source: _lib\realpage\form-track-changes\js\templates\templates.inc.js
@@ -317,4 +316,3 @@ $templateCache.put("realpage/form-track-changes/templates/unsaved-changes-alert-
         .module("rpFormTrackChanges")
         .run(["rpUnsavedChanges", init]);
 })(angular);
-

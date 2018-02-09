@@ -21,8 +21,12 @@
                     key: "UNITID"
                 },
                 {
+                    key: "ACCOUNTLABEL"
+                },
+                {
                     key: "TOTALENTERED",
-                    type: "currency"
+                    type: "custom",
+                    templateUrl: "app/templates/currency.html",
                 },
                 {
                     key: "STATE",
@@ -49,7 +53,7 @@
                     },
                     {
                         key: "RECORDNO",
-                        text: "Invoice"
+                        text: "Invoice number"
                     },
                     {
                         key: "LEASEID",
@@ -60,6 +64,10 @@
                         text: "Unit ID"
                     },
                     {
+                        key: "ACCOUNTLABEL",
+                        text: "Account label"
+                    },  
+                    {
                         key: "TOTALENTERED",
                         text: "Amount"
                     },
@@ -69,7 +77,7 @@
                     },
                     {
                         key: "WHENPAID",
-                        text: "DatePaid"
+                        text: "Date paid"
                     }
                     // {
                     //     key: "file",
@@ -79,52 +87,52 @@
             ];
         };
 
-        model.getFilters = function() {
-            return [{
-                    key: "WHENCREATED",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by Date"
-                },
-                {
-                    key: "RECORDNO",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by Invoice"
-                },
-                {
-                    key: "LEASEID",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by Lease ID"
-                },
-                {
-                    key: "UNITID",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by Unit ID"
-                },
-                {
-                    key: "TOTALENTERED",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by Amount"
-                },
-                {
-                    key: "STATE",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by Status"
-                },
-                {
-                    key: "WHENPAID",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by DatePaid"
-                }
+        // model.getFilters = function() {
+        //     return [{
+        //             key: "WHENCREATED",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Date"
+        //         },
+        //         {
+        //             key: "RECORDNO",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Invoice"
+        //         },
+        //         {
+        //             key: "LEASEID",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Lease ID"
+        //         },
+        //         {
+        //             key: "UNITID",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Unit ID"
+        //         },
+        //         {
+        //             key: "TOTALENTERED",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Amount"
+        //         },
+        //         {
+        //             key: "STATE",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Status"
+        //         },
+        //         {
+        //             key: "WHENPAID",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by DatePaid"
+        //         }
 
-            ];
-        };
+        //     ];
+        // };
         model.getTrackSelectionConfig = function() {
             var config = {},
                 columns = model.get();

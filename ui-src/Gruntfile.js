@@ -1,6 +1,6 @@
 //  Grunt Master
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     "use strict";
 
     var path = require("path"),
@@ -17,19 +17,19 @@ module.exports = function (grunt) {
         basePath: basePath,
         defCdnVer: "v1.3.0",
         gruntPath: basePath + "_grunt" + ds,
-        buildPath: path.resolve("../build") + ds,
+        buildPath: path.resolve("../../../buildLatest") + ds,
         activeApp: grunt.option("appName") || "*",
         testPath: path.resolve("../ui-tests") + ds,
         codeCoverage: path.resolve("../code-coverage") + ds,
         cdn: "http://uicdn.internaldev.realpage.com/"
     };
 
-    env.loadFile = function (filePath) {
+    env.loadFile = function(filePath) {
         filePath = path.join(env.basePath, filePath);
         return require(filePath);
     };
 
-    env.loadGruntFile = function (filePath) {
+    env.loadGruntFile = function(filePath) {
         filePath = path.join(env.gruntPath, filePath);
         return require(filePath);
     };

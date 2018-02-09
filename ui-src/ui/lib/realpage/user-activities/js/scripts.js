@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\user-activities\js\_bundle.inc
 angular.module("rpUserActivities", []);
 
 //  Source: _lib\realpage\user-activities\js\templates\user-activities.js
@@ -146,4 +145,3 @@ angular.module("rpUserActivities", []);
         .module("rpUserActivities")
         .directive('userActivities', ['userActivitiesModel', userActivities]);
 })(angular);
-

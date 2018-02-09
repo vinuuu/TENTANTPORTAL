@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\go-back\js\_bundle.inc
 angular.module("rpGoBack", []);
 
 //  Source: _lib\realpage\go-back\js\directives\go-back.js
@@ -24,4 +23,3 @@ angular.module("rpGoBack", []);
         .module("rpGoBack")
         .directive('goBack', ['$window', goBack]);
 })(angular);
-

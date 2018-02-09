@@ -5,7 +5,7 @@
     "use strict";
 
     function rpFormInputRadio(timeout, config) {
-        function pre(scope, elem, attr) {
+        function pre(scope) {
             scope.config = scope.config || config();
 
             if (scope.rpValue) {
@@ -13,12 +13,18 @@
             }
         }
 
-        function post(scope, elem, attr) {
+        function post(scope, elem) {
             var dir = {};
 
             dir.init = function () {
-                elem.on("change.rpFormInputRadio", dir.onChange);
+                scope.radio = dir;
                 dir.destWatch = scope.$on("$destroy", dir.destroy);
+            };
+
+            dir.getState = function () {
+                return {
+                    "has-label": !!scope.rpLabelText
+                };
             };
 
             dir.onChange = function () {
@@ -38,7 +44,7 @@
             dir.init();
         }
 
-        function compile(elem, attr, trans) {
+        function compile() {
             return {
                 pre: pre,
                 post: post
@@ -117,6 +123,5 @@
 //  Source: _lib\realpage\form-input-radio\js\templates\templates.inc.js
 angular.module("rpFormInputRadio").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/form-input-radio/templates/input-radio.html",
-"<div class=\"rp-form-input-radio\"><label class=\"rp-form-input-radio-btn\"><input type=\"radio\" ng-model=\"rpModel\" id=\"{{config.data.id}}\" name=\"{{config.data.name}}\" ng-value=\"config.data.value\" ng-change=\"config.data.onChange(rpModel)\"> <i></i></label><label class=\"rp-form-input-radio-label\" for=\"{{config.data.id}}\">{{rpLabelText}}</label></div>");
+"<div class=\"rp-form-input-radio\" ng-class=\"radio.getState()\"><label class=\"rp-form-input-radio-btn\"><input type=\"radio\" ng-model=\"rpModel\" id=\"{{config.data.id}}\" name=\"{{config.data.name}}\" ng-value=\"config.data.value\" ng-change=\"radio.onChange(rpModel)\"> <i></i></label><label class=\"rp-form-input-radio-label\" for=\"{{config.data.id}}\">{{rpLabelText}}</label></div>");
 }]);
-

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="57px" height="57px" viewBox="0 0 57 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Payments</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#0076CC" offset="0%"></stop>
+            <stop stop-color="#178DE3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-605.000000, -244.000000)" fill-rule="nonzero" fill="url(#linearGradient-1)">
+            <g id="Resident-Services" transform="translate(24.000000, 212.000000)">
+                <g id="Payments" transform="translate(577.000000, 32.000000)">
+                    <path d="M55.3,31.35 L49.6,31.35 L49.6,5.7 L15.4,5.7 L15.4,31.35 L9.7,31.35 L9.7,0 L55.3,0 L55.3,31.35 Z M31.36,18.24 C30.73015,18.24 30.22,18.753 30.22285,19.38285 C30.22285,20.007 30.73015,20.52 31.36,20.52 L33.64285,20.52 C36.7864,20.52 39.34285,23.0736 39.34285,26.22 C39.34285,28.9731 37.3792,31.2759 34.78,31.806 L34.78,34.2 L30.22,34.2 L30.22,31.92 L25.66,31.92 L25.66,27.35715 L33.64,27.35715 C34.267,27.35715 34.7743,26.847 34.7743,26.22 C34.7743,25.593 34.26985,25.08285 33.64,25.08285 L31.36,25.08285 C28.2193,25.08285 25.66,22.52355 25.66,19.38285 C25.66,16.6269 27.62365,14.32695 30.22,13.79685 L30.22,11.4 L34.78,11.4 L34.78,13.68 L39.34,13.68 L39.34,18.24 L31.36,18.24 Z M43.4953,37.05 L61,37.05 L61,57 L4,57 L4,37.05 L21.5047,37.05 C22.7758,41.96055 27.19615,45.6 32.5,45.6 C37.80385,45.6 42.2242,41.96055 43.4953,37.05 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

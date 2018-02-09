@@ -112,4 +112,3 @@ angular.module("rpSwitch").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/switch/templates/index.html",
 "<div class=\"rp-switch\" ng-class=\"{checked: rpSwitch.isChecked()}\"><label class=\"rp-switch-label\" for=\"{{config.data.id}}\">{{rpLabelText}}</label><label class=\"ui-switch\"><input type=\"checkbox\" ng-model=\"rpModel\" id=\"{{config.data.id}}\" name=\"{{::rpFieldName}}\" ng-change=\"rpSwitch.onChange(rpModel)\" ng-true-value=\"{{config.data.trueValue}}\" ng-false-value=\"{{config.data.falseValue}}\"> <i></i></label></div>");
 }]);
-

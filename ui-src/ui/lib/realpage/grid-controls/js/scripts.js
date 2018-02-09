@@ -77,4 +77,3 @@
         .module("rpGrid")
         .directive("rpGridSelect", ["rpGridSelectModel", rpGridSelect]);
 })(angular);
-

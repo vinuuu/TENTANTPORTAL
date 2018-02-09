@@ -25,7 +25,7 @@
         appConfig = {
             appName: appName,
             modules: modules,
-            basePath: "/ui"
+            basePath: "ui"
         };
 
         resolveModule

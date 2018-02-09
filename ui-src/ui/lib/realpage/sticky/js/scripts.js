@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\sticky\js\_bundle.inc
 angular.module("rpSticky", []);
 
 //  Source: _lib\realpage\sticky\js\directives\sticky.js
@@ -155,4 +154,3 @@ angular.module("rpSticky", []);
         .module("rpSticky")
         .directive('rpSticky', ['windowScroll', 'windowSize', rpSticky]);
 })(angular);
-

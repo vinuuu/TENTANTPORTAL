@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\language\js\_bundle.inc
 angular.module("rpLanguage", []);
 
 //  Source: _lib\realpage\language\js\providers\app-lang-keys.js
@@ -214,4 +213,3 @@ angular.module("rpLanguage", []);
             appLangTranslate
         ]);
 })(angular);
-

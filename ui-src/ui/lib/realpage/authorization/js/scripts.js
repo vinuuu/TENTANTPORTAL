@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\authorization\js\_bundle.inc
 angular.module("rpAuthorization", []);
 
 //  Source: _lib\realpage\authorization\js\config\auth-error-handler.js
@@ -15,10 +14,11 @@ angular.module("rpAuthorization", []);
                 },
 
                 responseError: function (rejection) {
-                    if (rejection.status === 401) {
+                    if (rejection.status === 403) {
                         cookie.erase('authorization');
-                        logc("401: Access Denied!");
-                        $window.location.href = '/ui/signin/#/';
+                        logc("403: Access Denied!");
+                        sessionStorage.removeItem("sessionID");
+                        $window.location.href = '/';
                     }
                     return $q.reject(rejection);
                 }
@@ -320,4 +320,3 @@ angular.module("rpAuthorization", []);
             factory
         ]);
 })(angular);
-

@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\form-textarea-v1\js\_bundle.inc
 angular.module("rpFormTextarea", []);
 
 //  Source: _lib\realpage\form-textarea-v1\js\templates\templates.inc.js

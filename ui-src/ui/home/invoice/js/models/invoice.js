@@ -3,7 +3,7 @@
 
     function factory(formConfig, gridConfig, gridModel, gridTransformSvc,
         langTranslate, invoiceSvc, _, gridPaginationModel,
-        timeout, busyIndicatorModel, q, dashboardSvc, baseModel, stateParams) {
+        timeout, busyIndicatorModel, q, dashboardSvc, baseModel, stateParams,moment) {
         var model = {},
             grid = gridModel(),
             busyIndicator,
@@ -11,9 +11,9 @@
             gridPagination = gridPaginationModel(),
             gridTransform = gridTransformSvc();
         var gridPaginationConfig = {
-            currentPage: 0,
+            currentPage: 1,
             pagesPerGroup: 5,
-            recordsPerPage: 6,
+            recordsPerPage: 20,
             currentPageGroup: 0
         };
         model.toggleGridState = function(flg) {
@@ -52,7 +52,7 @@
             formConfig.setMethodsSrc(model);
 
             var options = [{
-                    paymentTypeName: "All Transaction",
+                    paymentTypeName: "All Transactions",
                     paymentTypeNameID: ""
                 },
                 {
@@ -64,7 +64,28 @@
                     paymentTypeNameID: "Due for payment"
                 }
             ];
+            var optionsDate = [{
+                accountHisrotyName: "All",
+                accountHisrotyNameID: ''
+            },{
+                accountHisrotyName: "Current Month",
+                accountHisrotyNameID: moment().format("MM/01/YYYY")
+            },
+            {
+                accountHisrotyName: "Last 3 Months",
+                accountHisrotyNameID: moment().subtract(3, 'month').format('MM/DD/YYYY')
+            },
+            {
+                accountHisrotyName: "Last 6 Months",
+                accountHisrotyNameID: moment().subtract(6, 'month').format('MM/DD/YYYY')
+            }
+        ];
 
+        formConfig
+            .setOptions("accountHistory", optionsDate);
+
+            model.accountHistoryType = '';
+            model.accountHistoryType = stateParams.m === "1" ? moment().format("MM/01/YYYY"):'';
             formConfig.setOptions("paymentType", options);
             model.paymenttype = '';
             model.grid = grid;
@@ -75,6 +96,7 @@
                 .setConfig(gridPaginationConfig);
             model.gridPagination = gridPagination;
             grid.formConfig = formConfig;
+            model.leasevalueID=stateParams.id!=="0"?stateParams.id:"";
             model.loadData();
 
             return model;
@@ -90,6 +112,9 @@
             //api call
             model.bindGrid();
         };
+        model.onaccountHistorySelection = function(key) {
+            model.bindGrid({ leaseid: model.accountHistory, asofDate: model.accountHistoryType });
+        };
         model.setData = function(data) {
             gridPagination.setData(data.records).goToPage({
                 number: 0
@@ -99,7 +124,7 @@
             // var leaseid = leaseid === undefined ? '' : leaseid;
             model.toggleGridState(true);
 
-            q.all([invoiceSvc.getInvoiceList(baseModel.invoiceListTransactionInput(model.leasevalueID, model.paymenttype)),
+            q.all([invoiceSvc.getInvoiceList(baseModel.invoiceListTransactionInput(model.leasevalueID, model.paymenttype,model.accountHistoryType)),
                 dashboardSvc.getLeaseList(baseModel.LeaseIDBinding())
             ]).catch(baseModel.error).then(function(data) {
                 model.toggleGridState(false);
@@ -116,8 +141,6 @@
                     });
 
                     formConfig.setOptions("leaseddl", model.leaseArray);
-                    model.leasevalueID = '';
-
                     model.setData({ "records": data[0].data });
                 }
 
@@ -129,7 +152,7 @@
         model.bindGrid = function() {
             model.toggleGridState(true);
 
-            invoiceSvc.getInvoiceList(baseModel.invoiceListTransactionInput(model.leasevalueID, model.paymenttype)).then(function(response) {
+            invoiceSvc.getInvoiceList(baseModel.invoiceListTransactionInput(model.leasevalueID, model.paymenttype,model.accountHistoryType)).then(function(response) {
                 model.toggleGridState(false);
                 model.totalCount = response.data.length;
                 response.data.forEach(function(item) {
@@ -150,7 +173,7 @@
     factory.$inject = ['invoiceSelectMenuFormConfig', 'invoiceGrid1Config', "rpGridModel",
         "rpGridTransform", "appLangTranslate", "invoiceSvc", 'underscore',
         'rpGridPaginationModel', '$timeout',
-        'rpBusyIndicatorModel', '$q', 'dashboardSvc', 'baseModel', '$stateParams'
+        'rpBusyIndicatorModel', '$q', 'dashboardSvc', 'baseModel', '$stateParams','moment'
     ];
 
 })();

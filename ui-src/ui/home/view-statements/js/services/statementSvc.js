@@ -2,11 +2,11 @@
     'use strict';
 
 
-    function Factory($http) {
+    function Factory($http,baseSvc) {
 
         return {
             getStatementList: function(obj) {
-                return $http.post('/api/statement', obj);
+                return baseSvc.getTenentData('/api/statements', obj);
             }
         };
 
@@ -15,6 +15,6 @@
         .module('ui')
         .factory('statementSvc', Factory);
 
-    Factory.$inject = ['$http'];
+    Factory.$inject = ['$http','baseSvc'];
 
 })();

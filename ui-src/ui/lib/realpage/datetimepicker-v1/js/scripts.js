@@ -2642,7 +2642,7 @@ angular.module("rpDatetimepicker", []);
 //  Source: _lib\realpage\datetimepicker-v1\js\templates\templates.inc.js
 angular.module("rpDatetimepicker").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
-"<div class=\"rp-datetimepicker form-group\" ng-class=\"datetimepicker.getState()\"><div ng-model=\"rpModel\" rp-datetimepicker-link id=\"{{config.fieldID}}\" options=\"config.options\" name=\"{{config.fieldName}}\" ng-required=\"config.required\" on-change=\"config.onChange(rpModel)\" class=\"input-group rp-datetimepicker-text-wrap\"><input type=\"text\" class=\"rp-datetimepicker-text form-control\"> <span class=\"rp-datetimepicker-icon-wrap input-group-addon\"><span class=\"rp-datetimepicker-icon {{::config.iconClass}}\"></span></span></div><p ng-if=\"config.required\" class=\"rp-datetimepicker-error-msg rp-form-error-msg\">{{config.errorMsgs.required}}</p></div>");
+"<div class=\"rp-datetimepicker form-group\" ng-class=\"datetimepicker.getState()\"><span ng-if=\"config.disabled\" class=\"rp-datetimepicker-disabled-cover\"></span><div ng-model=\"rpModel\" rp-datetimepicker-link id=\"{{config.fieldID}}\" options=\"config.options\" name=\"{{config.fieldName}}\" ng-required=\"config.required\" on-change=\"config.onChange(rpModel)\" class=\"input-group rp-datetimepicker-text-wrap\"><input type=\"text\" class=\"rp-datetimepicker-text form-control\"> <span class=\"rp-datetimepicker-icon-wrap input-group-addon\"><span class=\"rp-datetimepicker-icon {{::config.iconClass}}\"></span></span></div><p ng-if=\"config.required\" class=\"rp-datetimepicker-error-msg rp-form-error-msg\">{{config.errorMsgs.required}}</p></div>");
 }]);
 
 //  Source: _lib\realpage\datetimepicker-v1\js\directives\datetimepicker.js
@@ -2791,7 +2791,8 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
 
             dir.getState = function () {
                 var state = {
-                    required: false
+                    required: false,
+                    disabled: config.disabled
                 };
 
                 if (config.size) {
@@ -2814,11 +2815,11 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
                 }
             };
 
-            dir.onError = function (data) {
+            dir.onError = function () {
                 scope.$apply(scope.config.onError);
             };
 
-            dir.onHide = function (data) {
+            dir.onHide = function () {
                 scope.$apply(scope.config.onHide);
             };
 
@@ -2834,11 +2835,11 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
                 });
             };
 
-            dir.onShow = function (data) {
+            dir.onShow = function () {
                 scope.$apply(scope.config.onShow);
             };
 
-            dir.onUpdate = function (data) {
+            dir.onUpdate = function () {
                 scope.$apply(scope.config.onUpdate);
             };
 
@@ -3228,6 +3229,12 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
                 model.picker.useCurrent(bool);
             };
 
+            model.setDisabled = function (bool) {
+                bool = bool === undefined ? true : bool;
+                model.disabled = bool;
+                return model;
+            };
+
             model.destroy = function () {
                 model = undefined;
                 picker = undefined;
@@ -3243,4 +3250,3 @@ $templateCache.put("realpage/datetimepicker-v1/templates/datepicker.html",
         .module("rpDatetimepicker")
         .factory("rpDatetimepickerConfig", ["moment", factory]);
 })(angular);
-

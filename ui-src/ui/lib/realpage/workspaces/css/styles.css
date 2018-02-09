@@ -231,6 +231,8 @@
     font-size: 0.8125rem;
     line-height: 1.75rem;
     text-align: center; }
+  .rp-workspace .link-disabled {
+    cursor: default; }
 
 .rp-workspaces-list {
   float: left;

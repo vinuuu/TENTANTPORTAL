@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\scroll-page\js\_bundle.inc
 angular.module("rpScrollPage", []);
 
 //  Source: _lib\realpage\scroll-page\js\models\scroll-page.js
@@ -76,4 +75,3 @@ angular.module("rpScrollPage", []);
         .module("rpScrollPage")
         .directive('rpScrollPage', [rpScrollPage]);
 })(angular);
-

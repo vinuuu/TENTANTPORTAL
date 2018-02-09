@@ -206,4 +206,3 @@
         .module("rpEditableForm")
         .directive("rpEditableFormEdit", ["rpEditableFormSvc", rpEditableFormEdit]);
 })(angular);
-

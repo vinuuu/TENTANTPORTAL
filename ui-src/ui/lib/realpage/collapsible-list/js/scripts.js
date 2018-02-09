@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\collapsible-list\js\_bundle.inc
 angular.module("rpCollapsibleList", []);
 
 //  Source: _lib\realpage\collapsible-list\js\directives\collapsible-list.js
@@ -100,4 +99,3 @@ angular.module("rpCollapsibleList", []);
             rpCollapsibleList
         ]);
 })(angular);
-

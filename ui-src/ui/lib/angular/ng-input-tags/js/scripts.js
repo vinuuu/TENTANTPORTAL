@@ -1150,4 +1150,3 @@ tagsInput.run(["$templateCache", function($templateCache) {
 }]);
 
 }());
-

@@ -301,6 +301,12 @@ $templateCache.put("realpage/grid-pagination/templates/grid-pagination.html",
             return $filter("filter")(data, newFilterBy);
         };
 
+        p.flushBackupData = function () {
+            var s = this;
+            s._data = undefined;
+            return s;
+        };
+
         p.getDataSlice = function () {
             var s = this,
                 start = s.config.currentPage * s.config.recordsPerPage,
@@ -388,6 +394,7 @@ $templateCache.put("realpage/grid-pagination/templates/grid-pagination.html",
 
             s.data = undefined;
             s.grid = undefined;
+            s._data = undefined;
             s.pages = undefined;
             s.config = undefined;
             s.pageGroups = undefined;
@@ -517,4 +524,3 @@ $templateCache.put("realpage/grid-pagination/templates/grid-pagination.html",
         .module("rpGrid")
         .factory("rpGridPaginationSelectionModel", [factory]);
 })(angular);
-

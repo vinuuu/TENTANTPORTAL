@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\page-title\js\_bundle.inc
 angular.module("rpPageTitle", []);
 
 //  Source: _lib\realpage\page-title\js\providers\page-title.js
@@ -120,4 +119,3 @@ angular.module("rpPageTitle", []);
         .module("rpPageTitle")
         .directive('title', ['rpPageTitleModel', title]);
 })(angular);
-

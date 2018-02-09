@@ -15,16 +15,23 @@
                     key: "DESCRIPTION"
                 },
                 {
+                    key: "ACCOUNTLABEL"
+                },
+                {
                     key: "AMOUNT",
-                    type: "currency"
+                    type: "custom",
+                    templateUrl: "app/templates/currency.html",
+
                 },
                 {
                     key: "PAYMENT",
-                    type: "currency"
+                    type: "custom",
+                    templateUrl: "app/templates/currency.html",
                 },
                 {
                     key: "BALANCE",
-                    type: "currency"
+                    type: "custom",
+                    templateUrl: "app/templates/currency.html",
                 }
             ];
         };
@@ -45,6 +52,10 @@
                         key: "DESCRIPTION",
                         text: "Details"
                     },
+                    {
+                        key: "ACCOUNTLABEL",
+                        text: "Account label"
+                    },  
                     {
                         key: "AMOUNT",
                         text: "Amount"
@@ -78,45 +89,45 @@
         //     ];
         // };
 
-        model.getFilters = function() {
-            return [{
-                    key: "WHENCREATED",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by Date"
-                },
-                {
-                    key: "TYPE",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by Transactions"
-                },
-                {
-                    key: "DESCRIPTION",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by Details"
-                },
-                {
-                    key: "AMOUNT",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by Amount"
-                },
-                {
-                    key: "PAYMENT",
-                    type: "text",
-                    filterDelay: 0,
-                    placeholder: "Filter by start Payments"
-                },
-                {
-                    key: "BALANCE",
-                    type: "textbox",
-                    filterDelay: 0,
-                    placeholder: "Filter by Balance"
-                }
-            ];
-        };
+        // model.getFilters = function() {
+        //     return [{
+        //             key: "WHENCREATED",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Date"
+        //         },
+        //         {
+        //             key: "TYPE",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Transactions"
+        //         },
+        //         {
+        //             key: "DESCRIPTION",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Details"
+        //         },
+        //         {
+        //             key: "AMOUNT",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Amount"
+        //         },
+        //         {
+        //             key: "PAYMENT",
+        //             type: "text",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by start Payments"
+        //         },
+        //         {
+        //             key: "BALANCE",
+        //             type: "textbox",
+        //             filterDelay: 0,
+        //             placeholder: "Filter by Balance"
+        //         }
+        //     ];
+        // };
         model.getTrackSelectionConfig = function() {
             var config = {},
                 columns = model.get();

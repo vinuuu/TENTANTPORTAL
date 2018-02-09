@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\actions-menu\js\_bundle.inc
 angular.module("rpActionsMenu", []);
 
 //  Source: _lib\realpage\actions-menu\js\directives\actions-menu-panel.js
@@ -71,7 +70,12 @@ angular.module("rpActionsMenu", []);
             };
 
             dir.appendPanel = function () {
-                body.append(panel);
+                if (model.menuParentIsSet()) {
+                    model.getMenuParent().append(panel);
+                }
+                else {
+                    body.append(panel);
+                }
             };
 
             dir.loadContext = function () {
@@ -83,9 +87,18 @@ angular.module("rpActionsMenu", []);
             };
 
             dir.togglePanel = function (ev) {
+                var parOffsetTop = 0,
+                    parOffsetLeft = 0;
+
+                if (model.menuParentIsSet()) {
+                    var parent = model.getMenuParent();
+                    parOffsetTop = parent.offset().top;
+                    parOffsetLeft = parent.offset().left;
+                }
+
                 model.togglePanel().setPanelPosition({
-                    top: elem.offset().top + model.getOffsetTop(),
-                    left: elem.offset().left + model.getOffsetLeft()
+                    top: elem.offset().top + model.getOffsetTop() - parOffsetTop,
+                    left: elem.offset().left + model.getOffsetLeft() - parOffsetLeft
                 });
 
                 if (model.panelIsVisible()) {
@@ -241,6 +254,7 @@ angular.module("rpActionsMenu", []);
             s.data = {
                 actions: [],
                 toggleText: "",
+                menuParent: "",
                 menuOffsetTop: 20,
                 menuOffsetLeft: 5,
                 menuClassNames: "",
@@ -256,6 +270,11 @@ angular.module("rpActionsMenu", []);
         };
 
         // Getters
+
+        p.getMenuParent = function () {
+            var s = this;
+            return s.data.menuParent;
+        };
 
         p.getOffsetLeft = function () {
             var s = this;
@@ -304,6 +323,11 @@ angular.module("rpActionsMenu", []);
         p.panelIsVisible = function () {
             var s = this;
             return s.panel.show;
+        };
+
+        p.menuParentIsSet = function () {
+            var s = this;
+            return !!s.data.menuParent;
         };
 
         // Actions
@@ -371,4 +395,3 @@ $templateCache.put("realpage/actions-menu/templates/actions-menu-panel.html",
 $templateCache.put("realpage/actions-menu/templates/actions-menu.html",
 "<span ng-click=\"rpActionsMenu.togglePanel($event)\" class=\"rp-actions-menu {{::model.data.toggleClassNames}}\">{{::model.data.toggleText}}</span>");
 }]);
-

@@ -165,9 +165,9 @@
                                 "getTenantBalance": {
                                     "leaseid": leaseid,
                                     "asofdate": {
-                                        "year": moment().year(),
-                                        "month": (moment().month() + 1),
-                                        "day": moment().day()
+                                        "year": moment().format('YYYY'),
+                                        "month": moment().format('MM'),
+                                        "day": (moment().format('DD'))
                                     }
                                 }
                             }
@@ -199,9 +199,6 @@
 
         };
 
-
-
-
         model.invoiceListWithDateInput = function(leaseid, date) {
             // var leaseID = leaseid === undefined ? '' : "(LEASEID = '" + leaseid + "')";
             return {
@@ -223,13 +220,63 @@
             };
 
         };
+        model.invoiceListWithDateInputNoLeaseID = function(date) {
+            // var leaseID = leaseid === undefined ? '' : "(LEASEID = '" + leaseid + "')";
+            return {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "pminvoice",
+                                    "fields": "",
+                                    // "query": leaseID,
+                                    "query": "(TRX_TOTALDUE = 0 AND TRX_TOTALENTERED NOT IN '0' AND WHENCREATED <= '" + date + "' )",
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+        };
+        
+        model.invoiceListWithDateInputNoLeaseIDinPayments = function(leaseid,date) {
+            var leaseID = leaseid === '' || leaseid === undefined ? '' : "LEASEID = '" + leaseid + "'";
+            var dateQuery = date === '' || date === undefined ? '' : " WHENCREATED  >= '" + date + "' and WHENCREATED &lt;= '"+ moment().format('MM/DD/YYYY')+ "'";
+            var transcation="((TRX_TOTALDUE = 0 AND TRX_TOTALENTERED NOT IN '0') OR (TRX_TOTALPAID NOT IN '0' AND TRX_TOTALDUE NOT IN '0'))";
+            var query = ((leaseID.length > 2 && transcation.length > 2) ? leaseID + ' AND ' : leaseID) + transcation;
+            query = dateQuery.length>2 ?(query.length > 2? query+ ' AND '+dateQuery: dateQuery):query;
+            query = query.length > 2 ? "(" + query + ")" : query;
+            return {
+                "request": {
+                    "operation": {
+                        "content": {
+                            "function": {
+                                "readByQuery": {
+                                    "object": "pminvoice",
+                                    "fields": "",
+                                    // "query": leaseID,
+                                    "query": query,
+                                    "returnFormat": "json"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+        };
 
         //all for empty,paid ofr paid,due for paymtn for due
-        model.invoiceListTransactionInput = function(leaseid, transcation) {
+        model.invoiceListTransactionInput = function(leaseid, transcation,date) {
+            var tenantname = sessionStorage.getItem("tenantname");
             var leaseID = leaseid === '' || leaseid === undefined ? '' : "LEASEID = '" + leaseid + "'";
+            var dateQuery = date === '' || date === undefined ? '' : " WHENCREATED  >= '" + date + "' and WHENCREATED &lt;= '"+ moment().format('MM/DD/YYYY')+ "'";
             transcation = transcation === '' ? '' : transcation === 'Paid' ?
-                " TRX_TOTALDUE = 0 AND TRX_TOTALENTERED NOT IN '0'" : " TRX_TOTALPAID = '0' AND TRX_TOTALSELECTED = 0";
+                "customerid = '" + tenantname + "' AND TRX_TOTALDUE = 0 AND TRX_TOTALENTERED NOT IN '0'" : " customerid = '" + tenantname + "' AND TRX_TOTALPAID = '0' AND TRX_TOTALSELECTED = 0";
             var query = ((leaseID.length > 2 && transcation.length > 2) ? leaseID + ' AND ' : leaseID) + transcation;
+            query = dateQuery.length>2 ?(query.length > 2? query+ ' AND '+dateQuery: dateQuery):query;
             query = query.length > 2 ? "(" + query + ")" : query;
             return {
                 "request": {
@@ -262,13 +309,13 @@
                                 "getTenantStatement": {
                                     "leaseid": leaseId,
                                     "fromdate": {
-                                        "year": moment(dateRange).year(),
-                                        "month": moment(dateRange).month() + 1,
+                                        "year": moment(dateRange).format('YYYY'),
+                                        "month": moment(dateRange).format('MM'),
                                         "day": "01"
                                     },
                                     "todate": {
                                         "year": moment().format('YYYY'),
-                                        "month": moment().month() + 1,
+                                        "month": moment().format('MM'),
                                         "day": moment().format('DD')
                                     }
                                 }

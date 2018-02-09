@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\breadcrumbs\js\_bundle.inc
 angular.module("rpBreadcrumbs", []);
 
 //  Source: _lib\realpage\breadcrumbs\js\templates\templates.inc.js
@@ -182,4 +181,3 @@ $templateCache.put("realpage/breadcrumbs/templates/breadcrumbs.html",
         .module("rpBreadcrumbs")
         .directive('rpBreadcrumbs', ["rpBreadcrumbsModel", rpBreadcrumbs]);
 })(angular);
-

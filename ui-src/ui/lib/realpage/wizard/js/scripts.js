@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\wizard\js\_bundle.inc
 angular.module("rpWizard", []);
 
 //  Source: _lib\realpage\wizard\js\directives\wizard-nav.js
@@ -568,4 +567,3 @@ angular.module("rpWizard").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/wizard/templates/wizard-nav.html",
 "<div class=\"rp-wizard-nav\"><div class=\"rp-wizard-progress-bar\" ng-style=\"rpWizardNav.getTrackStyle()\"><span class=\"bar\" ng-style=\"rpWizardNav.getBarStyle()\"></span></div><ul class=\"rp-wizard-nav-steps\"><li ng-class=\"stepModel.getState()\" ng-click=\"rpWizardNav.goTo(stepModel)\" ng-repeat=\"stepModel in model.stepsList\" class=\"rp-wizard-nav-cell rp-wizard-nav-step\"><span class=\"rp-wizard-nav-step-link\"><span class=\"rp-wizard-nav-step-number\">{{stepModel.data.number}}</span> <span class=\"rp-wizard-nav-step-text\">{{stepModel.data.text}}</span></span></li></ul></div>");
 }]);
-

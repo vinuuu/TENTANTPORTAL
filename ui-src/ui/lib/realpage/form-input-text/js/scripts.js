@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\form-input-text\js\_bundle.inc
 angular.module("rpInputText", []);
 
 //  Source: _lib\realpage\form-input-text\js\directives\input-text.js
@@ -233,4 +232,3 @@ angular.module("rpInputText", []);
         .module('rpFormInputText')
         .factory('rpFormInputHtml', [factory]);
 })(angular);
-

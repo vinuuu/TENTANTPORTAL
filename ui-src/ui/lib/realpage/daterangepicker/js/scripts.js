@@ -1685,7 +1685,7 @@ angular.module("rpDaterangepicker", []);
 //  Source: _lib\realpage\daterangepicker\js\templates\templates.inc.js
 angular.module("rpDaterangepicker").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/daterangepicker/templates/daterangepicker.html",
-"<div class=\"rp-daterangepicker form-group\" ng-class=\"{icon: config.options.showIcon}\"><div class=\"input-group\"><input type=\"text\" ng-model=\"rpModel\" class=\"form-control\" rp-daterangepicker-field> <span ng-if=\"config.options.showIcon\" class=\"rp-daterangepicker-icon-wrap input-group-addon\"><span class=\"rp-daterangepicker-icon fa fa-calendar\"></span></span></div></div>");
+"<div class=\"rp-daterangepicker form-group\" ng-class=\"{icon: config.options.showIcon}\"><div class=\"input-group\"><input type=\"text\" ng-model=\"rpModel\" rp-daterangepicker-field class=\"form-control rp-daterangepicker-input\"> <span ng-if=\"config.options.showIcon\" class=\"rp-daterangepicker-icon-wrap input-group-addon\"><span class=\"rp-daterangepicker-icon fa fa-calendar\"></span></span></div></div>");
 }]);
 
 //  Source: _lib\realpage\daterangepicker\js\models\daterangepicker-config.js
@@ -2093,4 +2093,3 @@ $templateCache.put("realpage/daterangepicker/templates/daterangepicker.html",
         .module("rpDaterangepicker")
         .directive("rpDaterangepickerField", ["jQuery", "$timeout", "moment", rpDaterangepickerField]);
 })(angular);
-

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="55px" viewBox="0 0 60 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Business Intelligence</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#0076CC" offset="0%"></stop>
+            <stop stop-color="#178DE3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-248.000000, -626.000000)" fill-rule="nonzero" fill="url(#linearGradient-1)">
+            <g id="Asset-Optimization" transform="translate(24.000000, 592.000000)">
+                <g id="Business-Intelligence" transform="translate(218.000000, 34.000000)">
+                    <path d="M60.5554542,24.5474997 L60.5554542,27.2749996 L33.2804546,27.2749996 L33.2804546,0 L36.0079546,0 C49.5445369,0 60.5554542,11.0163723 60.5554542,24.5474997 Z M27.8199997,30.0079546 L46.4788269,48.6640543 L46.2988119,48.8195218 C41.896627,52.5180118 36.2997971,54.5499992 30.5474997,54.5499992 C17.0109173,54.5499992 6,43.5390819 6,30.0024996 C6,17.6605623 15.2353149,7.1978724 27.4817897,5.66774492 L27.8199997,5.62410492 L27.8199997,30.0079546 Z M37.6035421,32.7354545 L66.0049992,32.7354545 C66.0049992,39.2869095 63.4547867,45.4483319 58.8125818,50.0878093 L56.8842393,52.0188793 L37.6035421,32.7354545 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

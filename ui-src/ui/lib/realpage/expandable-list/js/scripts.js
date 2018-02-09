@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\expandable-list\js\_bundle.inc
 angular.module("rpExpandibleList", []);
 
 //  Source: _lib\realpage\expandable-list\js\directives\expandable-list.js
@@ -145,4 +144,3 @@ angular.module("rpExpandibleList", []);
         .module("rpExpandableList")
         .directive('rpExpandableList', ['timeout', 'deviceInfoSvc', rpExpandableList]);
 })(angular);
-

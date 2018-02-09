@@ -220,6 +220,12 @@ angular.module("rpGlobalHeader", []);
                 scope.ghNav = dir;
                 timeout(dir.onChange, 300);
                 dir.destWatch = scope.$on("$destroy", dir.destroy);
+                dir.initWatch = pubsub.subscribe("gn.themeInit", dir.initTheme);
+            };
+
+            dir.initTheme = function (data) {
+                dir.pref = data;
+                dir.onChange();
             };
 
             dir.onChange = function () {
@@ -228,6 +234,7 @@ angular.module("rpGlobalHeader", []);
 
             dir.destroy = function () {
                 dir.destWatch();
+                dir.initWatch();
                 dir = undefined;
                 attr = undefined;
                 elem = undefined;
@@ -740,4 +747,3 @@ $templateCache.put("realpage/global-header/templates/header.html",
 "            <img class=\"rp-gh-logo-img-2\" ng-src=\"{{model.data.logoImg2Src}}\" alt=\"logo\" />\n" +
 "            --></a></div><div class=\"rp-gh-names\"><span class=\"rp-gh-name-rp\">RealPage</span><h1 class=\"rp-gh-name-company\" ng-if=\"model.data.showCompanyName\"><a href=\"{{model.data.companyNameLink}}\">{{model.data.companyNameText}}</a></h1></div><div class=\"rp-gh-user-links\"><div class=\"rp-gh-user-links-toggle\" ng-click=\"userLinks.toggleMenu()\"><div class=\"rp-gh-user-avatar\"><p class=\"rp-gh-user-initials\" ng-if=\"model.data.showInitials\">{{model.data.userInitials}}</p></div><div class=\"rp-gh-user-info\"><p class=\"rp-gh-user-name\">{{model.data.username}}</p><p class=\"rp-gh-user-role\">{{model.data.userRole}}</p></div></div><div ng-show=\"userLinks.on\" class=\"rp-gh-user-links-menu\"><ul class=\"rp-gh-user-links-list\"><li class=\"rp-gh-user-links-menu-item\" ng-click=\"model.userLinks.invoke(link)\" ng-repeat=\"link in model.userLinks.links\">{{link.text}}</li></ul><div rp-stop-event=\"click\" class=\"rp-gh-nav-prefs\"><div class=\"rp-gh-nav-pref\"><rp-switch class=\"label-1 theme-1\" rp-model=\"ghNav.pref.dark\" rp-on-change=\"ghNav.onChange()\" rp-label-text=\"'Dark Navigation'\"></rp-switch></div></div></div></div><div class=\"rp-gh-toolbar\"><div ng-if=\"icon.active\" class=\"rp-gh-toolbar-icon-wrap\" ng-repeat=\"icon in model.toolbarIcons.list\"><span data-badge=\"{{icon.count}}\" ng-if=\"icon.active && !icon.isAppSwitcher\" ng-click=\"model.toolbarIcons.invoke(icon)\" class=\"rp-gh-toolbar-icon {{icon.className}}\"></span><rp-gh-app-switcher ng-if=\"icon.active && icon.isAppSwitcher\"></rp-gh-app-switcher></div></div></div>");
 }]);
-

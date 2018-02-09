@@ -1861,4 +1861,3 @@ $.fn.vectorMap('addMap', 'us_aea_en', {
     },
     "width": 900.0
 });
-

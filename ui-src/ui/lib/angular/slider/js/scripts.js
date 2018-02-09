@@ -1810,4 +1810,3 @@ angular.module('vr.directives.slider', ['ngTouch']).directive('slider',
             }
         }
 	]);
-

@@ -4522,4 +4522,3 @@ More detail and specific examples can be found in the included HTML file.
     });
 
 })(jQuery);
-

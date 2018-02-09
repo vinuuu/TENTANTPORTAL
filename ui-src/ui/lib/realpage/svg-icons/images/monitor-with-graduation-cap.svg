@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon/Learning Portal</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M22,3 L2,3 C0.897,3 0,3.898 0,5 L0,18 C0,19.104 0.897,20 2,20 L11,20 L11,22 L7,22 L7,24 L17,24 L17,22 L13,22 L13,20 L22,20 C23.103,20 24,19.104 24,18 L24,5 C24,3.898 23.103,3 22,3 Z M21.997,18 L2,18 L2,5 L22,5 L21.997,18 Z M5,16 C5.552,16 6,15.553 6,15 L6,11.327 L8,11.898 L8,15 C8,15.431 8.275,15.813 8.684,15.949 L11.684,16.949 C11.787,16.983 11.893,17 12,17 C12.107,17 12.213,16.983 12.316,16.949 L15.316,15.949 C15.725,15.813 16,15.431 16,15 L16,11.898 L19.275,10.962 C19.704,10.839 20,10.446 20,10 C20,9.554 19.704,9.161 19.275,9.04 L12.275,7.04 C12.095,6.988 11.905,6.988 11.725,7.04 L4.725,9.04 C4.632,9.063 4.397,9.191 4.26,9.342 C4.103,9.52 4,9.763 4,10 L4,15 C4,15.553 4.448,16 5,16 Z M14,14.279 L12,14.946 L10,14.279 L10,12.468 L11.725,12.961 C11.815,12.987 11.908,13 12,13 C12.092,13 12.185,12.987 12.275,12.962 L14,12.469 L14,14.279 Z M12,9.04 L15.36,10 L12,10.96 L8.64,10 L12,9.04 Z" id="path-gc"></path>
+    </defs>
+    <g id="Symbols-gc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon/Learning-Portal">
+            <rect id="Bounding-Box" x="0" y="0" width="24" height="24"></rect>
+            <mask id="mask-gc" fill="white">
+                <use xlink:href="#path-gc"></use>
+            </mask>
+            <g id="Mask"></g>
+            <g id="Mixin/Fill/Black" mask="url(#mask-gc)" fill="#303436">
+                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+            </g>
+            <g id="education-online" mask="url(#mask-gc)">
+                <g id="Frame_-_24px">
+                    <rect id="Rectangle-path" x="0" y="0" width="24" height="24"></rect>
+                </g>
+                <g id="Line_Icons" transform="translate(8.000000, 9.000000)">
+                    <g id="Group"></g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

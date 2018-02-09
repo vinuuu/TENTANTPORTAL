@@ -80,4 +80,3 @@ angular.module("rpAsideModal", []);
         .module("rpAsideModal")
         .factory("rpAsideModal", ["$aside", factory]);
 })(angular);
-

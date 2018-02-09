@@ -9,7 +9,7 @@
         });
 
         prov.setHome({
-            icon: "rp-icon-statistics-5",
+            icon: "rp-icon-home",
             text: "Home"
         });
 
@@ -34,18 +34,18 @@
             text: "Overview"
         }, {
             name: 'home.invoice',
-            url: '/invoice/lease/:id',
-            text: 'Invoice'
+            url: '/invoice/lease/:id/month/:0',
+            text: 'Invoices'
         }, {
             name: 'home.statements',
             url: '/statements/lease/:id/month/:m',
-            text: 'View Statements',
-            backLink: 'home.dashbaord',
-            links: ['home.dashbaord', 'home.account-payments']
+            text: 'Statements',
+            // backLink: 'home.dashbaord',
+            // links: ['home.dashbaord', 'home.account-payments']
         }, {
             name: 'home.account-payments',
-            url: '/accounts',
-            text: 'Account Statements'
+            url: '/accounts/lease/:id',
+            text: 'Payments'
         }];
 
         prov.setLinks(links).setBreadcrumbs(breadcrumbs);

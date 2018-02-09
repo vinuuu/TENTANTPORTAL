@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\float-scroll\js\_bundle.inc
 angular.module("rpFloatScroll", []);
 
 //  Source: _lib\realpage\float-scroll\js\directives\float-scroll.js
@@ -117,4 +116,3 @@ angular.module("rpFloatScroll", []);
             rpFloatScroll
         ]);
 })(angular);
-

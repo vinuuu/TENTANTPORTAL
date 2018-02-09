@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\page-options\js\_bundle.inc
 angular.module("rpPageOptions", []);
 
 //  Source: _lib\realpage\page-options\js\templates\add-to-favorites.js
@@ -425,4 +424,3 @@ angular.module("rpPageOptions", []);
         .module("rpPageOptions")
         .factory('pageOptions', ['$resource', pageOptions]);
 })(angular);
-

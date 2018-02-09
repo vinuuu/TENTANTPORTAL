@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\pagination\js\_bundle.inc
 angular.module("rpPagination", []);
 
 //  Source: _lib\realpage\pagination\js\templates\pagination.js

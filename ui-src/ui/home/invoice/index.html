@@ -15,42 +15,20 @@
             <rp-form-select-menu config="page.model.formConfig.leaseddl" rp-model="page.model.leasevalueID">
             </rp-form-select-menu>
         </div>
+        <div class="col-md-2">
+            <rp-form-select-menu config="page.model.formConfig.accountHistory" rp-model="page.model.accountHistoryType">
+            </rp-form-select-menu>
+        </div>
         <div>
-            <button class="btn btn-primary btnContinue pull-right" ng-disabled="page.model.TotalPaidAmount()>0">Pay Now</button>
+            <button class="btn btn btnContinue pull-right" ng-disabled="true">Pay Now</button>
+        </div>
+        <div class="col-md-12">
+                <div class="m-l-2 pull-right p-r-2 "> Coming soon</div>
         </div>
     </div>
     <br>
 
-    <div class="rp-action-bar box">
-        <div class="grid-controls">
-            <!-- <div class="grid-control-item">
-                <i class="icon rp-icon-printer"></i>
-                <span class="text">Print</span>
-            </div> -->
-            <div class="grid-control-item">
-                <rp-toggle model="page.model.grid.filtersModel.state.active" options="{
-                    defaultText: 'Filter',
-                    activeIconClass: 'rp-icon-filter',
-                    defaultIconClass: 'rp-icon-filter active'
-                }">
-                </rp-toggle>
-            </div>
-        </div>
-
-        <div rp-grid-model="page.model.grid" class="action-item rp-grid-select ft-form">
-            <label class="md-check dark-bluebox rp-grid-select-label">
-                <input
-                    type="checkbox"
-                    ng-true-value="true"
-                    ng-false-value="false"
-                    class="rp-form-checkbox"
-                    ng-model="gridSelect.model.selected"
-                    ng-change="gridSelect.model.publishState()" />
-                <i class="primary"></i>
-            </label>
-            <span class="rp-grid-select-icon rp-icon-angle-down"></span>
-        </div>
-    </div>
+    
     <div ng-if="page.model.invoicesCount()" class="cust-margin-top">
         {{page.model.invoicesCount()}}/{{page.model.totalCount}} <span class="p-l-2"> Invoices selected </span>
     </div>
@@ -58,12 +36,15 @@
     </rp-grid>
     <div class="row m-t-1">
         <span class="col-md-8 text-right font-bold">Total</span>
-        <span class="col-md-4 text-center font-bold">{{(page.model.TotalPaidAmount()|| 0) | currency }}</span>
+        <span class="col-md-4 text-center font-bold">{{(page.model.TotalPaidAmount()|| 0) | IsNumber }}</span>
     </div>
     <rp-grid-pagination model="page.model.gridPagination">
     </rp-grid-pagination>
 
     <div class="p-t-1">
-        <button class="btn btn-primary btnContinue pull-right" ng-disabled="page.model.TotalPaidAmount()>0">Pay Now</button>
+        <button class="btn btn btnContinue pull-right" ng-disabled="true">Pay Now</button>
+    </div>
+    <div class="col-md-12">
+            <div class="m-l-2 pull-right p-r-2"> Coming soon</div>
     </div>
 </div>

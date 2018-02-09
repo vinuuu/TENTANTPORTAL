@@ -7,16 +7,24 @@
         width: 14%;
         border-radius: 20px;
     }
-    td,
-    th {
-        width: 160px;
-    }
+    // td,
+    // th {
+    //     width: 160px;
+    // }
     .TOTALPAYING {
         input {
             text-align: right;
         }
     }
+    table{
+        table-layout: fixed;
+    }
     .is-select {
         width: 4%;
+    }
+    .rp-grid-body-1,.rp-grid-row {
+        .TOTALENTERED ,.TOTALDUE {
+            text-align: right;
+        }
     }
 }

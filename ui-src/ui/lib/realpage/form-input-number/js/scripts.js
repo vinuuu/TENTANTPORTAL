@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\form-input-number\js\_bundle.inc
 angular.module("rpInputNumber", []);
 
 //  Source: _lib\realpage\form-input-number\js\directives\input-type-number.js
@@ -27,4 +26,3 @@ angular.module("rpInputNumber", []);
         .module('rpFormInputNumber')
         .directive('rpInputTypeNumber', ['keycode', inputTypeNumber]);
 })(angular);
-

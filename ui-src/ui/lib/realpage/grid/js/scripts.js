@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\grid\js\_bundle.inc
 angular.module("rpGrid", []);
 
 //  Source: _lib\realpage\grid\js\directives\grid-cell.js
@@ -1699,7 +1698,6 @@ angular.module("rpGrid", []);
         };
 
         p.isValidConfig = function (config) {
-            var s = this;
             return config && config.hasName && config.hasName("GridConfig");
         };
 
@@ -1777,11 +1775,11 @@ angular.module("rpGrid", []);
             return s;
         };
 
-        p.updateSelected = function () {
+        p.updateSelected = function (record) {
             var s = this;
 
             if (s.events) {
-                s.events.publish("selectChange");
+                s.events.publish("selectChange", record);
             }
 
             var count = 0,
@@ -1898,6 +1896,5 @@ $templateCache.put("realpage/grid/templates/grid-menu-filter.html",
 $templateCache.put("realpage/grid/templates/grid-text-filter.html",
 "<div class=\"rp-grid-text-filter\"><rp-form-input-text ng-if=\"config\" config=\"config\" rp-model=\"model.config.value\"></rp-form-input-text></div>");
 $templateCache.put("realpage/grid/templates/grid.html",
-"<div class=\"rp-grid-wrap rp-float-scroll\" ng-class=\"model.state\"><div class=\"rp-grid\"><rp-grid-headers model=\"model.headersModel\"></rp-grid-headers><rp-grid-filters model=\"model.filtersModel\"></rp-grid-filters><div class=\"rp-grid-body-wrap\"><rp-busy-indicator model=\"model.busyModel\"></rp-busy-indicator><table class=\"rp-grid-body-1 ft-form\" ng-class=\"{init: model.state.busy}\"><tr class=\"rp-grid-row\" ng-repeat=\"record in model.data.records\" ng-class=\"{active: record[model.getSelectKey()]}\"><td ng-switch=\"config.type\" ng-repeat=\"config in model.config\" class=\"rp-grid-cell {{::config.key.decamelize()}} {{::config.classNames}}\"><div ng-switch-when=\"actionsMenu\" class=\"rp-actions-menu\" model=\"config.getActions(record)\"></div><label ng-switch-when=\"select\" class=\"md-check dark-bluebox\"><input type=\"checkbox\" ng-true-value=\"true\" ng-false-value=\"false\" class=\"md-check dark-bluebox\" ng-model=\"record[config.key]\" ng-change=\"model.updateSelected()\" ng-disabled=\"record.disableSelection\" rp-track-selection=\"record[config.key]\" rp-track-selection-id=\"record[config.idKey]\" rp-selection-manager=\"model.selectionManager\"> <i class=\"primary\"></i></label><span ng-switch-when=\"button\" class=\"button {{config.getButtonClassNames(record)}}\" ng-click=\"config.method(record)\">{{config.getButtonText(record)}} </span><a ng-switch-when=\"link\" href=\"{{config.getLink(record)}}\" class=\"rp-grid-text rp-grid-link\">{{record[config.key]}} </a><span ng-switch-when=\"actionLink\" ng-click=\"config.method(record)\" class=\"rp-grid-text rp-grid-link\">{{record[config.key]}} </span><span ng-switch-when=\"date\" class=\"rp-grid-text\">{{record[config.key] | date: config.dateFormat || 'MM/dd/yyyy'}} </span><span ng-switch-when=\"currency\" class=\"rp-grid-text\">{{record[config.key] | currency : config.currencySymbol || '$' : config.decimalLength === undefined ? 2 : config.decimalLength}} </span><span ng-switch-default class=\"rp-grid-text\">{{record[config.key]}}</span></td></tr><tr class=\"rp-grid-empty\" ng-if=\"!model.data.records.length\"><td class=\"empty-msg\">{{model.emptyMsg || 'No results were found.'}}</td></tr></table></div></div><rp-pagination model=\"model.paginationModel\"></rp-pagination></div>");
+"<div class=\"rp-grid-wrap rp-float-scroll\" ng-class=\"model.state\"><div class=\"rp-grid\"><rp-grid-headers model=\"model.headersModel\"></rp-grid-headers><rp-grid-filters model=\"model.filtersModel\"></rp-grid-filters><div class=\"rp-grid-body-wrap\"><rp-busy-indicator model=\"model.busyModel\"></rp-busy-indicator><table class=\"rp-grid-body-1 ft-form\" ng-class=\"{init: model.state.busy}\"><tr class=\"rp-grid-row\" ng-repeat=\"record in model.data.records\" ng-class=\"{active: record[model.getSelectKey()]}\"><td ng-switch=\"config.type\" ng-repeat=\"config in model.config\" class=\"rp-grid-cell {{::config.key.decamelize()}} {{::config.classNames}}\"><div ng-switch-when=\"actionsMenu\" class=\"rp-actions-menu\" model=\"config.getActions(record)\"></div><label ng-switch-when=\"select\" class=\"md-check dark-bluebox\"><input type=\"checkbox\" ng-true-value=\"true\" ng-false-value=\"false\" class=\"md-check dark-bluebox\" ng-model=\"record[config.key]\" ng-disabled=\"record.disableSelection\" rp-track-selection=\"record[config.key]\" ng-change=\"model.updateSelected(record)\" rp-track-selection-id=\"record[config.idKey]\" rp-selection-manager=\"model.selectionManager\"> <i class=\"primary\"></i></label><span ng-switch-when=\"button\" class=\"button {{config.getButtonClassNames(record)}}\" ng-click=\"config.method(record)\">{{config.getButtonText(record)}} </span><a ng-switch-when=\"link\" href=\"{{config.getLink(record)}}\" class=\"rp-grid-text rp-grid-link\">{{record[config.key]}} </a><span ng-switch-when=\"actionLink\" ng-click=\"config.method(record)\" class=\"rp-grid-text rp-grid-link\">{{record[config.key]}} </span><span ng-switch-when=\"date\" class=\"rp-grid-text\">{{record[config.key] | date: config.dateFormat || 'MM/dd/yyyy'}} </span><span ng-switch-when=\"currency\" class=\"rp-grid-text\">{{record[config.key] | currency : config.currencySymbol || '$' : config.decimalLength === undefined ? 2 : config.decimalLength}} </span><span ng-switch-default class=\"rp-grid-text\">{{record[config.key]}}</span></td></tr><tr class=\"rp-grid-empty\" ng-if=\"!model.data.records.length\"><td class=\"empty-msg\">{{model.emptyMsg || 'No results were found.'}}</td></tr></table></div></div><rp-pagination model=\"model.paginationModel\"></rp-pagination></div>");
 }]);
-

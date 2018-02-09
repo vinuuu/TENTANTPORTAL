@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\common\js\directives\_bundle.inc
 //  Source: _lib\realpage\common\js\directives\fade.js
 //  Fade Directive
 
@@ -482,7 +481,6 @@
         .directive('rpTouchstart', ['$parse', rpTouchstart]);
 })(angular);
 
-//  Source: _lib\realpage\common\js\filters\_bundle.inc
 //  Source: _lib\realpage\common\js\filters\html-unsafe.js
 //  Html Unsafe Filter
 
@@ -604,7 +602,6 @@
         });
 })(angular);
 
-//  Source: _lib\realpage\common\js\models\_bundle.inc
 //  Source: _lib\realpage\common\js\models\colors.js
 //  RealPage Colors Model
 
@@ -897,7 +894,6 @@
         .factory("rpDataShareModel", [factory]);
 })(angular);
 
-//  Source: _lib\realpage\common\js\services\_bundle.inc
 //  Source: _lib\realpage\common\js\services\body.js
 //  Body Service
 
@@ -2875,4 +2871,3 @@
         .module("rpCommon")
         .factory('windowSize', ['$window', 'eventStream', windowSize]);
 })(angular);
-

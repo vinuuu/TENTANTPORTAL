@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\inline-dialog\js\_bundle.inc
 angular.module("rpInlineDialog", []);
 
 //  Source: _lib\realpage\inline-dialog\js\directives\inline-dialog.js
@@ -92,4 +91,3 @@ angular.module("rpInlineDialog", []);
 			rpInlineDialog
 		]);
 })(angular);
-

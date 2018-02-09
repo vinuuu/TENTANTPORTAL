@@ -309,4 +309,3 @@ angular.module('ui.calendar', [])
       }
     };
 }]);
-

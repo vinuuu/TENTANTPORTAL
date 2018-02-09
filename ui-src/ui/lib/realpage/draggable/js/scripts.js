@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\draggable\js\_bundle.inc
 angular.module("rpDraggable", []);
 
 //  Source: _lib\realpage\draggable\js\services\draggable.js
@@ -332,4 +331,3 @@ angular.module("rpDraggable", []);
             rpDraggable
         ]);
 })(angular);
-

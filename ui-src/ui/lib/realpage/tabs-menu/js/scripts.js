@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\tabs-menu\js\_bundle.inc
 angular.module("rpTabsMenu", []);
 
 //  Source: _lib\realpage\tabs-menu\js\templates\tabs-menu.js
@@ -128,4 +127,3 @@ angular.module("rpTabsMenu", []);
         .module("rpTabsMenu")
         .directive('rpTabsMenu', [rpTabsMenu]);
 })(angular);
-

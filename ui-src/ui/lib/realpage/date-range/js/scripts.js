@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\date-range\js\_bundle.inc
 angular.module("rpDateRange", []);
 
 //  Source: _lib\realpage\date-range\js\directives\date-range.js
@@ -86,4 +85,3 @@ angular.module("rpDateRange", []);
         .module("rpDateRange")
         .run(['$templateCache', installTemplate]);
 })(angular);
-

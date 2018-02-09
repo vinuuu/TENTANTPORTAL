@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\complex-grid\js\_bundle.inc
 angular.module("rpComplexGrid", []);
 
 //  Source: _lib\realpage\complex-grid\js\templates\templates.inc.js
@@ -2141,4 +2140,3 @@ $templateCache.put("realpage/complex-grid/templates/grid.html",
         .module("rpComplexGrid")
         .service("rpCgGroupHeadersSvc", [CgGroupHeadersSvc]);
 })(angular);
-

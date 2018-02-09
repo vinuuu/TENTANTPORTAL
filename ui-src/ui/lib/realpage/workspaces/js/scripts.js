@@ -220,13 +220,13 @@ $templateCache.put("realpage/workspaces/templates/workspaces.html",
 //  Source: _lib\realpage\workspaces\js\models\workspace.js
 //  Workspace Model
 
-(function(angular) {
+(function (angular) {
     "use strict";
 
     function factory(links, cookie, workspaceTranslate) {
         var index = 1;
 
-        return function(id) {
+        return function (id) {
             var model = {};
 
             model.id = id || 'workspace' + index++;
@@ -238,109 +238,119 @@ $templateCache.put("realpage/workspaces/templates/workspaces.html",
                 isActive: false
             };
 
-            model.data = function(data) {
+            model.data = function (data) {
                 if (data) {
                     model._data = data;
                     return model;
-                } else {
+                }
+                else {
                     return model._data;
                 }
             };
 
-            model.getID = function() {
+            model.getID = function () {
                 return model.id;
             };
 
-            model.enableDrag = function() {
+            model.enableDrag = function () {
                 model.allowDrag = true;
             };
 
-            model.disableDrag = function() {
+            model.disableDrag = function () {
                 model.allowDrag = false;
             };
 
-            model.state = function() {
+            model.state = function () {
                 return {
                     active: model._data.isActive
                 };
             };
 
-            model.isActive = function() {
+            model.isActive = function () {
                 return model._data.isActive;
             };
 
-            model.isPlaceholder = function() {
+            model.isPlaceholder = function () {
                 return model._data.className == 'placeholder';
             };
 
-            model.is = function(item) {
+            model.is = function (item) {
                 return model.id === item.id;
             };
 
-            model.metricCount = function() {
+            model.metricCount = function () {
                 return model._data.details.length;
             };
 
-            model.getTitle = function() {
+            model.getTitle = function () {
                 return workspaceTranslate.translate(model._data.guid + "-title");
             };
 
-            model.setDirty = function() {
+            model.setDirty = function () {
                 model._data.dirtyBit = true;
                 return model;
             };
 
-            model.goTo = function(workspaceDetail) {
-                var val = '' ;
-                val = workspaceTranslate.translate(workspaceDetail.guid + "-desc");               
+            model.goTo = function (workspaceDetail) {
+                if (workspaceDetail.disabled) {
+                    return;
+                }
+
+                var key = workspaceDetail.guid + "-desc",
+                    val = workspaceTranslate.translate(key);
+
                 model.setCookie(val);
                 links.goTo(model._data.guid);
             };
 
-            model.setCookie = function(val) {
+            model.setCookie = function (val) {
                 cookie.create('WorkspaceLink', val, 1);
             };
 
-            model.setSequence = function(sequence) {
+            model.setSequence = function (sequence) {
                 model._data.sequence = sequence;
                 return model;
             };
 
-            model.getDesc = function (workspaceDetail) {            
-               var desc , tranDesc;
-               tranDesc = workspaceTranslate.translate(workspaceDetail.guid + "-desc");
-               desc = workspaceDetail.description === "" ? ""  : ": " + workspaceDetail.description ;
-               desc =  tranDesc + desc ;     
-               return desc;          
+            model.getDesc = function (workspaceDetail) {
+                var desc, tranDesc;
+                tranDesc = workspaceTranslate.translate(workspaceDetail.guid + "-desc");
+                desc = workspaceDetail.description === "" ? "" : ": " + workspaceDetail.description;
+                desc = tranDesc + desc;
+                return desc;
             };
 
-
-            model.getListClass = function() {
+            model.getListClass = function () {
                 var cnt = model.metricCount();
                 var className = "";
                 switch (cnt) {
-                    case 1:
-                        className = "col-xs-12";
-                        break;
-                    case 2:
-                        className = "col-xs-6";
-                        break;
-                    case 3:
-                        className = "col-xs-12";
-                        break;
-                    case 4:
-                        className = "col-xs-6";
-                        break;
-                    case 5:
-                        className = "col-xs-6";
-                        break;
-                    case 6:
-                        className = "col-xs-6";
-                        break;
-                    default:
-                        className = "col-xs-6";
-                        break;
+                case 1:
+                    className = "col-xs-12";
+                    break;
+                case 2:
+                    className = "col-xs-6";
+                    break;
+                case 3:
+                    className = "col-xs-12";
+                    break;
+                case 4:
+                    className = "col-xs-6";
+                    break;
+                case 5:
+                    className = "col-xs-6";
+                    break;
+                case 6:
+                    className = "col-xs-6";
+                    break;
+                default:
+                    className = "col-xs-6";
+                    break;
                 }
+
+                if (model._data.disabled) {
+                    className += " link-disabled";
+                }
+
                 return className;
             };
 
@@ -351,7 +361,6 @@ $templateCache.put("realpage/workspaces/templates/workspaces.html",
     angular
         .module("rpWorkspaces")
         .factory('workspaceModel', ['workspacesLinks', 'rpCookie', 'workspaceTranslate', factory]);
-    
 })(angular);
 
 //  Source: _lib\realpage\workspaces\js\models\workspaces-date-range.js
@@ -866,4 +875,3 @@ $templateCache.put("realpage/workspaces/templates/workspaces.html",
         .module("rpWorkspaces")
         .directive('rpWorkspaces', [rpWorkspaces]);
 })(angular);
-

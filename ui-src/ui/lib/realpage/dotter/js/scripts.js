@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\dotter\js\_bundle.inc
 angular.module("rpDotter", []);
 
 //  Source: _lib\realpage\dotter\js\directives\dotter.js
@@ -91,4 +90,3 @@ angular.module("rpDotter").run(["$templateCache", function($templateCache) {
 $templateCache.put("realpage/dotter/templates/dotter.html",
 "<span class=\"dotter\"><span>.</span><span>.</span><span>.</span></span>");
 }]);
-

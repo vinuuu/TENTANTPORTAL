@@ -20,8 +20,8 @@
             model.formConfig = formConfig;
             formConfig.setMethodsSrc(model);
             var options = [{
-                    paymentTypeName: "All Transaction",
-                    paymentTypeNameID: "All Transaction"
+                    paymentTypeName: "All Transactions",
+                    paymentTypeNameID: "All Transactions"
                 },
                 {
                     paymentTypeName: "Paid",
@@ -34,7 +34,7 @@
             ];
 
             formConfig.setOptions("paymentType", options);
-            model.paymenttype = 'All Transaction';
+            model.paymenttype = 'All Transactions';
             model.grid = grid;
             gridTransform.watch(grid);
             grid.setConfig(gridConfig);

@@ -31277,4 +31277,3 @@ var theme = {
         return this;
     }
 })(jQuery,echarts);
-

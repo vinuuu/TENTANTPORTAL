@@ -5,6 +5,7 @@
 
     function Controller($scope, $http, notifSvc, dashboardMdl) {
         var vm = this,
+            menu,
             model;
 
         vm.init = function() {
@@ -17,7 +18,10 @@
             vm = undefined;
             $scope = undefined;
         };
-
+        vm.range = {
+            min: 0,
+            max: 60
+        };
         vm.init();
     }
 

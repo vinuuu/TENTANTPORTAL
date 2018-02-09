@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\on-screen-console\js\_bundle.inc
 angular.module("rpOnScreenConsole", []);
 
 //  Source: _lib\realpage\on-screen-console\js\templates\console.js
@@ -98,4 +97,3 @@ angular.module("rpOnScreenConsole", []);
         .module("rpOnScreenConsole")
         .directive('onScreenConsole', ['onScreenConsoleModel', onScreenConsole]);
 })(angular);
-

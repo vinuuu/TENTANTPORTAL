@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon/User Migration</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M18.001,4 C18.001,2.896 17.104,2 16.001,2 L4.001,2 C2.898,2 2.001,2.896 2.001,4 L2.001,20 C2.001,21.103 2.898,22 4.001,22 L16.001,22 C17.104,22 18.001,21.103 18.001,20 L18.001,14 L22.001,14 L22.001,10 L22.001,8 L22.001,4 L18.001,4 Z M16.002,20 L4.001,20 L4.001,4 L16.001,4 L16.002,20 Z M20.001,12 L18.001,12 L18.001,10 L20.001,10 L20.001,12 Z M18.001,8 L18.001,6 L20.001,6 L20.001,8 L18.001,8 Z M7.001,15 C7.001,13.159 8.16,12 10.001,12 C11.842,12 13.001,13.159 13.001,15 L7.001,15 Z M10.001,11 C8.8964305,11 8.001,10.1045695 8.001,9 C8.001,7.8954305 8.8964305,7 10.001,7 C11.1055695,7 12.001,7.8954305 12.001,9 C12.001,10.1045695 11.1055695,11 10.001,11 Z" id="path-um"></path>
+    </defs>
+    <g id="Symbols-um" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon/User-Migration">
+            <rect id="Bounding-Box" x="0" y="0" width="24" height="24"></rect>
+            <mask id="mask-um" fill="white">
+                <use xlink:href="#path-um"></use>
+            </mask>
+            <g id="Mask"></g>
+            <g id="Mixin/Fill/Black" mask="url(#mask-um)" fill="#303436">
+                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

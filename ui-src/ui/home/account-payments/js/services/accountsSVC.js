@@ -1,10 +1,10 @@
 (function() {
     'use strict';
 
-    function Factory(http) {
+    function Factory(http,baseSvc) {
         return {
             getAccountsInfo: function(obj) {
-                return http.post('/api/accounts', obj);
+                return baseSvc.getTenentData('/api/accounts', obj);
             }
         };
     }
@@ -12,7 +12,7 @@
         .module('ui')
         .factory('accountsSvc', Factory);
 
-    Factory.$inject = ['$http'];
+    Factory.$inject = ['$http','baseSvc'];
 
 
 })();

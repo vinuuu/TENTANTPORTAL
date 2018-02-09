@@ -875,6 +875,118 @@ var init = function(root){
 return init(root);
 }));
 
+//  Source: node_modules\pnotify\src\pnotify.animate.js
+// Animate
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as a module.
+    define('pnotify.animate', ['jquery', 'pnotify'], factory);
+  } else if (typeof exports === 'object' && typeof module !== 'undefined') {
+    // CommonJS
+    module.exports = factory(require('jquery'), require('./pnotify'));
+  } else {
+    // Browser globals
+    factory(root.jQuery, root.PNotify);
+  }
+}(typeof window !== "undefined" ? window : this, function($, PNotify){
+  PNotify.prototype.options.animate = {
+    // Use animate.css to animate the notice.
+    animate: false,
+    // The class to use to animate the notice in.
+    in_class: "",
+    // The class to use to animate the notice out.
+    out_class: ""
+  };
+  PNotify.prototype.modules.animate = {
+    init: function(notice, options){
+      this.setUpAnimations(notice, options);
+
+      notice.attention = function(aniClass, callback){
+        notice.elem.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+          notice.elem.removeClass(aniClass);
+          if (callback) {
+            callback.call(notice);
+          }
+        }).addClass("animated "+aniClass);
+      };
+    },
+
+    update: function(notice, options, oldOpts){
+      if (options.animate != oldOpts.animate) {
+        this.setUpAnimations(notice, options)
+      }
+    },
+
+    setUpAnimations: function(notice, options){
+      if (options.animate) {
+        notice.options.animation = "none";
+        notice.elem.removeClass("ui-pnotify-fade-slow ui-pnotify-fade-normal ui-pnotify-fade-fast");
+        if (!notice._animateIn) {
+          notice._animateIn = notice.animateIn;
+        }
+        if (!notice._animateOut) {
+          notice._animateOut = notice.animateOut;
+        }
+        notice.animateIn = this.animateIn.bind(this);
+        notice.animateOut = this.animateOut.bind(this);
+        var animSpeed = 400;
+        if (notice.options.animate_speed === "slow") {
+          animSpeed = 600;
+        } else if (notice.options.animate_speed === "fast") {
+          animSpeed = 200;
+        } else if (notice.options.animate_speed > 0) {
+          animSpeed = notice.options.animate_speed;
+        }
+        animSpeed = animSpeed / 1000;
+        notice.elem.addClass("animated").css({
+          "-webkit-animation-duration": animSpeed+"s",
+          "-moz-animation-duration": animSpeed+"s",
+          "animation-duration": animSpeed+"s"
+        });
+      } else if (notice._animateIn && notice._animateOut) {
+        notice.animateIn = notice._animateIn;
+        delete notice._animateIn;
+        notice.animateOut = notice._animateOut;
+        delete notice._animateOut;
+        notice.elem.addClass("animated");
+      }
+    },
+
+    animateIn: function(callback){
+      // Declare that the notice is animating in.
+      this.notice.animating = "in";
+      var that = this;
+      callback = (function(){
+        that.notice.elem.removeClass(that.options.in_class);
+        if (this) {
+          this.call();
+        }
+        // Declare that the notice has completed animating.
+        that.notice.animating = false;
+      }).bind(callback);
+
+      this.notice.elem.show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', callback).removeClass(this.options.out_class).addClass("ui-pnotify-in").addClass(this.options.in_class);
+    },
+
+    animateOut: function(callback){
+      // Declare that the notice is animating out.
+      this.notice.animating = "out";
+      var that = this;
+      callback = (function(){
+        that.notice.elem.removeClass("ui-pnotify-in " + that.options.out_class);
+        if (this) {
+          this.call();
+        }
+        // Declare that the notice has completed animating.
+        that.notice.animating = false;
+      }).bind(callback);
+
+      this.notice.elem.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', callback).removeClass(this.options.in_class).addClass(this.options.out_class);
+    }
+  };
+  return PNotify;
+}));
+
 //  Source: node_modules\pnotify\src\pnotify.buttons.js
 // Buttons
 (function (root, factory) {
@@ -1041,6 +1153,59 @@ return init(root);
   return PNotify;
 }));
 
+//  Source: node_modules\pnotify\src\pnotify.callbacks.js
+// Callbacks
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as a module.
+    define('pnotify.callbacks', ['jquery', 'pnotify'], factory);
+  } else if (typeof exports === 'object' && typeof module !== 'undefined') {
+    // CommonJS
+    module.exports = factory(require('jquery'), require('./pnotify'));
+  } else {
+    // Browser globals
+    factory(root.jQuery, root.PNotify);
+  }
+}(typeof window !== "undefined" ? window : this, function($, PNotify){
+  var _init   = PNotify.prototype.init,
+      _open   = PNotify.prototype.open,
+      _remove = PNotify.prototype.remove;
+  PNotify.prototype.init = function(){
+    if (this.options.before_init) {
+      this.options.before_init(this.options);
+    }
+    _init.apply(this, arguments);
+    if (this.options.after_init) {
+      this.options.after_init(this);
+    }
+  };
+  PNotify.prototype.open = function(){
+    var ret;
+    if (this.options.before_open) {
+      ret = this.options.before_open(this);
+    }
+    if (ret !== false) {
+      _open.apply(this, arguments);
+      if (this.options.after_open) {
+        this.options.after_open(this);
+      }
+    }
+  };
+  PNotify.prototype.remove = function(timer_hide){
+    var ret;
+    if (this.options.before_close) {
+      ret = this.options.before_close(this, timer_hide);
+    }
+    if (ret !== false) {
+      _remove.apply(this, arguments);
+      if (this.options.after_close) {
+        this.options.after_close(this, timer_hide);
+      }
+    }
+  };
+  return PNotify;
+}));
+
 //  Source: node_modules\pnotify\src\pnotify.confirm.js
 // Confirm
 (function (root, factory) {
@@ -1189,3 +1354,791 @@ return init(root);
   return PNotify;
 }));
 
+//  Source: node_modules\pnotify\src\pnotify.desktop.js
+// Desktop
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as a module.
+    define('pnotify.desktop', ['jquery', 'pnotify'], factory);
+  } else if (typeof exports === 'object' && typeof module !== 'undefined') {
+    // CommonJS
+    module.exports = factory(require('jquery'), require('./pnotify'));
+  } else {
+    // Browser globals
+    factory(root.jQuery, root.PNotify);
+  }
+}(typeof window !== "undefined" ? window : this, function($, PNotify){
+  var permission;
+  var notify = function(title, options){
+    // Memoize based on feature detection.
+    if ("Notification" in window) {
+      notify = function (title, options) {
+        return new Notification(title, options);
+      };
+    } else if ("mozNotification" in navigator) {
+      notify = function (title, options) {
+        // Gecko < 22
+        return navigator.mozNotification
+          .createNotification(title, options.body, options.icon)
+          .show();
+      };
+    } else if ("webkitNotifications" in window) {
+      notify = function (title, options) {
+        return window.webkitNotifications.createNotification(
+          options.icon,
+          title,
+          options.body
+        );
+      };
+    } else {
+      notify = function (title, options) {
+        return null;
+      };
+    }
+    return notify(title, options);
+  };
+
+
+  PNotify.prototype.options.desktop = {
+    // Display the notification as a desktop notification.
+    desktop: false,
+    // If desktop notifications are not supported or allowed, fall back to a regular notice.
+    fallback: true,
+    // The URL of the icon to display. If false, no icon will show. If null, a default icon will show.
+    icon: null,
+    // Using a tag lets you update an existing notice, or keep from duplicating notices between tabs.
+    // If you leave tag null, one will be generated, facilitating the "update" function.
+    // see: http://www.w3.org/TR/notifications/#tags-example
+    tag: null,
+    // Optionally display a different title for the desktop.
+    title: null,
+    // Optionally display different text for the desktop.
+    text: null
+  };
+  PNotify.prototype.modules.desktop = {
+    genNotice: function(notice, options){
+      if (options.icon === null) {
+        this.icon = "http://sciactive.com/pnotify/includes/desktop/"+notice.options.type+".png";
+      } else if (options.icon === false) {
+        this.icon = null;
+      } else {
+        this.icon = options.icon;
+      }
+      if (this.tag === null || options.tag !== null) {
+        this.tag = options.tag === null ? "PNotify-"+Math.round(Math.random() * 1000000) : options.tag;
+      }
+      notice.desktop = notify(options.title || notice.options.title, {
+        icon: this.icon,
+        body: options.text || notice.options.text,
+        tag: this.tag
+      });
+      if (!("close" in notice.desktop) && ("cancel" in notice.desktop)) {
+        notice.desktop.close = function(){
+          notice.desktop.cancel();
+        };
+      }
+      notice.desktop.onclick = function(){
+        notice.elem.trigger("click");
+      };
+      notice.desktop.onclose = function(){
+        if (notice.state !== "closing" && notice.state !== "closed") {
+          notice.remove();
+        }
+      };
+    },
+    init: function(notice, options){
+      if (!options.desktop)
+        return;
+      permission = PNotify.desktop.checkPermission();
+      if (permission !== 0) {
+        // Keep the notice from opening if fallback is false.
+        if (!options.fallback) {
+          notice.options.auto_display = false;
+        }
+        return;
+      }
+      this.genNotice(notice, options);
+    },
+    update: function(notice, options, oldOpts){
+      if ((permission !== 0 && options.fallback) || !options.desktop)
+        return;
+      this.genNotice(notice, options);
+    },
+    beforeOpen: function(notice, options){
+      if ((permission !== 0 && options.fallback) || !options.desktop)
+        return;
+      notice.elem.css({'left': '-10000px'}).removeClass('ui-pnotify-in');
+    },
+    afterOpen: function(notice, options){
+      if ((permission !== 0 && options.fallback) || !options.desktop)
+        return;
+      notice.elem.css({'left': '-10000px'}).removeClass('ui-pnotify-in');
+      if ("show" in notice.desktop) {
+        notice.desktop.show();
+      }
+    },
+    beforeClose: function(notice, options){
+      if ((permission !== 0 && options.fallback) || !options.desktop)
+        return;
+      notice.elem.css({'left': '-10000px'}).removeClass('ui-pnotify-in');
+    },
+    afterClose: function(notice, options){
+      if ((permission !== 0 && options.fallback) || !options.desktop)
+        return;
+      notice.elem.css({'left': '-10000px'}).removeClass('ui-pnotify-in');
+      if ("close" in notice.desktop) {
+        notice.desktop.close();
+      }
+    }
+  };
+  PNotify.desktop = {
+    permission: function(){
+      if (typeof Notification !== "undefined" && "requestPermission" in Notification) {
+        Notification.requestPermission();
+      } else if ("webkitNotifications" in window) {
+        window.webkitNotifications.requestPermission();
+      }
+    },
+    checkPermission: function(){
+      if (typeof Notification !== "undefined" && "permission" in Notification) {
+        return (Notification.permission === "granted" ? 0 : 1);
+      } else if ("webkitNotifications" in window) {
+        return window.webkitNotifications.checkPermission() == 0 ? 0 : 1;
+      } else {
+        return 1;
+      }
+    }
+  };
+  permission = PNotify.desktop.checkPermission();
+  return PNotify;
+}));
+
+//  Source: node_modules\pnotify\src\pnotify.history.js
+// History
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as a module.
+    define('pnotify.history', ['jquery', 'pnotify'], factory);
+  } else if (typeof exports === 'object' && typeof module !== 'undefined') {
+    // CommonJS
+    module.exports = factory(require('jquery'), require('./pnotify'));
+  } else {
+    // Browser globals
+    factory(root.jQuery, root.PNotify);
+  }
+}(typeof window !== "undefined" ? window : this, function($, PNotify){
+  var history_menu,
+      history_handle_top;
+  $(function(){
+    $("body").on("pnotify.history-all", function(){
+      // Display all notices. (Disregarding non-history notices.)
+      $.each(PNotify.notices, function(){
+        if (this.modules.history.inHistory) {
+          if (this.elem.is(":visible")) {
+            // The hide variable controls whether the history pull down should
+            // queue a removal timer.
+            if (this.options.hide)
+              this.queueRemove();
+          } else if (this.open)
+            this.open();
+        }
+      });
+    }).on("pnotify.history-last", function(){
+      var pushTop = (PNotify.prototype.options.stack.push === "top");
+
+      // Look up the last history notice, and display it.
+      var i = (pushTop ? 0 : -1);
+
+      var notice;
+      do {
+        if (i === -1)
+          notice = PNotify.notices.slice(i);
+        else
+          notice = PNotify.notices.slice(i, i+1);
+        if (!notice[0])
+          return false;
+
+        i = (pushTop ? i + 1 : i - 1);
+      } while (!notice[0].modules.history.inHistory || notice[0].elem.is(":visible"));
+      if (notice[0].open)
+        notice[0].open();
+    });
+  });
+  PNotify.prototype.options.history = {
+    // Place the notice in the history.
+    history: true,
+    // Display a pull down menu to redisplay previous notices.
+    menu: false,
+    // Make the pull down menu fixed to the top of the viewport.
+    fixed: true,
+    // Maximum number of notifications to have onscreen.
+    maxonscreen: Infinity,
+    // The various displayed text, helps facilitating internationalization.
+    labels: {
+      redisplay: "Redisplay",
+      all: "All",
+      last: "Last"
+    }
+  };
+  PNotify.prototype.modules.history = {
+    init: function(notice, options){
+      // Make sure that no notices get destroyed.
+      notice.options.destroy = false;
+
+      // The history variable controls whether the notice gets redisplayed
+      // by the history pull down.
+      this.inHistory = options.history;
+
+      if (options.menu) {
+        // If there isn't a history pull down, create one.
+        if (typeof history_menu === "undefined") {
+          history_menu = $("<div />", {
+            "class": "ui-pnotify-history-container "+notice.styles.hi_menu,
+            "mouseleave": function(){
+              history_menu.css("top", "-"+history_handle_top+"px");
+            }
+          })
+          .append($("<div />", {"class": "ui-pnotify-history-header", "text": options.labels.redisplay}))
+          .append($("<button />", {
+            "class": "ui-pnotify-history-all "+notice.styles.hi_btn,
+            "text": options.labels.all,
+            "mouseenter": function(){
+              $(this).addClass(notice.styles.hi_btnhov);
+            },
+            "mouseleave": function(){
+              $(this).removeClass(notice.styles.hi_btnhov);
+            },
+            "click": function(){
+              $(this).trigger("pnotify.history-all");
+              return false;
+            }
+          }))
+          .append($("<button />", {
+            "class": "ui-pnotify-history-last "+notice.styles.hi_btn,
+            "text": options.labels.last,
+            "mouseenter": function(){
+              $(this).addClass(notice.styles.hi_btnhov);
+            },
+            "mouseleave": function(){
+              $(this).removeClass(notice.styles.hi_btnhov);
+            },
+            "click": function(){
+              $(this).trigger("pnotify.history-last");
+              return false;
+            }
+          }))
+          .appendTo("body");
+
+          // Make a handle so the user can pull down the history tab.
+          var handle = $("<span />", {
+            "class": "ui-pnotify-history-pulldown "+notice.styles.hi_hnd,
+            "mouseenter": function(){
+              history_menu.css("top", "0");
+            }
+          })
+          .appendTo(history_menu);
+
+          // Get the top of the handle.
+          history_handle_top = handle.offset().top + 2;
+          // Hide the history pull down up to the top of the handle.
+          history_menu.css("top", "-"+history_handle_top+"px");
+
+          // Apply the fixed styling.
+          if (options.fixed) {
+            history_menu.addClass('ui-pnotify-history-fixed');
+          }
+        }
+      }
+    },
+    update: function(notice, options){
+      // Update values for history menu access.
+      this.inHistory = options.history;
+      if (options.fixed && history_menu) {
+        history_menu.addClass('ui-pnotify-history-fixed');
+      } else if (history_menu) {
+        history_menu.removeClass('ui-pnotify-history-fixed');
+      }
+    },
+    beforeOpen: function(notice, options){
+      // Remove oldest notifications leaving only options.maxonscreen on screen
+      if (PNotify.notices && (PNotify.notices.length > options.maxonscreen)) {
+        // Oldest are normally in front of array, or if stack.push=="top" then
+        // they are at the end of the array! (issue #98)
+        var el;
+        if (notice.options.stack.push !== "top") {
+          el = PNotify.notices.slice(0, PNotify.notices.length - options.maxonscreen);
+        } else {
+          el = PNotify.notices.slice(options.maxonscreen, PNotify.notices.length);
+        }
+
+        $.each(el, function(){
+          if (this.remove) {
+            this.remove();
+          }
+        });
+      }
+    }
+  };
+  $.extend(PNotify.styling.brighttheme, {
+    hi_menu: "ui-pnotify-history-brighttheme",
+    hi_btn: "",
+    hi_btnhov: "",
+    hi_hnd: ""
+  });
+  $.extend(PNotify.styling.bootstrap3, {
+    hi_menu: "well",
+    hi_btn: "btn btn-default",
+    hi_btnhov: "",
+    hi_hnd: "glyphicon glyphicon-chevron-down"
+  });
+  $.extend(PNotify.styling.fontawesome, {
+    hi_menu: "well",
+    hi_btn: "btn btn-default",
+    hi_btnhov: "",
+    hi_hnd: "fa fa-chevron-down"
+  });
+  return PNotify;
+}));
+
+//  Source: node_modules\pnotify\src\pnotify.mobile.js
+// Mobile
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as a module.
+    define('pnotify.mobile', ['jquery', 'pnotify'], factory);
+  } else if (typeof exports === 'object' && typeof module !== 'undefined') {
+    // CommonJS
+    module.exports = factory(require('jquery'), require('./pnotify'));
+  } else {
+    // Browser globals
+    factory(root.jQuery, root.PNotify);
+  }
+}(typeof window !== "undefined" ? window : this, function($, PNotify){
+  PNotify.prototype.options.mobile = {
+    // Let the user swipe the notice away.
+    swipe_dismiss: true,
+    // Styles the notice to look good on mobile.
+    styling: true
+  };
+  PNotify.prototype.modules.mobile = {
+    init: function(notice, options){
+      var that = this,
+          origX = null,
+          diffX = null,
+          noticeWidth = null;
+
+      this.swipe_dismiss = options.swipe_dismiss;
+      this.doMobileStyling(notice, options);
+
+      notice.elem.on({
+        "touchstart": function(e){
+          if (!that.swipe_dismiss) {
+            return;
+          }
+
+          origX = e.originalEvent.touches[0].screenX;
+          noticeWidth = notice.elem.width();
+          notice.container.css("left", "0");
+        },
+        "touchmove": function(e){
+          if (!origX || !that.swipe_dismiss) {
+            return;
+          }
+
+          var curX = e.originalEvent.touches[0].screenX;
+
+          diffX = curX - origX;
+          var opacity = (1 - (Math.abs(diffX) / noticeWidth)) * notice.options.opacity;
+
+          notice.elem.css("opacity", opacity);
+          notice.container.css("left", diffX);
+        },
+        "touchend": function() {
+          if (!origX || !that.swipe_dismiss) {
+            return;
+          }
+
+          if (Math.abs(diffX) > 40) {
+            var goLeft = (diffX < 0) ? noticeWidth * -2 : noticeWidth * 2;
+            notice.elem.animate({"opacity": 0}, 100);
+            notice.container.animate({"left": goLeft}, 100);
+            notice.remove();
+          } else {
+            notice.elem.animate({"opacity": notice.options.opacity}, 100);
+            notice.container.animate({"left": 0}, 100);
+          }
+          origX = null;
+          diffX = null;
+          noticeWidth = null;
+        },
+        "touchcancel": function(){
+          if (!origX || !that.swipe_dismiss) {
+            return;
+          }
+
+          notice.elem.animate({"opacity": notice.options.opacity}, 100);
+          notice.container.animate({"left": 0}, 100);
+          origX = null;
+          diffX = null;
+          noticeWidth = null;
+        }
+      });
+    },
+    update: function(notice, options){
+      this.swipe_dismiss = options.swipe_dismiss;
+      this.doMobileStyling(notice, options);
+    },
+    doMobileStyling: function(notice, options){
+      if (options.styling) {
+        notice.elem.addClass("ui-pnotify-mobile-able");
+
+        if ($(window).width() <= 480) {
+          if (!notice.options.stack.mobileOrigSpacing1) {
+            notice.options.stack.mobileOrigSpacing1 = notice.options.stack.spacing1;
+            notice.options.stack.mobileOrigSpacing2 = notice.options.stack.spacing2;
+          }
+          notice.options.stack.spacing1 = 0;
+          notice.options.stack.spacing2 = 0;
+        } else if (notice.options.stack.mobileOrigSpacing1 || notice.options.stack.mobileOrigSpacing2) {
+          notice.options.stack.spacing1 = notice.options.stack.mobileOrigSpacing1;
+          delete notice.options.stack.mobileOrigSpacing1;
+          notice.options.stack.spacing2 = notice.options.stack.mobileOrigSpacing2;
+          delete notice.options.stack.mobileOrigSpacing2;
+        }
+      } else {
+        notice.elem.removeClass("ui-pnotify-mobile-able");
+
+        if (notice.options.stack.mobileOrigSpacing1) {
+          notice.options.stack.spacing1 = notice.options.stack.mobileOrigSpacing1;
+          delete notice.options.stack.mobileOrigSpacing1;
+        }
+        if (notice.options.stack.mobileOrigSpacing2) {
+          notice.options.stack.spacing2 = notice.options.stack.mobileOrigSpacing2;
+          delete notice.options.stack.mobileOrigSpacing2;
+        }
+      }
+    }
+  };
+  return PNotify;
+}));
+
+//  Source: node_modules\pnotify\src\pnotify.nonblock.js
+// Nonblock
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as a module.
+    define('pnotify.nonblock', ['jquery', 'pnotify'], factory);
+  } else if (typeof exports === 'object' && typeof module !== 'undefined') {
+    // CommonJS
+    module.exports = factory(require('jquery'), require('./pnotify'));
+  } else {
+    // Browser globals
+    factory(root.jQuery, root.PNotify);
+  }
+}(typeof window !== "undefined" ? window : this, function($, PNotify){
+  // Some useful regexes.
+  var re_on = /^on/,
+      re_mouse_events = /^(dbl)?click$|^mouse(move|down|up|over|out|enter|leave)$|^contextmenu$/,
+      re_ui_events = /^(focus|blur|select|change|reset)$|^key(press|down|up)$/,
+      re_html_events = /^(scroll|resize|(un)?load|abort|error)$/;
+  // Fire a DOM event.
+  var dom_event = function(e, orig_e){
+    var event_object;
+    e = e.toLowerCase();
+    if (document.createEvent && this.dispatchEvent) {
+      // FireFox, Opera, Safari, Chrome
+      e = e.replace(re_on, '');
+      if (e.match(re_mouse_events)) {
+        // This allows the click event to fire on the notice. There is
+        // probably a much better way to do it.
+        $(this).offset();
+        event_object = document.createEvent("MouseEvents");
+        event_object.initMouseEvent(
+          e, orig_e.bubbles, orig_e.cancelable, orig_e.view, orig_e.detail,
+          orig_e.screenX, orig_e.screenY, orig_e.clientX, orig_e.clientY,
+          orig_e.ctrlKey, orig_e.altKey, orig_e.shiftKey, orig_e.metaKey, orig_e.button, orig_e.relatedTarget
+        );
+      } else if (e.match(re_ui_events)) {
+        event_object = document.createEvent("UIEvents");
+        event_object.initUIEvent(e, orig_e.bubbles, orig_e.cancelable, orig_e.view, orig_e.detail);
+      } else if (e.match(re_html_events)) {
+        event_object = document.createEvent("HTMLEvents");
+        event_object.initEvent(e, orig_e.bubbles, orig_e.cancelable);
+      }
+      if (!event_object) return;
+      this.dispatchEvent(event_object);
+    } else {
+      // Internet Explorer
+      if (!e.match(re_on)) e = "on"+e;
+      event_object = document.createEventObject(orig_e);
+      this.fireEvent(e, event_object);
+    }
+  };
+
+
+  // This keeps track of the last element the mouse was over, so
+  // mouseleave, mouseenter, etc can be called.
+  var nonblock_last_elem;
+  // This is used to pass events through the notice if it is non-blocking.
+  var nonblock_pass = function(notice, e, e_name){
+    notice.elem.addClass("ui-pnotify-nonblock-hide");
+    var element_below = document.elementFromPoint(e.clientX, e.clientY);
+    notice.elem.removeClass("ui-pnotify-nonblock-hide");
+    var jelement_below = $(element_below);
+    var cursor_style = jelement_below.css("cursor");
+    if (cursor_style === "auto" && element_below.tagName === "A") {
+      cursor_style = "pointer";
+    }
+    notice.elem.css("cursor", cursor_style !== "auto" ? cursor_style : "default");
+    // If the element changed, call mouseenter, mouseleave, etc.
+    if (!nonblock_last_elem || nonblock_last_elem.get(0) != element_below) {
+      if (nonblock_last_elem) {
+        dom_event.call(nonblock_last_elem.get(0), "mouseleave", e.originalEvent);
+        dom_event.call(nonblock_last_elem.get(0), "mouseout", e.originalEvent);
+      }
+      dom_event.call(element_below, "mouseenter", e.originalEvent);
+      dom_event.call(element_below, "mouseover", e.originalEvent);
+    }
+    dom_event.call(element_below, e_name, e.originalEvent);
+    // Remember the latest element the mouse was over.
+    nonblock_last_elem = jelement_below;
+  };
+
+
+  PNotify.prototype.options.nonblock = {
+    // Create a non-blocking notice. It lets the user click elements underneath it.
+    nonblock: false
+  };
+  PNotify.prototype.modules.nonblock = {
+    init: function(notice, options){
+      var that = this;
+      notice.elem.on({
+        "mouseenter": function(e){
+          if (that.options.nonblock) {
+            e.stopPropagation();
+          }
+          if (that.options.nonblock) {
+            // If it's non-blocking, animate to the other opacity.
+            notice.elem.addClass("ui-pnotify-nonblock-fade");
+          }
+        },
+        "mouseleave": function(e){
+          if (that.options.nonblock) {
+            e.stopPropagation();
+          }
+          nonblock_last_elem = null;
+          notice.elem.css("cursor", "auto");
+          // Animate back to the normal opacity.
+          if (that.options.nonblock && notice.animating !== "out") {
+            notice.elem.removeClass("ui-pnotify-nonblock-fade");
+          }
+        },
+        "mouseover": function(e){
+          if (that.options.nonblock) {
+            e.stopPropagation();
+          }
+        },
+        "mouseout": function(e){
+          if (that.options.nonblock) {
+            e.stopPropagation();
+          }
+        },
+        "mousemove": function(e){
+          if (that.options.nonblock) {
+            e.stopPropagation();
+            nonblock_pass(notice, e, "onmousemove");
+          }
+        },
+        "mousedown": function(e){
+          if (that.options.nonblock) {
+            e.stopPropagation();
+            e.preventDefault();
+            nonblock_pass(notice, e, "onmousedown");
+          }
+        },
+        "mouseup": function(e){
+          if (that.options.nonblock) {
+            e.stopPropagation();
+            e.preventDefault();
+            nonblock_pass(notice, e, "onmouseup");
+          }
+        },
+        "click": function(e){
+          if (that.options.nonblock) {
+            e.stopPropagation();
+            nonblock_pass(notice, e, "onclick");
+          }
+        },
+        "dblclick": function(e){
+          if (that.options.nonblock) {
+            e.stopPropagation();
+            nonblock_pass(notice, e, "ondblclick");
+          }
+        }
+      });
+    }
+  };
+  return PNotify;
+}));
+
+//  Source: node_modules\pnotify\src\pnotify.reference.js
+// Reference
+// This file is for referencing while you are making a PNotify module.
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as a module.
+    define('pnotify.reference', ['jquery', 'pnotify'], factory);
+  } else if (typeof exports === 'object' && typeof module !== 'undefined') {
+    // CommonJS
+    module.exports = factory(require('jquery'), require('./pnotify'));
+  } else {
+    // Browser globals
+    factory(root.jQuery, root.PNotify);
+  }
+}(typeof window !== "undefined" ? window : this, function($, PNotify){
+  // This if the default values of your options.
+  PNotify.prototype.options.reference = {
+    // Provide a thing for stuff. Turned off by default.
+    put_thing: false,
+    // If you are displaying any text, you should use a labels options to
+    // support internationalization.
+    labels: {
+      text: "Spin Around"
+    }
+  };
+  PNotify.prototype.modules.reference = {
+    // This function is called when the notice is being created, after the
+    // core has done all of its work.
+    init: function(notice /* the notice object */, options /* this module's options */){
+      var that = this; // This line will allow you to access instance variables
+                       // like "this.thingElem" from within closures.
+
+      // The notice object is also available here:
+      this.notice;
+      // The module's options are also available here:
+      this.options;
+
+      // Note that options only contains the options specific to our modules.
+      // To access global options, we would use notice.options.
+
+      // We want to check to make sure the notice should include our thing.
+      if (!options.put_thing) {
+        return;
+      }
+
+      // We're going to create a button that will be appended to the notice.
+      // It will be disabled by default, so we can enable it on mouseover.
+      // You should try to keep elements inside the notice container.
+      this.thingElem = $('<button style="float:right;" class="btn btn-default" type="button" disabled><i class="'+notice.styles.athing+'" />&nbsp;'+options.labels.text+'</button>').appendTo(notice.container);
+      // Since our button is floated, we have to add a clearing div.
+      notice.container.append('<div style="clear: right; line-height: 0;" />')
+
+      // Now we're going to enable the button on mouseenter.
+      notice.elem.on({
+        "mouseenter": function(e){
+          // Enable the button.
+          // Notice that we have to use "that" to access thingElem, because
+          // we are in a different scope inside this function.
+          that.thingElem.prop("disabled", false);
+        },
+        "mouseleave": function(e){
+          // Disable the button.
+          that.thingElem.prop("disabled", true);
+        }
+      });
+
+      // Now we're going to make our button do something.
+      this.thingElem.on("click", function(){
+        // Spin the notice around.
+        var cur_angle = 0;
+        var timer = setInterval(function(){
+          cur_angle += 10;
+          if (cur_angle == 360) {
+            cur_angle = 0;
+            clearInterval(timer);
+          }
+          notice.elem.css({
+            '-moz-transform': ('rotate('+cur_angle+'deg)'),
+            '-webkit-transform': ('rotate('+cur_angle+'deg)'),
+            '-o-transform': ('rotate('+cur_angle+'deg)'),
+            '-ms-transform': ('rotate('+cur_angle+'deg)'),
+            'filter': ('progid:DXImageTransform.Microsoft.BasicImage(rotation='+(cur_angle / 360 * 4)+')')
+          });
+        }, 20);
+      });
+    },
+
+    // This is called when the notice is updating its options.
+    update: function(notice, options /* the new options for our module */, oldOpts /* the old options for our module */){
+      // The notice object is also available here:
+      this.notice;
+      // The module's options are also available here:
+      this.options;
+
+      // We need to remove the button if it's now disabled, and show it again if it's enabled.
+      if (options.put_thing && this.thingElem) {
+        this.thingElem.show();
+      } else if (!options.put_thing && this.thingElem) {
+        this.thingElem.hide();
+      }
+      // You may notice that if the user creates a notice without our button,
+      // then updates it to enable our button, they will be out of luck.
+      // Whatever, I don't want to write that much code.
+
+      // Now we update the icon, which may have changed.
+      // Note that as of right now, PNotify doesn't support updating styling.
+      if (this.thingElem) {
+        this.thingElem.find('i').attr("class", notice.styles.athing);
+      }
+    },
+    // I have nothing to put in these, just showing you that they exist. You
+    // won't need to include them if you aren't using them.
+    beforeOpen: function(notice, options){
+      // Called before the notice is opened.
+    },
+    afterOpen: function(notice, options){
+      // Called after the notice is opened.
+    },
+    beforeClose: function(notice, options){
+      // Called before the notice is closed.
+    },
+    afterClose: function(notice, options){
+      // Called after the notice is closed.
+    },
+    beforeDestroy: function(notice, options){
+      // Called before the notice is destroyed.
+    },
+    afterDestroy: function(notice, options){
+      // Called after the notice is destroyed.
+    }
+  };
+  // This is where you would add any styling options you are using in your code.
+  $.extend(PNotify.styling.brighttheme, {
+    athing: "bt-icon bt-icon-refresh"
+  });
+  $.extend(PNotify.styling.bootstrap3, {
+    athing: "glyphicon glyphicon-refresh"
+  });
+  $.extend(PNotify.styling.fontawesome, {
+    athing: "fa fa-refresh"
+  });
+  // Return PNotify for CommonJS modules.
+  return PNotify;
+}));
+
+//  Source: node_modules\pnotify\src\pnotify.tooltip.js
+// Tooltip
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as a module.
+    define('pnotify.tooltip', ['jquery', 'pnotify'], factory);
+  } else if (typeof exports === 'object' && typeof module !== 'undefined') {
+    // CommonJS
+    module.exports = factory(require('jquery'), require('./pnotify'));
+  } else {
+    // Browser globals
+    factory(root.jQuery, root.PNotify);
+  }
+}(typeof window !== "undefined" ? window : this, function($, PNotify){
+  return PNotify;
+}));

@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\form-select-menu\js\_bundle.inc
 angular.module("rpFormSelectMenu", []);
 
 //  Source: _lib\realpage\form-select-menu\js\services\select-menu.js
@@ -385,4 +384,3 @@ angular.module("rpFormSelectMenu", []);
             rpFormSelect
         ]);
 })(angular);
-

@@ -1,4 +1,3 @@
-//  Source: _lib\realpage\property-picker\js\_bundle.inc
 angular.module("rpPropertyPicker", []);
 
 //  Source: _lib\realpage\property-picker\js\templates\templates.inc.js
@@ -655,4 +654,3 @@ $templateCache.put("realpage/property-picker/templates/property-picker.html",
         .module("rpPropertyPicker")
         .directive("rpPropertyContext", [rpPropertyContext]);
 })(angular);
-

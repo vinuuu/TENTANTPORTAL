@@ -17581,4 +17581,3 @@ $templateCache.put("realpage/pdf-viewer/templates/pdf-viewer.html",
 "            clear: both;\n" +
 "        }</style><div class=\"mozPrintCallback-dialog-box\"><!-- TODO: Localise the following strings --> Preparing document for printing...<div class=\"progress-row\"><progress value=\"0\" max=\"100\"></progress><span class=\"relative-progress\">0%</span></div><div class=\"progress-actions\"><input type=\"button\" value=\"Cancel\" class=\"mozPrintCallback-cancel\"></div></div></div></div>");
 }]);
-

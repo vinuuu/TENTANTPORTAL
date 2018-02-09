@@ -14,7 +14,7 @@
 
         vm.init = function() {
             vm.destWatch = $scope.$on("$destroy", vm.destroy);
-            vm.model = model = accountsMdl;
+            vm.model = model = accountsMdl.init();
             var ddd = model.response.custData;
             vm.content = content;
 

@@ -24,7 +24,15 @@
             lazyLoad: [{
                 files: [
                     "lib.realpage.global-header-lang",
-                    "ui.home.base"
+                    "ui.home.base",
+                    "lib.realpage.common",
+                    "lib.realpage.float-scroll",
+                    "lib.realpage.form-common",
+                    "lib.realpage.datetimepicker-v1",
+                    "lib.realpage.form-input-text-v1",
+                    "lib.realpage.scrolling-tabs-menu",
+                    "lib.realpage.pagination",
+                    "lib.realpage.grid-controls",
                 ]
             }]
         };
@@ -35,30 +43,19 @@
                 files: [
                     "ui.home.dashbaord",
                     "ui.home.account-payments",
-                    "lib.realpage.accordion"
+                    //"lib.realpage.accordion",
+                    //"lib.angular.slider",
                 ]
             }]
         };
         routes["home.account-payments"] = {
-            url: "/accounts",
+            url: "/accounts/lease/:id",
             controller: "accountsCtrl as page",
             lazyLoad: [{
                 files: [
                     "ui.home.dashbaord",
                     "ui.home.invoice",
-                    "ui.home.account-payments",
-                    "lib.realpage.form-select-menu-v1",
-                    "lib.realpage.common",
-                    "lib.realpage.float-scroll",
-                    "lib.realpage.form-common",
-                    "lib.realpage.datetimepicker-v1",
-                    "lib.realpage.form-select-menu-v1",
-                    "lib.realpage.scrolling-tabs-menu",
-                    "lib.realpage.pagination",
-                    "lib.realpage.busy-indicator",
-                    "lib.realpage.grid",
-                    "lib.realpage.grid-controls",
-                    "lib.realpage.grid-pagination"
+                    "ui.home.account-payments"                   
                 ]
             }]
         };
@@ -69,21 +66,18 @@
                 files: [
                     "ui.home.dashbaord",
                     "ui.home.view-statements",
-                    "lib.realpage.form-select-menu-v1"
 
                 ]
             }]
         };
         routes["home.invoice"] = {
-            url: "/invoice/lease/:id",
+            url: "/invoice/lease/:id/month/:m",
             controller: "invoiceCtrl as page",
             rerun: true,
             lazyLoad: [{
                 files: [
                     "ui.home.dashbaord",
                     "ui.home.invoice",
-                    "lib.realpage.form-select-menu-v1",
-                    "lib.realpage.form-input-text-v1"
                 ]
             }]
         };

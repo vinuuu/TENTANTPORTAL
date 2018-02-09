@@ -268,4 +268,3 @@ angular.module("rpCollapsiblePanel", []);
         .module("rpCollapsiblePanel")
         .service("rpCollapsiblePanelSvc", [CollapsiblePanel]);
 })(angular);
-

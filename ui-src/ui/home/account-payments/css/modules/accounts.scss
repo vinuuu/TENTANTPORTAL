@@ -24,12 +24,7 @@
     }
     .boder-full {
         border: 1px solid #e4e6e7;
-    }
-    .TOTALENTERED {
-        td {
-            text-align: right;
-        }
-    }
+    }   
     .m-t-34 {
         margin-top: 34px !important;
     }
@@ -38,5 +33,10 @@
     }
     .m-l-m-12 {
         margin-left: -12px;
+    }
+    .rp-grid-body-1 {
+        .TOTALENTERED ,.TOTALDUE {
+            text-align: right;
+        }
     }
 }

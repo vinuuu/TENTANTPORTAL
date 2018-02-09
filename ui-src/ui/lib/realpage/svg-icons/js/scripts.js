@@ -117,4 +117,3 @@ angular.module("rpSvgIcon", []);
             RpSvgIconCache
         ]);
 })(angular);
-

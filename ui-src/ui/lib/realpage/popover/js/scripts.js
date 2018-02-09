@@ -4,15 +4,21 @@
 (function (angular, undefined) {
     "use strict";
 
-    function rpPopover($popover) {
+    function rpPopover($popover, $parse) {
         function link(scope, elem, attr) {
             var dir = {};
 
             dir.init = function () {
                 dir.options = scope.$eval(attr.rpPopover);
-                scope[dir.options.instName] = dir;
-                dir.popover = $popover(elem, dir.options);
                 dir.destWatch = scope.$on("$destroy", dir.destroy);
+                dir.updateReference().popover = $popover(elem, dir.options);
+                dir.popover.$scope.rpPopoverOptions = dir.options;
+            };
+
+            dir.updateReference = function () {
+                var ref = $parse(dir.options.instName);
+                ref.assign(scope, dir);
+                return dir;
             };
 
             dir.show = function () {
@@ -21,6 +27,10 @@
 
             dir.hide = function () {
                 dir.popover.hide();
+            };
+
+            dir.toggle = function () {
+                dir.popover.toggle();
             };
 
             dir.destroy = function () {
@@ -44,7 +54,7 @@
 
     angular
         .module("rpPopover")
-        .directive("rpPopover", ["$popover", rpPopover]);
+        .directive("rpPopover", ["$popover", "$parse", rpPopover]);
 })(angular);
 
 //  Source: _lib\realpage\popover\js\models\popover.js
@@ -54,36 +64,43 @@
     "use strict";
 
     function factory() {
-        var defConfig = {
-            animation: "am-fade",
-            placement: "right",
-            trigger: "click",
-            title: "",
-            content: "",
-            html: false,
-            delay: {
-                show: 0,
-                hide: 0
-            },
-            container: false,
-            target: false,
-            template: "",
-            templateUrl: "popover/popover.tpl.html",
-            contentTemplate: false,
-            autoClose: false,
-            id: "",
-            keyboard: false,
-            onShow: angular.noop,
-            onHide: angular.noop,
-            onBeforeHide: angular.noop,
-            viewport: {
-                padding: 0,
-                selector: "body"
-            }
-        };
+        var index = 1;
+
+        function newConfig() {
+            var instName = "rpPopover" + index++;
+
+            return {
+                animation: "am-fade",
+                autoClose: false,
+                container: false,
+                content: "",
+                contentTemplate: false,
+                delay: {
+                    show: 0,
+                    hide: 0
+                },
+                html: false,
+                id: "",
+                instName: instName,
+                keyboard: false,
+                onBeforeHide: angular.noop,
+                onHide: angular.noop,
+                onShow: angular.noop,
+                placement: "right",
+                target: false,
+                template: "",
+                templateUrl: "popover/popover.tpl.html",
+                title: "",
+                trigger: "click",
+                viewport: {
+                    padding: 0,
+                    selector: "body"
+                }
+            };
+        }
 
         return function (data) {
-            return angular.extend({}, defConfig, data || {});
+            return angular.extend(newConfig(), data || {});
         };
     }
 
@@ -91,4 +108,3 @@
         .module("rpPopover")
         .factory("rpPopoverConfig", [factory]);
 })(angular);
-

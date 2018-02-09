@@ -167,4 +167,3 @@ var loadGoogleMaps = (function($) {
   mapOverlayDirective('uiMapCircle', 'center_changed click dblclick mousedown mousemove ' + 'mouseout mouseover mouseup radius_changed rightclick');
   mapOverlayDirective('uiMapGroundOverlay', 'click dblclick');
 }());
-

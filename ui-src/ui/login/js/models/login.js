@@ -2,7 +2,7 @@
     'use strict';
 
     function factory(langTranslate, loginSvc, formConfig, state, notifSvc, busyIndicatorModel,
-        globalHeaderUsername, baseModel) {
+        globalHeaderUsername, baseModel, storage) {
         var model = {},
             busyIndicator,
             translate = langTranslate('login').translate;
@@ -95,43 +95,64 @@
                         sessionStorage.setItem('sessionID', response.data.api[0].sessionid);
                         sessionStorage.setItem('userName', response.data.api[0].name);
                         sessionStorage.setItem('companyName', response.data.api[0].companyname);
+                        sessionStorage.setItem('tenantname', response.data.api[0].tenantname);
+                        storage.set('permissionsFormenu', response.data.api[0].permissions);
                         globalHeaderUsername.setUsername(response.data.api[0].name);
                         if (response.data.api[0].resetpassword === 'T') {
                             model.showHideFlag = "firstlogin";
                             model.strUserName = model.username;
                         } else {
-                            state.go('home.dashbaord');
-                        }
-
-                    } else {
-                        if (count === 0) {
-                            model.pwdSuccess = 'failure';
-                            count++;
-                        } else if (count === 1) {
-                            count++;
+                            state.go('home.dashbaord');}
+                            model.pwdSuccess='';
+                    } 
+                    else {
+                        var errormsg=response.data.errormessage[0].error[0].description2[0].cdata;
+                        
+                         if(errormsg.indexOf('attempt')!=-1){
                             model.pwdSuccess = 'warning';
-                        } else {
-                            model.pwdSuccess = 'locked';
-
                         }
-                    }
+                        else if(errormsg.indexOf('unlocked')!=-1){
+                            model.pwdSuccess = 'locked';
+                        }
+                        else if(errormsg.indexOf('locked')!=-1){
+                            model.pwdSuccess = 'Adminlocked';
+                        }
+                        else if(errormsg.indexOf('disabled')!=-1){
+                            model.pwdSuccess = 'Inactive';
+                        }
+                        else{
+                        model.pwdSuccess = 'failure';
+                        }
+                   
+                     }
                 }
             }).catch(function(exception) {
                 model.toggleGridState(false);
-                if (count === 0) {
-                    model.pwdSuccess = 'failure';
-                    count++;
-                } else if (count === 1) {
-                    count++;
-                    model.pwdSuccess = 'warning';
-                } else {
-                    model.pwdSuccess = 'locked';
-
-                }
+                model.pwdSuccess = 'failure';
 
             });
         };
+        model.dynamicMenu = function(permissions) {
+            if (permissions.Documents) {
+                $('.rp-global-nav-menu>li:contains("Documents")').css('display', 'none');
+            } else {
+                $('.rp-global-nav-menu>li:contains("Documents")').css('display', 'block');
+            }
+            if (permissions.Invoice) {
+                $('.rp-global-nav-menu>li:contains("Invoices")').css('display', 'none');
+            } else {
+                $('.rp-global-nav-menu>li:contains("Invoices")').css('display', 'block');
+            }
 
+            if (permissions.Notes) {}
+            if (permissions.Payments) {
+                $('.rp-global-nav-menu>li:contains("Account & Payments")').css('display', 'none');
+            } else {
+                $('.rp-global-nav-menu>li:contains("Account & Payments")').css('display', 'block');
+            }
+            if (permissions["Service Request"]) {}
+
+        };
         model.radiochange = function(val) {
             alert(val);
         };
@@ -249,7 +270,7 @@
         .factory('loginMdl', factory);
 
     factory.$inject = ["appLangTranslate", "loginSvc", "loginFormConfig", '$state',
-        'notificationService', 'rpBusyIndicatorModel', 'globalHeaderUsername', 'baseModel'
+        'notificationService', 'rpBusyIndicatorModel', 'globalHeaderUsername', 'baseModel', 'rpSessionStorage',
     ];
 
 })();

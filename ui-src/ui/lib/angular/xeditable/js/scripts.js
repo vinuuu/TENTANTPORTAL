@@ -2401,4 +2401,3 @@ angular.module('xeditable').factory('editableThemes', function() {
 
   return themes;
 });
-

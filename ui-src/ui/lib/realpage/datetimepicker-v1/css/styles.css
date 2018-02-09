@@ -370,7 +370,8 @@
   border: 0; }
 
 .rp-datetimepicker {
-  margin: 0; }
+  margin: 0;
+  position: relative; }
   .rp-datetimepicker.inline {
     display: inline-block; }
   .rp-datetimepicker-text {
@@ -393,6 +394,15 @@
     position: relative;
     display: table-cell;
     background-color: #fff; }
+  .rp-datetimepicker-disabled-cover {
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    background: transparent; }
 
 .rp-datetimepicker .rp-datetimepicker-icon {
   color: #303436;
@@ -502,3 +512,12 @@
   border-top-color: #d31612 !important;
   border-right-color: #d31612 !important;
   border-bottom-color: #d31612 !important; }
+
+.rp-datetimepicker.disabled .rp-datetimepicker-text {
+  background: #eceeef; }
+
+.rp-datetimepicker.disabled .rp-datetimepicker-icon-wrap {
+  background: #eceeef; }
+
+.rp-datetimepicker.disabled .rp-datetimepicker-disabled-cover {
+  display: block; }
